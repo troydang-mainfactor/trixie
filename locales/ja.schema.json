@@ -159,7 +159,10 @@
     "product_sku": "SKU",
     "layered_slideshow": "レイヤースライドショー",
     "cart_drawer": "カートドロワー",
-    "disclosures": "開示情報"
+    "disclosures": "開示情報",
+    "combined_listings_product": "Combined Listings (Page)",
+    "combined_listings_card": "Combined Listings (Card)",
+    "combined_listings_tag_text": "Tag text rule"
   },
   "settings": {
     "alignment": "配置",
@@ -574,7 +577,17 @@
     "input_style": "入力スタイル",
     "selected_button_style": "選択したボタンのスタイル",
     "open_by_default": "デフォルトで開く",
-    "title_preset": "タイトルプリセット"
+    "title_preset": "タイトルプリセット",
+    "swatch_shape": "Swatch shape",
+    "swatch_radius": "Corner radius",
+    "swatch_size": "Swatch size",
+    "show_tooltips": "Show tooltips",
+    "tooltip_background": "Tooltip background",
+    "tooltip_text_color": "Tooltip text color",
+    "tooltip_font_size": "Tooltip font size",
+    "out_of_stock_style": "Out of stock style",
+    "tag": "Tag",
+    "display_text": "Text"
   },
   "options": {
     "apple": "Apple",
@@ -850,7 +863,9 @@
     "below_media": "メディアの下",
     "full_frame": "フルフレーム",
     "icons": "アイコン",
-    "input_field": "入力フィールド"
+    "input_field": "入力フィールド",
+    "crossed_out": "Crossed out",
+    "faded": "Faded"
   },
   "content": {
     "advanced": "高度な設定",
@@ -978,7 +993,13 @@
     "gift_card_products": "ギフトカード商品",
     "disclosures": "開示情報",
     "disclosures_metafield_content": "この商品に必要な安全に関する警告および規制に基づく開示情報です。",
-    "page_text_color_contrast_info": "カスタム背景色が設定されたセクションでは、十分な色のコントラストがある場合にのみ、このテキストの配色を使用します。"
+    "page_text_color_contrast_info": "カスタム背景色が設定されたセクションでは、十分な色のコントラストがある場合にのみ、このテキストの配色を使用します。",
+    "combined_listings_requires_metaobject": "Requires the product to have a Product group set (metafield custom.product_group). Renders nothing otherwise.",
+    "combined_listings_swatch_appearance": "Swatch appearance",
+    "combined_listings_tooltip": "Tooltip",
+    "combined_listings_availability": "Availability",
+    "combined_listings_below_text": "Below-swatch text",
+    "combined_listings_below_text_info": "Add tag-based text rules below as blocks. The first rule whose tag matches the product is shown; only one is displayed at a time."
   },
   "html_defaults": {
     "share_information_about_your": "<p>ブランドに関する情報をお客様に伝えましょう。商品の説明、お知らせ、ストアへのお客様への歓迎メッセージなどに使用します。</p>",
@@ -1073,7 +1094,8 @@
     "bestsellers": "ベストセラー",
     "featured_collection": "特集コレクション",
     "new_arrivals": "新着商品",
-    "disclosures": "開示情報"
+    "disclosures": "開示情報",
+    "combined_listings_bestseller_text": "Our most popular shade"
   },
   "info": {
     "video_alt_text": "支援技術のユーザーのために動画の説明を記述します",

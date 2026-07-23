@@ -1,0 +1,39 @@
+{%- doc -%}
+  Renders the visual dot for a single Combined Listings swatch (image, color, or blank),
+  plus the out-of-stock treatment for the swatch.
+
+  @param {string} visual_kind - 'image', 'color', or 'none'.
+  @param {string} [visual_url] - Image URL when visual_kind == 'image'.
+  @param {object} [visual_color] - Color value when visual_kind == 'color'.
+  @param {string} oos_style - 'crossed_out', 'faded', 'none', or 'hidden'.
+  @param {boolean} is_available - Whether the linked product is available.
+{%- enddoc -%}
+
+{%- liquid
+  assign swatch_value = null
+  if visual_kind == 'image'
+    assign swatch_value = 'url(' | append: visual_url | append: ')'
+  elsif visual_kind == 'color'
+    assign swatch_value = 'rgb(' | append: visual_color.rgb | append: ')'
+  endif
+
+  assign show_crossed_out = false
+  assign show_faded = false
+  if is_available == false
+    if oos_style == 'crossed_out'
+      assign show_crossed_out = true
+    elsif oos_style == 'faded'
+      assign show_faded = true
+    endif
+  endif
+-%}
+
+<span
+  class="
+    cl-swatch
+    {% if swatch_value == null %} cl-swatch--empty{% endif %}
+    {% if show_crossed_out %} cl-swatch--crossed-out{% endif %}
+    {% if show_faded %} cl-swatch--faded{% endif %}
+  "
+  style="--cl-swatch-background: {{ swatch_value }};"
+></span>

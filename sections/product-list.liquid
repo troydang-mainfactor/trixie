@@ -32,7 +32,14 @@
   {% capture list_items %}
     {% if section.settings.collection != blank and shop.products_count != 0 %}
       {% paginate section.settings.collection.products by max_items %}
-        {% for product in section.settings.collection.products limit: max_items %}
+        {%- comment -%}
+          Safety net only: primary exclusion is the collection rule/tag exclusion set up in
+          Shopify admin. Combined Listings non-primary products are tagged 'hide-from-grid'.
+          Filtering the array (rather than `continue` inside the loop) keeps `forloop.last`
+          accurate for the `<!--@list/split-->` marker below.
+        {%- endcomment -%}
+        {% assign visible_products = section.settings.collection.products | reject: 'tags', 'hide-from-grid' %}
+        {% for product in visible_products limit: max_items %}
         <div
           class="resource-list__item"
         >

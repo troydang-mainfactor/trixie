@@ -159,7 +159,10 @@
     "product_sku": "SKU(재고 관리 코드)",
     "layered_slideshow": "레이어드 슬라이드 쇼",
     "cart_drawer": "카트 서랍",
-    "disclosures": "고지 사항"
+    "disclosures": "고지 사항",
+    "combined_listings_product": "Combined Listings (Page)",
+    "combined_listings_card": "Combined Listings (Card)",
+    "combined_listings_tag_text": "Tag text rule"
   },
   "settings": {
     "autoplay": "자동 재생",
@@ -574,7 +577,17 @@
     "input_style": "입력 스타일",
     "selected_button_style": "선택한 버튼 스타일",
     "open_by_default": "기본으로 열기",
-    "title_preset": "제목 사전 설정"
+    "title_preset": "제목 사전 설정",
+    "swatch_shape": "Swatch shape",
+    "swatch_radius": "Corner radius",
+    "swatch_size": "Swatch size",
+    "show_tooltips": "Show tooltips",
+    "tooltip_background": "Tooltip background",
+    "tooltip_text_color": "Tooltip text color",
+    "tooltip_font_size": "Tooltip font size",
+    "out_of_stock_style": "Out of stock style",
+    "tag": "Tag",
+    "display_text": "Text"
   },
   "options": {
     "apple": "Apple",
@@ -850,7 +863,9 @@
     "below_media": "미디어 아래",
     "full_frame": "전체 프레임",
     "icons": "아이콘",
-    "input_field": "입력 필드"
+    "input_field": "입력 필드",
+    "crossed_out": "Crossed out",
+    "faded": "Faded"
   },
   "content": {
     "background_video": "배경 비디오",
@@ -978,7 +993,13 @@
     "gift_card_products": "기프트 카드 제품",
     "disclosures": "고지 사항",
     "disclosures_metafield_content": "이 제품에 필수적인 안전 경고 및 규제 관련 고지 사항입니다.",
-    "page_text_color_contrast_info": "사용자 지정 배경 색상이 있는 섹션은 색상 대비가 충분한 경우에만 이 텍스트 색상을 사용합니다."
+    "page_text_color_contrast_info": "사용자 지정 배경 색상이 있는 섹션은 색상 대비가 충분한 경우에만 이 텍스트 색상을 사용합니다.",
+    "combined_listings_requires_metaobject": "Requires the product to have a Product group set (metafield custom.product_group). Renders nothing otherwise.",
+    "combined_listings_swatch_appearance": "Swatch appearance",
+    "combined_listings_tooltip": "Tooltip",
+    "combined_listings_availability": "Availability",
+    "combined_listings_below_text": "Below-swatch text",
+    "combined_listings_below_text_info": "Add tag-based text rules below as blocks. The first rule whose tag matches the product is shown; only one is displayed at a time."
   },
   "html_defaults": {
     "share_information_about_your": "<p>고객과 브랜드에 대한 정보를 공유하세요. 제품을 설명하거나, 공지 사항을 알리거나, 스토어를 방문하는 고객을 환영할 수 있습니다.</p>",
@@ -1073,7 +1094,8 @@
     "bestsellers": "베스트셀러",
     "featured_collection": "추천 컬렉션",
     "new_arrivals": "신상품",
-    "disclosures": "고지 사항"
+    "disclosures": "고지 사항",
+    "combined_listings_bestseller_text": "Our most popular shade"
   },
   "info": {
     "carousel_layout_on_mobile": "모바일에서는 항상 캐러셀이 사용됩니다.",

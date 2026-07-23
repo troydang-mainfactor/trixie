@@ -159,7 +159,10 @@
     "product_sku": "SKU",
     "layered_slideshow": "Diaporama superposé",
     "cart_drawer": "Panier coulissant",
-    "disclosures": "Divulgations"
+    "disclosures": "Divulgations",
+    "combined_listings_product": "Combined Listings (Page)",
+    "combined_listings_card": "Combined Listings (Card)",
+    "combined_listings_tag_text": "Tag text rule"
   },
   "settings": {
     "autoplay": "Lecture automatique",
@@ -574,7 +577,17 @@
     "input_style": "Style de champ",
     "selected_button_style": "Style du bouton sélectionné",
     "open_by_default": "Ouvert par défaut",
-    "title_preset": "Préréglage du titre"
+    "title_preset": "Préréglage du titre",
+    "swatch_shape": "Swatch shape",
+    "swatch_radius": "Corner radius",
+    "swatch_size": "Swatch size",
+    "show_tooltips": "Show tooltips",
+    "tooltip_background": "Tooltip background",
+    "tooltip_text_color": "Tooltip text color",
+    "tooltip_font_size": "Tooltip font size",
+    "out_of_stock_style": "Out of stock style",
+    "tag": "Tag",
+    "display_text": "Text"
   },
   "options": {
     "apple": "Pomme",
@@ -850,7 +863,9 @@
     "below_media": "Sous le support multimédia",
     "full_frame": "Plein cadre",
     "icons": "Icônes",
-    "input_field": "Champ de saisie"
+    "input_field": "Champ de saisie",
+    "crossed_out": "Crossed out",
+    "faded": "Faded"
   },
   "content": {
     "background_video": "Vidéo de fond",
@@ -978,7 +993,13 @@
     "gift_card_products": "Produits cartes-cadeaux",
     "disclosures": "Divulgations",
     "disclosures_metafield_content": "Avertissements de sécurité obligatoires et informations réglementaires pour ce produit.",
-    "page_text_color_contrast_info": "Les sections avec une couleur d’arrière-plan personnalisée utiliseront cette couleur de texte uniquement si le contraste des couleurs est suffisant."
+    "page_text_color_contrast_info": "Les sections avec une couleur d’arrière-plan personnalisée utiliseront cette couleur de texte uniquement si le contraste des couleurs est suffisant.",
+    "combined_listings_requires_metaobject": "Requires the product to have a Product group set (metafield custom.product_group). Renders nothing otherwise.",
+    "combined_listings_swatch_appearance": "Swatch appearance",
+    "combined_listings_tooltip": "Tooltip",
+    "combined_listings_availability": "Availability",
+    "combined_listings_below_text": "Below-swatch text",
+    "combined_listings_below_text_info": "Add tag-based text rules below as blocks. The first rule whose tag matches the product is shown; only one is displayed at a time."
   },
   "html_defaults": {
     "share_information_about_your": "<p>Partagez des informations sur votre marque avec vos clients. Décrivez un produit, faites des annonces ou accueillez les clients dans votre boutique.</p>",
@@ -1073,7 +1094,8 @@
     "bestsellers": "Meilleures ventes",
     "featured_collection": "Collection en vedette",
     "new_arrivals": "Nouveautés",
-    "disclosures": "Divulgations"
+    "disclosures": "Divulgations",
+    "combined_listings_bestseller_text": "Our most popular shade"
   },
   "info": {
     "carousel_layout_on_mobile": "Le carrousel est toujours utilisé sur mobile",

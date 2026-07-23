@@ -159,7 +159,10 @@
     "product_sku": "SKU",
     "layered_slideshow": "Warstwowy pokaz slajdów",
     "cart_drawer": "Szuflada koszyka",
-    "disclosures": "Informacje prawne"
+    "disclosures": "Informacje prawne",
+    "combined_listings_product": "Combined Listings (Page)",
+    "combined_listings_card": "Combined Listings (Card)",
+    "combined_listings_tag_text": "Tag text rule"
   },
   "settings": {
     "autoplay": "Autoodtwarzanie",
@@ -574,7 +577,17 @@
     "input_style": "Styl pola",
     "selected_button_style": "Styl wybranego przycisku",
     "open_by_default": "Domyślnie otwarte",
-    "title_preset": "Gotowe ustawienie tytułu"
+    "title_preset": "Gotowe ustawienie tytułu",
+    "swatch_shape": "Swatch shape",
+    "swatch_radius": "Corner radius",
+    "swatch_size": "Swatch size",
+    "show_tooltips": "Show tooltips",
+    "tooltip_background": "Tooltip background",
+    "tooltip_text_color": "Tooltip text color",
+    "tooltip_font_size": "Tooltip font size",
+    "out_of_stock_style": "Out of stock style",
+    "tag": "Tag",
+    "display_text": "Text"
   },
   "options": {
     "apple": "Apple",
@@ -850,7 +863,9 @@
     "below_media": "Pod multimediami",
     "full_frame": "Pełna klatka",
     "icons": "Ikony",
-    "input_field": "Pole wprowadzania"
+    "input_field": "Pole wprowadzania",
+    "crossed_out": "Crossed out",
+    "faded": "Faded"
   },
   "content": {
     "background_video": "Wideo w tle",
@@ -978,7 +993,13 @@
     "gift_card_products": "Produkty karty prezentowej",
     "disclosures": "Informacje prawne",
     "disclosures_metafield_content": "Wymagane ostrzeżenia dotyczące bezpieczeństwa i informacje prawne dla tego produktu.",
-    "page_text_color_contrast_info": "Sekcje z niestandardowym kolorem tła będą używać tego koloru tekstu tylko wtedy, gdy kontrast kolorów będzie wystarczający."
+    "page_text_color_contrast_info": "Sekcje z niestandardowym kolorem tła będą używać tego koloru tekstu tylko wtedy, gdy kontrast kolorów będzie wystarczający.",
+    "combined_listings_requires_metaobject": "Requires the product to have a Product group set (metafield custom.product_group). Renders nothing otherwise.",
+    "combined_listings_swatch_appearance": "Swatch appearance",
+    "combined_listings_tooltip": "Tooltip",
+    "combined_listings_availability": "Availability",
+    "combined_listings_below_text": "Below-swatch text",
+    "combined_listings_below_text_info": "Add tag-based text rules below as blocks. The first rule whose tag matches the product is shown; only one is displayed at a time."
   },
   "html_defaults": {
     "share_information_about_your": "<p>Podziel się informacjami o swojej marce z klientami. Opisz produkt, ogłaszaj nowości lub witaj klientów w swoim sklepie.</p>",
@@ -1073,7 +1094,8 @@
     "bestsellers": "Bestsellery",
     "featured_collection": "Polecana kolekcja",
     "new_arrivals": "Nowości",
-    "disclosures": "Informacje prawne"
+    "disclosures": "Informacje prawne",
+    "combined_listings_bestseller_text": "Our most popular shade"
   },
   "info": {
     "video_alt_text": "Opisz wideo dla użytkowników technologii wspomagających",

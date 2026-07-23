@@ -48,6 +48,15 @@
 
       {% capture children %}
         {% for product in products %}
+          {% comment %}
+            Safety net only: primary exclusion is the collection rule/tag exclusion set up in
+            Shopify admin. Combined Listings non-primary products are tagged 'hide-from-grid'.
+            Search results don't respect collection membership rules, so this is the primary
+            defense here (not just a redundant safety net).
+          {% endcomment %}
+          {% if product.tags contains 'hide-from-grid' %}
+            {% continue %}
+          {% endif %}
           <li
             id="{{ section.id }}-{{ product.id }}"
             class="product-grid__item product-grid__item--{{ forloop.index0 }}"

@@ -9,6 +9,12 @@
 {%- enddoc -%}
 {%- liquid
   assign recently_viewed_title_text = 'content.recently_viewed_products' | t
+
+  # Safety net only: primary exclusion is the collection rule/tag exclusion set up in
+  # Shopify admin. Combined Listings non-primary products are tagged 'hide-from-grid'.
+  # Predictive search / recently-viewed don't respect collection membership rules, so
+  # this is the primary defense here.
+  assign products = products | reject: 'tags', 'hide-from-grid'
 -%}
 <div
   id="predictive-search-products"
@@ -49,6 +55,9 @@
           {% for _id in order_ids %}
             {% assign int_id = _id | times: 1 %}
             {% assign product = products | find: 'id', int_id %}
+            {% if product == blank %}
+              {% continue %}
+            {% endif %}
             <li
               class="predictive-search-results__card predictive-search-results__card--product"
               ref="recentlyViewedItems[]"

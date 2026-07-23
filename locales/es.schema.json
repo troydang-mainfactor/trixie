@@ -159,7 +159,10 @@
     "product_sku": "SKU",
     "layered_slideshow": "Presentación de diapositivas en capas",
     "cart_drawer": "Carrito lateral",
-    "disclosures": "Divulgaciones"
+    "disclosures": "Divulgaciones",
+    "combined_listings_product": "Combined Listings (Page)",
+    "combined_listings_card": "Combined Listings (Card)",
+    "combined_listings_tag_text": "Tag text rule"
   },
   "settings": {
     "alignment": "Alineación",
@@ -574,7 +577,17 @@
     "input_style": "Estilo de campo",
     "selected_button_style": "Estilo del botón seleccionado",
     "open_by_default": "Abrir de forma predeterminada",
-    "title_preset": "Preajuste del título"
+    "title_preset": "Preajuste del título",
+    "swatch_shape": "Swatch shape",
+    "swatch_radius": "Corner radius",
+    "swatch_size": "Swatch size",
+    "show_tooltips": "Show tooltips",
+    "tooltip_background": "Tooltip background",
+    "tooltip_text_color": "Tooltip text color",
+    "tooltip_font_size": "Tooltip font size",
+    "out_of_stock_style": "Out of stock style",
+    "tag": "Tag",
+    "display_text": "Text"
   },
   "options": {
     "apple": "Apple",
@@ -850,7 +863,9 @@
     "below_media": "Debajo del contenido multimedia",
     "full_frame": "Marco completo",
     "icons": "Íconos",
-    "input_field": "Campo de entrada"
+    "input_field": "Campo de entrada",
+    "crossed_out": "Crossed out",
+    "faded": "Faded"
   },
   "content": {
     "advanced": "Avanzado",
@@ -978,7 +993,13 @@
     "gift_card_products": "Productos de tarjeta de regalo",
     "disclosures": "Divulgaciones",
     "disclosures_metafield_content": "Advertencias de seguridad y divulgaciones normativas obligatorias para este producto.",
-    "page_text_color_contrast_info": "Las secciones con un color de fondo personalizado usarán este color del texto solo cuando haya suficiente contraste de color."
+    "page_text_color_contrast_info": "Las secciones con un color de fondo personalizado usarán este color del texto solo cuando haya suficiente contraste de color.",
+    "combined_listings_requires_metaobject": "Requires the product to have a Product group set (metafield custom.product_group). Renders nothing otherwise.",
+    "combined_listings_swatch_appearance": "Swatch appearance",
+    "combined_listings_tooltip": "Tooltip",
+    "combined_listings_availability": "Availability",
+    "combined_listings_below_text": "Below-swatch text",
+    "combined_listings_below_text_info": "Add tag-based text rules below as blocks. The first rule whose tag matches the product is shown; only one is displayed at a time."
   },
   "html_defaults": {
     "share_information_about_your": "<p>Comparte información sobre tu marca con tus clientes. Describe un producto, anuncia novedades o da la bienvenida a quienes visitan tu tienda.</p>",
@@ -1073,7 +1094,8 @@
     "bestsellers": "Más vendidos",
     "featured_collection": "Colección destacada",
     "new_arrivals": "Novedades",
-    "disclosures": "Divulgaciones"
+    "disclosures": "Divulgaciones",
+    "combined_listings_bestseller_text": "Our most popular shade"
   },
   "info": {
     "carousel_layout_on_mobile": "En dispositivos móviles siempre se usa el carrusel",

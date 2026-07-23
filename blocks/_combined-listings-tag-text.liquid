@@ -1,0 +1,29 @@
+{%- doc -%}
+  A single tag -> text rule for the Combined Listings product-page block's below-swatch text.
+  Rendered data-only: the parent block reads `block.blocks` directly and shows the first
+  matching rule (in block order), so this template intentionally has no storefront output.
+{%- enddoc -%}
+
+{% schema %}
+{
+  "name": "t:names.combined_listings_tag_text",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "tag",
+      "label": "t:settings.tag"
+    },
+    {
+      "type": "text",
+      "id": "display_text",
+      "label": "t:settings.display_text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.combined_listings_tag_text"
+    }
+  ]
+}
+{% endschema %}

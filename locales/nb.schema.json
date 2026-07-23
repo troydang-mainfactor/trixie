@@ -159,7 +159,10 @@
     "product_sku": "SKU",
     "layered_slideshow": "Lagdelt lysbildefremvisning",
     "cart_drawer": "Handlekurvskuff",
-    "disclosures": "Opplysninger"
+    "disclosures": "Opplysninger",
+    "combined_listings_product": "Combined Listings (Page)",
+    "combined_listings_card": "Combined Listings (Card)",
+    "combined_listings_tag_text": "Tag text rule"
   },
   "settings": {
     "alignment": "Justering",
@@ -574,7 +577,17 @@
     "input_style": "Inputstil",
     "selected_button_style": "Stil for valgt knapp",
     "open_by_default": "Åpen som standard",
-    "title_preset": "Forhåndsinnstilling for tittel"
+    "title_preset": "Forhåndsinnstilling for tittel",
+    "swatch_shape": "Swatch shape",
+    "swatch_radius": "Corner radius",
+    "swatch_size": "Swatch size",
+    "show_tooltips": "Show tooltips",
+    "tooltip_background": "Tooltip background",
+    "tooltip_text_color": "Tooltip text color",
+    "tooltip_font_size": "Tooltip font size",
+    "out_of_stock_style": "Out of stock style",
+    "tag": "Tag",
+    "display_text": "Text"
   },
   "options": {
     "apple": "Eple",
@@ -850,7 +863,9 @@
     "below_media": "Under mediene",
     "full_frame": "Full ramme",
     "icons": "Ikoner",
-    "input_field": "Inndatafelt"
+    "input_field": "Inndatafelt",
+    "crossed_out": "Crossed out",
+    "faded": "Faded"
   },
   "content": {
     "advanced": "Avansert",
@@ -978,7 +993,13 @@
     "gift_card_products": "Gavekortprodukter",
     "disclosures": "Opplysninger",
     "disclosures_metafield_content": "Obligatoriske sikkerhetsadvarsler og lovpålagte opplysninger for dette produktet.",
-    "page_text_color_contrast_info": "Seksjoner med egendefinert bakgrunnsfarge bruker kun denne tekstfargen når det er tilstrekkelig fargekontrast."
+    "page_text_color_contrast_info": "Seksjoner med egendefinert bakgrunnsfarge bruker kun denne tekstfargen når det er tilstrekkelig fargekontrast.",
+    "combined_listings_requires_metaobject": "Requires the product to have a Product group set (metafield custom.product_group). Renders nothing otherwise.",
+    "combined_listings_swatch_appearance": "Swatch appearance",
+    "combined_listings_tooltip": "Tooltip",
+    "combined_listings_availability": "Availability",
+    "combined_listings_below_text": "Below-swatch text",
+    "combined_listings_below_text_info": "Add tag-based text rules below as blocks. The first rule whose tag matches the product is shown; only one is displayed at a time."
   },
   "html_defaults": {
     "share_information_about_your": "<p>Del informasjon om merkevaren din med kundene. Beskriv et produkt, kom med kunngjøringer eller ønsk kundene velkommen til butikken.</p>",
@@ -1073,7 +1094,8 @@
     "bestsellers": "Bestselgere",
     "featured_collection": "Utvalgt samling",
     "new_arrivals": "Nyheter",
-    "disclosures": "Opplysninger"
+    "disclosures": "Opplysninger",
+    "combined_listings_bestseller_text": "Our most popular shade"
   },
   "info": {
     "carousel_layout_on_mobile": "Karusell brukes alltid på mobil",

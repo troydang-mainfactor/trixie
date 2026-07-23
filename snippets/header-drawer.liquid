@@ -539,8 +539,13 @@
                                   </li>
                                 {%- endfor -%}
                               {% else %}
-                                {% paginate featured_products_collection.products by max_featured_items %}
-                                  {%- for product in featured_products_collection.products limit: max_featured_items -%}
+                                {%- comment -%}
+                                  Safety net only: primary exclusion is the collection rule/tag exclusion set up
+                                  in Shopify admin. Combined Listings non-primary products are tagged 'hide-from-grid'.
+                                {%- endcomment -%}
+                                {% assign visible_drawer_products = featured_products_collection.products | reject: 'tags', 'hide-from-grid' %}
+                                {% paginate visible_drawer_products by max_featured_items %}
+                                  {%- for product in visible_drawer_products limit: max_featured_items -%}
                                     <li class="menu-drawer__featured-content-list-item menu-drawer__featured-content-list-item--product">
                                       {% render 'resource-card',
                                         resource: product,
@@ -746,8 +751,13 @@
                 </li>
               {%- endfor -%}
             {% elsif top_level_featured_products_collection.products_count > 0 %}
-              {% paginate top_level_featured_products_collection.products by max_featured_items %}
-                {%- for product in top_level_featured_products_collection.products limit: max_featured_items -%}
+              {%- comment -%}
+                Safety net only: primary exclusion is the collection rule/tag exclusion set up
+                in Shopify admin. Combined Listings non-primary products are tagged 'hide-from-grid'.
+              {%- endcomment -%}
+              {% assign visible_top_level_drawer_products = top_level_featured_products_collection.products | reject: 'tags', 'hide-from-grid' %}
+              {% paginate visible_top_level_drawer_products by max_featured_items %}
+                {%- for product in visible_top_level_drawer_products limit: max_featured_items -%}
                   <li class="menu-drawer__featured-content-list-item menu-drawer__featured-content-list-item--product">
                     {% render 'resource-card',
                       resource: product,

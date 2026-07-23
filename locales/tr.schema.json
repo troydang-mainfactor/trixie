@@ -159,7 +159,10 @@
     "product_sku": "SKU",
     "layered_slideshow": "Katmanlı slayt gösterisi",
     "cart_drawer": "Sepet çekmecesi",
-    "disclosures": "Bildirimler"
+    "disclosures": "Bildirimler",
+    "combined_listings_product": "Combined Listings (Page)",
+    "combined_listings_card": "Combined Listings (Card)",
+    "combined_listings_tag_text": "Tag text rule"
   },
   "settings": {
     "autoplay": "Otomatik oynatma",
@@ -574,7 +577,17 @@
     "input_style": "Giriş stili",
     "selected_button_style": "Seçili düğme stili",
     "open_by_default": "Varsayılan olarak açık",
-    "title_preset": "Başlık ön ayarı"
+    "title_preset": "Başlık ön ayarı",
+    "swatch_shape": "Swatch shape",
+    "swatch_radius": "Corner radius",
+    "swatch_size": "Swatch size",
+    "show_tooltips": "Show tooltips",
+    "tooltip_background": "Tooltip background",
+    "tooltip_text_color": "Tooltip text color",
+    "tooltip_font_size": "Tooltip font size",
+    "out_of_stock_style": "Out of stock style",
+    "tag": "Tag",
+    "display_text": "Text"
   },
   "options": {
     "apple": "Apple",
@@ -850,7 +863,9 @@
     "below_media": "Medyanın altında",
     "full_frame": "Tam çerçeve",
     "icons": "Simgeler",
-    "input_field": "Giriş alanı"
+    "input_field": "Giriş alanı",
+    "crossed_out": "Crossed out",
+    "faded": "Faded"
   },
   "content": {
     "background_video": "Arka plan videosu",
@@ -978,7 +993,13 @@
     "gift_card_products": "Hediye kartı ürünleri",
     "disclosures": "Bildirimler",
     "disclosures_metafield_content": "Bu ürün için zorunlu güvenlik uyarıları ve yasal bildirimler.",
-    "page_text_color_contrast_info": "Özel arka plan rengine sahip bölümler, bu metin rengini yalnızca yeterli renk kontrastı olduğunda kullanır."
+    "page_text_color_contrast_info": "Özel arka plan rengine sahip bölümler, bu metin rengini yalnızca yeterli renk kontrastı olduğunda kullanır.",
+    "combined_listings_requires_metaobject": "Requires the product to have a Product group set (metafield custom.product_group). Renders nothing otherwise.",
+    "combined_listings_swatch_appearance": "Swatch appearance",
+    "combined_listings_tooltip": "Tooltip",
+    "combined_listings_availability": "Availability",
+    "combined_listings_below_text": "Below-swatch text",
+    "combined_listings_below_text_info": "Add tag-based text rules below as blocks. The first rule whose tag matches the product is shown; only one is displayed at a time."
   },
   "html_defaults": {
     "share_information_about_your": "<p>Markanızla ilgili bilgileri müşterilerinizle paylaşın. Bir ürünü açıklayın, duyurular yapın veya mağazanıza gelen müşterileri karşılayın.</p>",
@@ -1073,7 +1094,8 @@
     "bestsellers": "Çok satanlar",
     "featured_collection": "Öne çıkan koleksiyon",
     "new_arrivals": "Yeni gelenler",
-    "disclosures": "Bildirimler"
+    "disclosures": "Bildirimler",
+    "combined_listings_bestseller_text": "Our most popular shade"
   },
   "info": {
     "video_alt_text": "Yardımcı teknoloji kullanıcıları için videoyu açıklayın",

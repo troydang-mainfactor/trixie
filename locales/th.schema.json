@@ -159,7 +159,10 @@
     "product_sku": "SKU",
     "layered_slideshow": "สไลด์โชว์แบบซ้อน",
     "cart_drawer": "ตะกร้าสินค้าแบบเลื่อนด้านข้าง",
-    "disclosures": "การเปิดเผยข้อมูล"
+    "disclosures": "การเปิดเผยข้อมูล",
+    "combined_listings_product": "Combined Listings (Page)",
+    "combined_listings_card": "Combined Listings (Card)",
+    "combined_listings_tag_text": "Tag text rule"
   },
   "settings": {
     "alignment": "การจัดตำแหน่ง",
@@ -574,7 +577,17 @@
     "input_style": "สไตล์อินพุต",
     "selected_button_style": "สไตล์ของปุ่มที่เลือก",
     "open_by_default": "เปิดตามค่าเริ่มต้น",
-    "title_preset": "พรีเซ็ตชื่อ"
+    "title_preset": "พรีเซ็ตชื่อ",
+    "swatch_shape": "Swatch shape",
+    "swatch_radius": "Corner radius",
+    "swatch_size": "Swatch size",
+    "show_tooltips": "Show tooltips",
+    "tooltip_background": "Tooltip background",
+    "tooltip_text_color": "Tooltip text color",
+    "tooltip_font_size": "Tooltip font size",
+    "out_of_stock_style": "Out of stock style",
+    "tag": "Tag",
+    "display_text": "Text"
   },
   "options": {
     "apple": "Apple",
@@ -850,7 +863,9 @@
     "below_media": "ใต้สื่อ",
     "full_frame": "เต็มเฟรม",
     "icons": "ไอคอน",
-    "input_field": "ช่องกรอกข้อมูล"
+    "input_field": "ช่องกรอกข้อมูล",
+    "crossed_out": "Crossed out",
+    "faded": "Faded"
   },
   "content": {
     "advanced": "ขั้นสูง",
@@ -978,7 +993,13 @@
     "gift_card_products": "สินค้าบัตรของขวัญ",
     "disclosures": "การเปิดเผยข้อมูล",
     "disclosures_metafield_content": "คำเตือนด้านความปลอดภัยและข้อมูลตามระเบียบข้อบังคับที่ต้องเปิดเผยสำหรับสินค้านี้",
-    "page_text_color_contrast_info": "ส่วนที่มีสีพื้นหลังแบบกำหนดเองจะใช้สีตัวอักษรนี้เฉพาะเมื่อมีคอนทราสต์ของสีเพียงพอ"
+    "page_text_color_contrast_info": "ส่วนที่มีสีพื้นหลังแบบกำหนดเองจะใช้สีตัวอักษรนี้เฉพาะเมื่อมีคอนทราสต์ของสีเพียงพอ",
+    "combined_listings_requires_metaobject": "Requires the product to have a Product group set (metafield custom.product_group). Renders nothing otherwise.",
+    "combined_listings_swatch_appearance": "Swatch appearance",
+    "combined_listings_tooltip": "Tooltip",
+    "combined_listings_availability": "Availability",
+    "combined_listings_below_text": "Below-swatch text",
+    "combined_listings_below_text_info": "Add tag-based text rules below as blocks. The first rule whose tag matches the product is shown; only one is displayed at a time."
   },
   "html_defaults": {
     "share_information_about_your": "<p>แชร์ข้อมูลเกี่ยวกับแบรนด์ของคุณกับลูกค้า อธิบายสินค้า ประกาศข่าวสาร หรือต้อนรับลูกค้าสู่ร้านค้าของคุณ</p>",
@@ -1073,7 +1094,8 @@
     "bestsellers": "สินค้าขายดี",
     "featured_collection": "คอลเลกชันเด่น",
     "new_arrivals": "สินค้ามาใหม่",
-    "disclosures": "การเปิดเผยข้อมูล"
+    "disclosures": "การเปิดเผยข้อมูล",
+    "combined_listings_bestseller_text": "Our most popular shade"
   },
   "info": {
     "video_alt_text": "โปรดอธิบายวิดีโอสำหรับผู้ใช้เทคโนโลยีความช่วยเหลือพิเศษ",

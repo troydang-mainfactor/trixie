@@ -1,0 +1,253 @@
+{%- doc -%}
+  Renders the "Combined Listings" swatch row, sourced from the `custom.product_group` metaobject
+  reference on `product` (not Shopify's native Combined Listings / variant options).
+
+  @param {object} product - The contextual product (closest.product on the PDP or the card's product).
+  @param {object} block - The block rendering this snippet (settings + nested `_combined-listings-tag-text` blocks).
+  @param {string} context - Either 'page' (navigating swatches) or 'card' (swapping, non-navigating swatches).
+
+  @example
+  {% render 'combined-listing-swatches', product: closest.product, block: block, context: 'page' %}
+{%- enddoc -%}
+
+{%- liquid
+  assign settings = block.settings
+  assign product_group = product.metafields.custom.product_group.value
+
+  if product == blank or product_group == blank
+    assign swatches = empty
+  else
+    assign attribute_type = product_group.attribute_type.value
+    assign swatches = product_group.swatches.value
+  endif
+-%}
+
+{%- if swatches.size > 0 -%}
+  {% render 'swatch-styles' %}
+
+  {%- liquid
+    assign shape = settings.swatch_shape
+    case shape
+      when 'square'
+        assign swatch_radius = '0px'
+      when 'circle'
+        assign swatch_radius = '50%'
+      when 'custom'
+        assign swatch_radius = settings.swatch_shape_radius | append: 'px'
+      else
+        assign swatch_radius = '8px'
+    endcase
+
+    case settings.swatch_size
+      when 'small'
+        assign swatch_size = '20px'
+      when 'large'
+        assign swatch_size = '36px'
+      when 'custom'
+        assign swatch_size = settings.swatch_size_custom | append: 'px'
+      else
+        assign swatch_size = '28px'
+    endcase
+
+    assign tag = 'combined-listings-picker'
+    if context == 'card'
+      assign tag = 'combined-listings-card-swatches'
+    endif
+  -%}
+
+  <{{ tag }}
+    class="cl-swatches"
+    data-context="{{ context }}"
+    data-current-product-id="{{ product.id }}"
+    data-tooltips-enabled="{{ settings.show_tooltips }}"
+    style="
+      --cl-swatch-size: {{ swatch_size }};
+      --cl-swatch-radius: {{ swatch_radius }};
+      --cl-swatch-gap: {{ settings.swatch_gap | default: 8 }}px;
+      --cl-tooltip-bg: {% if settings.tooltip_background != blank %}{{ settings.tooltip_background }}{% else %}var(--color-background){% endif %};
+      --cl-tooltip-color: {% if settings.tooltip_text_color != blank %}{{ settings.tooltip_text_color }}{% else %}var(--color-foreground){% endif %};
+      --cl-tooltip-font-size: {{ settings.tooltip_font_size | default: 13 }}px;
+      {% render 'spacing-style', settings: settings %}
+    "
+    {{ block.shopify_attributes }}
+  >
+    {%- if attribute_type != blank -%}
+      <span class="cl-swatches__label">
+        {{- attribute_type -}}:
+        <span class="cl-swatches__label-value" ref="selectedLabel">
+          {%- for swatch in swatches -%}
+            {%- if swatch.product.value.id == product.id -%}{{ swatch.label.value }}{%- endif -%}
+          {%- endfor -%}
+        </span>
+      </span>
+    {%- endif -%}
+
+    <ul class="cl-swatches__row" role="list" ref="swatchList">
+      {%- for swatch in swatches -%}
+        {%- liquid
+          # Broken/stale reference guard: skip swatches whose linked product no longer resolves
+          # (deleted, unpublished, or otherwise inaccessible on the storefront).
+          assign linked_product = swatch.product.value
+          if linked_product == blank
+            continue
+          endif
+
+          assign is_current = false
+          if linked_product.id == product.id
+            assign is_current = true
+          endif
+
+          assign is_available = linked_product.available
+          assign oos_style = settings.out_of_stock_style
+
+          if is_available == false and oos_style == 'hidden'
+            continue
+          endif
+
+          # Swatch dot visual fallback priority: image > color > linked product's featured image.
+          assign visual_kind = 'none'
+          if swatch.image.value != blank
+            assign visual_kind = 'image'
+            assign visual_url = swatch.image.value | image_url: width: 160
+          elsif swatch.color.value != blank
+            assign visual_kind = 'color'
+            assign visual_color = swatch.color.value
+          elsif linked_product.featured_image != blank
+            assign visual_kind = 'image'
+            assign visual_url = linked_product.featured_image | image_url: width: 160
+          endif
+
+          assign tooltip_text = swatch.tooltip.value
+          assign show_this_tooltip = false
+          if settings.show_tooltips and tooltip_text != blank
+            assign show_this_tooltip = true
+          endif
+
+          assign aria_label = swatch.label.value
+          if is_available == false
+            assign sold_out_text = 'products.product.sold_out' | t
+            assign aria_label = aria_label | append: ' - ' | append: sold_out_text
+          endif
+
+          assign tooltip_id = null
+          if show_this_tooltip
+            assign tooltip_id = 'CombinedListingTooltip-' | append: block.id | append: '-' | append: forloop.index0
+          endif
+        -%}
+
+        <li class="cl-swatches__item">
+          {%- if context == 'page' -%}
+            <a
+              href="{{ linked_product.url }}"
+              class="cl-swatch-trigger{% if is_current %} cl-swatch-trigger--active{% endif %}"
+              aria-label="{{ aria_label | escape }}"
+              {% if is_current %}
+                aria-current="true"
+              {% endif %}
+              {% if tooltip_id %}
+                aria-describedby="{{ tooltip_id }}"
+                on:pointerenter="/showTooltip"
+                on:pointerleave="/hideTooltip"
+                on:focus="/showTooltip"
+                on:blur="/hideTooltip"
+              {% endif %}
+              data-product-id="{{ linked_product.id }}"
+              on:click="/handleSwatchClick"
+              ref="swatchTriggers[]"
+            >
+              {%- render 'combined-listing-swatch-visual',
+                visual_kind: visual_kind,
+                visual_url: visual_url,
+                visual_color: visual_color,
+                oos_style: oos_style,
+                is_available: is_available
+              -%}
+            </a>
+          {%- else -%}
+            {%- liquid
+              assign can_add_direct = false
+              if linked_product.variants_count == 1
+                assign can_add_direct = true
+              endif
+              assign target_variant = linked_product.selected_or_first_available_variant
+            -%}
+            <button
+              type="button"
+              class="cl-swatch-trigger{% if is_current %} cl-swatch-trigger--active{% endif %}"
+              aria-label="{{ aria_label | escape }}"
+              aria-pressed="{{ is_current }}"
+              data-product-id="{{ linked_product.id }}"
+              data-product-title="{{ linked_product.title | escape }}"
+              data-product-url="{{ linked_product.url }}"
+              data-product-available="{{ is_available }}"
+              data-quick-add-mode="{% if can_add_direct %}add{% else %}choose{% endif %}"
+              data-quick-add-variant-id="{{ target_variant.id }}"
+              data-quick-add-variant-available="{{ target_variant.available }}"
+              {% if tooltip_id %}
+                aria-describedby="{{ tooltip_id }}"
+                on:pointerenter="/showTooltip"
+                on:pointerleave="/hideTooltip"
+                on:focus="/showTooltip"
+                on:blur="/hideTooltip"
+              {% endif %}
+              on:click="/selectSwatch"
+              ref="swatchTriggers[]"
+            >
+              {%- render 'combined-listing-swatch-visual',
+                visual_kind: visual_kind,
+                visual_url: visual_url,
+                visual_color: visual_color,
+                oos_style: oos_style,
+                is_available: is_available
+              -%}
+            </button>
+            {%- if linked_product.featured_image != blank -%}
+              <template data-cl-swap-image>
+                {{-
+                  linked_product.featured_image
+                  | image_url: width: 3840
+                  | image_tag:
+                    widths: '240, 352, 832, 1200, 1600, 1920, 2560, 3840',
+                    sizes: '(min-width: 750px) 50vw, 100vw',
+                    alt: linked_product.featured_image.alt | default: linked_product.title,
+                    loading: 'lazy'
+                -}}
+              </template>
+            {%- endif -%}
+          {%- endif -%}
+
+          {%- if show_this_tooltip -%}
+            <div
+              id="{{ tooltip_id }}"
+              class="cl-tooltip"
+              popover="manual"
+              role="tooltip"
+            >
+              {{- tooltip_text | escape -}}
+            </div>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+
+    {%- if context == 'page' -%}
+      {%- liquid
+        assign below_swatch_text = blank
+        for rule_block in block.blocks
+          if rule_block.type == '_combined-listings-tag-text'
+            assign rule_tag = rule_block.settings.tag | strip
+            if rule_tag != blank and product.tags contains rule_tag and below_swatch_text == blank
+              assign below_swatch_text = rule_block.settings.display_text
+            endif
+          endif
+        endfor
+      -%}
+      {%- if below_swatch_text != blank -%}
+        <p class="cl-swatches__below-text">{{ below_swatch_text }}</p>
+      {%- endif -%}
+      {% content_for 'blocks' %}
+    {%- endif -%}
+  </{{ tag }}>
+
+  {% render 'combined-listing-swatches-styles' %}
+{%- endif -%}

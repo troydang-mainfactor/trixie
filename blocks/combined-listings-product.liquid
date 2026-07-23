@@ -1,0 +1,220 @@
+{%- doc -%}
+  Combined Listings - Product Page
+
+  Renders a navigating swatch picker sourced from the product's `custom.product_group`
+  metafield (a metaobject-based alternative to Shopify's native Combined Listings app).
+  Each swatch links to a different product; the swatch for the current product is marked active.
+{%- enddoc -%}
+
+{% liquid
+  assign product_resource = closest.product
+  if request.visual_preview_mode and product_resource == blank
+    assign product_resource = collections.all.products.first
+  endif
+%}
+
+{% unless product_resource == blank %}
+  {% render 'combined-listing-swatches', product: product_resource, block: block, context: 'page' %}
+{% endunless %}
+
+<script
+  src="{{ 'combined-listings.js' | asset_url }}"
+  type="module"
+></script>
+
+{% schema %}
+{
+  "name": "t:names.combined_listings_product",
+  "tag": null,
+  "blocks": [
+    {
+      "type": "_combined-listings-tag-text"
+    }
+  ],
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:content.combined_listings_requires_metaobject"
+    },
+    {
+      "type": "header",
+      "content": "t:content.combined_listings_swatch_appearance"
+    },
+    {
+      "type": "select",
+      "id": "swatch_shape",
+      "label": "t:settings.swatch_shape",
+      "options": [
+        { "value": "square", "label": "t:options.square" },
+        { "value": "rounded", "label": "t:options.rounded" },
+        { "value": "circle", "label": "t:options.circle" },
+        { "value": "custom", "label": "t:options.custom" }
+      ],
+      "default": "circle"
+    },
+    {
+      "type": "range",
+      "id": "swatch_shape_radius",
+      "label": "t:settings.swatch_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 8,
+      "visible_if": "{{ block.settings.swatch_shape == 'custom' }}"
+    },
+    {
+      "type": "select",
+      "id": "swatch_size",
+      "label": "t:settings.swatch_size",
+      "options": [
+        { "value": "small", "label": "t:options.small" },
+        { "value": "medium", "label": "t:options.medium" },
+        { "value": "large", "label": "t:options.large" },
+        { "value": "custom", "label": "t:options.custom" }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "range",
+      "id": "swatch_size_custom",
+      "label": "t:settings.swatch_size",
+      "min": 16,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "default": 32,
+      "visible_if": "{{ block.settings.swatch_size == 'custom' }}"
+    },
+    {
+      "type": "range",
+      "id": "swatch_gap",
+      "label": "t:settings.gap",
+      "min": 0,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "t:content.combined_listings_tooltip"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tooltips",
+      "label": "t:settings.show_tooltips",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "tooltip_background",
+      "label": "t:settings.tooltip_background",
+      "placeholder": "t:settings.default",
+      "visible_if": "{{ block.settings.show_tooltips }}"
+    },
+    {
+      "type": "color",
+      "id": "tooltip_text_color",
+      "label": "t:settings.tooltip_text_color",
+      "placeholder": "t:settings.default",
+      "visible_if": "{{ block.settings.show_tooltips }}"
+    },
+    {
+      "type": "range",
+      "id": "tooltip_font_size",
+      "label": "t:settings.tooltip_font_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 13,
+      "visible_if": "{{ block.settings.show_tooltips }}"
+    },
+    {
+      "type": "header",
+      "content": "t:content.combined_listings_availability"
+    },
+    {
+      "type": "select",
+      "id": "out_of_stock_style",
+      "label": "t:settings.out_of_stock_style",
+      "options": [
+        { "value": "crossed_out", "label": "t:options.crossed_out" },
+        { "value": "faded", "label": "t:options.faded" },
+        { "value": "none", "label": "t:options.none" },
+        { "value": "hidden", "label": "t:options.hidden" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "header",
+      "content": "t:content.combined_listings_below_text"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:content.combined_listings_below_text_info"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-start",
+      "label": "t:settings.left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-end",
+      "label": "t:settings.right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.combined_listings_product",
+      "category": "t:categories.product",
+      "blocks": {
+        "rule-1": {
+          "type": "_combined-listings-tag-text",
+          "settings": {
+            "tag": "bestseller",
+            "display_text": "t:text_defaults.combined_listings_bestseller_text"
+          }
+        }
+      },
+      "block_order": ["rule-1"]
+    }
+  ]
+}
+{% endschema %}

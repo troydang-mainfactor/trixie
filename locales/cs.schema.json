@@ -159,7 +159,10 @@
     "product_sku": "SKU",
     "layered_slideshow": "Vrstvená prezentace",
     "cart_drawer": "Výsuvný košík",
-    "disclosures": "Prohlášení"
+    "disclosures": "Prohlášení",
+    "combined_listings_product": "Combined Listings (Page)",
+    "combined_listings_card": "Combined Listings (Card)",
+    "combined_listings_tag_text": "Tag text rule"
   },
   "settings": {
     "alignment": "Zarovnání",
@@ -574,7 +577,17 @@
     "input_style": "Styl pole",
     "selected_button_style": "Styl vybraného tlačítka",
     "open_by_default": "Otevřeno ve výchozím stavu",
-    "title_preset": "Předvolba nadpisu"
+    "title_preset": "Předvolba nadpisu",
+    "swatch_shape": "Swatch shape",
+    "swatch_radius": "Corner radius",
+    "swatch_size": "Swatch size",
+    "show_tooltips": "Show tooltips",
+    "tooltip_background": "Tooltip background",
+    "tooltip_text_color": "Tooltip text color",
+    "tooltip_font_size": "Tooltip font size",
+    "out_of_stock_style": "Out of stock style",
+    "tag": "Tag",
+    "display_text": "Text"
   },
   "options": {
     "apple": "Apple",
@@ -850,7 +863,9 @@
     "below_media": "Pod médii",
     "full_frame": "Přes celou plochu",
     "icons": "Ikony",
-    "input_field": "Vstupní pole"
+    "input_field": "Vstupní pole",
+    "crossed_out": "Crossed out",
+    "faded": "Faded"
   },
   "content": {
     "advanced": "Pokročilé",
@@ -978,7 +993,13 @@
     "gift_card_products": "Produkty dárkové karty",
     "disclosures": "Prohlášení",
     "disclosures_metafield_content": "Povinná bezpečnostní varování a zákonná prohlášení pro tento produkt.",
-    "page_text_color_contrast_info": "Sekce s vlastní barvou pozadí použijí tuto barvu textu pouze v případě dostatečného barevného kontrastu."
+    "page_text_color_contrast_info": "Sekce s vlastní barvou pozadí použijí tuto barvu textu pouze v případě dostatečného barevného kontrastu.",
+    "combined_listings_requires_metaobject": "Requires the product to have a Product group set (metafield custom.product_group). Renders nothing otherwise.",
+    "combined_listings_swatch_appearance": "Swatch appearance",
+    "combined_listings_tooltip": "Tooltip",
+    "combined_listings_availability": "Availability",
+    "combined_listings_below_text": "Below-swatch text",
+    "combined_listings_below_text_info": "Add tag-based text rules below as blocks. The first rule whose tag matches the product is shown; only one is displayed at a time."
   },
   "html_defaults": {
     "share_information_about_your": "<p>Sdílejte informace o značce se zákazníky. Popište produkt, oznamte novinky nebo přivítejte zákazníky v obchodě.</p>",
@@ -1073,7 +1094,8 @@
     "bestsellers": "Nejprodávanější",
     "featured_collection": "Propagovaná kolekce",
     "new_arrivals": "Novinky",
-    "disclosures": "Prohlášení"
+    "disclosures": "Prohlášení",
+    "combined_listings_bestseller_text": "Our most popular shade"
   },
   "info": {
     "video_alt_text": "Popište video pro uživatele asistivních technologií",

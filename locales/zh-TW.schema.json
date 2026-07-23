@@ -159,7 +159,10 @@
     "product_sku": "存貨單位 (SKU)",
     "layered_slideshow": "分層輪播",
     "cart_drawer": "購物車",
-    "disclosures": "資訊揭露"
+    "disclosures": "資訊揭露",
+    "combined_listings_product": "Combined Listings (Page)",
+    "combined_listings_card": "Combined Listings (Card)",
+    "combined_listings_tag_text": "Tag text rule"
   },
   "settings": {
     "alignment": "對齊",
@@ -574,7 +577,17 @@
     "input_style": "輸入欄位樣式",
     "selected_button_style": "選取的按鈕樣式",
     "open_by_default": "預設為開啟",
-    "title_preset": "標題預設設定"
+    "title_preset": "標題預設設定",
+    "swatch_shape": "Swatch shape",
+    "swatch_radius": "Corner radius",
+    "swatch_size": "Swatch size",
+    "show_tooltips": "Show tooltips",
+    "tooltip_background": "Tooltip background",
+    "tooltip_text_color": "Tooltip text color",
+    "tooltip_font_size": "Tooltip font size",
+    "out_of_stock_style": "Out of stock style",
+    "tag": "Tag",
+    "display_text": "Text"
   },
   "options": {
     "apple": "Apple",
@@ -850,7 +863,9 @@
     "below_media": "多媒體檔案下方",
     "full_frame": "滿版",
     "icons": "圖示",
-    "input_field": "輸入欄位"
+    "input_field": "輸入欄位",
+    "crossed_out": "Crossed out",
+    "faded": "Faded"
   },
   "content": {
     "advanced": "進階",
@@ -978,7 +993,13 @@
     "gift_card_products": "禮品卡產品",
     "disclosures": "資訊揭露",
     "disclosures_metafield_content": "此商品必備的安全警告與法規資訊揭露。",
-    "page_text_color_contrast_info": "具備自訂背景顏色的區段，只有在色彩對比度足夠時才會使用此文字顏色。"
+    "page_text_color_contrast_info": "具備自訂背景顏色的區段，只有在色彩對比度足夠時才會使用此文字顏色。",
+    "combined_listings_requires_metaobject": "Requires the product to have a Product group set (metafield custom.product_group). Renders nothing otherwise.",
+    "combined_listings_swatch_appearance": "Swatch appearance",
+    "combined_listings_tooltip": "Tooltip",
+    "combined_listings_availability": "Availability",
+    "combined_listings_below_text": "Below-swatch text",
+    "combined_listings_below_text_info": "Add tag-based text rules below as blocks. The first rule whose tag matches the product is shown; only one is displayed at a time."
   },
   "html_defaults": {
     "share_information_about_your": "<p>向顧客分享您的品牌故事。可用來敘述產品、發布公告，或歡迎顧客造訪您的商店。</p>",
@@ -1073,7 +1094,8 @@
     "bestsellers": "熱銷商品",
     "featured_collection": "精選商品系列",
     "new_arrivals": "新品上市",
-    "disclosures": "資訊揭露"
+    "disclosures": "資訊揭露",
+    "combined_listings_bestseller_text": "Our most popular shade"
   },
   "info": {
     "carousel_layout_on_mobile": "在行動裝置上一律使用輪播",

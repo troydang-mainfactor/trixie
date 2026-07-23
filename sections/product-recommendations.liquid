@@ -94,6 +94,13 @@
         else
           assign products = recommendations.products
         endif
+
+        # Safety net only: primary exclusion is the collection rule/tag exclusion set up in
+        # Shopify admin. Combined Listings non-primary products are tagged 'hide-from-grid'.
+        # Recommendations don't respect collection membership rules, so this is the primary
+        # defense here. Filtering the array (rather than `continue` inside the loop) keeps
+        # `forloop.last` accurate for the `<!--@list/split-->` marker below.
+        assign products = products | reject: 'tags', 'hide-from-grid'
       %}
       {% capture list_items %}
         {% for product in products limit: section.settings.max_products %}
