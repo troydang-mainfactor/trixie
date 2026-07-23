@@ -127,19 +127,38 @@
                 "padding-inline-end": 0
               },
               "blocks": {
-                "swatches_mVFhgr": {
-                  "type": "swatches",
-                  "name": "t:names.swatches",
+                "combined_listings_product_WnfAVA": {
+                  "type": "combined-listings-product",
+                  "name": "t:names.combined_listings_product",
                   "settings": {
-                    "product_swatches_alignment": "flex-start",
-                    "product_swatches_alignment_mobile": "flex-start",
-                    "hide_padding": false,
-                    "product_swatches_padding_top": 4,
-                    "product_swatches_padding_bottom": 0,
-                    "product_swatches_padding_left": 0,
-                    "product_swatches_padding_right": 0
+                    "swatch_shape": "circle",
+                    "swatch_shape_radius": 8,
+                    "swatch_size": "medium",
+                    "swatch_size_custom": 32,
+                    "swatch_gap": 8,
+                    "show_tooltips": true,
+                    "tooltip_background": "",
+                    "tooltip_text_color": "",
+                    "tooltip_font_size": 13,
+                    "out_of_stock_style": "none",
+                    "padding-block-start": 0,
+                    "padding-block-end": 8,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
                   },
-                  "blocks": {}
+                  "blocks": {
+                    "combined_listings_tag_text_eNRMgr": {
+                      "type": "_combined-listings-tag-text",
+                      "settings": {
+                        "tag": "bestseller",
+                        "display_text": "Our most popular shade"
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "combined_listings_tag_text_eNRMgr"
+                  ]
                 },
                 "text_xrnftG": {
                   "type": "text",
@@ -191,7 +210,7 @@
                 }
               },
               "block_order": [
-                "swatches_mVFhgr",
+                "combined_listings_product_WnfAVA",
                 "text_xrnftG",
                 "price_tVjtKg"
               ]
