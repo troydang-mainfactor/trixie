@@ -45,7 +45,7 @@
             "thumbnail_position": "right",
             "thumbnail_width": 44,
             "thumbnail_width_mobile": 92,
-            "thumbnail_radius": 5,
+            "thumbnail_radius": 0,
             "aspect_ratio": "adapt",
             "constrain_to_viewport": true,
             "media_fit": "contain",
