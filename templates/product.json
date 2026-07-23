@@ -194,7 +194,7 @@
                 "tooltip_background": "",
                 "tooltip_text_color": "",
                 "tooltip_font_size": 13,
-                "out_of_stock_style": "none",
+                "out_of_stock_style": "crossed_out",
                 "padding-block-start": 0,
                 "padding-block-end": 8,
                 "padding-inline-start": 0,
