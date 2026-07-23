@@ -158,27 +158,6 @@
               },
               "blocks": {}
             },
-            "combined_listings_card_ayqrHF": {
-              "type": "combined-listings-card",
-              "name": "t:names.combined_listings_card",
-              "settings": {
-                "swatch_shape": "rounded",
-                "swatch_shape_radius": 8,
-                "swatch_size": "large",
-                "swatch_size_custom": 24,
-                "swatch_gap": 6,
-                "show_tooltips": true,
-                "tooltip_background": "",
-                "tooltip_text_color": "",
-                "tooltip_font_size": 13,
-                "out_of_stock_style": "none",
-                "padding-block-start": 4,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
             "product_title_4nY4eT": {
               "type": "product-title",
               "name": "t:names.product_title",
@@ -225,13 +204,34 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "combined_listings_card_ayqrHF": {
+              "type": "combined-listings-card",
+              "name": "t:names.combined_listings_card",
+              "settings": {
+                "swatch_shape": "circle",
+                "swatch_shape_radius": 8,
+                "swatch_size": "medium",
+                "swatch_size_custom": 24,
+                "swatch_gap": 0,
+                "show_tooltips": true,
+                "tooltip_background": "",
+                "tooltip_text_color": "",
+                "tooltip_font_size": 13,
+                "out_of_stock_style": "none",
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
             }
           },
           "block_order": [
             "card-gallery",
-            "combined_listings_card_ayqrHF",
             "product_title_4nY4eT",
-            "price_EzJzMm"
+            "price_EzJzMm",
+            "combined_listings_card_ayqrHF"
           ]
         }
       },
