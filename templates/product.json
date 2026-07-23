@@ -185,10 +185,10 @@
               "type": "combined-listings-product",
               "name": "t:names.combined_listings_product",
               "settings": {
-                "swatch_shape": "rounded",
+                "swatch_shape": "circle",
                 "swatch_shape_radius": 8,
-                "swatch_size": "large",
-                "swatch_size_custom": 32,
+                "swatch_size": "custom",
+                "swatch_size_custom": 64,
                 "swatch_gap": 8,
                 "show_tooltips": true,
                 "tooltip_background": "",
