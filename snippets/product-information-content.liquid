@@ -160,6 +160,14 @@
     .product-details {
       grid-column: 2 / 3;
     }
+
+    /* A block moved here by mobile-block-reorder.js becomes a direct grid item of
+       product-component; without an explicit span it falls into a single narrow subgrid
+       track. Match .product-details' column so it keeps the same page margins as the rest
+       of the details content, rather than media's edge-to-edge 1 / -1 span. */
+    product-component > [data-mobile-above-media='true'] {
+      grid-column: 2 / 3;
+    }
   }
 
   /* Desktop styles */
