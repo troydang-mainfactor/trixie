@@ -201,17 +201,18 @@
                 "padding-inline-end": 0
               },
               "blocks": {
-                "combined_listings_tag_text_eNRMgr": {
+                "combined_listings_tag_text_87JU9t": {
                   "type": "_combined-listings-tag-text",
+                  "name": "t:names.combined_listings_tag_text",
                   "settings": {
-                    "tag": "bestseller",
-                    "display_text": "Our most popular shade"
+                    "tag": "NEW",
+                    "display_text": "NEW!"
                   },
                   "blocks": {}
                 }
               },
               "block_order": [
-                "combined_listings_tag_text_eNRMgr"
+                "combined_listings_tag_text_87JU9t"
               ]
             },
             "divider_VJhene": {
