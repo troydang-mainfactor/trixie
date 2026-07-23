@@ -127,39 +127,6 @@
                 "padding-inline-end": 0
               },
               "blocks": {
-                "combined_listings_product_WnfAVA": {
-                  "type": "combined-listings-product",
-                  "name": "t:names.combined_listings_product",
-                  "settings": {
-                    "swatch_shape": "circle",
-                    "swatch_shape_radius": 8,
-                    "swatch_size": "medium",
-                    "swatch_size_custom": 32,
-                    "swatch_gap": 8,
-                    "show_tooltips": true,
-                    "tooltip_background": "",
-                    "tooltip_text_color": "",
-                    "tooltip_font_size": 13,
-                    "out_of_stock_style": "none",
-                    "padding-block-start": 0,
-                    "padding-block-end": 8,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {
-                    "combined_listings_tag_text_eNRMgr": {
-                      "type": "_combined-listings-tag-text",
-                      "settings": {
-                        "tag": "bestseller",
-                        "display_text": "Our most popular shade"
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "combined_listings_tag_text_eNRMgr"
-                  ]
-                },
                 "text_xrnftG": {
                   "type": "text",
                   "name": "t:names.product_title",
@@ -210,9 +177,41 @@
                 }
               },
               "block_order": [
-                "combined_listings_product_WnfAVA",
                 "text_xrnftG",
                 "price_tVjtKg"
+              ]
+            },
+            "combined_listings_product_qg3rFy": {
+              "type": "combined-listings-product",
+              "name": "t:names.combined_listings_product",
+              "settings": {
+                "swatch_shape": "rounded",
+                "swatch_shape_radius": 8,
+                "swatch_size": "large",
+                "swatch_size_custom": 32,
+                "swatch_gap": 8,
+                "show_tooltips": true,
+                "tooltip_background": "",
+                "tooltip_text_color": "",
+                "tooltip_font_size": 13,
+                "out_of_stock_style": "none",
+                "padding-block-start": 0,
+                "padding-block-end": 8,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "combined_listings_tag_text_eNRMgr": {
+                  "type": "_combined-listings-tag-text",
+                  "settings": {
+                    "tag": "bestseller",
+                    "display_text": "Our most popular shade"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "combined_listings_tag_text_eNRMgr"
               ]
             },
             "divider_VJhene": {
@@ -339,6 +338,7 @@
           },
           "block_order": [
             "group_icgrde",
+            "combined_listings_product_qg3rFy",
             "divider_VJhene",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",

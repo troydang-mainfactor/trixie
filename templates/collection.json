@@ -162,9 +162,9 @@
               "type": "combined-listings-card",
               "name": "t:names.combined_listings_card",
               "settings": {
-                "swatch_shape": "circle",
+                "swatch_shape": "rounded",
                 "swatch_shape_radius": 8,
-                "swatch_size": "small",
+                "swatch_size": "large",
                 "swatch_size_custom": 24,
                 "swatch_gap": 6,
                 "show_tooltips": true,
