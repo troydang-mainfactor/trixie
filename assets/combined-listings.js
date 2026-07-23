@@ -222,6 +222,9 @@ class CombinedListingsCardSwatches extends CombinedListingsBase {
   }
 
   /**
+   * Mirrors the " - " split done in blocks/product-title.liquid, so a swapped-in title gets
+   * the same smaller-subtitle-on-its-own-line treatment. Builds the DOM directly (not innerHTML)
+   * since the title is untrusted text read back from a data attribute.
    * @param {Element | null | undefined} productCard
    * @param {string} title
    */
@@ -231,7 +234,16 @@ class CombinedListingsCardSwatches extends CombinedListingsBase {
     if (!titleLink) return;
 
     const target = titleLink.querySelector('[role="heading"]') ?? titleLink.querySelector(':scope > *') ?? titleLink;
-    target.textContent = title;
+    const [firstLine, ...rest] = title.split(' - ');
+
+    target.replaceChildren(document.createTextNode(firstLine ?? title));
+
+    if (rest.length) {
+      const subtitle = document.createElement('span');
+      subtitle.className = 'product-title__subtitle';
+      subtitle.textContent = rest.join(' - ');
+      target.append(subtitle);
+    }
   }
 
   /**

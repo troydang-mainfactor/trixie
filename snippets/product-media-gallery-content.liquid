@@ -350,7 +350,7 @@
         media-gallery--extend
       {% endif %}
     "
-    style="{% render 'spacing-style', settings: block_settings %} --thumbnail-width: {{ block_settings.thumbnail_width }}px; --media-radius: {{ block_settings.media_radius }}px;{% if block_settings.icons_style contains 'large' %} --slideshow-icon-padding: 0px;{% endif %}--image-gap: {{ block_settings.image_gap }}px;{% unless block_settings.aspect_ratio == 'adapt' %} --gallery-aspect-ratio: {{ block_settings.aspect_ratio }};{% endunless %}"
+    style="{% render 'spacing-style', settings: block_settings %} --thumbnail-width: {{ block_settings.thumbnail_width }}px; --thumbnail-width-mobile: {{ block_settings.thumbnail_width_mobile | default: 44 }}px; --media-radius: {{ block_settings.media_radius }}px;{% if block_settings.icons_style contains 'large' %} --slideshow-icon-padding: 0px;{% endif %}--image-gap: {{ block_settings.image_gap }}px;{% unless block_settings.aspect_ratio == 'adapt' %} --gallery-aspect-ratio: {{ block_settings.aspect_ratio }};{% endunless %}"
     data-presentation="{{ media_presentation }}"
     {{ block_shopify_attributes }}
   >
@@ -873,7 +873,7 @@
   /* Mobile thumbnails styling */
   @media screen and (max-width: 749px) {
     .media-gallery__mobile-controls[thumbnails] {
-      --thumbnail-width: 44px;
+      --thumbnail-width: var(--thumbnail-width-mobile, 44px);
     }
 
     .media-gallery__mobile-controls[thumbnails] .slideshow-controls__thumbnail {

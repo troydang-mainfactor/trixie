@@ -65,6 +65,7 @@
     style="
       --cl-swatch-size: {{ swatch_size }};
       --cl-swatch-radius: {{ swatch_radius }};
+      --cl-swatch-border-width: {{ settings.swatch_border_width | default: 1 }}px;
       --cl-swatch-gap: {{ settings.swatch_gap | default: 8 }}px;
       --cl-tooltip-bg: {% if settings.tooltip_background != blank %}{{ settings.tooltip_background }}{% else %}var(--color-background){% endif %};
       --cl-tooltip-color: {% if settings.tooltip_text_color != blank %}{{ settings.tooltip_text_color }}{% else %}var(--color-foreground){% endif %};
@@ -119,7 +120,9 @@
             assign visual_url = linked_product.featured_image | image_url: width: 160
           endif
 
-          assign tooltip_text = swatch.tooltip.value
+          # Some Product group setups generated the field key as `tool_tip` instead of `tooltip`
+          # depending on how the field was originally named; support both without preferring one.
+          assign tooltip_text = swatch.tooltip.value | default: swatch.tool_tip.value
           assign show_this_tooltip = false
           if settings.show_tooltips and tooltip_text != blank
             assign show_this_tooltip = true

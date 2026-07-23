@@ -5,7 +5,25 @@
   {% assign product_title = '<p role="heading" aria-level="3">' | append: text | append: '</p>' %}
   {% render 'text', fallback_text: product_title, block: block %}
 {% else %}
-  {% assign product_title = '<p role="heading" aria-level="3">' | append: closest.product.title | append: '</p>' %}
+  {% liquid
+    assign title_line_1 = closest.product.title
+    assign title_line_2 = blank
+
+    if block.settings.split_on_dash
+      assign title_parts = closest.product.title | split: ' - '
+      if title_parts.size > 1
+        assign title_line_1 = title_parts | first
+        assign title_rest = title_parts | slice: 1, 999
+        assign title_line_2 = title_rest | join: ' - '
+      endif
+    endif
+
+    assign product_title = '<p role="heading" aria-level="3">' | append: title_line_1
+    if title_line_2 != blank
+      assign product_title = product_title | append: '<span class="product-title__subtitle">' | append: title_line_2 | append: '</span>'
+    endif
+    assign product_title = product_title | append: '</p>'
+  %}
   <a
     class="contents user-select-text"
     ref="productTitleLink"
@@ -15,6 +33,16 @@
   </a>
 {% endif %}
 
+{% stylesheet %}
+  .product-title__subtitle {
+    display: block;
+    font-size: 0.6em;
+    font-weight: var(--font-weight-normal, normal);
+    opacity: var(--opacity-subdued-text, 0.7);
+    margin-block-start: 0.2em;
+  }
+{% endstylesheet %}
+
 {% schema %}
 {
   "name": "t:names.product_title",
@@ -23,6 +51,13 @@
     {
       "type": "paragraph",
       "content": "t:content.resource_reference_product_title"
+    },
+    {
+      "type": "checkbox",
+      "id": "split_on_dash",
+      "label": "t:settings.split_title_on_dash",
+      "info": "t:info.split_title_on_dash",
+      "default": true
     },
     {
       "type": "header",

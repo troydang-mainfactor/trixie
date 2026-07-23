@@ -181,6 +181,17 @@
     },
     {
       "type": "range",
+      "id": "thumbnail_width_mobile",
+      "label": "t:settings.width_mobile",
+      "min": 32,
+      "max": 96,
+      "step": 1,
+      "unit": "px",
+      "default": 44,
+      "visible_if": "{{ block.settings.slideshow_mobile_controls_style == 'thumbnails' }}"
+    },
+    {
+      "type": "range",
       "id": "thumbnail_radius",
       "label": "t:settings.corner_radius",
       "min": 0,

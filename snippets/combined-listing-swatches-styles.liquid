@@ -45,13 +45,9 @@
     padding: 2px;
     background: none;
     cursor: pointer;
-    border: 1px solid transparent;
+    border: none;
     border-radius: calc(var(--cl-swatch-radius) + 2px);
     -webkit-tap-highlight-color: transparent;
-  }
-
-  .cl-swatch-trigger--active {
-    border-color: var(--color-foreground);
   }
 
   .cl-swatch-trigger:focus-visible {
@@ -65,11 +61,23 @@
     height: var(--cl-swatch-size, 28px);
     border-radius: var(--cl-swatch-radius, 50%);
     background: var(--cl-swatch-background) center / cover no-repeat;
-    border: 1px solid rgb(var(--color-foreground-rgb) / var(--style-border-swatch-opacity, 0.2));
+    /* No border by default; hover/selected states below make it visible. */
+    border: var(--cl-swatch-border-width, 1px) solid transparent;
+  }
+
+  /* Hover: lighter grey border. Skipped on the selected swatch, which keeps its solid border. */
+  .cl-swatch-trigger:hover .cl-swatch:not(.cl-swatch--empty) {
+    border-color: rgb(var(--color-foreground-rgb) / 0.25);
   }
 
   .cl-swatch--empty {
+    /* Placeholder dot (no image/color resolved) always needs a visible border to read as a shape. */
+    border-color: rgb(var(--color-foreground-rgb) / var(--style-border-swatch-opacity, 0.2));
     background: rgb(var(--color-foreground-rgb) / 0.05);
+  }
+
+  .cl-swatch-trigger--active .cl-swatch {
+    border-color: var(--color-foreground);
   }
 
   .cl-swatch--crossed-out {
