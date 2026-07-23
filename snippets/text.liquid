@@ -77,6 +77,10 @@
   "
 
   {{ block.shopify_attributes }}
+
+  {% if block_settings.split_on_dash %}
+    data-split-on-dash="true"
+  {% endif %}
 {% endcapture %}
 
 {% liquid
@@ -230,5 +234,13 @@
   .custom-color,
   .custom-color > :is(h1, h2, h3, h4, h5, h6, p, *) {
     color: var(--color);
+  }
+
+  .text-block__subtitle {
+    display: block;
+    font-size: 0.6em;
+    font-weight: var(--font-weight-normal, normal);
+    opacity: var(--opacity-subdued-text, 0.7);
+    margin-block-start: 0.2em;
   }
 {% endstylesheet %}

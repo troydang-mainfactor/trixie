@@ -9,8 +9,16 @@
   settings: block.settings,
   shopify_attributes: block.shopify_attributes,
   background_color: block.settings.background_color,
-  block_id: block.id
+  block_id: block.id,
+  show_above_media_mobile: block.settings.show_above_media_mobile
 %}
+
+{% if block.settings.show_above_media_mobile %}
+  <script
+    src="{{ 'mobile-block-reorder.js' | asset_url }}"
+    type="module"
+  ></script>
+{% endif %}
 
 {% schema %}
 {
@@ -163,6 +171,13 @@
       "step": 1,
       "unit": "px",
       "default": 12
+    },
+    {
+      "type": "checkbox",
+      "id": "show_above_media_mobile",
+      "label": "t:settings.show_above_media_mobile",
+      "info": "t:info.show_above_media_mobile",
+      "default": false
     },
     {
       "type": "header",

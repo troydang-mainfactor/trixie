@@ -2,6 +2,13 @@
 
 {% render 'text', block: block %}
 
+{% if block.settings.split_on_dash %}
+  <script
+    src="{{ 'split-on-dash.js' | asset_url }}"
+    type="module"
+  ></script>
+{% endif %}
+
 {% schema %}
 {
   "name": "t:names.text",
@@ -11,6 +18,13 @@
       "type": "richtext",
       "id": "text",
       "label": "t:settings.text"
+    },
+    {
+      "type": "checkbox",
+      "id": "split_on_dash",
+      "label": "t:settings.split_title_on_dash",
+      "info": "t:info.split_title_on_dash",
+      "default": false
     },
     {
       "type": "header",
