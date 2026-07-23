@@ -13,8 +13,23 @@
   endif
 %}
 
+{% comment %}
+  content_for 'blocks' must be called directly in a block/section file (not from within a
+  rendered snippet), so it's captured here and passed down as a string, matching the pattern
+  used by product-information-content.liquid elsewhere in this theme. The tag-text rule blocks
+  render no output themselves (see _combined-listings-tag-text.liquid).
+{% endcomment %}
+{% capture tag_text_blocks %}
+  {% content_for 'blocks' %}
+{% endcapture %}
+
 {% unless product_resource == blank %}
-  {% render 'combined-listing-swatches', product: product_resource, block: block, context: 'page' %}
+  {% render 'combined-listing-swatches',
+    product: product_resource,
+    block: block,
+    context: 'page',
+    tag_text_blocks: tag_text_blocks
+  %}
 {% endunless %}
 
 <script

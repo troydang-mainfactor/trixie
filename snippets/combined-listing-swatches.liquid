@@ -5,6 +5,8 @@
   @param {object} product - The contextual product (closest.product on the PDP or the card's product).
   @param {object} block - The block rendering this snippet (settings + nested `_combined-listings-tag-text` blocks).
   @param {string} context - Either 'page' (navigating swatches) or 'card' (swapping, non-navigating swatches).
+  @param {string} [tag_text_blocks] - Captured `content_for 'blocks'` output from the caller (page context only);
+    content_for can't be called from within a rendered snippet, so the caller captures and passes it down.
 
   @example
   {% render 'combined-listing-swatches', product: closest.product, block: block, context: 'page' %}
@@ -245,7 +247,7 @@
       {%- if below_swatch_text != blank -%}
         <p class="cl-swatches__below-text">{{ below_swatch_text }}</p>
       {%- endif -%}
-      {% content_for 'blocks' %}
+      {{- tag_text_blocks -}}
     {%- endif -%}
   </{{ tag }}>
 
