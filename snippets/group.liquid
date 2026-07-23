@@ -8,6 +8,8 @@
   @param {string} [style] - Custom inline styles for the group block.
   @param {string} [background_color] - The background color of the group block.
   @param {string} [block_id] - The ID of the group block.
+  @param {boolean} [show_above_media_mobile] - When true and this group is nested inside a product page's
+    product-details column, moves it above the product media gallery on mobile only (see combined-listings.js).
 
   @example
   {% render 'group', children: children, settings: block.settings, shopify_attributes: block.shopify_attributes %}
@@ -40,6 +42,9 @@
   "
   {{ shopify_attributes }}
   data-testid="group-block"
+  {% if show_above_media_mobile %}
+    data-mobile-above-media="true"
+  {% endif %}
 >
   {%- if settings.link != blank -%}
     <a

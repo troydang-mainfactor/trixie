@@ -67,10 +67,6 @@
     endif
   endif
 
-  if settings.mobile_details_first
-    assign product_grid_class = product_grid_class | append: ' product-information--mobile-details-first'
-  endif
-
   # Determine content width
   case settings.content_width
     when 'content-center-aligned'
@@ -163,11 +159,6 @@
 
     .product-details {
       grid-column: 2 / 3;
-    }
-
-    /* Toggle: puts product details (title, price, etc.) above the media gallery on mobile only */
-    .product-information--mobile-details-first .product-details {
-      order: -1;
     }
   }
 
