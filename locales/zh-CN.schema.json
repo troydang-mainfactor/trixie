@@ -596,7 +596,9 @@
     "tooltip_font_size": "Tooltip font size",
     "out_of_stock_style": "Out of stock style",
     "tag": "Tag",
-    "display_text": "Text"
+    "display_text": "Text",
+    "mobile_details_first": "Show details above media on mobile",
+    "split_title_on_dash": "Split title on \" - \""
   },
   "options": {
     "apple": "Apple",
@@ -1133,7 +1135,10 @@
     "page_text_color_default_info": "主题分区的默认值",
     "actions_display_style": "在移动设备上始终使用图标",
     "edit_input_field_in_theme_settings": "在[模板设置](/editor?context=theme&category=input%20fields)中编辑输入字段",
-    "edit_variants_in_theme_settings": "在[模板设置](/editor?context=theme&category=variant%20pickers)中编辑多属性样式"
+    "edit_variants_in_theme_settings": "在[模板设置](/editor?context=theme&category=variant%20pickers)中编辑多属性样式",
+    "combined_listings_swatch_border": "Unselected swatches have no border; hovering shows a light border, and the selected swatch shows a solid border at this thickness",
+    "mobile_details_first": "On mobile, shows product title, price, and details above the media gallery instead of below it",
+    "split_title_on_dash": "If the title contains \" - \", the text after it shows smaller on its own line"
   },
   "categories": {
     "basic": "基本",

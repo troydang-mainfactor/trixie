@@ -596,7 +596,9 @@
     "tooltip_font_size": "Tooltip font size",
     "out_of_stock_style": "Out of stock style",
     "tag": "Tag",
-    "display_text": "Text"
+    "display_text": "Text",
+    "mobile_details_first": "Show details above media on mobile",
+    "split_title_on_dash": "Split title on \" - \""
   },
   "options": {
     "apple": "Apple",
@@ -1133,7 +1135,10 @@
     "page_text_color_default_info": "ค่าเริ่มต้นสำหรับส่วนของธีม",
     "actions_display_style": "ใช้ไอคอนเสมอบนมือถือ",
     "edit_input_field_in_theme_settings": "แก้ไขช่องกรอกข้อมูลใน[การตั้งค่าธีม](/editor?context=theme&category=input%20fields)",
-    "edit_variants_in_theme_settings": "แก้ไขสไตล์ตัวเลือกสินค้าใน[การตั้งค่าธีม](/editor?context=theme&category=variant%20pickers)"
+    "edit_variants_in_theme_settings": "แก้ไขสไตล์ตัวเลือกสินค้าใน[การตั้งค่าธีม](/editor?context=theme&category=variant%20pickers)",
+    "combined_listings_swatch_border": "Unselected swatches have no border; hovering shows a light border, and the selected swatch shows a solid border at this thickness",
+    "mobile_details_first": "On mobile, shows product title, price, and details above the media gallery instead of below it",
+    "split_title_on_dash": "If the title contains \" - \", the text after it shows smaller on its own line"
   },
   "categories": {
     "basic": "พื้นฐาน",
