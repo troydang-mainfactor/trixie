@@ -171,7 +171,9 @@
     "disclosures": "Pflichtangaben",
     "combined_listings_product": "Combined Listings (Page)",
     "combined_listings_card": "Combined Listings (Card)",
-    "combined_listings_tag_text": "Tag text rule"
+    "combined_listings_tag_text": "Tag text rule",
+    "premium_product_information": "Premium product info",
+    "tab_item": "Tab"
   },
   "settings": {
     "autoplay": "Autoplay",
@@ -601,7 +603,25 @@
     "show_above_media_mobile": "Show above media on mobile (product pages)",
     "display_style": "Display style",
     "show_price_in_button": "Show price in button",
-    "font_size": "Font size"
+    "font_size": "Font size",
+    "animation_speed": "Animation speed",
+    "content_source": "Content source",
+    "desktop_layout": "Desktop layout",
+    "dynamic_source_reference": "Dynamic source",
+    "enable_icons": "Enable icons",
+    "metafield_reference": "Metafield (namespace.key)",
+    "metaobject_reference": "Metaobject",
+    "page_reference": "Page",
+    "rich_text_content": "Content",
+    "rule_1": "Rule 1",
+    "rule_2": "Rule 2",
+    "rule_3": "Rule 3",
+    "rule_value": "Value",
+    "show_border": "Show border",
+    "show_icon": "Show icon",
+    "small_heading": "Small heading",
+    "tab_title": "Tab title",
+    "visibility_match": "Match"
   },
   "options": {
     "apple": "Apfel",
@@ -883,7 +903,24 @@
     "marquee": "Marquee",
     "slideshow": "Slideshow",
     "above": "Above",
-    "below": "Below"
+    "below": "Below",
+    "all_conditions": "All conditions",
+    "always_show": "Always show",
+    "any_condition": "Any condition",
+    "availability": "Available / sold out",
+    "cards": "Cards",
+    "collection_membership": "Collection membership",
+    "custom_liquid": "Custom Liquid",
+    "customer_logged_in": "Customer logged in",
+    "dynamic_source": "Dynamic source",
+    "metafield": "Metafield",
+    "metafield_value": "Metafield value",
+    "metaobject": "Metaobject",
+    "minimal": "Minimal",
+    "product_description": "Product description",
+    "product_tag": "Product tag contains",
+    "product_template": "Product template",
+    "product_vendor": "Product vendor"
   },
   "content": {
     "background_video": "Hintergrundvideo",
@@ -1017,7 +1054,11 @@
     "combined_listings_tooltip": "Tooltip",
     "combined_listings_availability": "Availability",
     "combined_listings_below_text": "Below-swatch text",
-    "combined_listings_below_text_info": "Add tag-based text rules below as blocks. Each swatch checks its own linked product's tags (not the product you're currently viewing), so the same swatch shows the same text no matter which listing in the group you're on. The first matching rule wins per swatch."
+    "combined_listings_below_text_info": "Add tag-based text rules below as blocks. Each swatch checks its own linked product's tags (not the product you're currently viewing), so the same swatch shows the same text no matter which listing in the group you're on. The first matching rule wins per swatch.",
+    "content_source": "Content source",
+    "premium_product_info_intro": "Add Tab blocks below - each one becomes a tab on desktop or an accordion row on mobile. This section stays hidden until at least one tab has visible content.",
+    "visibility_rules": "Visibility rules",
+    "visibility_rules_info": "Optionally limit this tab to specific products. Each rule slot checks one condition; add more than one and choose whether all or any must match. Leave every rule set to \"Always show\" to display this tab on every product."
   },
   "html_defaults": {
     "share_information_about_your": "<p>Teile Informationen über deine Marke mit deinen Kunden. Beschreibe ein Produkt, mache Ankündigungen oder heiße Kunden in deinem Shop willkommen.</p>",
@@ -1146,7 +1187,11 @@
     "combined_listings_swatch_border": "Unselected swatches have no border; hovering shows a light border, and the selected swatch shows a solid border at this thickness",
     "split_title_on_dash": "If the title contains \" - \", the text after it shows smaller on its own line",
     "show_above_media_mobile": "On product pages, moves this block above the media gallery on mobile only. Has no effect outside a product page layout.",
-    "marquee_speed": "Higher values scroll faster"
+    "marquee_speed": "Higher values scroll faster",
+    "product_info_dynamic_source": "A product attribute (product.description, product.title, product.vendor, product.type) or a namespace.key metafield shorthand",
+    "product_info_icon": "Icon name or SVG reference - resolves against whatever icon system this store already uses",
+    "product_info_metafield": "Format: namespace.key (for example custom.ingredients)",
+    "product_info_metaobject": "Only metaobjects using the \"product_info_content\" definition type appear here. Create that metaobject definition in Settings > Custom data first, then add entries with a content/body/text field."
   },
   "categories": {
     "product_list": "Vorgestellte Kollektion",

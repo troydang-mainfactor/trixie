@@ -101,3 +101,22 @@ export class MegaMenuHoverEvent extends Event {
     super(ThemeEvents.megaMenuHover, { bubbles: true });
   }
 }
+
+/**
+ * @typedef {Object} ProductInfoTabSelectEventData
+ * @property {string} blockId - The `tab-item` block id of the newly selected/expanded tab.
+ * @property {'tab' | 'accordion'} presentation - Which presentation triggered the change.
+ */
+
+export class ProductInfoTabSelectEvent extends Event {
+  /** @param {ProductInfoTabSelectEventData} data */
+  constructor(data) {
+    super(ProductInfoTabSelectEvent.eventName, { bubbles: true });
+    this.detail = data;
+  }
+
+  /** @type {ProductInfoTabSelectEventData} */
+  detail;
+
+  static eventName = 'product-info:tab-select';
+}
