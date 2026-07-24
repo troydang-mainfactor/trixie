@@ -870,12 +870,20 @@
     z-index: var(--layer-raised);
   }
 
-  /* Mobile thumbnails styling: reassigns --thumbnail-width within this subtree so the
-     (now un-clamped) base .slideshow-control width rule in slideshow-controls.liquid
-     picks up the mobile-specific value instead of the desktop one. */
+  /* Mobile thumbnails styling: reassigns --thumbnail-width on the outer gallery element so
+     the (now un-clamped) base .slideshow-control width rule in slideshow-controls.liquid
+     picks up the mobile-specific value instead of the desktop one. Scoped to the always-
+     present <media-gallery> element rather than the mobile-only slideshow-controls instance,
+     since when slideshow_controls_style and slideshow_mobile_controls_style are the same
+     value, render_mobile_slideshow_controls is false and only one shared <slideshow-controls>
+     (without a media-gallery__mobile-controls class) is ever rendered for both breakpoints.
+     !important is required here: <media-gallery> also carries an inline style setting
+     --thumbnail-width to the desktop value, and inline styles always beat an external
+     stylesheet rule for the same property on the same element regardless of media query. */
   @media screen and (max-width: 749px) {
-    .media-gallery__mobile-controls[thumbnails] {
-      --thumbnail-width: var(--thumbnail-width-mobile, 44px);
+    media-gallery {
+      /* stylelint-disable-next-line declaration-no-important */
+      --thumbnail-width: var(--thumbnail-width-mobile, 44px) !important;
     }
   }
 
