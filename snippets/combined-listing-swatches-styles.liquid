@@ -26,11 +26,20 @@
   .cl-swatches__row {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    /* Not `center`: items with tag text are taller than items without, and centering each
+       item's whole box (dot + optional label) would center-align on that varying height,
+       making the dots themselves sit at different vertical positions. Aligning to the edge
+       the dot is always adjacent to (top when the label sits below it, bottom when it sits
+       above) keeps every dot level regardless of which swatches have text. */
+    align-items: flex-start;
     gap: var(--cl-swatch-gap, 8px);
     padding: 0;
     margin: 0;
     list-style: none;
+  }
+
+  .cl-swatches[data-below-text-position='above'] .cl-swatches__row {
+    align-items: flex-end;
   }
 
   .cl-swatches__item {
