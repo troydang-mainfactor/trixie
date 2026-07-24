@@ -13,9 +13,13 @@
 {%- endcomment -%}
 
 {%- liquid
+  # A tab needs actual content to be worth showing - a heading alone (e.g. an unfinished preset
+  # placeholder) isn't enough. Strip tags/whitespace so an "empty" rich text value (e.g. `<p></p>`)
+  # doesn't count as content either.
   assign visible_blocks_count = 0
   for block in section.blocks
-    if block.settings.heading != blank or block.settings.content != blank
+    assign block_content_stripped = block.settings.content | strip_html | strip_newlines | strip
+    if block_content_stripped != blank
       assign visible_blocks_count = visible_blocks_count | plus: 1
     endif
   endfor
@@ -50,9 +54,12 @@
     data-underline-animation="{{ section.settings.underline_animation }}"
     data-indicator-width="{{ section.settings.indicator_width }}"
     data-show-dividers="{{ section.settings.show_dividers }}"
+    data-mobile-border="{{ section.settings.mobile_show_border }}"
     style="
       --ppi-max-width: {{ section.settings.content_max_width }}px;
       --ppi-mobile-side-padding: {{ section.settings.mobile_side_padding }}px;
+      --ppi-mobile-border-width: {{ section.settings.mobile_border_width }}px;
+      --ppi-mobile-border-radius: {{ section.settings.mobile_border_radius }}px;
       --ppi-tab-gap: {{ section.settings.tab_gap }}px;
       --ppi-content-gap: {{ section.settings.content_gap }}px;
       --ppi-padding-top: {{ section.settings.padding_top }}px;
@@ -77,6 +84,7 @@
       {% if section.settings.active_background != blank %}--ppi-active-bg: {{ section.settings.active_background }};{% endif %}
       {% if section.settings.active_border_color != blank %}--ppi-active-border: {{ section.settings.active_border_color }};{% endif %}
       {% if section.settings.border_color != blank %}--ppi-border-color: {{ section.settings.border_color }};{% endif %}
+      {% if section.settings.mobile_border_color != blank %}--ppi-mobile-border-color: {{ section.settings.mobile_border_color }};{% endif %}
       {% if section.settings.item_background != blank %}--ppi-item-bg: {{ section.settings.item_background }};{% endif %}
       {% if section.settings.hover_background != blank %}--ppi-hover-bg: {{ section.settings.hover_background }};{% endif %}
       {% if section.settings.hover_border_color != blank %}--ppi-hover-border: {{ section.settings.hover_border_color }};{% endif %}
@@ -107,7 +115,8 @@
         {%- liquid
           assign heading = block.settings.heading
           assign body = block.settings.content
-          if heading == blank and body == blank
+          assign body_stripped = body | strip_html | strip_newlines | strip
+          if body_stripped == blank
             continue
           endif
 
@@ -621,6 +630,46 @@
       "label": "t:premium_product_info.settings.accordion_multiple_open",
       "default": false,
       "visible_if": "{{ section.settings.layout_style == '1' or section.settings.layout_style == '7' }}"
+    },
+    {
+      "type": "header",
+      "content": "t:premium_product_info.content.mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_show_border",
+      "label": "t:premium_product_info.settings.mobile_show_border",
+      "info": "t:premium_product_info.info.mobile_show_border",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "mobile_border_width",
+      "label": "t:settings.border_thickness",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1,
+      "visible_if": "{{ section.settings.mobile_show_border }}"
+    },
+    {
+      "type": "color",
+      "id": "mobile_border_color",
+      "label": "t:settings.border_color",
+      "placeholder": "t:settings.default",
+      "visible_if": "{{ section.settings.mobile_show_border }}"
+    },
+    {
+      "type": "range",
+      "id": "mobile_border_radius",
+      "label": "t:settings.corner_radius",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 8,
+      "visible_if": "{{ section.settings.mobile_show_border }}"
     },
     {
       "type": "header",

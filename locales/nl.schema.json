@@ -1206,7 +1206,8 @@
       "custom_icon": "Custom icon",
       "badge_text": "Badge text",
       "badge_style": "Badge style",
-      "mobile_side_padding": "Mobile side padding"
+      "mobile_side_padding": "Mobile side padding",
+      "mobile_show_border": "Add border on mobile"
     },
     "options": {
       "style_1": "Pill card accordion",
@@ -1269,12 +1270,14 @@
       "accordion": "Accordion",
       "animation": "Animation",
       "icon": "Icon",
-      "badge": "Badge"
+      "badge": "Badge",
+      "mobile": "Mobile"
     },
     "info": {
       "accessible_heading": "Optional. Adds a visually-hidden heading and screen-reader label above the tabs/accordion.",
       "tab_label": "Optional. Overrides the heading in the tab/accordion header only - the full heading still shows inside the panel.",
-      "custom_icon": "Optional. Overrides the icon selected above."
+      "custom_icon": "Optional. Overrides the icon selected above.",
+      "mobile_show_border": "Adds a border around each row, independent of the desktop style's own border settings."
     },
     "text_defaults": {
       "placeholder_1": "Item 1",
