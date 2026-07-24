@@ -1,26 +1,14 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin language editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "categories": {
     "banners": "Banners",
-    // Category for fundamental content blocks (text, images, buttons)
     "basic": "Basic",
     "blog_post": "Blog post",
     "collection": "Collection",
     "collections": "Collections",
     "collection_list": "Collection list",
-    // Category label for custom/advanced blocks in theme editor
     "custom": "Custom",
     "decorative": "Decorative",
     "footer": "Footer",
-    // Theme component category for contact forms, email signups, etc.
     "forms": "Forms",
     "header": "Header",
     "layout": "Layout",
@@ -42,7 +30,6 @@
     "background_video": "Background video",
     "block_link": "Block link",
     "block_size": "Block size",
-    // Typography setting for body text size
     "body_size": "Body size",
     "borders": "Borders",
     "bottom_row_appearance": "Bottom row appearance",
@@ -109,7 +96,6 @@
     "mobile_media": "Mobile media",
     "mobile_media_1": "Mobile media 1",
     "mobile_media_2": "Mobile media 2",
-    // Section header for navigation menu settings in theme editor
     "menu": "Menu",
     "mobile_column_optimization": "Columns will automatically optimize for mobile",
     "mobile_layout": "Mobile layout",
@@ -118,7 +104,6 @@
     "padding": "Padding",
     "padding_desktop": "Desktop padding",
     "paragraph": "Paragraph",
-    // Footer component section header for legal policy links
     "policies": "Policies",
     "popover": "Popover",
     "popover_position": "Popover position",
@@ -145,14 +130,12 @@
     "section_layout": "Section layout",
     "section_link": "Section link",
     "section_size": "Section size",
-    // Section header for width and height controls
     "size": "Size",
     "slideshow_width": "Slide width",
     "social_media": "Social media",
     "submit_button": "Submit button",
     "swatches": "Swatches",
     "submenu_feature": "Submenu feature",
-    // Section header for text positioning settings
     "text": "Text",
     "text_presets": "Text presets",
     "thumbnails": "Thumbnails",
@@ -169,11 +152,7 @@
     "disclosures": "Disclosures",
     "disclosures_metafield_content": "Required safety warnings and regulatory disclosures for this product.",
     "app_required_for_ratings": "An app is required for product ratings. [Learn more](https://help.shopify.com/manual/apps)",
-    "navigation": "Navigation",
-    "content_source": "Content source",
-    "premium_product_info_intro": "Add Tab blocks below - each one becomes a tab on desktop or an accordion row on mobile. This section stays hidden until at least one tab has visible content.",
-    "visibility_rules": "Visibility rules",
-    "visibility_rules_info": "Optionally limit this tab to specific products. Each rule slot checks one condition; add more than one and choose whether all or any must match. Leave every rule set to \"Always show\" to display this tab on every product."
+    "navigation": "Navigation"
   },
   "html_defaults": {
     "join_our_email_list": "<h2>Join our email list</h2>",
@@ -263,11 +242,7 @@
     "video_autoplay": "Videos will be muted by default",
     "video_external": "Use a YouTube or Vimeo URL",
     "pills_usage": "Used for applied filters, discount codes, and search suggestions",
-    "media_type_info": "Features are populated from your menu links",
-    "product_info_dynamic_source": "A product attribute (product.description, product.title, product.vendor, product.type) or a namespace.key metafield shorthand",
-    "product_info_icon": "Icon name or SVG reference - resolves against whatever icon system this store already uses",
-    "product_info_metafield": "Format: namespace.key (for example custom.ingredients)",
-    "product_info_metaobject": "Only metaobjects using the \"product_info_content\" definition type appear here. Create that metaobject definition in Settings > Custom data first, then add entries with a content/body/text field."
+    "media_type_info": "Features are populated from your menu links"
   },
   "names": {
     "column": "Column",
@@ -317,12 +292,10 @@
     "combined_listings_card": "Combined Listings (Card)",
     "combined_listings_tag_text": "Tag text rule",
     "contact_form": "Contact form",
-    // Name for layout container block in theme editor
     "content": "Content",
     "copyright": "Copyright",
     "custom_section": "Custom section",
     "description": "Description",
-    // Block name for informational content containers
     "details": "Details",
     "divider": "Divider",
     "divider_section": "Divider",
@@ -341,7 +314,6 @@
     "follow_on_shop": "Follow on Shop",
     "footer": "Footer",
     "footer_password": "Password footer",
-    // Layout container block that groups other content
     "group": "Group",
     "header": "Header",
     "heading": "Heading",
@@ -360,17 +332,14 @@
     "layered_slideshow": "Layered slideshow",
     "logo": "Logo",
     "logo_and_favicon": "Logo and favicon",
-    // Scrolling text/content component with horizontal animation
     "marquee": "Marquee",
     "marquee_section": "Marquee",
-    // Block name for image/video component
     "media": "Media",
     "media_with_text": "Media with text",
     "menu": "Menu",
     "multicolumn": "Multicolumn",
     "rich_text_section": "Rich text",
     "page": "Page",
-    // Theme block name for main page body content
     "page_content": "Content",
     "page_layout": "Page",
     "password": "Password",
@@ -422,7 +391,6 @@
     "social_link": "Social link",
     "social_media_links": "Social media links",
     "spacer": "Spacer",
-    // Banner section with two side-by-side content panels
     "split_showcase": "Split showcase",
     "subheading": "Subheading",
     "submit_button": "Submit button",
@@ -439,9 +407,7 @@
     "view_all_button": "View all",
     "disclosures": "Disclosures",
     "pills": "Pills",
-    "comparison_slider": "Comparison slider",
-    "premium_product_information": "Premium product info",
-    "tab_item": "Tab"
+    "comparison_slider": "Comparison slider"
   },
   "options": {
     "above_carousel": "Above carousel",
@@ -479,9 +445,7 @@
     "caption": "Caption",
     "caret": "Caret",
     "carousel": "Carousel",
-    // Icon selection option for carrot graphic
     "carrot": "Carrot",
-    // Alignment option to center content horizontally or vertically
     "center": "Center",
     "chat_bubble": "Chat bubble",
     "check_box": "Check box",
@@ -497,16 +461,12 @@
     "color": "Color",
     "compact": "Compact",
     "complementary": "Complementary",
-    // CSS object-fit property: scale media to fit container
     "contain": "Contain",
-    // Pagination control showing current/total slide numbers (e.g. 1/5)
     "counter": "Counter",
     "cover": "Cover",
     "crop_to_fit": "Crop to fit",
     "custom": "Custom",
-    // Icon option representing dairy products
     "dairy": "Dairy",
-    // Icon option for dietary restriction indication
     "dairy_free": "Dairy free",
     "default": "Default",
     "diamond": "Diamond",
@@ -516,31 +476,24 @@
     "down": "Down",
     "drawer": "Drawer",
     "dropdowns": "Dropdowns",
-    // Icon for laundry care symbol (machine dry)
     "dryer": "Dryer",
     "editorial": "Editorial",
-    // Text alignment option for end of reading direction
     "end": "End",
     "extra_large": "Extra large",
     "extra_small": "Extra small",
-    // Icon option for decorative eye symbol
     "eye": "Eye",
     "facebook": "Facebook",
     "featured_collections": "Featured collections",
     "featured_products": "Featured products",
     "fill": "Fill",
     "fire": "Fire",
-    // Layout option for content sizing behavior
     "fit": "Fit",
     "fit_content": "Fit",
-    // Layout option for fixed positioning or sizing
     "fixed": "Fixed",
     "font_primary": "Primary",
     "font_secondary": "Secondary",
     "font_tertiary": "Tertiary",
-    // Animation direction option for marquee scrolling
     "forward": "Forward",
-    // Width setting: full viewport width vs page width
     "full": "Full",
     "full_and_page": "Full background, page-width content",
     "full_and_page_offset_left": "Full background, page-width content, offset left",
@@ -563,10 +516,8 @@
     "heading_regular": "Heading (Regular)",
     "heading_small": "Heading (Small)",
     "heart": "Heart",
-    // Icon stroke weight option for thicker lines
     "heavy": "Heavy",
     "hidden": "Hidden",
-    // Subtle visual scroll indicator for mobile slideshow controls
     "hint": "Hint",
     "horizontal": "Horizontal",
     "icon": "Icon",
@@ -576,10 +527,8 @@
     "input_field": "Input field",
     "inside_carousel": "Inside carousel",
     "instagram": "Instagram",
-    // Menu typography style with large child items
     "inverse_large": "Inverse large",
     "inverse": "Inverse",
-    // Clothes iron appliance icon for care instructions
     "iron": "Iron",
     "landscape": "Landscape",
     "large": "Large",
@@ -588,10 +537,8 @@
     "leaf": "Leaf",
     "leather": "Leather",
     "left": "Left",
-    // Size option, typically clothing size Large
     "lg": "LG",
     "lift": "Lift",
-    // Font weight option lighter than regular
     "light": "Light",
     "lightning_bolt": "Lightning bolt",
     "link": "Link",
@@ -600,13 +547,11 @@
     "lock": "Lock",
     "loose": "Loose",
     "lowercase": "lowercase",
-    // Clothing size Medium, used in product filters
     "m": "M",
     "maintain_aspect_ratio": "Maintain aspect ratio",
     "map_pin": "Map pin",
     "media_first": "Media first",
     "media_second": "Media second",
-    // Size/weight option between small/light and large/heavy
     "medium": "Medium",
     "modal": "Modal",
     "above": "Above",
@@ -629,7 +574,6 @@
     "one_half": "1/2",
     "one_number": "1",
     "one_third": "1/3",
-    // Star rating style showing empty star outlines
     "outline": "Outline",
     "page": "Page",
     "page_center_aligned": "Page, center aligned",
@@ -658,18 +602,13 @@
     "primary_style": "Primary style",
     "question_mark": "Question mark",
     "rectangle": "Rectangle",
-    // Icon option for displaying a recycling symbol
     "recycle": "Recycle",
     "regular": "Regular",
-    // Product recommendation type option in dropdown
     "related": "Related",
-    // Icon option showing left-pointing curved arrow
     "return": "Return",
-    // Text animation effect that slides characters into view
     "reveal": "Reveal",
     "reverse": "Reverse",
     "rich_text": "Rich text",
-    // Positional option for alignment/layout (opposite of left)
     "right": "Right",
     "rounded": "Rounded",
     "ruler": "Ruler",
@@ -707,37 +646,27 @@
     "social_youtube": "Social: YouTube",
     "marquee": "Marquee",
     "slideshow": "Slideshow",
-    // Uniform style option for borders and overlays
     "solid": "Solid",
     "space_between": "Space between",
     "spotify": "Spotify",
     "spotlight": "Spotlight",
     "square": "Square",
-    // Layout option to arrange elements vertically
     "stack": "Stack",
-    // Out-of-stock swatch treatment: overlay a diagonal line across the swatch
     "crossed_out": "Crossed out",
-    // Out-of-stock swatch treatment: reduce the swatch's opacity
     "faded": "Faded",
-    // Size option for header height, larger than compact
     "standard": "Standard",
-    // Star-shaped icon option for decorative use
     "star": "Star",
-    // CSS logical alignment option, beginning position
     "start": "Start",
     "stopwatch": "Stopwatch",
     "subheading": "Subheading",
     "subtle_zoom": "Zoom",
     "swatches": "Swatches",
-    // Third-level option in font/typography hierarchy
     "tertiary": "Tertiary",
     "text": "Text",
     "text_only": "Text only",
-    // Icon stroke thickness option, thinnest weight
     "thin": "Thin",
     "threads": "Threads",
     "thumbnails": "Thumbnails",
-    // Typography spacing option for line height and letter spacing
     "tight": "Tight",
     "tiktok": "TikTok",
     "top": "Top",
@@ -749,7 +678,6 @@
     "two_number": "2",
     "two_thirds": "2/3",
     "underline": "Underline",
-    // Gradient direction option, upward flow
     "up": "Up",
     "uppercase": "Uppercase",
     "vertical": "Vertical",
@@ -757,29 +685,11 @@
     "video_external_url": "External URL",
     "video_uploaded": "Uploaded",
     "vimeo": "Vimeo",
-    // Icon option for washing machine or laundry symbol
     "washing": "Washing",
     "wide": "Wide",
     "youtube": "YouTube",
     "with_hints": "With hints",
-    "below_media": "Below media",
-    "all_conditions": "All conditions",
-    "always_show": "Always show",
-    "any_condition": "Any condition",
-    "availability": "Available / sold out",
-    "cards": "Cards",
-    "collection_membership": "Collection membership",
-    "custom_liquid": "Custom Liquid",
-    "customer_logged_in": "Customer logged in",
-    "dynamic_source": "Dynamic source",
-    "metafield": "Metafield",
-    "metafield_value": "Metafield value",
-    "metaobject": "Metaobject",
-    "minimal": "Minimal",
-    "product_description": "Product description",
-    "product_tag": "Product tag contains",
-    "product_template": "Product template",
-    "product_vendor": "Product vendor"
+    "below_media": "Below media"
   },
   "settings": {
     "accordion": "Accordion",
@@ -806,12 +716,10 @@
     "badge_corner_radius": "Corner radius",
     "background_media": "Background media",
     "badge_position": "Position on cards",
-    // Color scheme setting for sale badges on product cards
     "badge_sale_background_color": "Sale badge background",
     "badge_sale_text_color": "Sale badge text",
     "badge_sold_out_background_color": "Sold out badge background",
     "badge_sold_out_text_color": "Sold out badge text",
-    // Display type selection for popup content (modal vs drawer)
     "behavior": "Behavior",
     "blog": "Blog",
     "blur": "Shadow blur",
@@ -841,10 +749,8 @@
     "cart_related_products": "Related products",
     "cart_title": "Cart",
     "cart_total": "Cart total",
-    // Setting label for cart display format (page vs drawer)
     "cart_type": "Type",
     "auto_open_cart_drawer": "\"Add to cart\" auto-opens drawer",
-    // Text case setting for typography (uppercase/lowercase)
     "case": "Case",
     "checkout_buttons": "Accelerated checkout buttons",
     "collection": "Collection",
@@ -856,7 +762,6 @@
     "color_scheme": "Color scheme",
     "colors": "Colors",
     "columns": "Columns",
-    // Layout container block name for grouping other blocks
     "content": "Content",
     "content_alignment": "Content alignment",
     "content_direction": "Content direction",
@@ -869,19 +774,16 @@
     "currency_code": "Currency code",
     "custom_height": "Custom height",
     "custom_minimum_height": "Custom minimum height",
-    // Checkbox to enable separate size settings for mobile devices
     "custom_mobile_size": "Custom mobile size",
     "custom_mobile_width": "Custom mobile width",
     "custom_width": "Custom width",
     "custom_liquid": "Liquid code",
-    // Primary color scheme option, not specialized variants
     "default": "Default",
     "default_logo": "Default logo",
     "desktop_height": "Desktop height",
     "desktop_pagination": "Desktop pagination",
     "direction": "Direction",
     "display_style": "Display style",
-    // Button appearance for email signup form
     "display": "Display",
     "divider": "Divider",
     "divider_color": "Divider color",
@@ -891,7 +793,6 @@
     "drawer_borders": "Drawer border",
     "drop_shadow": "Drop shadow",
     "empty_cart_button_link": "Empty cart button link",
-    // Collection setting for products shown before search input
     "empty_state_collection": "Empty state collection",
     "empty_state_collection_info": "Shown before a search is entered",
     "enable_filtering": "Filters",
@@ -913,7 +814,6 @@
     "first_row_media_position": "First row media position",
     "fixed_height": "Pixel height",
     "fixed_width": "Pixel width",
-    // Checkbox to show country flag icon in localization selector
     "flag": "Flag",
     "font": "Font",
     "font_family": "Font family",
@@ -923,7 +823,6 @@
     "full_width_first_image": "Full width first image",
     "full_width_on_mobile": "Full width on mobile",
     "gap": "Gap",
-    // CSS Y-axis transform setting for vertical positioning (legacy/unused)
     "geometric_translate_y": "Geometric translate Y",
     "gift_card_form": "Gift card form",
     "gradient_direction": "Gradient direction",
@@ -932,7 +831,6 @@
     "headings": "Headings",
     "height": "Height",
     "hide_logo_on_home_page": "Hide logo on home page",
-    // Checkbox to hide padding control settings
     "hide_padding": "Hide padding",
     "hide_unselected_variant_media": "Hide unselected variant media",
     "horizontal_gap": "Horizontal gap",
@@ -951,7 +849,6 @@
     "image_2": "Image 2",
     "image_border_radius": "Image corner radius",
     "image_gap": "Image gap",
-    // Image picker setting to upload custom image as icon
     "image_icon": "Image icon",
     "image_opacity": "Image opacity",
     "image_position": "Image position",
@@ -960,7 +857,6 @@
     "inverse": "Inverse",
     "inverse_logo": "Inverse logo",
     "installments": "Installments",
-    // Checkbox to embed submit button inside email input field
     "integrated_button": "Integrated button",
     "items_to_show": "Items to show",
     "label": "Label",
@@ -968,9 +864,7 @@
     "large": "Large",
     "layout": "Layout",
     "layout_gap": "Layout gap",
-    // Layout presentation option for displaying items
     "layout_style": "Style",
-    // Layout display format (grid, carousel, etc.)
     "layout_type": "Type",
     "left": "Left",
     "left_padding": "Left padding",
@@ -991,7 +885,6 @@
     "make_details_sticky_desktop": "Sticky on desktop",
     "make_section_full_width": "Make section full width",
     "max_width": "Max width",
-    // Section header for product card media settings
     "media": "Media",
     "media_fit": "Media fit",
     "media_height": "Media height",
@@ -1049,19 +942,16 @@
     "primary_button_background": "Primary button background",
     "primary_button_border": "Primary button border",
     "primary_button_text": "Primary button text",
-    // Color setting for clickable hyperlinks throughout the theme
     "primary_color": "Links",
     "primary_font": "Primary font",
     "primary_hover_color": "Hover links",
     "product": "Product",
     "product_and_card_title_case": "Product and card title case",
-    // Checkbox to enable image carousel within product cards
     "product_card_carousel": "Show carousel",
     "product_cards": "Product cards",
     "product_count": "Product count",
     "product_pages": "Product pages",
     "product_templates": "Product templates",
-    // Setting label for text capitalization of product titles
     "product_title_case": "Product title case",
     "product_type": "Product type",
     "products": "Products",
@@ -1089,14 +979,11 @@
       "input_preset": "Input",
       "checkbox_preset": "Checkbox label"
     },
-    // Checkbox setting to enable quick add to cart from product cards
     "quick_add": "Quick add",
-    // Color scheme for quick add buttons on product cards
     "quick_add_colors": "Quick add colors",
     "ratio": "Ratio",
     "read_only": "Read only",
     "reflection_opacity": "Reflection opacity",
-    // Font weight option (400 weight, not bold or light)
     "regular": "Regular",
     "review_count": "Review count",
     "right": "Right",
@@ -1105,7 +992,6 @@
     "scroll_speed": "Time to next announcement",
     "search": "Search",
     "search_icon": "Search icon",
-    // Setting for search bar placement in header
     "search_position": "Position",
     "search_row": "Row",
     "row_height": "Row height",
@@ -1118,9 +1004,7 @@
     "seller_note_open_by_default": "Open note to seller by default",
     "shadow_color": "Shadow",
     "shadow_opacity": "Shadow opacity",
-    // Background shape for carousel navigation buttons
     "shape": "Shape",
-    // Checkbox label to toggle visibility of UI elements
     "show": "Show",
     "show_as_accordion": "Show as accordion on mobile",
     "show_author": "Author",
@@ -1137,7 +1021,6 @@
     "show_second_image_on_hover": "Show second image on hover",
     "show_swatch_label": "Text labels for swatches",
     "show_tax_info": "Tax information",
-    // Font size or element dimensions setting
     "size": "Size",
     "skus": "SKUs",
     "size_mobile": "Mobile size",
@@ -1145,14 +1028,11 @@
     "slide_width": "Slide width",
     "slideshow_fullwidth": "Full width slides",
     "small": "Small",
-    // Animation timing control for slideshows and announcements
     "speed": "Speed",
     "split_title_on_dash": "Split title on \" - \"",
-    // Financial statement or account summary setting
     "statement": "Statement",
     "sticky_add_to_cart": "Sticky add to cart",
     "sticky_header": "Sticky header",
-    // Icon line thickness setting label
     "stroke": "Stroke",
     "button_style": "Button style",
     "selected_button_style": "Selected button style",
@@ -1175,29 +1055,23 @@
     "tag": "Tag",
     "display_text": "Text",
     "tertiary_font": "Tertiary font",
-    // Generic label for text-related settings (content or color)
     "text": "Text",
-    // Text capitalization setting for typography (uppercase/lowercase)
     "text_case": "Case",
     "text_hierarchy": "Text hierarchy",
     "text_label_case": "Text label case",
     "text_presets": "Text presets",
-    // Pixel width setting for borders, dividers, or lines
     "thickness": "Thickness",
     "title": "Title",
     "title_preset": "Title preset",
-    // Label for range input controlling top spacing/margin
     "top": "Top",
     "top_level_size": "Top level size",
     "top_padding": "Top padding",
     "top_row": "Top row",
     "transition_to_main_product": "Product card to product page transition",
     "transparent_background": "Transparent background",
-    // Label for dropdown to select type/category
     "type": "Type",
     "type_preset": "Text preset",
     "underline_thickness": "Underline thickness",
-    // Measurement unit selector (pixel vs percent)
     "unit": "Unit",
     "use_inverse_logo": "Use inverse logo",
     "variant_images": "Variant images",
@@ -1205,7 +1079,6 @@
     "vendor": "Vendor",
     "vertical_gap": "Vertical gap",
     "vertical_offset": "Shadow vertical offset",
-    // Layout setting: stacks content vertically on mobile
     "vertical_on_mobile": "Vertical on mobile",
     "vertical_padding": "Vertical padding",
     "video": "Video",
@@ -1219,7 +1092,6 @@
     "view_all_as_last_card": "\"View all\" as last card",
     "view_more_show": "Show View more button",
     "visibility": "Visibility",
-    // Typography setting for font weight/thickness
     "weight": "Weight",
     "width": "Width",
     "width_desktop": "Desktop width",
@@ -1247,25 +1119,7 @@
     "top_row_background": "Top row background",
     "top_row_text": "Top row text",
     "bottom_row_background": "Bottom row background",
-    "bottom_row_text": "Bottom row text",
-    "animation_speed": "Animation speed",
-    "content_source": "Content source",
-    "desktop_layout": "Desktop layout",
-    "dynamic_source_reference": "Dynamic source",
-    "enable_icons": "Enable icons",
-    "metafield_reference": "Metafield (namespace.key)",
-    "metaobject_reference": "Metaobject",
-    "page_reference": "Page",
-    "rich_text_content": "Content",
-    "rule_1": "Rule 1",
-    "rule_2": "Rule 2",
-    "rule_3": "Rule 3",
-    "rule_value": "Value",
-    "show_border": "Show border",
-    "show_icon": "Show icon",
-    "small_heading": "Small heading",
-    "tab_title": "Tab title",
-    "visibility_match": "Match"
+    "bottom_row_text": "Bottom row text"
   },
   "text_defaults": {
     "accordion_heading": "Accordion heading",
@@ -1351,7 +1205,8 @@
       "tab_label": "Tab label",
       "custom_icon": "Custom icon",
       "badge_text": "Badge text",
-      "badge_style": "Badge style"
+      "badge_style": "Badge style",
+      "mobile_side_padding": "Mobile side padding"
     },
     "options": {
       "style_1": "Pill card accordion",
