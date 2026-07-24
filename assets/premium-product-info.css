@@ -474,3 +474,41 @@ premium-product-info[data-mode='accordion'][data-show-dividers='true']:not([data
   border-block-start: 1px solid rgb(var(--color-border-rgb) / 1);
   padding-block-start: var(--ppi-item-spacing, 0px);
 }
+
+/* Mobile border: an independent opt-in border/radius around each accordion row on mobile,
+   regardless of desktop layout style. Skipped for styles 1/7, which already draw their own card
+   border at every breakpoint via their own border settings - adding this on top would either be
+   invisible (same edge) or fight that rule's specificity for no visual gain. */
+@media (max-width: 749px) {
+  premium-product-info[data-mode='accordion'][data-mobile-border='true']:not([data-layout-style='1']):not([data-layout-style='7'])
+    .ppi-item {
+    border: var(--ppi-mobile-border-width, 1px) solid var(--ppi-mobile-border-color, rgb(var(--color-border-rgb) / 1));
+    border-radius: var(--ppi-mobile-border-radius, 8px);
+    overflow: hidden;
+  }
+
+  premium-product-info[data-mode='accordion'][data-mobile-border='true']:not([data-layout-style='1']):not([data-layout-style='7'])
+    .ppi-item
+    + .ppi-item {
+    margin-block-start: var(--ppi-item-spacing, 8px);
+  }
+
+  /* The mobile border already separates each row visually - a divider on top would be redundant. */
+  premium-product-info[data-mode='accordion'][data-mobile-border='true'][data-show-dividers='true']:not([data-layout-style='1']):not([data-layout-style='7'])
+    .ppi-item
+    + .ppi-item {
+    border-block-start: var(--ppi-mobile-border-width, 1px) solid var(--ppi-mobile-border-color, rgb(var(--color-border-rgb) / 1));
+    padding-block-start: 0;
+  }
+
+  premium-product-info[data-mode='accordion'][data-mobile-border='true']:not([data-layout-style='1']):not([data-layout-style='7'])
+    .ppi-item__trigger {
+    padding-inline: var(--ppi-item-padding, 16px);
+  }
+
+  premium-product-info[data-mode='accordion'][data-mobile-border='true']:not([data-layout-style='1']):not([data-layout-style='7'])
+    .ppi-item__panel-inner {
+    padding-inline: var(--ppi-item-padding, 16px);
+    padding-block-end: var(--ppi-item-padding, 16px);
+  }
+}
