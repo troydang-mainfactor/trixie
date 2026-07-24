@@ -1,0 +1,708 @@
+{%- comment -%}
+  Premium Product Info
+
+  Self-contained, brand-agnostic tabs (desktop) / accordion (mobile) section. Single drop-in
+  unit: this file, assets/premium-product-info.css, assets/premium-product-info.js, plus the
+  `premium_product_info` locale keys in locales/en.default.json and
+  locales/en.default.schema.json. Blocks are defined locally below (not `@theme`) so the whole
+  feature travels as these four pieces.
+
+  One DOM tree renders once; assets/premium-product-info.js swaps ARIA semantics between tabs
+  and accordion at the breakpoint - no separate desktop/mobile markup. With JS disabled, every
+  item renders as a plain heading followed by its always-visible content.
+{%- endcomment -%}
+
+{%- liquid
+  assign visible_blocks_count = 0
+  for block in section.blocks
+    if block.settings.heading != blank or block.settings.content != blank
+      assign visible_blocks_count = visible_blocks_count | plus: 1
+    endif
+  endfor
+-%}
+
+{%- if visible_blocks_count > 0 -%}
+  {%- liquid
+    assign speed_ms = 250
+    case section.settings.animation_speed
+      when 'fast'
+        assign speed_ms = 200
+      when 'slow'
+        assign speed_ms = 300
+    endcase
+
+    assign accessible_label = section.settings.accessible_heading
+    if accessible_label == blank
+      assign accessible_label = 'premium_product_info.default_label' | t
+    endif
+
+    case section.settings.expand_icon
+      when 'plus'
+        assign expand_icon_svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>'
+      when 'arrow'
+        assign expand_icon_svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>'
+      else
+        assign expand_icon_svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>'
+    endcase
+    assign expand_icon_data_uri = expand_icon_svg | url_encode | prepend: 'data:image/svg+xml,'
+  -%}
+
+  <premium-product-info
+    class="ppi ppi--width-{{ section.settings.section_width }}"
+    id="PPI-{{ section.id }}"
+    data-layout-style="{{ section.settings.layout_style }}"
+    data-multiple-open="{{ section.settings.accordion_multiple_open }}"
+    data-mobile-default="{{ section.settings.mobile_default_state }}"
+    data-active-shadow="{{ section.settings.active_shadow }}"
+    data-card-shadow="{{ section.settings.card_shadow }}"
+    data-underline-animation="{{ section.settings.underline_animation }}"
+    data-indicator-width="{{ section.settings.indicator_width }}"
+    data-show-dividers="{{ section.settings.show_dividers }}"
+    style="
+      --ppi-expand-icon-mask: url('{{ expand_icon_data_uri }}');
+      --ppi-max-width: {{ section.settings.content_max_width }}px;
+      --ppi-tab-gap: {{ section.settings.tab_gap }}px;
+      --ppi-content-gap: {{ section.settings.content_gap }}px;
+      --ppi-padding-top: {{ section.settings.padding_top }}px;
+      --ppi-padding-bottom: {{ section.settings.padding_bottom }}px;
+      --ppi-label-font-size: {{ section.settings.label_font_size }}px;
+      --ppi-label-font-weight: {{ section.settings.label_font_weight }};
+      --ppi-label-letter-spacing: {{ section.settings.label_letter_spacing }}px;
+      --ppi-label-text-transform: {{ section.settings.label_text_transform }};
+      --ppi-icon-size: {{ section.settings.icon_size }}px;
+      --ppi-icon-spacing: {{ section.settings.icon_spacing }}px;
+      --ppi-corner-radius: {{ section.settings.corner_radius }}px;
+      --ppi-border-width: {{ section.settings.border_width }}px;
+      --ppi-item-padding: {{ section.settings.item_padding }}px;
+      --ppi-item-spacing: {{ section.settings.item_spacing }}px;
+      --ppi-underline-thickness: {{ section.settings.underline_thickness }}px;
+      --ppi-indicator-offset: {{ section.settings.indicator_offset }}px;
+      --ppi-animation-speed: {{ speed_ms }}ms;
+      {% if section.settings.content_alignment == 'center' %}--ppi-content-align: center;{% else %}--ppi-content-align: flex-start;{% endif %}
+      {% if section.settings.active_text_color != blank %}--ppi-active-text: {{ section.settings.active_text_color }};{% endif %}
+      {% if section.settings.inactive_text_color != blank %}--ppi-inactive-text: {{ section.settings.inactive_text_color }};{% endif %}
+      {% if section.settings.hover_text_color != blank %}--ppi-hover-text: {{ section.settings.hover_text_color }};{% endif %}
+      {% if section.settings.active_background != blank %}--ppi-active-bg: {{ section.settings.active_background }};{% endif %}
+      {% if section.settings.active_border_color != blank %}--ppi-active-border: {{ section.settings.active_border_color }};{% endif %}
+      {% if section.settings.border_color != blank %}--ppi-border-color: {{ section.settings.border_color }};{% endif %}
+      {% if section.settings.item_background != blank %}--ppi-item-bg: {{ section.settings.item_background }};{% endif %}
+      {% if section.settings.hover_background != blank %}--ppi-hover-bg: {{ section.settings.hover_background }};{% endif %}
+      {% if section.settings.hover_border_color != blank %}--ppi-hover-border: {{ section.settings.hover_border_color }};{% endif %}
+      {% if section.settings.underline_color != blank %}--ppi-underline-color: {{ section.settings.underline_color }};{% endif %}
+    "
+  >
+    {%- if section.settings.accessible_heading != blank -%}
+      <h2 class="visually-hidden">{{ section.settings.accessible_heading | escape }}</h2>
+    {%- endif -%}
+
+    {%- comment -%}
+      Empty until JS runs: on desktop, tab styles move each trigger button in here (a real DOM
+      move, not a clone) so `role="tablist"`/`role="tab"` is a genuine DOM relationship for
+      assistive tech, not just a visual one. With JS disabled this stays empty and unused - the
+      headings below remain plain, adjacent to their own content, in natural reading order.
+    {%- endcomment -%}
+    <div
+      class="ppi__tablist"
+      role="tablist"
+      aria-label="{{ accessible_label | escape }}"
+      ref="tablist"
+      on:keydown="/handleTablistKeydown"
+      hidden
+    ></div>
+
+    <div class="ppi__items" ref="itemsWrapper">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign heading = block.settings.heading
+          assign body = block.settings.content
+          if heading == blank and body == blank
+            continue
+          endif
+
+          assign tab_label = block.settings.tab_label | default: heading
+          assign item_id = section.id | append: '-' | append: forloop.index0
+        -%}
+        <div class="ppi-item" {{ block.shopify_attributes }}>
+          <h3
+            class="ppi-item__heading"
+            id="PPI-{{ item_id }}-heading"
+            data-panel-id="PPI-{{ item_id }}-panel"
+            data-block-id="{{ block.id }}"
+            ref="itemHeadings[]"
+          >
+            {%- if block.settings.custom_icon != blank -%}
+              <span class="ppi-item__icon" aria-hidden="true">
+                {{- block.settings.custom_icon | image_url: width: 64 | image_tag: loading: 'lazy', alt: '', widths: '32, 64' -}}
+              </span>
+            {%- elsif block.settings.icon != blank and block.settings.icon != 'none' -%}
+              {%- liquid
+                assign icon_svg_attrs = 'aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"'
+              -%}
+              <span class="ppi-item__icon" aria-hidden="true">
+                {%- case block.settings.icon -%}
+                  {%- when 'box' -%}
+                    <svg {{ icon_svg_attrs }}><path d="M3 8l9-4 9 4-9 4-9-4Z"/><path d="M3 8v8l9 4 9-4V8"/><path d="M12 12v8"/></svg>
+                  {%- when 'ruler' -%}
+                    <svg {{ icon_svg_attrs }}><path d="M3 16 16 3l5 5-13 13Z"/><path d="m9 10 2 2M13 6l2 2M6 13l2 2"/></svg>
+                  {%- when 'leaf' -%}
+                    <svg {{ icon_svg_attrs }}><path d="M20 4c-9 0-16 7-16 16 9 0 16-7 16-16Z"/><path d="M5 19 20 4"/></svg>
+                  {%- when 'droplet' -%}
+                    <svg {{ icon_svg_attrs }}><path d="M12 3s7 7.5 7 12.5a7 7 0 1 1-14 0C5 10.5 12 3 12 3Z"/></svg>
+                  {%- when 'star' -%}
+                    <svg {{ icon_svg_attrs }}><path d="m12 3 2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L12 17l-5.6 3.1 1.4-6.3-4.8-4.3 6.4-.6L12 3Z"/></svg>
+                  {%- when 'info' -%}
+                    <svg {{ icon_svg_attrs }}><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 8v.01"/></svg>
+                  {%- when 'shield' -%}
+                    <svg {{ icon_svg_attrs }}><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/></svg>
+                  {%- when 'truck' -%}
+                    <svg {{ icon_svg_attrs }}><path d="M3 6h11v10H3z"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="18" cy="18" r="1.6"/></svg>
+                  {%- when 'refresh' -%}
+                    <svg {{ icon_svg_attrs }}><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3"/><path d="M18 3v4h-4M6 21v-4h4"/></svg>
+                  {%- when 'globe' -%}
+                    <svg {{ icon_svg_attrs }}><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18Z"/></svg>
+                  {%- when 'tag' -%}
+                    <svg {{ icon_svg_attrs }}><path d="M12 3h7v7l-9 9-7-7 9-9Z"/><circle cx="15.5" cy="7.5" r="1.2"/></svg>
+                  {%- when 'question' -%}
+                    <svg {{ icon_svg_attrs }}><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.8.4-1 .8-1 1.7M12 17v.01"/></svg>
+                {%- endcase -%}
+              </span>
+            {%- endif -%}
+            <span class="ppi-item__label">{{ tab_label | escape }}</span>
+            {%- if block.settings.badge_text != blank -%}
+              <span class="ppi-item__badge ppi-item__badge--{{ block.settings.badge_style }}">
+                {{- block.settings.badge_text | escape -}}
+              </span>
+            {%- endif -%}
+          </h3>
+          <div
+            class="ppi-item__panel"
+            id="PPI-{{ item_id }}-panel"
+            data-heading-id="PPI-{{ item_id }}-heading"
+            ref="itemPanels[]"
+          >
+            <div class="ppi-item__panel-inner">
+              {{ body }}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </premium-product-info>
+
+  <script src="{{ 'premium-product-info.js' | asset_url }}" type="module" defer></script>
+  {{ 'premium-product-info.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:premium_product_info.names.section",
+  "class": "section-wrapper",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "accessible_heading",
+      "label": "t:premium_product_info.settings.accessible_heading",
+      "info": "t:premium_product_info.info.accessible_heading"
+    },
+    {
+      "type": "header",
+      "content": "t:premium_product_info.content.layout"
+    },
+    {
+      "type": "select",
+      "id": "layout_style",
+      "label": "t:premium_product_info.settings.layout_style",
+      "options": [
+        { "value": "1", "label": "t:premium_product_info.options.style_1" },
+        { "value": "2", "label": "t:premium_product_info.options.style_2" },
+        { "value": "3", "label": "t:premium_product_info.options.style_3" },
+        { "value": "4", "label": "t:premium_product_info.options.style_4" },
+        { "value": "5", "label": "t:premium_product_info.options.style_5" },
+        { "value": "6", "label": "t:premium_product_info.options.style_6" },
+        { "value": "7", "label": "t:premium_product_info.options.style_7" }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:premium_product_info.settings.section_width",
+      "options": [
+        { "value": "page", "label": "t:premium_product_info.options.page_width" },
+        { "value": "full", "label": "t:premium_product_info.options.full_width" }
+      ],
+      "default": "page"
+    },
+    {
+      "type": "range",
+      "id": "content_max_width",
+      "label": "t:premium_product_info.settings.content_max_width",
+      "min": 480,
+      "max": 1200,
+      "step": 20,
+      "unit": "px",
+      "default": 720
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "t:premium_product_info.settings.content_alignment",
+      "options": [
+        { "value": "left", "label": "t:premium_product_info.options.left" },
+        { "value": "center", "label": "t:premium_product_info.options.center" }
+      ],
+      "default": "left",
+      "visible_if": "{{ section.settings.layout_style == '2' or section.settings.layout_style == '3' or section.settings.layout_style == '4' }}"
+    },
+    {
+      "type": "range",
+      "id": "tab_gap",
+      "label": "t:premium_product_info.settings.tab_gap",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "content_gap",
+      "label": "t:premium_product_info.settings.content_gap",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "t:premium_product_info.content.typography"
+    },
+    {
+      "type": "range",
+      "id": "label_font_size",
+      "label": "t:settings.font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "select",
+      "id": "label_font_weight",
+      "label": "t:premium_product_info.settings.label_font_weight",
+      "options": [
+        { "value": "400", "label": "t:premium_product_info.options.weight_regular" },
+        { "value": "500", "label": "t:premium_product_info.options.weight_medium" },
+        { "value": "600", "label": "t:premium_product_info.options.weight_semibold" },
+        { "value": "700", "label": "t:premium_product_info.options.weight_bold" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "range",
+      "id": "label_letter_spacing",
+      "label": "t:premium_product_info.settings.label_letter_spacing",
+      "min": 0,
+      "max": 4,
+      "step": 0.1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "label_text_transform",
+      "label": "t:premium_product_info.settings.label_text_transform",
+      "options": [
+        { "value": "none", "label": "t:options.none" },
+        { "value": "uppercase", "label": "t:premium_product_info.options.uppercase" },
+        { "value": "capitalize", "label": "t:premium_product_info.options.capitalize" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "select",
+      "id": "icon_position",
+      "label": "t:premium_product_info.settings.icon_position",
+      "options": [
+        { "value": "left", "label": "t:premium_product_info.options.left" },
+        { "value": "above", "label": "t:premium_product_info.options.above" }
+      ],
+      "default": "left",
+      "visible_if": "{{ section.settings.layout_style == '5' }}"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "t:premium_product_info.settings.icon_size",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "icon_spacing",
+      "label": "t:premium_product_info.settings.icon_spacing",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "t:premium_product_info.content.active_state"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:premium_product_info.content.color_philosophy_info"
+    },
+    {
+      "type": "color",
+      "id": "active_text_color",
+      "label": "t:premium_product_info.settings.active_text_color",
+      "placeholder": "t:settings.default"
+    },
+    {
+      "type": "color",
+      "id": "inactive_text_color",
+      "label": "t:premium_product_info.settings.inactive_text_color",
+      "placeholder": "t:settings.default"
+    },
+    {
+      "type": "color",
+      "id": "hover_text_color",
+      "label": "t:premium_product_info.settings.hover_text_color",
+      "placeholder": "t:settings.default"
+    },
+    {
+      "type": "color",
+      "id": "active_background",
+      "label": "t:premium_product_info.settings.active_background",
+      "placeholder": "t:settings.default"
+    },
+    {
+      "type": "color",
+      "id": "active_border_color",
+      "label": "t:premium_product_info.settings.active_border_color",
+      "placeholder": "t:settings.default"
+    },
+    {
+      "type": "select",
+      "id": "active_shadow",
+      "label": "t:premium_product_info.settings.active_shadow",
+      "options": [
+        { "value": "none", "label": "t:options.none" },
+        { "value": "subtle", "label": "t:premium_product_info.options.subtle" },
+        { "value": "medium", "label": "t:premium_product_info.options.medium" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "header",
+      "content": "t:premium_product_info.content.pills_and_cards"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:premium_product_info.content.pills_and_cards_info"
+    },
+    {
+      "type": "range",
+      "id": "corner_radius",
+      "label": "t:settings.corner_radius",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "t:settings.border_thickness",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "t:settings.border_color",
+      "placeholder": "t:settings.default"
+    },
+    {
+      "type": "color",
+      "id": "item_background",
+      "label": "t:premium_product_info.settings.item_background",
+      "placeholder": "t:settings.default"
+    },
+    {
+      "type": "color",
+      "id": "hover_background",
+      "label": "t:settings.hover_background",
+      "placeholder": "t:settings.default"
+    },
+    {
+      "type": "color",
+      "id": "hover_border_color",
+      "label": "t:premium_product_info.settings.hover_border_color",
+      "placeholder": "t:settings.default"
+    },
+    {
+      "type": "select",
+      "id": "card_shadow",
+      "label": "t:premium_product_info.settings.card_shadow",
+      "options": [
+        { "value": "none", "label": "t:options.none" },
+        { "value": "subtle", "label": "t:premium_product_info.options.subtle" },
+        { "value": "medium", "label": "t:premium_product_info.options.medium" }
+      ],
+      "default": "subtle"
+    },
+    {
+      "type": "range",
+      "id": "item_padding",
+      "label": "t:premium_product_info.settings.item_padding",
+      "min": 8,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "t:premium_product_info.content.underline_indicator"
+    },
+    {
+      "type": "range",
+      "id": "underline_thickness",
+      "label": "t:premium_product_info.settings.underline_thickness",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "unit": "px",
+      "default": 2,
+      "visible_if": "{{ section.settings.layout_style == '2' }}"
+    },
+    {
+      "type": "color",
+      "id": "underline_color",
+      "label": "t:premium_product_info.settings.underline_color",
+      "placeholder": "t:settings.default",
+      "visible_if": "{{ section.settings.layout_style == '2' }}"
+    },
+    {
+      "type": "select",
+      "id": "underline_animation",
+      "label": "t:premium_product_info.settings.underline_animation",
+      "options": [
+        { "value": "slide", "label": "t:premium_product_info.options.slide" },
+        { "value": "fade", "label": "t:premium_product_info.options.fade" },
+        { "value": "none", "label": "t:options.none" }
+      ],
+      "default": "slide",
+      "visible_if": "{{ section.settings.layout_style == '2' }}"
+    },
+    {
+      "type": "select",
+      "id": "indicator_width",
+      "label": "t:premium_product_info.settings.indicator_width",
+      "options": [
+        { "value": "full-label", "label": "t:premium_product_info.options.full_label" },
+        { "value": "fixed", "label": "t:premium_product_info.options.fixed" }
+      ],
+      "default": "full-label",
+      "visible_if": "{{ section.settings.layout_style == '2' }}"
+    },
+    {
+      "type": "range",
+      "id": "indicator_offset",
+      "label": "t:premium_product_info.settings.indicator_offset",
+      "min": 0,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 0,
+      "visible_if": "{{ section.settings.layout_style == '2' }}"
+    },
+    {
+      "type": "header",
+      "content": "t:premium_product_info.content.accordion"
+    },
+    {
+      "type": "select",
+      "id": "expand_icon",
+      "label": "t:premium_product_info.settings.expand_icon",
+      "options": [
+        { "value": "plus", "label": "t:premium_product_info.options.plus" },
+        { "value": "chevron", "label": "t:premium_product_info.options.chevron" },
+        { "value": "arrow", "label": "t:premium_product_info.options.arrow" }
+      ],
+      "default": "chevron"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dividers",
+      "label": "t:premium_product_info.settings.show_dividers",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "item_spacing",
+      "label": "t:premium_product_info.settings.item_spacing",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "mobile_default_state",
+      "label": "t:premium_product_info.settings.mobile_default_state",
+      "options": [
+        { "value": "first_open", "label": "t:premium_product_info.options.first_open" },
+        { "value": "all_collapsed", "label": "t:premium_product_info.options.all_collapsed" },
+        { "value": "all_open", "label": "t:premium_product_info.options.all_open" }
+      ],
+      "default": "first_open"
+    },
+    {
+      "type": "checkbox",
+      "id": "accordion_multiple_open",
+      "label": "t:premium_product_info.settings.accordion_multiple_open",
+      "default": false,
+      "visible_if": "{{ section.settings.layout_style == '1' or section.settings.layout_style == '7' }}"
+    },
+    {
+      "type": "header",
+      "content": "t:premium_product_info.content.animation"
+    },
+    {
+      "type": "select",
+      "id": "animation_speed",
+      "label": "t:premium_product_info.settings.animation_speed",
+      "options": [
+        { "value": "fast", "label": "t:premium_product_info.options.fast" },
+        { "value": "normal", "label": "t:premium_product_info.options.normal" },
+        { "value": "slow", "label": "t:premium_product_info.options.slow" }
+      ],
+      "default": "normal"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "t:premium_product_info.names.item",
+      "limit": 12,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "t:premium_product_info.settings.heading"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "t:premium_product_info.settings.content"
+        },
+        {
+          "type": "text",
+          "id": "tab_label",
+          "label": "t:premium_product_info.settings.tab_label",
+          "info": "t:premium_product_info.info.tab_label"
+        },
+        {
+          "type": "header",
+          "content": "t:premium_product_info.content.icon"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "t:settings.icon",
+          "options": [
+            { "value": "none", "label": "t:options.none" },
+            { "value": "box", "label": "t:premium_product_info.options.icon_box" },
+            { "value": "ruler", "label": "t:premium_product_info.options.icon_ruler" },
+            { "value": "leaf", "label": "t:premium_product_info.options.icon_leaf" },
+            { "value": "droplet", "label": "t:premium_product_info.options.icon_droplet" },
+            { "value": "star", "label": "t:premium_product_info.options.icon_star" },
+            { "value": "info", "label": "t:premium_product_info.options.icon_info" },
+            { "value": "shield", "label": "t:premium_product_info.options.icon_shield" },
+            { "value": "truck", "label": "t:premium_product_info.options.icon_truck" },
+            { "value": "refresh", "label": "t:premium_product_info.options.icon_refresh" },
+            { "value": "globe", "label": "t:premium_product_info.options.icon_globe" },
+            { "value": "tag", "label": "t:premium_product_info.options.icon_tag" },
+            { "value": "question", "label": "t:premium_product_info.options.icon_question" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_icon",
+          "label": "t:premium_product_info.settings.custom_icon",
+          "info": "t:premium_product_info.info.custom_icon"
+        },
+        {
+          "type": "header",
+          "content": "t:premium_product_info.content.badge"
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "t:premium_product_info.settings.badge_text"
+        },
+        {
+          "type": "select",
+          "id": "badge_style",
+          "label": "t:premium_product_info.settings.badge_style",
+          "options": [
+            { "value": "primary", "label": "t:premium_product_info.options.primary" },
+            { "value": "secondary", "label": "t:premium_product_info.options.secondary" },
+            { "value": "outline", "label": "t:premium_product_info.options.outline" }
+          ],
+          "default": "secondary",
+          "visible_if": "{{ block.settings.badge_text != blank }}"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:premium_product_info.names.section",
+      "category": "t:categories.product",
+      "blocks": [
+        { "type": "item", "settings": { "heading": "t:premium_product_info.text_defaults.placeholder_1" } },
+        { "type": "item", "settings": { "heading": "t:premium_product_info.text_defaults.placeholder_2" } },
+        { "type": "item", "settings": { "heading": "t:premium_product_info.text_defaults.placeholder_3" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
