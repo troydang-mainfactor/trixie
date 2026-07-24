@@ -21,6 +21,12 @@
   max-inline-size: none;
 }
 
+@media (max-width: 749px) {
+  .ppi {
+    padding-inline: var(--ppi-mobile-side-padding, 16px);
+  }
+}
+
 .ppi__tablist[hidden] {
   display: none;
 }
@@ -71,9 +77,9 @@
   color: var(--ppi-inactive-text, currentcolor);
   -webkit-tap-highlight-color: transparent;
   transition:
-    color var(--ppi-animation-speed, 250ms) ease-in-out,
-    background-color var(--ppi-animation-speed, 250ms) ease-in-out,
-    border-color var(--ppi-animation-speed, 250ms) ease-in-out;
+    color var(--ppi-animation-speed, 250ms) var(--animation-easing, ease-in-out),
+    background-color var(--ppi-animation-speed, 250ms) var(--animation-easing, ease-in-out),
+    border-color var(--ppi-animation-speed, 250ms) var(--animation-easing, ease-in-out);
 }
 
 .ppi-item__trigger:hover {
@@ -135,32 +141,50 @@ premium-product-info[data-mode] .ppi-item__trigger[aria-expanded='true'] {
   color: rgb(var(--color-foreground-rgb));
 }
 
-/* Chevron affordance next to the label. Only meaningful in accordion mode (a plain rotating
-   caret); tab presentation hides it since role="tab" never carries aria-expanded. */
-.ppi-item__trigger::after {
-  content: '';
+/* Expand affordance next to the label - a real inline <svg>, not a masked background image, so
+   it can never silently fail to load. Only meaningful in accordion mode (tab presentation hides
+   it, since role="tab" never carries aria-expanded); shown any time an item is behaving as an
+   accordion row, on any breakpoint, for any layout style - not just the always-accordion ones. */
+.ppi-item__expand-icon {
+  display: inline-flex;
   flex-shrink: 0;
-  inline-size: 0.85em;
-  block-size: 0.85em;
+  inline-size: 0.9em;
+  block-size: 0.9em;
   margin-inline-start: auto;
-  background: currentcolor;
-  mask: var(--ppi-expand-icon-mask, none) center / contain no-repeat;
-  -webkit-mask: var(--ppi-expand-icon-mask, none) center / contain no-repeat;
-  transition: transform var(--ppi-animation-speed, 250ms) ease-in-out;
+  color: currentcolor;
 }
 
-premium-product-info[data-mode='tabs'] .ppi-item__trigger::after {
+.ppi-item__expand-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+premium-product-info[data-mode='tabs'] .ppi-item__expand-icon {
   display: none;
 }
 
-premium-product-info[data-mode='accordion'] .ppi-item__trigger[aria-expanded='true']::after {
+.ppi-item__expand-icon--rotating {
+  transition: transform var(--ppi-animation-speed, 250ms) var(--animation-easing, ease-in-out);
+}
+
+premium-product-info[data-mode='accordion'] .ppi-item__trigger[aria-expanded='true'] .ppi-item__expand-icon--rotating {
   transform: rotate(180deg);
+}
+
+/* Plus/minus: the horizontal bar always stays, the vertical bar scales away on expand. */
+.ppi-item__expand-icon-vertical {
+  transform-origin: center;
+  transition: transform var(--ppi-animation-speed, 250ms) var(--animation-easing, ease-in-out);
+}
+
+premium-product-info[data-mode='accordion'] .ppi-item__trigger[aria-expanded='true'] .ppi-item__expand-icon-vertical {
+  transform: scaleY(0);
 }
 
 .ppi-item__panel {
   display: grid;
   grid-template-rows: 1fr;
-  transition: grid-template-rows var(--ppi-animation-speed, 250ms) ease-in-out;
+  transition: grid-template-rows var(--ppi-animation-speed, 250ms) var(--animation-easing, ease-in-out);
 }
 
 .ppi-item__panel[data-skip-transition] {
@@ -190,7 +214,7 @@ premium-product-info[data-mode='accordion'] .ppi-item__panel[data-expanded='fals
 @media (prefers-reduced-motion: no-preference) {
   premium-product-info[data-mode='tabs'] .ppi-item__panel:not([hidden]) {
     transition:
-      opacity var(--ppi-animation-speed, 250ms) ease-in-out,
+      opacity var(--ppi-animation-speed, 250ms) var(--animation-easing, ease-in-out),
       display var(--ppi-animation-speed, 250ms) allow-discrete;
 
     @starting-style {
@@ -202,8 +226,14 @@ premium-product-info[data-mode='accordion'] .ppi-item__panel[data-expanded='fals
 @media (prefers-reduced-motion: reduce) {
   .ppi-item__panel,
   .ppi-item__trigger,
-  .ppi-item__trigger::after {
+  .ppi-item__expand-icon--rotating,
+  .ppi-item__expand-icon-vertical,
+  premium-product-info[data-layout-style='1'] .ppi-item {
     transition: none !important; /* stylelint-disable-line declaration-no-important */
+  }
+
+  premium-product-info[data-layout-style='1'] .ppi-item:has(.ppi-item__trigger:hover) {
+    transform: none;
   }
 }
 
@@ -211,6 +241,11 @@ premium-product-info[data-mode='accordion'] .ppi-item__panel[data-expanded='fals
 premium-product-info[data-layout-style='1'] .ppi__items {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  /* align-items: start (not the grid default, stretch) - without it, every card in a row
+     stretches to match its tallest sibling, so an expanded card drags its collapsed neighbors
+     open too (visible as blank space below their header). This keeps each card's height, and
+     therefore its expand/collapse, fully independent of whatever else is in its row. */
+  align-items: start;
   gap: var(--ppi-item-spacing, 12px);
 }
 
@@ -219,6 +254,10 @@ premium-product-info[data-layout-style='1'] .ppi-item {
   border-radius: var(--ppi-corner-radius, 12px);
   background: var(--ppi-item-bg, rgb(var(--color-background-rgb)));
   overflow: hidden;
+  transition: box-shadow var(--ppi-animation-speed, 250ms) var(--animation-easing, ease-in-out),
+    transform var(--ppi-animation-speed, 250ms) var(--animation-easing, ease-in-out),
+    background-color var(--ppi-animation-speed, 250ms) var(--animation-easing, ease-in-out),
+    border-color var(--ppi-animation-speed, 250ms) var(--animation-easing, ease-in-out);
 }
 
 premium-product-info[data-layout-style='1'] .ppi-item + .ppi-item {
@@ -228,14 +267,23 @@ premium-product-info[data-layout-style='1'] .ppi-item + .ppi-item {
 premium-product-info[data-layout-style='1'] .ppi-item:has(.ppi-item__trigger:hover) {
   background: var(--ppi-hover-bg, rgb(var(--color-foreground-rgb) / 0.03));
   border-color: var(--ppi-hover-border, var(--ppi-border-color, rgb(var(--color-border-rgb) / 1)));
+  transform: translateY(-1px);
 }
 
 premium-product-info[data-layout-style='1'][data-card-shadow='subtle'] .ppi-item {
-  box-shadow: 0 1px 3px rgb(0 0 0 / 8%);
+  box-shadow: var(--shadow-button, 0 1px 3px rgb(0 0 0 / 8%));
 }
 
 premium-product-info[data-layout-style='1'][data-card-shadow='medium'] .ppi-item {
-  box-shadow: 0 4px 12px rgb(0 0 0 / 12%);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 10%), 0 2px 6px rgb(0 0 0 / 6%);
+}
+
+premium-product-info[data-layout-style='1'][data-card-shadow='subtle'] .ppi-item:has(.ppi-item__trigger:hover) {
+  box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+}
+
+premium-product-info[data-layout-style='1'][data-card-shadow='medium'] .ppi-item:has(.ppi-item__trigger:hover) {
+  box-shadow: 0 12px 28px rgb(0 0 0 / 13%), 0 3px 8px rgb(0 0 0 / 8%);
 }
 
 premium-product-info[data-layout-style='1'] .ppi-item__panel-inner {
@@ -249,14 +297,12 @@ premium-product-info[data-layout-style='2'] .ppi__tablist {
   position: relative;
 }
 
-premium-product-info[data-layout-style='2'] .ppi-item__trigger {
+/* Scoped to tabs mode only - on mobile this style falls back to a normal full-width accordion
+   row, not a shrink-to-fit tab button. */
+premium-product-info[data-layout-style='2'][data-mode='tabs'] .ppi-item__trigger {
   width: auto;
   padding-inline: 0;
   padding-block: 0 var(--padding-sm, 12px);
-}
-
-premium-product-info[data-layout-style='2'] .ppi-item__trigger::after {
-  display: none;
 }
 
 premium-product-info[data-layout-style='2'] .ppi__tablist::after {
@@ -267,8 +313,8 @@ premium-product-info[data-layout-style='2'] .ppi__tablist::after {
   inline-size: var(--ppi-indicator-width, 0px);
   block-size: var(--ppi-underline-thickness, 2px);
   background: var(--ppi-underline-color, rgb(var(--color-foreground-rgb)));
-  transition: inset-inline-start var(--ppi-animation-speed, 250ms) ease-in-out,
-    inline-size var(--ppi-animation-speed, 250ms) ease-in-out;
+  transition: inset-inline-start var(--ppi-animation-speed, 250ms) var(--animation-easing, ease-in-out),
+    inline-size var(--ppi-animation-speed, 250ms) var(--animation-easing, ease-in-out);
 }
 
 premium-product-info[data-layout-style='2'][data-underline-animation='none'] .ppi__tablist::after {
@@ -276,7 +322,7 @@ premium-product-info[data-layout-style='2'][data-underline-animation='none'] .pp
 }
 
 premium-product-info[data-layout-style='2'][data-underline-animation='fade'] .ppi__tablist::after {
-  transition: opacity var(--ppi-animation-speed, 250ms) ease-in-out;
+  transition: opacity var(--ppi-animation-speed, 250ms) var(--animation-easing, ease-in-out);
 }
 
 premium-product-info[data-layout-style='2'][data-indicator-width='fixed'] .ppi__tablist::after {
@@ -285,28 +331,29 @@ premium-product-info[data-layout-style='2'][data-indicator-width='fixed'] .ppi__
 }
 
 /* ============================ Layout style 3: Pill navigation tabs ============================ */
-premium-product-info[data-layout-style='3'] .ppi-item__trigger {
+/* Scoped to tabs mode - on mobile this style falls back to a normal full-width accordion row. */
+premium-product-info[data-layout-style='3'][data-mode='tabs'] .ppi-item__trigger {
   width: auto;
   border-radius: var(--ppi-corner-radius, 999px);
   border: var(--ppi-border-width, 1px) solid var(--ppi-border-color, transparent);
   background: var(--ppi-item-bg, transparent);
 }
 
-premium-product-info[data-layout-style='3'] .ppi-item__trigger:hover {
+premium-product-info[data-layout-style='3'][data-mode='tabs'] .ppi-item__trigger:hover {
   background: var(--ppi-hover-bg, rgb(var(--color-foreground-rgb) / 0.06));
   border-color: var(--ppi-hover-border, var(--ppi-border-color, transparent));
 }
 
-premium-product-info[data-layout-style='3'] .ppi-item__trigger[aria-selected='true'] {
+premium-product-info[data-layout-style='3'][data-mode='tabs'] .ppi-item__trigger[aria-selected='true'] {
   background: var(--ppi-active-bg, rgb(var(--color-foreground-rgb) / 0.1));
   border-color: var(--ppi-active-border, var(--ppi-border-color, transparent));
 }
 
-premium-product-info[data-layout-style='3'][data-active-shadow='subtle'] .ppi-item__trigger[aria-selected='true'] {
+premium-product-info[data-layout-style='3'][data-mode='tabs'][data-active-shadow='subtle'] .ppi-item__trigger[aria-selected='true'] {
   box-shadow: 0 1px 3px rgb(0 0 0 / 10%);
 }
 
-premium-product-info[data-layout-style='3'][data-active-shadow='medium'] .ppi-item__trigger[aria-selected='true'] {
+premium-product-info[data-layout-style='3'][data-mode='tabs'][data-active-shadow='medium'] .ppi-item__trigger[aria-selected='true'] {
   box-shadow: 0 4px 10px rgb(0 0 0 / 14%);
 }
 
@@ -336,12 +383,12 @@ premium-product-info[data-layout-style='4'] .ppi__tablist::before {
   border-radius: calc(var(--ppi-corner-radius, 12px) - 4px);
   background: var(--ppi-active-bg, rgb(var(--color-background-rgb)));
   box-shadow: 0 1px 2px rgb(0 0 0 / 10%);
-  transition: inset-inline-start var(--ppi-animation-speed, 250ms) ease-in-out,
-    inline-size var(--ppi-animation-speed, 250ms) ease-in-out;
+  transition: inset-inline-start var(--ppi-animation-speed, 250ms) var(--animation-easing, ease-in-out),
+    inline-size var(--ppi-animation-speed, 250ms) var(--animation-easing, ease-in-out);
   z-index: 0;
 }
 
-premium-product-info[data-layout-style='4'] .ppi-item__trigger {
+premium-product-info[data-layout-style='4'][data-mode='tabs'] .ppi-item__trigger {
   position: relative;
   z-index: 1;
   width: auto;
@@ -350,11 +397,11 @@ premium-product-info[data-layout-style='4'] .ppi-item__trigger {
 }
 
 /* ================================ Layout style 5: Icon tabs ================================ */
-premium-product-info[data-layout-style='5'] .ppi-item__trigger {
+premium-product-info[data-layout-style='5'][data-mode='tabs'] .ppi-item__trigger {
   width: auto;
 }
 
-premium-product-info[data-layout-style='5'][data-icon-position='above'] .ppi-item__trigger {
+premium-product-info[data-layout-style='5'][data-mode='tabs'][data-icon-position='above'] .ppi-item__trigger {
   flex-direction: column;
   gap: 4px;
   text-align: center;
@@ -403,11 +450,11 @@ premium-product-info[data-layout-style='7'] .ppi-item + .ppi-item {
 }
 
 premium-product-info[data-layout-style='7'][data-card-shadow='subtle'] .ppi-item {
-  box-shadow: 0 1px 3px rgb(0 0 0 / 8%);
+  box-shadow: var(--shadow-button, 0 1px 3px rgb(0 0 0 / 8%));
 }
 
 premium-product-info[data-layout-style='7'][data-card-shadow='medium'] .ppi-item {
-  box-shadow: 0 4px 12px rgb(0 0 0 / 12%);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 10%), 0 2px 6px rgb(0 0 0 / 6%);
 }
 
 premium-product-info[data-layout-style='7'] .ppi-item__trigger {

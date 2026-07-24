@@ -36,15 +36,7 @@
       assign accessible_label = 'premium_product_info.default_label' | t
     endif
 
-    case section.settings.expand_icon
-      when 'plus'
-        assign expand_icon_svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>'
-      when 'arrow'
-        assign expand_icon_svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>'
-      else
-        assign expand_icon_svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>'
-    endcase
-    assign expand_icon_data_uri = expand_icon_svg | url_encode | prepend: 'data:image/svg+xml,'
+    assign expand_icon = section.settings.expand_icon | default: 'chevron'
   -%}
 
   <premium-product-info
@@ -59,8 +51,8 @@
     data-indicator-width="{{ section.settings.indicator_width }}"
     data-show-dividers="{{ section.settings.show_dividers }}"
     style="
-      --ppi-expand-icon-mask: url('{{ expand_icon_data_uri }}');
       --ppi-max-width: {{ section.settings.content_max_width }}px;
+      --ppi-mobile-side-padding: {{ section.settings.mobile_side_padding }}px;
       --ppi-tab-gap: {{ section.settings.tab_gap }}px;
       --ppi-content-gap: {{ section.settings.content_gap }}px;
       --ppi-padding-top: {{ section.settings.padding_top }}px;
@@ -173,6 +165,26 @@
                 {{- block.settings.badge_text | escape -}}
               </span>
             {%- endif -%}
+            {%- if expand_icon == 'plus' -%}
+              <span class="ppi-item__expand-icon ppi-item__expand-icon--plus" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                  <path d="M5 12h14"/>
+                  <path class="ppi-item__expand-icon-vertical" d="M12 5v14"/>
+                </svg>
+              </span>
+            {%- elsif expand_icon == 'arrow' -%}
+              <span class="ppi-item__expand-icon ppi-item__expand-icon--rotating" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 4v13M6 12l6 6 6-6"/>
+                </svg>
+              </span>
+            {%- else -%}
+              <span class="ppi-item__expand-icon ppi-item__expand-icon--rotating" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 9l6 6 6-6"/>
+                </svg>
+              </span>
+            {%- endif -%}
           </h3>
           <div
             class="ppi-item__panel"
@@ -243,6 +255,16 @@
       "step": 20,
       "unit": "px",
       "default": 720
+    },
+    {
+      "type": "range",
+      "id": "mobile_side_padding",
+      "label": "t:premium_product_info.settings.mobile_side_padding",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 16
     },
     {
       "type": "select",
