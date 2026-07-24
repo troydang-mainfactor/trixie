@@ -12,22 +12,53 @@
     "main": {
       "type": "product-information",
       "blocks": {
-        "disclosures_g9mWze": {
-          "type": "disclosures",
-          "name": "t:names.disclosures",
+        "tab_item_kip3V3": {
+          "type": "tab-item",
+          "name": "t:names.tab_item",
           "settings": {
-            "heading": "Disclosures",
-            "heading_preset": "h5",
-            "open_by_default": false,
-            "icon": "caret",
-            "disclosure_heading_preset": "h6",
-            "text_color": "",
-            "dividers": true,
-            "divider_color": "{{ settings.color_palette.color2 }}",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "tab_title": "elements",
+            "small_heading": "eeee",
+            "show_icon": false,
+            "icon": "",
+            "content_source": "rich_text",
+            "rich_text_content": "<p>eeee</p>",
+            "metafield_reference": "",
+            "page_reference": "",
+            "metaobject_reference": "",
+            "dynamic_source_reference": "",
+            "custom_liquid_content": "",
+            "visibility_match": "all",
+            "rule_1_type": "none",
+            "rule_1_value": "",
+            "rule_2_type": "none",
+            "rule_2_value": "",
+            "rule_3_type": "none",
+            "rule_3_value": ""
+          },
+          "blocks": {}
+        },
+        "tab_item_CWFb4d": {
+          "type": "tab-item",
+          "name": "t:names.tab_item",
+          "settings": {
+            "tab_title": "elements",
+            "small_heading": "eeee",
+            "show_icon": false,
+            "icon": "",
+            "content_source": "rich_text",
+            "rich_text_content": "<p>eeee</p>",
+            "metafield_reference": "",
+            "page_reference": "",
+            "metaobject_reference": "",
+            "dynamic_source_reference": "",
+            "custom_liquid_content": "",
+            "visibility_match": "all",
+            "rule_1_type": "none",
+            "rule_1_value": "",
+            "rule_2_type": "none",
+            "rule_2_value": "",
+            "rule_3_type": "none",
+            "rule_3_value": ""
           },
           "blocks": {}
         },
@@ -200,6 +231,8 @@
                 "tooltip_text_color": "",
                 "tooltip_font_size": 13,
                 "out_of_stock_style": "crossed_out",
+                "below_swatch_text_position": "below",
+                "below_swatch_text_font_size": 11,
                 "padding-block-start": 0,
                 "padding-block-end": 8,
                 "padding-inline-start": 0,
@@ -357,7 +390,8 @@
         }
       },
       "block_order": [
-        "disclosures_g9mWze"
+        "tab_item_kip3V3",
+        "tab_item_CWFb4d"
       ],
       "settings": {
         "content_width": "content-center-aligned",
@@ -369,6 +403,55 @@
         "background_color": "{{ settings.color_palette.background }}",
         "padding-block-start": 10,
         "padding-block-end": 0
+      }
+    },
+    "premium_product_information_kexHfy": {
+      "type": "premium-product-information",
+      "blocks": {
+        "tab_item_PeWxKF": {
+          "type": "tab-item",
+          "name": "t:names.tab_item",
+          "settings": {
+            "tab_title": "Details",
+            "small_heading": "wdadw",
+            "show_icon": false,
+            "icon": "",
+            "content_source": "dynamic_source",
+            "rich_text_content": "<p>WWWWdwa</p>",
+            "metafield_reference": "",
+            "page_reference": "",
+            "metaobject_reference": "",
+            "dynamic_source_reference": "",
+            "custom_liquid_content": "",
+            "visibility_match": "all",
+            "rule_1_type": "none",
+            "rule_1_value": "",
+            "rule_2_type": "none",
+            "rule_2_value": "",
+            "rule_3_type": "none",
+            "rule_3_value": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "tab_item_PeWxKF"
+      ],
+      "name": "t:names.premium_product_information",
+      "settings": {
+        "layout_style": "pills",
+        "content_width": 720,
+        "container_radius": 8,
+        "show_border": true,
+        "border_width": 1,
+        "background": "",
+        "animation_speed": 200,
+        "enable_icons": false,
+        "type_preset": "h6",
+        "padding-block-start": 40,
+        "padding-block-end": 40,
+        "padding-inline-start": 0,
+        "padding-inline-end": 0
       }
     },
     "product_recommendations_qggXJq": {
@@ -518,6 +601,7 @@
   },
   "order": [
     "main",
+    "premium_product_information_kexHfy",
     "product_recommendations_qggXJq"
   ]
 }
