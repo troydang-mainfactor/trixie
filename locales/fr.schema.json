@@ -598,7 +598,9 @@
     "tag": "Tag",
     "display_text": "Text",
     "split_title_on_dash": "Split title on \" - \"",
-    "show_above_media_mobile": "Show above media on mobile (product pages)"
+    "show_above_media_mobile": "Show above media on mobile (product pages)",
+    "display_style": "Display style",
+    "show_price_in_button": "Show price in button"
   },
   "options": {
     "apple": "Pomme",
@@ -876,7 +878,9 @@
     "icons": "Icônes",
     "input_field": "Champ de saisie",
     "crossed_out": "Crossed out",
-    "faded": "Faded"
+    "faded": "Faded",
+    "marquee": "Marquee",
+    "slideshow": "Slideshow"
   },
   "content": {
     "background_video": "Vidéo de fond",
@@ -1138,7 +1142,8 @@
     "edit_variants_in_theme_settings": "Modifier le style des variantes dans les [paramètres du thème](/editor?context=theme&category=variant%20pickers)",
     "combined_listings_swatch_border": "Unselected swatches have no border; hovering shows a light border, and the selected swatch shows a solid border at this thickness",
     "split_title_on_dash": "If the title contains \" - \", the text after it shows smaller on its own line",
-    "show_above_media_mobile": "On product pages, moves this block above the media gallery on mobile only. Has no effect outside a product page layout."
+    "show_above_media_mobile": "On product pages, moves this block above the media gallery on mobile only. Has no effect outside a product page layout.",
+    "marquee_speed": "Higher values scroll faster"
   },
   "categories": {
     "basic": "De base",
