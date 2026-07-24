@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "names": {
     "404": "404",
@@ -591,7 +600,8 @@
     "split_title_on_dash": "Split title on \" - \"",
     "show_above_media_mobile": "Show above media on mobile (product pages)",
     "display_style": "Display style",
-    "show_price_in_button": "Show price in button"
+    "show_price_in_button": "Show price in button",
+    "font_size": "Font size"
   },
   "options": {
     "apple": "Apfel",
@@ -871,7 +881,9 @@
     "crossed_out": "Crossed out",
     "faded": "Faded",
     "marquee": "Marquee",
-    "slideshow": "Slideshow"
+    "slideshow": "Slideshow",
+    "above": "Above",
+    "below": "Below"
   },
   "content": {
     "background_video": "Hintergrundvideo",
@@ -1005,7 +1017,7 @@
     "combined_listings_tooltip": "Tooltip",
     "combined_listings_availability": "Availability",
     "combined_listings_below_text": "Below-swatch text",
-    "combined_listings_below_text_info": "Add tag-based text rules below as blocks. The first rule whose tag matches the product is shown; only one is displayed at a time."
+    "combined_listings_below_text_info": "Add tag-based text rules below as blocks. Each swatch checks its own linked product's tags (not the product you're currently viewing), so the same swatch shows the same text no matter which listing in the group you're on. The first matching rule wins per swatch."
   },
   "html_defaults": {
     "share_information_about_your": "<p>Teile Informationen über deine Marke mit deinen Kunden. Beschreibe ein Produkt, mache Ankündigungen oder heiße Kunden in deinem Shop willkommen.</p>",
