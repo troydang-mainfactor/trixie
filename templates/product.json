@@ -209,7 +209,7 @@
                   "type": "_combined-listings-tag-text",
                   "name": "t:names.combined_listings_tag_text",
                   "settings": {
-                    "tag": "NEW",
+                    "tag": "new",
                     "display_text": "NEW!"
                   },
                   "blocks": {}
