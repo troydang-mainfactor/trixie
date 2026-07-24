@@ -287,13 +287,17 @@
         class="mega-menu__content-list mega-menu__content-list--products list-unstyled"
       >
         {% if eager_loading %}
-          {%- comment -%}
-            Safety net only: primary exclusion is the collection rule/tag exclusion set up in
-            Shopify admin. Combined Listings non-primary products are tagged 'hide-from-grid'.
-          {%- endcomment -%}
-          {% assign visible_menu_products = collection_object.products | reject: 'tags', 'hide-from-grid' %}
-          {% paginate visible_menu_products by max_featured_products %}
-            {% for item in visible_menu_products %}
+          {% paginate collection_object.products by max_featured_products %}
+            {% for item in collection_object.products %}
+              {%- comment -%}
+                Safety net only: primary exclusion is the collection rule/tag exclusion set up in
+                Shopify admin. Combined Listings non-primary products are tagged 'hide-from-grid'.
+                {% paginate %} only accepts a genuine paginateable object, so the tag filter is
+                applied here in the loop rather than pre-filtering the array passed to it.
+              {%- endcomment -%}
+              {% if item.tags contains 'hide-from-grid' %}
+                {% continue %}
+              {% endif %}
               <li class="mega-menu__content-list-item {% if forloop.index > max_featured_products_tablet %} mega-menu__content-list-item--hidden-tablet{% endif %}">
                 {% render 'resource-card',
                   resource: item,
