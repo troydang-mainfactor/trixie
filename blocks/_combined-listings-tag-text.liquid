@@ -1,8 +1,19 @@
 {%- doc -%}
   A single tag -> text rule for the Combined Listings product-page block's below-swatch text.
-  Rendered data-only: the parent block reads `block.blocks` directly and shows the first
-  matching rule (in block order), so this template intentionally has no storefront output.
+  Renders no visible output; instead emits a hidden element carrying its tag/text as data
+  attributes. combined-listings.js reads these (in DOM/block order) and shows the first one
+  whose tag matches the product, client-side. Doing the match in JS instead of in Liquid
+  avoids relying on server-side access to a parent block's nested block settings.
 {%- enddoc -%}
+
+{%- if block.settings.tag != blank and block.settings.display_text != blank -%}
+  <span
+    class="visually-hidden"
+    data-cl-tag-rule
+    data-tag="{{ block.settings.tag | strip | escape }}"
+    {{ block.shopify_attributes }}
+  >{{- block.settings.display_text -}}</span>
+{%- endif -%}
 
 {% schema %}
 {
