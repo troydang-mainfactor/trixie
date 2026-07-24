@@ -1,12 +1,33 @@
 
 
-{% if section.blocks.size > 1 %}
+{% liquid
+  assign is_marquee = false
+  if section.settings.display_style == 'marquee'
+    assign is_marquee = true
+  endif
+%}
+
+{% if is_marquee %}
+  <script
+    src="{{ 'marquee.js' | asset_url }}"
+    type="module"
+    fetchpriority="low"
+  ></script>
+{% elsif section.blocks.size > 1 %}
   <script
     src="{{ 'announcement-bar.js' | asset_url }}"
     type="module"
     fetchpriority="low"
   ></script>
 {% endif %}
+
+{% if is_marquee %}
+  {% render 'marquee-styles' %}
+{% endif %}
+
+{% capture announcement_blocks %}
+  {% content_for 'blocks' %}
+{% endcapture %}
 
 {% render 'contrast-override', background_color: section.settings.background_color, section_id: section.id %}
 
@@ -15,29 +36,55 @@
   class="announcement-bar spacing-style section section--{{ section.settings.section_width }} color-custom-{{ section.id }}"
   style="{% render 'spacing-padding', settings: section.settings %}; --border-bottom-width: {{ section.settings.divider_width }}px;{% if section.settings.divider_color != blank %} --color-border: {{ section.settings.divider_color }};{% endif %}"
 >
-  {% liquid
-    assign autoplay = false
-    assign show_arrows = false
-    if section.blocks.size > 1
-      assign autoplay = true
-      assign show_arrows = true
-    endif
-  %}
+  {% if is_marquee %}
+    <marquee-component
+      class="announcement-bar__marquee"
+      style="--marquee-gap: {{ section.settings.marquee_gap | default: 24 }}px; --marquee-direction: {{ section.settings.marquee_direction }};"
+      data-speed-factor="{{ section.settings.marquee_speed_factor | default: 25 }}"
+      data-movement-direction="{{ section.settings.marquee_direction }}"
+    >
+      <div
+        class="marquee__wrapper"
+        ref="wrapper"
+      >
+        <div
+          class="marquee__content"
+          ref="content"
+        >
+          <div
+            class="marquee__repeated-items"
+            ref="marqueeItems[]"
+          >
+            {{ announcement_blocks }}
+          </div>
+        </div>
+      </div>
+    </marquee-component>
+  {% else %}
+    {% liquid
+      assign autoplay = false
+      assign show_arrows = false
+      if section.blocks.size > 1
+        assign autoplay = true
+        assign show_arrows = true
+      endif
+    %}
 
-  <announcement-bar-component
-    class="announcement-bar__slider"
-    {% if autoplay == true %}
-      autoplay="{{ section.settings.speed }}" aria-live="polite"
-    {% endif %}
-  >
-    {% if show_arrows %}
-      {% render 'slideshow-arrows', icon_style: 'chevron' %}
-    {% endif %}
+    <announcement-bar-component
+      class="announcement-bar__slider"
+      {% if autoplay == true %}
+        autoplay="{{ section.settings.speed }}" aria-live="polite"
+      {% endif %}
+    >
+      {% if show_arrows %}
+        {% render 'slideshow-arrows', icon_style: 'chevron' %}
+      {% endif %}
 
-    <div class="announcement-bar__slides">
-      {% content_for 'blocks' %}
-    </div>
-  </announcement-bar-component>
+      <div class="announcement-bar__slides">
+        {{ announcement_blocks }}
+      </div>
+    </announcement-bar-component>
+  {% endif %}
 </aside>
 
 {% stylesheet %}
@@ -123,6 +170,15 @@
     position: absolute;
     inset: 0;
   }
+
+  .announcement-bar__marquee {
+    width: 100%;
+  }
+
+  .announcement-bar__marquee-link {
+    text-decoration: none;
+    color: inherit;
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -138,13 +194,69 @@
   },
   "settings": [
     {
+      "type": "select",
+      "id": "display_style",
+      "label": "t:settings.display_style",
+      "options": [
+        {
+          "value": "slideshow",
+          "label": "t:options.slideshow"
+        },
+        {
+          "value": "marquee",
+          "label": "t:options.marquee"
+        }
+      ],
+      "default": "slideshow"
+    },
+    {
       "type": "range",
       "id": "speed",
       "label": "t:settings.scroll_speed",
       "min": 2,
       "max": 10,
       "default": 5,
-      "unit": "sec"
+      "unit": "sec",
+      "visible_if": "{{ section.settings.display_style == 'slideshow' }}"
+    },
+    {
+      "type": "range",
+      "id": "marquee_speed_factor",
+      "label": "t:settings.speed",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "default": 25,
+      "info": "t:info.marquee_speed",
+      "visible_if": "{{ section.settings.display_style == 'marquee' }}"
+    },
+    {
+      "type": "select",
+      "id": "marquee_direction",
+      "label": "t:settings.motion_direction",
+      "options": [
+        {
+          "value": "reverse",
+          "label": "t:options.forward"
+        },
+        {
+          "value": "normal",
+          "label": "t:options.reverse"
+        }
+      ],
+      "default": "normal",
+      "visible_if": "{{ section.settings.display_style == 'marquee' }}"
+    },
+    {
+      "type": "range",
+      "id": "marquee_gap",
+      "label": "t:settings.gap",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24,
+      "visible_if": "{{ section.settings.display_style == 'marquee' }}"
     },
     {
       "type": "header",

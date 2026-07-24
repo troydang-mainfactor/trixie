@@ -234,6 +234,7 @@
     "aspect_ratio_adjusted": "Adjusted in some layouts",
     "carousel_hover_behavior_not_supported": "\"Carousel\" hover is not supported when \"Carousel\" type is selected at the section level",
     "combined_listings_swatch_border": "Unselected swatches have no border; hovering shows a light border, and the selected swatch shows a solid border at this thickness",
+    "marquee_speed": "Higher values scroll faster",
     "show_above_media_mobile": "On product pages, moves this block above the media gallery on mobile only. Has no effect outside a product page layout.",
     "split_title_on_dash": "If the title contains \" - \", the text after it shows smaller on its own line",
     "carousel_layout_on_mobile": "Carousel is always used on mobile",
@@ -692,6 +693,8 @@
     "social_whatsapp": "Social: WhatsApp",
     "social_vimeo": "Social: Vimeo",
     "social_youtube": "Social: YouTube",
+    "marquee": "Marquee",
+    "slideshow": "Slideshow",
     // Uniform style option for borders and overlays
     "solid": "Solid",
     "space_between": "Space between",
@@ -848,6 +851,7 @@
     "desktop_height": "Desktop height",
     "desktop_pagination": "Desktop pagination",
     "direction": "Direction",
+    "display_style": "Display style",
     // Button appearance for email signup form
     "display": "Display",
     "divider": "Divider",
@@ -1133,6 +1137,7 @@
     "swatch_radius": "Corner radius",
     "swatch_size": "Swatch size",
     "show_tooltips": "Show tooltips",
+    "show_price_in_button": "Show price in button",
     "tooltip_background": "Tooltip background",
     "tooltip_text_color": "Tooltip text color",
     "tooltip_font_size": "Tooltip font size",

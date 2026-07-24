@@ -61,6 +61,7 @@
     class="cl-swatches"
     data-context="{{ context }}"
     data-current-product-id="{{ product.id }}"
+    data-product-tags="{{ product.tags | join: ',' | escape }}"
     data-tooltips-enabled="{{ settings.show_tooltips }}"
     style="
       --cl-swatch-size: {{ swatch_size }};
@@ -236,21 +237,8 @@
     </ul>
 
     {%- if context == 'page' -%}
-      {%- liquid
-        assign below_swatch_text = blank
-        for rule_block in block.blocks
-          if rule_block.type == '_combined-listings-tag-text'
-            assign rule_tag = rule_block.settings.tag | strip
-            if rule_tag != blank and product.tags contains rule_tag and below_swatch_text == blank
-              assign below_swatch_text = rule_block.settings.display_text
-            endif
-          endif
-        endfor
-      -%}
-      {%- if below_swatch_text != blank -%}
-        <p class="cl-swatches__below-text">{{ below_swatch_text }}</p>
-      {%- endif -%}
-      {{- tag_text_blocks -}}
+      <p class="cl-swatches__below-text" ref="belowSwatchText" hidden></p>
+      <span hidden ref="tagRules">{{- tag_text_blocks -}}</span>
     {%- endif -%}
   </{{ tag }}>
 

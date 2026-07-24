@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin language editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "names": {
     "404": "404",
@@ -598,7 +589,9 @@
     "tag": "Tag",
     "display_text": "Text",
     "split_title_on_dash": "Split title on \" - \"",
-    "show_above_media_mobile": "Show above media on mobile (product pages)"
+    "show_above_media_mobile": "Show above media on mobile (product pages)",
+    "display_style": "Display style",
+    "show_price_in_button": "Show price in button"
   },
   "options": {
     "apple": "Apple",
@@ -876,7 +869,9 @@
     "icons": "ไอคอน",
     "input_field": "ช่องกรอกข้อมูล",
     "crossed_out": "Crossed out",
-    "faded": "Faded"
+    "faded": "Faded",
+    "marquee": "Marquee",
+    "slideshow": "Slideshow"
   },
   "content": {
     "advanced": "ขั้นสูง",
@@ -1138,7 +1133,8 @@
     "edit_variants_in_theme_settings": "แก้ไขสไตล์ตัวเลือกสินค้าใน[การตั้งค่าธีม](/editor?context=theme&category=variant%20pickers)",
     "combined_listings_swatch_border": "Unselected swatches have no border; hovering shows a light border, and the selected swatch shows a solid border at this thickness",
     "split_title_on_dash": "If the title contains \" - \", the text after it shows smaller on its own line",
-    "show_above_media_mobile": "On product pages, moves this block above the media gallery on mobile only. Has no effect outside a product page layout."
+    "show_above_media_mobile": "On product pages, moves this block above the media gallery on mobile only. Has no effect outside a product page layout.",
+    "marquee_speed": "Higher values scroll faster"
   },
   "categories": {
     "basic": "พื้นฐาน",

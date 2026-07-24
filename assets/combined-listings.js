@@ -105,6 +105,7 @@ class CombinedListingsPicker extends CombinedListingsBase {
     this.#variantPicker?.addEventListener('change', this.#syncHrefs);
     this.#syncHrefs();
     this.#restoreOptionFromUrl();
+    this.#showMatchingBelowSwatchText();
   }
 
   disconnectedCallback() {
@@ -158,6 +159,29 @@ class CombinedListingsPicker extends CombinedListingsBase {
 
       input.checked = true;
       input.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+  }
+
+  /**
+   * Shows the first tag-text rule (in block order) whose tag matches one of the product's
+   * tags below the swatch row. Matching happens here rather than in Liquid, since a block's
+   * nested block settings aren't reliably readable server-side from a shared snippet.
+   */
+  #showMatchingBelowSwatchText() {
+    const { belowSwatchText, tagRules } = this.refs;
+    if (!belowSwatchText || !tagRules) return;
+
+    const productTags = (this.dataset.productTags ?? '').split(',').filter(Boolean);
+    if (!productTags.length) return;
+
+    const rule = /** @type {NodeListOf<HTMLElement>} */ (tagRules.querySelectorAll('[data-cl-tag-rule]'));
+    for (const el of rule) {
+      const tag = el.dataset.tag;
+      if (!tag || !productTags.includes(tag)) continue;
+
+      belowSwatchText.textContent = el.textContent;
+      belowSwatchText.hidden = false;
+      break;
     }
   }
 }

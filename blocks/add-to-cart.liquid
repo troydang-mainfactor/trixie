@@ -27,7 +27,8 @@
     can_add_to_cart: can_add_to_cart,
     product: closest.product,
     add_to_cart_text: add_to_cart_text,
-    data_testid: 'standalone-add-to-cart'
+    data_testid: 'standalone-add-to-cart',
+    show_price: block.settings.show_price
   %}
 </span>
 
@@ -36,6 +37,12 @@
   "name": "t:names.add_to_cart",
   "tag": null,
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_price",
+      "label": "t:settings.show_price_in_button",
+      "default": true
+    },
     {
       "type": "select",
       "id": "style_class",

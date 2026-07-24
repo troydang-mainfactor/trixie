@@ -202,6 +202,17 @@
       "visible_if": "{{ block.settings.slideshow_controls_style == 'thumbnails' or block.settings.slideshow_mobile_controls_style == 'thumbnails' }}"
     },
     {
+      "type": "range",
+      "id": "thumbnail_gap",
+      "label": "t:settings.gap",
+      "min": 0,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 8,
+      "visible_if": "{{ block.settings.slideshow_controls_style == 'thumbnails' or block.settings.slideshow_mobile_controls_style == 'thumbnails' }}"
+    },
+    {
       "type": "header",
       "content": "t:content.media"
     },
