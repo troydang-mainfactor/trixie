@@ -455,7 +455,11 @@
 
     .slideshow-control {
       border-radius: var(--thumbnail-radius, var(--media-radius));
-      width: clamp(44px, 7vw, var(--thumbnail-width));
+      /* Was clamp(44px, 7vw, var(--thumbnail-width)) - 7vw is the preferred value in a CSS
+         clamp(min, preferred, max), so it's what actually rendered at nearly every real
+         viewport width (~90-110px on typical desktops); --thumbnail-width only ever applied
+         as a ceiling that 7vw essentially never reached, making the width setting a no-op. */
+      width: var(--thumbnail-width);
       height: auto;
       aspect-ratio: var(--aspect-ratio);
 

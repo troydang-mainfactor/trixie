@@ -870,15 +870,12 @@
     z-index: var(--layer-raised);
   }
 
-  /* Mobile thumbnails styling */
+  /* Mobile thumbnails styling: reassigns --thumbnail-width within this subtree so the
+     (now un-clamped) base .slideshow-control width rule in slideshow-controls.liquid
+     picks up the mobile-specific value instead of the desktop one. */
   @media screen and (max-width: 749px) {
     .media-gallery__mobile-controls[thumbnails] {
       --thumbnail-width: var(--thumbnail-width-mobile, 44px);
-    }
-
-    .media-gallery__mobile-controls[thumbnails] .slideshow-controls__thumbnail {
-      width: var(--thumbnail-width);
-      height: auto;
     }
   }
 
