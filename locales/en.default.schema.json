@@ -1137,6 +1137,7 @@
     "swatch_radius": "Corner radius",
     "swatch_size": "Swatch size",
     "show_tooltips": "Show tooltips",
+    "show_price_in_button": "Show price in button",
     "tooltip_background": "Tooltip background",
     "tooltip_text_color": "Tooltip text color",
     "tooltip_font_size": "Tooltip font size",

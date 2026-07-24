@@ -7,6 +7,7 @@
   @param {string} [class] - Additional CSS classes to apply to the button.
   @param {string} [id] - The ID attribute for the button.
   @param {string} [data_testid] - The data-testid attribute for testing.
+  @param {boolean} [show_price] - When true, appends the current variant's price after the button text.
 {%- enddoc -%}
 
 {%- liquid
@@ -14,6 +15,10 @@
   assign product_variant_media = product.selected_or_first_available_variant.featured_media.preview_image | image_url: width: 100
   if product.selected_or_first_available_variant.featured_media.preview_image == blank
     assign product_variant_media = product.featured_media.preview_image | image_url: width: 100
+  endif
+
+  if show_price
+    assign button_price = product.selected_or_first_available_variant.price | default: product.price_min
   endif
 -%}
 
@@ -38,15 +43,24 @@
       disabled
     {% endunless %}
   >
-    {% if can_add_to_cart %}
+    {%- if can_add_to_cart and show_price != true -%}
       <span
         aria-hidden="true"
         class="svg-wrapper add-to-cart-icon"
       >
         {{- 'icon-add-to-cart.svg' | inline_asset_content -}}
       </span>
-    {% endif %}
+    {%- endif -%}
     {{- add_to_cart_text | default: default_add_to_cart_text -}}
+    {%- if show_price and can_add_to_cart -%}
+      <span class="add-to-cart-button__price">
+        <span
+          class="add-to-cart-button__price-divider"
+          aria-hidden="true"
+        >|</span>
+        {%- render 'format-price', price: button_price -%}
+      </span>
+    {%- endif -%}
     {% comment %} checkmark burst markup {% endcomment %}
     <span class="add-to-cart__added">
       <span class="svg-wrapper add-to-cart__added-icon">
