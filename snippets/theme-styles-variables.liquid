@@ -711,3 +711,20 @@
   section_id: 'badge-sold-out',
   preset: 'ui'
 %}
+
+{% comment %}
+  Tag-driven product badges (see sections/product-badge-rules.liquid): emitted once per rule
+  here, globally, rather than once per matching product card - a rule matching 40 products on a
+  collection grid would otherwise repeat the same contrast-override CSS 40 times.
+{% endcomment %}
+{% for block in sections['product_badge_rules'].blocks %}
+  {% if block.type == 'badge-rule' and block.settings.tag != blank and block.settings.label != blank %}
+    {% assign badge_tag_scope_id = 'badge-tag-' | append: block.id %}
+    {% render 'contrast-override',
+      background_color: block.settings.background_color,
+      text_color: block.settings.text_color,
+      section_id: badge_tag_scope_id,
+      preset: 'ui'
+    %}
+  {% endif %}
+{% endfor %}

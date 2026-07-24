@@ -1,0 +1,64 @@
+{%- doc -%}
+  Renders up to 2 product badges (sold out / sale / a matching tag rule) - the single shared
+  renderer for both the product card (blocks/_product-card-gallery.liquid) and the product page
+  (snippets/product-information-content.liquid), so a product can never show a different badge,
+  or a badge in one place and not the other, just because the two call sites drifted.
+
+  Badge meaning is never color-only: each badge always renders its actual text label, so a screen
+  reader announces it the same way a sighted shopper reads it. Text/background contrast is
+  computed by snippets/contrast-override.liquid from whatever colors the merchant configured, not
+  hardcoded defaults - sold out / sale reuse the theme's existing global "badge-sold-out" /
+  "badge-sale" contrast scopes (see snippets/theme-styles-variables.liquid); tag rules reuse a
+  "badge-tag-{block.id}" scope emitted once per rule, also in theme-styles-variables.liquid, so
+  the CSS for a given rule isn't re-emitted on every product card that happens to match it.
+
+  @param {object} product - The product to render badges for.
+  @param {string} position - Where the badge stack renders: top-left / top-right / bottom-left.
+
+  @example
+  {% render 'product-badges', product: product, position: settings.badge_position %}
+{%- enddoc -%}
+
+{%- capture badge_keys -%}
+  {%- render 'product-badges-resolve', product: product -%}
+{%- endcapture -%}
+{%- assign badge_keys = badge_keys | strip | split: ',' -%}
+
+{%- if badge_keys.size > 0 -%}
+  <div
+    class="product-badges product-badges--{{ position | default: 'top-left' }}"
+    style="
+      --badge-border-radius: {{ settings.badge_corner_radius }}px;
+      --badge-font-family: var(--font-{{ settings.badge_font_family }}--family);
+      --badge-font-weight: var(--font-{{ settings.badge_font_family }}--weight);
+      --badge-text-transform: {{ settings.badge_text_transform }};
+    "
+  >
+    {%- for key in badge_keys -%}
+      {%- liquid
+        case key
+          when 'sold_out'
+            assign badge_label = 'content.product_badge_sold_out' | t
+            assign badge_scope = 'badge-sold-out'
+          when 'sale'
+            assign badge_label = 'content.product_badge_sale' | t
+            assign badge_scope = 'badge-sale'
+          else
+            assign rule_id = key | remove_first: 'tag:'
+            # theme-check-disable UndefinedObject
+            # `sections` is a real global (https://shopify.dev/docs/api/liquid/objects/sections)
+            # exposing every section on the current page by ID - theme-check doesn't model it.
+            assign rule = sections['product_badge_rules'].blocks | where: 'id', rule_id | first
+            # theme-check-enable UndefinedObject
+            assign badge_label = rule.settings.label
+            assign badge_scope = 'badge-tag-' | append: rule_id
+        endcase
+      -%}
+      {%- if badge_label != blank -%}
+        <div class="product-badges__badge product-badges__badge--rectangle color-custom-{{ badge_scope }}">
+          {{- badge_label -}}
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+{%- endif -%}
