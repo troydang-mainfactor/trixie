@@ -357,8 +357,8 @@
         "item_JxPExr": {
           "type": "item",
           "settings": {
-            "heading": "Item 1",
-            "content": "<p>wadwadwadwa</p>",
+            "heading": "Details",
+            "content": "{{ product.description }}",
             "tab_label": "",
             "icon": "none",
             "badge_text": "",
@@ -369,7 +369,7 @@
           "type": "item",
           "settings": {
             "heading": "Item 2",
-            "content": "<p>dwadwadawdwa</p>",
+            "content": "<p>{{ product.metafields.custom.how_to_use | metafield_tag }}{{ product.metafields.custom.eu_representative | metafield_tag }}</p>",
             "tab_label": "",
             "icon": "none",
             "badge_text": "",
@@ -393,14 +393,14 @@
         "item_x6CGBd",
         "item_aqYdDc"
       ],
-      "name": "t:premium_product_info.names.section",
+      "name": "Product Info Tabs",
       "settings": {
         "accessible_heading": "",
-        "layout_style": "2",
+        "layout_style": "1",
         "section_width": "page",
         "content_max_width": 1200,
         "content_alignment": "left",
-        "tab_gap": 22,
+        "tab_gap": 48,
         "content_gap": 22,
         "padding_top": 40,
         "padding_bottom": 40,
