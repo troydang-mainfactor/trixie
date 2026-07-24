@@ -169,7 +169,11 @@
     "disclosures": "Disclosures",
     "disclosures_metafield_content": "Required safety warnings and regulatory disclosures for this product.",
     "app_required_for_ratings": "An app is required for product ratings. [Learn more](https://help.shopify.com/manual/apps)",
-    "navigation": "Navigation"
+    "navigation": "Navigation",
+    "content_source": "Content source",
+    "premium_product_info_intro": "Add Tab blocks below - each one becomes a tab on desktop or an accordion row on mobile. This section stays hidden until at least one tab has visible content.",
+    "visibility_rules": "Visibility rules",
+    "visibility_rules_info": "Optionally limit this tab to specific products. Each rule slot checks one condition; add more than one and choose whether all or any must match. Leave every rule set to \"Always show\" to display this tab on every product."
   },
   "html_defaults": {
     "join_our_email_list": "<h2>Join our email list</h2>",
@@ -259,7 +263,11 @@
     "video_autoplay": "Videos will be muted by default",
     "video_external": "Use a YouTube or Vimeo URL",
     "pills_usage": "Used for applied filters, discount codes, and search suggestions",
-    "media_type_info": "Features are populated from your menu links"
+    "media_type_info": "Features are populated from your menu links",
+    "product_info_dynamic_source": "A product attribute (product.description, product.title, product.vendor, product.type) or a namespace.key metafield shorthand",
+    "product_info_icon": "Icon name or SVG reference - resolves against whatever icon system this store already uses",
+    "product_info_metafield": "Format: namespace.key (for example custom.ingredients)",
+    "product_info_metaobject": "Only metaobjects using the \"product_info_content\" definition type appear here. Create that metaobject definition in Settings > Custom data first, then add entries with a content/body/text field."
   },
   "names": {
     "column": "Column",
@@ -431,7 +439,9 @@
     "view_all_button": "View all",
     "disclosures": "Disclosures",
     "pills": "Pills",
-    "comparison_slider": "Comparison slider"
+    "comparison_slider": "Comparison slider",
+    "premium_product_information": "Premium product info",
+    "tab_item": "Tab"
   },
   "options": {
     "above_carousel": "Above carousel",
@@ -752,7 +762,24 @@
     "wide": "Wide",
     "youtube": "YouTube",
     "with_hints": "With hints",
-    "below_media": "Below media"
+    "below_media": "Below media",
+    "all_conditions": "All conditions",
+    "always_show": "Always show",
+    "any_condition": "Any condition",
+    "availability": "Available / sold out",
+    "cards": "Cards",
+    "collection_membership": "Collection membership",
+    "custom_liquid": "Custom Liquid",
+    "customer_logged_in": "Customer logged in",
+    "dynamic_source": "Dynamic source",
+    "metafield": "Metafield",
+    "metafield_value": "Metafield value",
+    "metaobject": "Metaobject",
+    "minimal": "Minimal",
+    "product_description": "Product description",
+    "product_tag": "Product tag contains",
+    "product_template": "Product template",
+    "product_vendor": "Product vendor"
   },
   "settings": {
     "accordion": "Accordion",
@@ -1220,7 +1247,25 @@
     "top_row_background": "Top row background",
     "top_row_text": "Top row text",
     "bottom_row_background": "Bottom row background",
-    "bottom_row_text": "Bottom row text"
+    "bottom_row_text": "Bottom row text",
+    "animation_speed": "Animation speed",
+    "content_source": "Content source",
+    "desktop_layout": "Desktop layout",
+    "dynamic_source_reference": "Dynamic source",
+    "enable_icons": "Enable icons",
+    "metafield_reference": "Metafield (namespace.key)",
+    "metaobject_reference": "Metaobject",
+    "page_reference": "Page",
+    "rich_text_content": "Content",
+    "rule_1": "Rule 1",
+    "rule_2": "Rule 2",
+    "rule_3": "Rule 3",
+    "rule_value": "Value",
+    "show_border": "Show border",
+    "show_icon": "Show icon",
+    "small_heading": "Small heading",
+    "tab_title": "Tab title",
+    "visibility_match": "Match"
   },
   "text_defaults": {
     "accordion_heading": "Accordion heading",

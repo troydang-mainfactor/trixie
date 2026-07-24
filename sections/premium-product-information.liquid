@@ -1,0 +1,246 @@
+{%- comment -%}
+  Premium Product Information
+
+  Horizontal tabs on desktop, accordion on mobile. Every tab is a `tab-item` block instance
+  configured entirely by the merchant (title, content source, visibility) - this section owns
+  presentation only (layout, width, radius, border, background, padding, animation speed,
+  typography), never content. Ships with zero blocks; renders nothing until at least one added
+  `tab-item` block passes both its visibility rules and has non-empty resolved content.
+{%- endcomment -%}
+
+{%- liquid
+  assign product = closest.product
+  if request.visual_preview_mode and product == blank
+    assign product = collections.all.products.first
+  endif
+
+  # First pass: tally whether anything will actually render, without emitting any markup yet, so
+  # the section can early-exit entirely when nothing qualifies instead of rendering an empty
+  # shell and hiding it with CSS. `tab-item` blocks are checked directly against block.settings
+  # here (independent of content_for, which is opaque); any other block type dropped into this
+  # section's open `@theme`/`@app` slot (e.g. an app block) can't be evaluated generically, so it
+  # always counts - the merchant added it deliberately.
+  assign qualifying_count = 0
+-%}
+
+{%- for block in section.blocks -%}
+  {%- if block.type == 'tab-item' -%}
+    {%- capture is_visible -%}
+      {%- render 'product-info-check-visibility', block: block, product: product -%}
+    {%- endcapture -%}
+    {%- capture resolved_content -%}
+      {%- render 'product-info-resolve-content', block: block, product: product -%}
+    {%- endcapture -%}
+    {%- assign resolved_content_stripped = resolved_content | strip_html | strip_newlines | strip -%}
+    {%- if is_visible == 'true' and resolved_content_stripped != blank -%}
+      {%- assign qualifying_count = qualifying_count | plus: 1 -%}
+    {%- endif -%}
+  {%- else -%}
+    {%- assign qualifying_count = qualifying_count | plus: 1 -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- if product != blank and qualifying_count > 0 -%}
+  {%- liquid
+    assign radius = section.settings.container_radius | append: 'px'
+    assign border_style = 'none'
+    if section.settings.show_border
+      assign border_style = section.settings.border_width | append: 'px solid rgb(var(--color-border-rgb) / 1)'
+    endif
+  -%}
+
+  <product-info-tabs
+    class="product-info product-info--{{ section.settings.layout_style }}"
+    style="
+      --product-info-max-width: {{ section.settings.content_width }}px;
+      --product-info-radius: {{ radius }};
+      --product-info-border: {{ border_style }};
+      --product-info-animation-speed: {{ section.settings.animation_speed }}ms;
+      --summary-font-family: var(--font-{{ section.settings.type_preset }}--family);
+      --summary-font-style: var(--font-{{ section.settings.type_preset }}--style);
+      --summary-font-weight: var(--font-{{ section.settings.type_preset }}--weight);
+      --summary-font-size: var(--font-{{ section.settings.type_preset }}--size);
+      --summary-font-line-height: var(--font-{{ section.settings.type_preset }}--line-height);
+      --summary-font-case: var(--font-{{ section.settings.type_preset }}--case);
+      {% if section.settings.background != blank %}--color-background: {{ section.settings.background }};{% endif %}
+      {% render 'spacing-style', settings: section.settings %}
+    "
+    data-enable-icons="{{ section.settings.enable_icons }}"
+  >
+    <div
+      class="product-info__tablist"
+      role="tablist"
+      ref="tablist"
+      on:keydown="/handleTablistKeydown"
+      hidden
+    ></div>
+    <div class="product-info__rows" ref="accordionWrapper">
+      {% content_for 'blocks' %}
+    </div>
+  </product-info-tabs>
+
+  <script
+    src="{{ 'product-info.js' | asset_url }}"
+    type="module"
+  ></script>
+  {{ 'product-info.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:names.premium_product_information",
+  "class": "section-wrapper",
+  "tag": "section",
+  "blocks": [
+    { "type": "@theme" },
+    { "type": "@app" }
+  ],
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:content.premium_product_info_intro"
+    },
+    {
+      "type": "header",
+      "content": "t:content.layout"
+    },
+    {
+      "type": "select",
+      "id": "layout_style",
+      "label": "t:settings.desktop_layout",
+      "options": [
+        { "value": "underline", "label": "t:options.underline" },
+        { "value": "pills", "label": "t:options.pills" },
+        { "value": "minimal", "label": "t:options.minimal" },
+        { "value": "cards", "label": "t:options.cards" }
+      ],
+      "default": "underline"
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "label": "t:settings.content_width",
+      "min": 480,
+      "max": 900,
+      "step": 20,
+      "unit": "px",
+      "default": 720
+    },
+    {
+      "type": "range",
+      "id": "container_radius",
+      "label": "t:settings.corner_radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "checkbox",
+      "id": "show_border",
+      "label": "t:settings.show_border",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "t:settings.border_thickness",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1,
+      "visible_if": "{{ section.settings.show_border }}"
+    },
+    {
+      "type": "color_background",
+      "id": "background",
+      "label": "t:settings.background"
+    },
+    {
+      "type": "range",
+      "id": "animation_speed",
+      "label": "t:settings.animation_speed",
+      "min": 120,
+      "max": 320,
+      "step": 20,
+      "unit": "ms",
+      "default": 200
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_icons",
+      "label": "t:settings.enable_icons",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:content.typography"
+    },
+    {
+      "type": "select",
+      "id": "type_preset",
+      "label": "t:settings.heading_preset",
+      "options": [
+        { "value": "paragraph", "label": "t:options.paragraph" },
+        { "value": "h6", "label": "t:options.h6" },
+        { "value": "h5", "label": "t:options.h5" },
+        { "value": "h4", "label": "t:options.h4" }
+      ],
+      "default": "h6",
+      "info": "t:info.edit_presets_in_theme_settings"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-start",
+      "label": "t:settings.left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-end",
+      "label": "t:settings.right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.premium_product_information",
+      "category": "t:categories.product"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,166 @@
+/* Premium Product Information - tabs (desktop) / accordion (mobile).
+   Layout variants (underline/pills/minimal/cards) are modifier classes on one shared structure;
+   the desktop/mobile split itself is driven by assets/product-info.js re-parenting the trigger
+   buttons, not by duplicate markup, so this file only needs one `min-width: 750px` breakpoint to
+   restyle whichever presentation is currently in the DOM. */
+
+product-info-tabs {
+  display: block;
+  max-inline-size: var(--product-info-max-width, 720px);
+  margin-inline: auto;
+  border: var(--product-info-border, none);
+  border-radius: var(--product-info-radius, 0);
+}
+
+.product-info__tablist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-sm, 12px);
+  border-block-end: 1px solid rgb(var(--color-border-rgb) / 1);
+  padding-inline: var(--padding-md, 16px);
+}
+
+.product-info__tablist[hidden] {
+  display: none;
+}
+
+.product-info-tab + .product-info-tab {
+  border-block-start: 1px solid rgb(var(--color-border-rgb) / 1);
+}
+
+.product-info-tab__heading {
+  display: block;
+}
+
+.product-info-tab__trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-2xs, 8px);
+  width: 100%;
+  padding: var(--padding-sm, 12px) var(--padding-md, 16px);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  text-align: start;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.product-info-tab__trigger:focus-visible {
+  outline: var(--focus-outline-width) solid var(--focus-outline-color, currentColor);
+  outline-offset: -2px;
+}
+
+.product-info-tab__label {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.product-info-tab__title {
+  font-family: var(--summary-font-family);
+  font-style: var(--summary-font-style);
+  font-weight: var(--summary-font-weight);
+  font-size: var(--summary-font-size);
+  line-height: var(--summary-font-line-height);
+  text-transform: var(--summary-font-case);
+}
+
+.product-info-tab__small-heading {
+  font-size: var(--font-paragraph-small--size);
+  color: rgb(var(--color-foreground-rgb) / var(--opacity-subdued-text));
+}
+
+.product-info-tab__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  inline-size: 1.25em;
+  block-size: 1.25em;
+}
+
+/* Section-level master toggle: hides every tab's icon regardless of that tab's own "Show icon"
+   setting, so the two controls (section master switch, per-block opt-out) don't fight each other. */
+product-info-tabs:not([data-enable-icons='true']) .product-info-tab__icon {
+  display: none;
+}
+
+.product-info-tab__chevron {
+  flex-shrink: 0;
+  inline-size: 1em;
+  block-size: 1em;
+  transition: transform var(--animation-speed-slow, 0.2s) var(--animation-easing, ease-in-out);
+}
+
+.product-info-tab__trigger[aria-expanded='true'] .product-info-tab__chevron {
+  transform: rotate(180deg);
+}
+
+/* Tabs (role="tab") never carry aria-expanded, so the chevron is only ever meaningful in the
+   accordion presentation - hide it entirely once a trigger has moved into the tablist. */
+.product-info-tab__trigger[role='tab'] .product-info-tab__chevron {
+  display: none;
+}
+
+.product-info-tab__panel[hidden] {
+  display: none;
+}
+
+.product-info-tab__panel-inner {
+  padding: var(--padding-md, 16px);
+  padding-block-start: 0;
+}
+
+.product-info-tab__panel[role='tabpanel'] .product-info-tab__panel-inner {
+  padding-block-start: var(--padding-md, 16px);
+}
+
+@media (min-width: 750px) {
+  .product-info__tablist {
+    border-block-end-width: var(--style-border-width, 1px);
+  }
+
+  .product-info-tab__heading:empty {
+    display: none;
+  }
+}
+
+/* Layout variant: pills - tabs render as separated, individually rounded pill buttons instead of
+   a shared underline. */
+product-info-tabs.product-info--pills .product-info__tablist {
+  border-block-end: none;
+  padding: var(--padding-xs, 10px);
+  gap: var(--gap-3xs, 4px);
+}
+
+product-info-tabs.product-info--pills .product-info-tab__trigger[role='tab'] {
+  border-radius: var(--style-border-radius-pills, 999px);
+  width: auto;
+}
+
+product-info-tabs.product-info--pills .product-info-tab__trigger[role='tab'][aria-selected='true'] {
+  background: rgb(var(--color-foreground-rgb) / 0.08);
+}
+
+/* Layout variant: minimal - no dividers between rows/tabs, relies on spacing alone. */
+product-info-tabs.product-info--minimal .product-info__tablist,
+product-info-tabs.product-info--minimal .product-info-tab + .product-info-tab {
+  border: none;
+}
+
+/* Layout variant: cards - each row/tab panel is its own bordered, radiused card. */
+product-info-tabs.product-info--cards .product-info-tab {
+  border: var(--product-info-border, 1px solid rgb(var(--color-border-rgb) / 1));
+  border-radius: var(--product-info-radius, 8px);
+  margin-block-end: var(--margin-sm, 12px);
+}
+
+product-info-tabs.product-info--cards .product-info-tab + .product-info-tab {
+  border-block-start: var(--product-info-border, 1px solid rgb(var(--color-border-rgb) / 1));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-info-tab__chevron {
+    transition: none;
+  }
+}
