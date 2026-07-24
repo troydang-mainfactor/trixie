@@ -17,6 +17,7 @@
           "name": "t:names.title",
           "settings": {
             "text": "<h1>{{ closest.collection.title }}</h1>",
+            "split_on_dash": false,
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -43,6 +44,7 @@
           "name": "t:names.description",
           "settings": {
             "text": "{{ closest.collection.description }}",
+            "split_on_dash": false,
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -162,6 +164,7 @@
               "type": "product-title",
               "name": "t:names.product_title",
               "settings": {
+                "split_on_dash": true,
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -214,6 +217,7 @@
                 "swatch_size": "medium",
                 "swatch_size_custom": 24,
                 "swatch_gap": 0,
+                "swatch_border_width": 1,
                 "show_tooltips": true,
                 "tooltip_background": "",
                 "tooltip_text_color": "",
@@ -237,13 +241,13 @@
       },
       "settings": {
         "layout_type": "grid",
-        "product_card_size": "medium",
+        "product_card_size": "large",
         "mobile_product_card_size": "small",
         "enable_infinite_scroll": true,
         "products_per_page": 24,
         "product_grid_width": "centered",
         "full_width_on_mobile": true,
-        "columns_gap_horizontal": 16,
+        "columns_gap_horizontal": 0,
         "columns_gap_vertical": 24,
         "padding-inline-start": 0,
         "padding-inline-end": 0,
