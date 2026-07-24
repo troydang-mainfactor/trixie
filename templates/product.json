@@ -205,6 +205,15 @@
                 "padding-inline-end": 0
               },
               "blocks": {
+                "combined_listings_tag_text_T7Ccrf": {
+                  "type": "_combined-listings-tag-text",
+                  "name": "t:names.combined_listings_tag_text",
+                  "settings": {
+                    "tag": "sparkles",
+                    "display_text": "sparkles"
+                  },
+                  "blocks": {}
+                },
                 "combined_listings_tag_text_87JU9t": {
                   "type": "_combined-listings-tag-text",
                   "name": "t:names.combined_listings_tag_text",
@@ -216,6 +225,7 @@
                 }
               },
               "block_order": [
+                "combined_listings_tag_text_T7Ccrf",
                 "combined_listings_tag_text_87JU9t"
               ]
             },
