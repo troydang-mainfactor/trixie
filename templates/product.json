@@ -99,7 +99,7 @@
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
                 "vertical_alignment_flex_direction_column": "center",
-                "gap": 0,
+                "gap": 7,
                 "show_above_media_mobile": true,
                 "width": "fill",
                 "custom_width": 100,
