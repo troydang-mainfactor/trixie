@@ -341,5 +341,8 @@
       "success_moderated": "댓글이 게시되었습니다. 조정 대기 중입니다",
       "success": "댓글 게시됨"
     }
+  },
+  "premium_product_info": {
+    "default_label": "Product information"
   }
 }

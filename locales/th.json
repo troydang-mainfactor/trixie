@@ -341,5 +341,8 @@
       "success_moderated": "ความคิดเห็นถูกโพสต์แล้ว กำลังรอการตรวจสอบ",
       "success": "ความคิดเห็นถูกโพสต์แล้ว"
     }
+  },
+  "premium_product_info": {
+    "default_label": "Product information"
   }
 }

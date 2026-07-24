@@ -341,5 +341,8 @@
       "default_title": "Standaardtitel",
       "sticky_add_to_cart": "Balk voor snel toevoegen aan winkelwagen"
     }
+  },
+  "premium_product_info": {
+    "default_label": "Product information"
   }
 }

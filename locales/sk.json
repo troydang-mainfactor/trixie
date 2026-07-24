@@ -355,5 +355,8 @@
       "default_title": "Predvolený názov",
       "sticky_add_to_cart": "Panel rýchleho pridania do košíka"
     }
+  },
+  "premium_product_info": {
+    "default_label": "Product information"
   }
 }

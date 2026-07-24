@@ -341,5 +341,8 @@
       "success_moderated": "Kommentaren blev indsendt og afventer moderering",
       "success": "Kommentaren blev indsendt"
     }
+  },
+  "premium_product_info": {
+    "default_label": "Product information"
   }
 }

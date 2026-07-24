@@ -341,5 +341,8 @@
       "success_moderated": "Komentar diposting, menunggu moderasi",
       "success": "Komentar diposting"
     }
+  },
+  "premium_product_info": {
+    "default_label": "Product information"
   }
 }

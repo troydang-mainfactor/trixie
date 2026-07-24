@@ -341,5 +341,8 @@
       "default_title": "Standardtittel",
       "sticky_add_to_cart": "Hurtiglinje for «Legg i handlekurv»"
     }
+  },
+  "premium_product_info": {
+    "default_label": "Product information"
   }
 }

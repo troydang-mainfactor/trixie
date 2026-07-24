@@ -348,5 +348,8 @@
       "success_moderated": "Comentario publicado y a la espera de moderación",
       "success": "Comentario publicado"
     }
+  },
+  "premium_product_info": {
+    "default_label": "Product information"
   }
 }

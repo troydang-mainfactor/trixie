@@ -341,5 +341,8 @@
       "default_title": "預設標題",
       "sticky_add_to_cart": "快速加入購物車列"
     }
+  },
+  "premium_product_info": {
+    "default_label": "Product information"
   }
 }

@@ -1,0 +1,429 @@
+/* Premium Product Info - tabs (desktop) / accordion (mobile), 7 layout styles on one shared
+   structure. Every rule that hides or rearranges content is scoped under `[data-mode]`, an
+   attribute only ever set by premium-product-info.js - with JS disabled that attribute never
+   exists, so every item stays fully visible in plain document order (progressive enhancement).
+   Colors default to inheriting the theme's root tokens; explicit --ppi-* overrides (set inline
+   per-section from optional color settings) win only when a merchant has actually chosen one. */
+
+.ppi {
+  display: block;
+  width: 100%;
+  padding-block: var(--ppi-padding-top, 40px) var(--ppi-padding-bottom, 40px);
+  color: rgb(var(--color-foreground-rgb));
+}
+
+.ppi--width-page {
+  max-inline-size: var(--ppi-max-width, 720px);
+  margin-inline: auto;
+}
+
+.ppi--width-full {
+  max-inline-size: none;
+}
+
+.ppi__tablist[hidden] {
+  display: none;
+}
+
+.ppi__tablist {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: var(--ppi-content-align, flex-start);
+  gap: var(--ppi-tab-gap, 16px);
+  position: relative;
+}
+
+.ppi__items {
+  display: flex;
+  flex-direction: column;
+}
+
+/* No-JS / unenhanced state: every item is just a heading followed by its content, in order. */
+.ppi-item + .ppi-item {
+  margin-block-start: var(--ppi-content-gap, 20px);
+}
+
+.ppi-item__heading {
+  margin: 0;
+  font: inherit;
+}
+
+/* Once JS has moved a trigger out into the tablist, its heading wrapper is left empty. */
+.ppi-item__heading:empty {
+  display: none;
+}
+
+.ppi-item__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ppi-icon-spacing, 8px);
+  width: 100%;
+  padding: var(--ppi-item-padding, 16px);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--ppi-label-font-size, 15px);
+  font-weight: var(--ppi-label-font-weight, 500);
+  letter-spacing: var(--ppi-label-letter-spacing, 0);
+  text-transform: var(--ppi-label-text-transform, none);
+  text-align: start;
+  color: var(--ppi-inactive-text, currentcolor);
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    color var(--ppi-animation-speed, 250ms) ease-in-out,
+    background-color var(--ppi-animation-speed, 250ms) ease-in-out,
+    border-color var(--ppi-animation-speed, 250ms) ease-in-out;
+}
+
+.ppi-item__trigger:hover {
+  color: var(--ppi-hover-text, currentcolor);
+}
+
+.ppi-item__trigger:focus-visible {
+  outline: var(--focus-outline-width) solid var(--focus-outline-color, currentcolor);
+  outline-offset: var(--focus-outline-offset, 2px);
+}
+
+premium-product-info[data-mode] .ppi-item__trigger[aria-selected='true'],
+premium-product-info[data-mode] .ppi-item__trigger[aria-expanded='true'] {
+  color: var(--ppi-active-text, currentcolor);
+}
+
+.ppi-item__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  inline-size: var(--ppi-icon-size, 20px);
+  block-size: var(--ppi-icon-size, 20px);
+  color: currentcolor;
+}
+
+.ppi-item__icon svg,
+.ppi-item__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.ppi-item__label {
+  flex: 1;
+}
+
+.ppi-item__badge {
+  flex-shrink: 0;
+  padding: 2px 8px;
+  border-radius: var(--style-border-radius-pills, 999px);
+  font-size: var(--font-paragraph-small--size);
+  font-weight: var(--font-weight-semibold, 600);
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.ppi-item__badge--primary {
+  background: rgb(var(--color-foreground-rgb));
+  color: rgb(var(--color-background-rgb));
+}
+
+.ppi-item__badge--secondary {
+  background: rgb(var(--color-foreground-rgb) / 0.08);
+  color: rgb(var(--color-foreground-rgb));
+}
+
+.ppi-item__badge--outline {
+  background: none;
+  border: 1px solid rgb(var(--color-foreground-rgb) / 0.3);
+  color: rgb(var(--color-foreground-rgb));
+}
+
+/* Chevron affordance next to the label. Only meaningful in accordion mode (a plain rotating
+   caret); tab presentation hides it since role="tab" never carries aria-expanded. */
+.ppi-item__trigger::after {
+  content: '';
+  flex-shrink: 0;
+  inline-size: 0.85em;
+  block-size: 0.85em;
+  margin-inline-start: auto;
+  background: currentcolor;
+  mask: var(--ppi-expand-icon-mask, none) center / contain no-repeat;
+  -webkit-mask: var(--ppi-expand-icon-mask, none) center / contain no-repeat;
+  transition: transform var(--ppi-animation-speed, 250ms) ease-in-out;
+}
+
+premium-product-info[data-mode='tabs'] .ppi-item__trigger::after {
+  display: none;
+}
+
+premium-product-info[data-mode='accordion'] .ppi-item__trigger[aria-expanded='true']::after {
+  transform: rotate(180deg);
+}
+
+.ppi-item__panel {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows var(--ppi-animation-speed, 250ms) ease-in-out;
+}
+
+.ppi-item__panel[data-skip-transition] {
+  transition: none;
+}
+
+.ppi-item__panel[hidden] {
+  display: none;
+}
+
+.ppi-item__panel-inner {
+  overflow: hidden;
+  min-height: 0;
+  padding-block-start: var(--ppi-content-gap, 20px);
+}
+
+premium-product-info[data-mode='accordion'] .ppi-item__panel[data-expanded='false'] {
+  grid-template-rows: 0fr;
+}
+
+premium-product-info[data-mode='accordion'] .ppi-item__panel[data-expanded='false'] .ppi-item__panel-inner {
+  padding-block-start: 0;
+}
+
+/* Tab panels cross-fade in rather than popping - a discrete `display` swap can still transition
+   its opacity via @starting-style (progressively enhanced; older browsers just swap instantly). */
+@media (prefers-reduced-motion: no-preference) {
+  premium-product-info[data-mode='tabs'] .ppi-item__panel:not([hidden]) {
+    transition:
+      opacity var(--ppi-animation-speed, 250ms) ease-in-out,
+      display var(--ppi-animation-speed, 250ms) allow-discrete;
+
+    @starting-style {
+      opacity: 0;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ppi-item__panel,
+  .ppi-item__trigger,
+  .ppi-item__trigger::after {
+    transition: none !important; /* stylelint-disable-line declaration-no-important */
+  }
+}
+
+/* ============================= Layout style 1: Pill card accordion ============================= */
+premium-product-info[data-layout-style='1'] .ppi__items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--ppi-item-spacing, 12px);
+}
+
+premium-product-info[data-layout-style='1'] .ppi-item {
+  border: var(--ppi-border-width, 1px) solid var(--ppi-border-color, rgb(var(--color-border-rgb) / 1));
+  border-radius: var(--ppi-corner-radius, 12px);
+  background: var(--ppi-item-bg, rgb(var(--color-background-rgb)));
+  overflow: hidden;
+}
+
+premium-product-info[data-layout-style='1'] .ppi-item + .ppi-item {
+  margin-block-start: 0;
+}
+
+premium-product-info[data-layout-style='1'] .ppi-item:has(.ppi-item__trigger:hover) {
+  background: var(--ppi-hover-bg, rgb(var(--color-foreground-rgb) / 0.03));
+  border-color: var(--ppi-hover-border, var(--ppi-border-color, rgb(var(--color-border-rgb) / 1)));
+}
+
+premium-product-info[data-layout-style='1'][data-card-shadow='subtle'] .ppi-item {
+  box-shadow: 0 1px 3px rgb(0 0 0 / 8%);
+}
+
+premium-product-info[data-layout-style='1'][data-card-shadow='medium'] .ppi-item {
+  box-shadow: 0 4px 12px rgb(0 0 0 / 12%);
+}
+
+premium-product-info[data-layout-style='1'] .ppi-item__panel-inner {
+  padding-inline: var(--ppi-item-padding, 16px);
+  padding-block-end: var(--ppi-item-padding, 16px);
+}
+
+/* ============================ Layout style 2: Minimal underline tabs ============================ */
+premium-product-info[data-layout-style='2'] .ppi__tablist {
+  border-block-end: 1px solid rgb(var(--color-border-rgb) / 1);
+  position: relative;
+}
+
+premium-product-info[data-layout-style='2'] .ppi-item__trigger {
+  width: auto;
+  padding-inline: 0;
+  padding-block: 0 var(--padding-sm, 12px);
+}
+
+premium-product-info[data-layout-style='2'] .ppi-item__trigger::after {
+  display: none;
+}
+
+premium-product-info[data-layout-style='2'] .ppi__tablist::after {
+  content: '';
+  position: absolute;
+  inset-block-end: -1px;
+  inset-inline-start: var(--ppi-indicator-x, 0px);
+  inline-size: var(--ppi-indicator-width, 0px);
+  block-size: var(--ppi-underline-thickness, 2px);
+  background: var(--ppi-underline-color, rgb(var(--color-foreground-rgb)));
+  transition: inset-inline-start var(--ppi-animation-speed, 250ms) ease-in-out,
+    inline-size var(--ppi-animation-speed, 250ms) ease-in-out;
+}
+
+premium-product-info[data-layout-style='2'][data-underline-animation='none'] .ppi__tablist::after {
+  transition: none;
+}
+
+premium-product-info[data-layout-style='2'][data-underline-animation='fade'] .ppi__tablist::after {
+  transition: opacity var(--ppi-animation-speed, 250ms) ease-in-out;
+}
+
+premium-product-info[data-layout-style='2'][data-indicator-width='fixed'] .ppi__tablist::after {
+  inline-size: 24px;
+  inset-inline-start: calc(var(--ppi-indicator-x, 0px) + var(--ppi-indicator-offset, 0px));
+}
+
+/* ============================ Layout style 3: Pill navigation tabs ============================ */
+premium-product-info[data-layout-style='3'] .ppi-item__trigger {
+  width: auto;
+  border-radius: var(--ppi-corner-radius, 999px);
+  border: var(--ppi-border-width, 1px) solid var(--ppi-border-color, transparent);
+  background: var(--ppi-item-bg, transparent);
+}
+
+premium-product-info[data-layout-style='3'] .ppi-item__trigger:hover {
+  background: var(--ppi-hover-bg, rgb(var(--color-foreground-rgb) / 0.06));
+  border-color: var(--ppi-hover-border, var(--ppi-border-color, transparent));
+}
+
+premium-product-info[data-layout-style='3'] .ppi-item__trigger[aria-selected='true'] {
+  background: var(--ppi-active-bg, rgb(var(--color-foreground-rgb) / 0.1));
+  border-color: var(--ppi-active-border, var(--ppi-border-color, transparent));
+}
+
+premium-product-info[data-layout-style='3'][data-active-shadow='subtle'] .ppi-item__trigger[aria-selected='true'] {
+  box-shadow: 0 1px 3px rgb(0 0 0 / 10%);
+}
+
+premium-product-info[data-layout-style='3'][data-active-shadow='medium'] .ppi-item__trigger[aria-selected='true'] {
+  box-shadow: 0 4px 10px rgb(0 0 0 / 14%);
+}
+
+/* ============================== Layout style 4: Segmented tabs ============================== */
+premium-product-info[data-layout-style='4'] .ppi__tablist {
+  position: relative;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 4px;
+  gap: 0;
+  border-radius: var(--ppi-corner-radius, 12px);
+  background: var(--ppi-item-bg, rgb(var(--color-foreground-rgb) / 0.06));
+  border: var(--ppi-border-width, 0) solid var(--ppi-border-color, transparent);
+  scrollbar-width: none;
+}
+
+premium-product-info[data-layout-style='4'] .ppi__tablist::-webkit-scrollbar {
+  display: none;
+}
+
+premium-product-info[data-layout-style='4'] .ppi__tablist::before {
+  content: '';
+  position: absolute;
+  inset-block: 4px;
+  inset-inline-start: var(--ppi-indicator-x, 4px);
+  inline-size: var(--ppi-indicator-width, 0px);
+  border-radius: calc(var(--ppi-corner-radius, 12px) - 4px);
+  background: var(--ppi-active-bg, rgb(var(--color-background-rgb)));
+  box-shadow: 0 1px 2px rgb(0 0 0 / 10%);
+  transition: inset-inline-start var(--ppi-animation-speed, 250ms) ease-in-out,
+    inline-size var(--ppi-animation-speed, 250ms) ease-in-out;
+  z-index: 0;
+}
+
+premium-product-info[data-layout-style='4'] .ppi-item__trigger {
+  position: relative;
+  z-index: 1;
+  width: auto;
+  white-space: nowrap;
+  justify-content: center;
+}
+
+/* ================================ Layout style 5: Icon tabs ================================ */
+premium-product-info[data-layout-style='5'] .ppi-item__trigger {
+  width: auto;
+}
+
+premium-product-info[data-layout-style='5'][data-icon-position='above'] .ppi-item__trigger {
+  flex-direction: column;
+  gap: 4px;
+  text-align: center;
+}
+
+premium-product-info[data-layout-style='5'] .ppi-item__icon {
+  inline-size: var(--ppi-icon-size, 24px);
+  block-size: var(--ppi-icon-size, 24px);
+}
+
+/* ============================= Layout style 6: Vertical side tabs ============================= */
+@media (min-width: 750px) {
+  premium-product-info[data-layout-style='6'][data-mode='tabs'] {
+    display: grid;
+    grid-template-columns: minmax(160px, 240px) 1fr;
+    gap: var(--ppi-content-gap, 20px);
+    align-items: start;
+  }
+
+  premium-product-info[data-layout-style='6'][data-mode='tabs'] .ppi__tablist {
+    flex-direction: column;
+    align-items: stretch;
+    border-inline-end: 1px solid rgb(var(--color-border-rgb) / 1);
+    padding-inline-end: var(--ppi-tab-gap, 16px);
+  }
+
+  premium-product-info[data-layout-style='6'][data-mode='tabs'] .ppi__items {
+    grid-column: 2;
+  }
+
+  premium-product-info[data-layout-style='6'][data-mode='tabs'] .ppi-item__panel[hidden] {
+    display: none;
+  }
+}
+
+/* =============================== Layout style 7: Card accordion =============================== */
+premium-product-info[data-layout-style='7'] .ppi-item {
+  border: var(--ppi-border-width, 1px) solid var(--ppi-border-color, rgb(var(--color-border-rgb) / 1));
+  border-radius: var(--ppi-corner-radius, 12px);
+  background: var(--ppi-item-bg, rgb(var(--color-background-rgb)));
+  padding-inline: var(--ppi-item-padding, 16px);
+}
+
+premium-product-info[data-layout-style='7'] .ppi-item + .ppi-item {
+  margin-block-start: var(--ppi-item-spacing, 12px);
+}
+
+premium-product-info[data-layout-style='7'][data-card-shadow='subtle'] .ppi-item {
+  box-shadow: 0 1px 3px rgb(0 0 0 / 8%);
+}
+
+premium-product-info[data-layout-style='7'][data-card-shadow='medium'] .ppi-item {
+  box-shadow: 0 4px 12px rgb(0 0 0 / 12%);
+}
+
+premium-product-info[data-layout-style='7'] .ppi-item__trigger {
+  padding-inline: 0;
+}
+
+premium-product-info[data-layout-style='7'] .ppi-item__panel-inner {
+  padding-inline: 0;
+}
+
+/* Divider option: a line between accordion rows. Styles 1/7 already draw a full border around
+   each card, so this only adds visible value for the plain-list accordion presentation (mobile,
+   any style; or styles 2/3/4/5/6 whenever they've dropped into accordion mode). */
+premium-product-info[data-mode='accordion'][data-show-dividers='true']:not([data-layout-style='1']):not([data-layout-style='7'])
+  .ppi-item
+  + .ppi-item {
+  border-block-start: 1px solid rgb(var(--color-border-rgb) / 1);
+  padding-block-start: var(--ppi-item-spacing, 0px);
+}

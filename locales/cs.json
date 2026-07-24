@@ -355,5 +355,8 @@
       "success_moderated": "Komentář odeslán, čeká na schválení",
       "success": "Komentář zveřejněn"
     }
+  },
+  "premium_product_info": {
+    "default_label": "Product information"
   }
 }

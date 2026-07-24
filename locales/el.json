@@ -341,5 +341,8 @@
       "success_moderated": "Το σχόλιο δημοσιεύτηκε, εν αναμονή τροποποίησης",
       "success": "Το σχόλιο δημοσιεύτηκε"
     }
+  },
+  "premium_product_info": {
+    "default_label": "Product information"
   }
 }

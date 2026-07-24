@@ -348,5 +348,8 @@
       "success_moderated": "Komentar je objavljen, čeka moderiranje",
       "success": "Komentar objavljen"
     }
+  },
+  "premium_product_info": {
+    "default_label": "Product information"
   }
 }

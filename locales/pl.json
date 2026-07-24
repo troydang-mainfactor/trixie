@@ -355,5 +355,8 @@
       "default_title": "Tytuł domyślny",
       "sticky_add_to_cart": "Pasek szybkiego dodawania do koszyka"
     }
+  },
+  "premium_product_info": {
+    "default_label": "Product information"
   }
 }

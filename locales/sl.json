@@ -355,5 +355,8 @@
       "success_moderated": "Komentar je bil objavljen, čakanje na odobritev",
       "success": "Komentar je bil objavljen"
     }
+  },
+  "premium_product_info": {
+    "default_label": "Product information"
   }
 }

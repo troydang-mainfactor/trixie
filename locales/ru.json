@@ -355,5 +355,8 @@
       "default_title": "Название по умолчанию",
       "sticky_add_to_cart": "Быстрое добавление в корзину"
     }
+  },
+  "premium_product_info": {
+    "default_label": "Product information"
   }
 }

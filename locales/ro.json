@@ -348,5 +348,8 @@
       "default_title": "Titlu implicit",
       "sticky_add_to_cart": "Bara de adăugare rapidă în coș"
     }
+  },
+  "premium_product_info": {
+    "default_label": "Product information"
   }
 }

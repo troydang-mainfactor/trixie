@@ -355,5 +355,8 @@
       "default_title": "Numatytasis pavadinimas",
       "sticky_add_to_cart": "Greito pridėjimo į krepšelį juosta"
     }
+  },
+  "premium_product_info": {
+    "default_label": "Product information"
   }
 }

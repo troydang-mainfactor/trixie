@@ -341,5 +341,8 @@
       "success_moderated": "Kommentar gepostet, Moderation ausstehend",
       "success": "Kommentar gepostet"
     }
+  },
+  "premium_product_info": {
+    "default_label": "Product information"
   }
 }

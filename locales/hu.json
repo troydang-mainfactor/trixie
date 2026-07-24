@@ -341,5 +341,8 @@
       "default_title": "Alapértelmezett cím",
       "sticky_add_to_cart": "Gyors hozzáadás a kosárhoz sáv"
     }
+  },
+  "premium_product_info": {
+    "default_label": "Product information"
   }
 }

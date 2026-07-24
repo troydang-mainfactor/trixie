@@ -341,5 +341,8 @@
       "default_title": "Varsayılan Başlık",
       "sticky_add_to_cart": "Sepete hızlı ekle çubuğu"
     }
+  },
+  "premium_product_info": {
+    "default_label": "Product information"
   }
 }

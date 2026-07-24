@@ -341,5 +341,8 @@
       "success_moderated": "Kommentti on julkaistu; odotetaan moderointia",
       "success": "Kommentti on julkaistu"
     }
+  },
+  "premium_product_info": {
+    "default_label": "Product information"
   }
 }

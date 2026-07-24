@@ -341,5 +341,8 @@
       "success_moderated": "Коментарът е публикуван, в очакване на модериране",
       "success": "Коментарът е публикуван"
     }
+  },
+  "premium_product_info": {
+    "default_label": "Product information"
   }
 }

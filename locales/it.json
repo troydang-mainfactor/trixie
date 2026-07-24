@@ -348,5 +348,8 @@
       "default_title": "Titolo predefinito",
       "sticky_add_to_cart": "Barra per l'aggiunta rapida al carrello"
     }
+  },
+  "premium_product_info": {
+    "default_label": "Product information"
   }
 }

@@ -341,5 +341,8 @@
       "success_moderated": "コメントを投稿しました。承認待ちです",
       "success": "コメントを投稿しました"
     }
+  },
+  "premium_product_info": {
+    "default_label": "Product information"
   }
 }

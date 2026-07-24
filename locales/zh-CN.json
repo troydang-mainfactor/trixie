@@ -341,5 +341,8 @@
       "success_moderated": "评论已发布，等待审核",
       "success": "评论已发布"
     }
+  },
+  "premium_product_info": {
+    "default_label": "Product information"
   }
 }
