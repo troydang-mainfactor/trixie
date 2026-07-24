@@ -36,6 +36,9 @@ class PremiumProductInfo extends Component {
   /** @type {ResizeObserver | undefined} */
   #resizeObserver;
 
+  /** @type {WeakMap<HTMLElement, Animation>} */
+  #accordionAnimations = new WeakMap();
+
   get #layoutStyle() {
     return this.dataset.layoutStyle ?? '2';
   }
@@ -166,7 +169,10 @@ class PremiumProductInfo extends Component {
       trigger.setAttribute('role', 'tab');
       trigger.removeAttribute('aria-expanded');
       const panel = this.#panelFor(trigger);
-      panel?.removeAttribute('data-expanded');
+      if (panel) {
+        this.#accordionAnimations.get(panel)?.cancel();
+        panel.style.removeProperty('height'); // tabs mode uses [hidden], not an explicit height
+      }
       panel?.removeAttribute('inert');
       panel?.setAttribute('role', 'tabpanel');
       panel?.setAttribute('aria-labelledby', trigger.id);
@@ -337,19 +343,38 @@ class PremiumProductInfo extends Component {
     if (!panel) return;
 
     panel.toggleAttribute('inert', !expand);
+
+    // scrollHeight reflects the panel's full content height regardless of its current (possibly
+    // clipped) rendered height, so this measures the real target even while collapsed/collapsing.
+    const startHeight = panel.getBoundingClientRect().height;
+    const endHeight = expand ? panel.scrollHeight : 0;
+
+    this.#accordionAnimations.get(panel)?.cancel();
+
     if (!animate || prefersReducedMotion()) {
-      panel.dataset.expanded = String(expand);
-      panel.dataset.skipTransition = 'true';
-      requestAnimationFrame(() => delete panel.dataset.skipTransition);
-    } else {
-      panel.dataset.expanded = String(expand);
+      panel.style.height = `${endHeight}px`;
+      return;
     }
+
+    const animation = panel.animate(
+      { height: [`${startHeight}px`, `${endHeight}px`] },
+      { duration: this.#speed, easing: 'ease-in-out' }
+    );
+    this.#accordionAnimations.set(panel, animation);
+    animation.onfinish = () => {
+      panel.style.height = `${endHeight}px`;
+    };
   }
 
   /** @param {HTMLButtonElement} trigger */
   #panelFor(trigger) {
     const id = trigger.dataset.panelId;
     return id ? document.getElementById(id) : null;
+  }
+
+  get #speed() {
+    const value = parseFloat(getComputedStyle(this).getPropertyValue('--ppi-animation-speed'));
+    return Number.isFinite(value) ? value : 250;
   }
 
   /** Positions the sliding underline (style 2) / segmented thumb (style 4) under the active tab. */
