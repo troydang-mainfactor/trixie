@@ -218,7 +218,7 @@
                 "swatch_size_custom": 24,
                 "swatch_gap": 0,
                 "swatch_border_width": 1,
-                "show_tooltips": true,
+                "show_tooltips": false,
                 "tooltip_background": "",
                 "tooltip_text_color": "",
                 "tooltip_font_size": 13,
