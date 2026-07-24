@@ -88,6 +88,9 @@ class CombinedListingsBase extends Component {
  *
  * @typedef {object} Refs
  * @property {HTMLAnchorElement[]} [swatchTriggers]
+ * @property {HTMLElement[]} [swatchLabels] - Per-swatch tag-text label, index-aligned with swatchTriggers.
+ * @property {HTMLElement} [tagRules] - Hidden container of tag-text rule data emitted by each
+ *   _combined-listings-tag-text block.
  * @extends {CombinedListingsBase}
  */
 class CombinedListingsPicker extends CombinedListingsBase {
@@ -106,7 +109,7 @@ class CombinedListingsPicker extends CombinedListingsBase {
     this.#variantPicker?.addEventListener('change', this.#syncHrefs);
     this.#syncHrefs();
     this.#restoreOptionFromUrl();
-    this.#showMatchingBelowSwatchText();
+    this.#showPerSwatchTagText();
   }
 
   disconnectedCallback() {
@@ -164,26 +167,32 @@ class CombinedListingsPicker extends CombinedListingsBase {
   }
 
   /**
-   * Shows the first tag-text rule (in block order) whose tag matches one of the product's
-   * tags below the swatch row. Matching happens here rather than in Liquid, since a block's
-   * nested block settings aren't reliably readable server-side from a shared snippet.
+   * Shows the first tag-text rule (in block order) whose tag matches EACH swatch's OWN
+   * linked product — independent of which product in the group is currently being viewed,
+   * so the same swatch shows the same label on every listing in the group. Matching happens
+   * here rather than in Liquid, since a block's nested block settings aren't reliably
+   * readable server-side from a shared snippet.
    */
-  #showMatchingBelowSwatchText() {
-    const { belowSwatchText, tagRules } = this.refs;
-    if (!belowSwatchText || !tagRules) return;
+  #showPerSwatchTagText() {
+    const { swatchTriggers, swatchLabels, tagRules } = this.refs;
+    if (!swatchTriggers || !swatchLabels || !tagRules) return;
 
-    const productTags = (this.dataset.productTags ?? '').split(',').filter(Boolean);
-    if (!productTags.length) return;
+    const rules = /** @type {HTMLElement[]} */ (Array.from(tagRules.querySelectorAll('[data-cl-tag-rule]')));
+    if (!rules.length) return;
 
-    const rule = /** @type {NodeListOf<HTMLElement>} */ (tagRules.querySelectorAll('[data-cl-tag-rule]'));
-    for (const el of rule) {
-      const tag = el.dataset.tag;
-      if (!tag || !productTags.includes(tag)) continue;
+    swatchTriggers.forEach((trigger, index) => {
+      const label = swatchLabels[index];
+      if (!label) return;
 
-      belowSwatchText.textContent = el.textContent;
-      belowSwatchText.hidden = false;
-      break;
-    }
+      const productTags = (trigger.dataset.productTags ?? '').split(',').filter(Boolean);
+      if (!productTags.length) return;
+
+      const rule = rules.find((el) => el.dataset.tag && productTags.includes(el.dataset.tag));
+      if (!rule) return;
+
+      label.textContent = rule.textContent;
+      label.hidden = false;
+    });
   }
 }
 

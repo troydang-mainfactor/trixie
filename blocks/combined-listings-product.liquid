@@ -182,6 +182,26 @@
       "content": "t:content.combined_listings_below_text_info"
     },
     {
+      "type": "select",
+      "id": "below_swatch_text_position",
+      "label": "t:settings.position",
+      "options": [
+        { "value": "below", "label": "t:options.below" },
+        { "value": "above", "label": "t:options.above" }
+      ],
+      "default": "below"
+    },
+    {
+      "type": "range",
+      "id": "below_swatch_text_font_size",
+      "label": "t:settings.font_size",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+    {
       "type": "header",
       "content": "t:content.padding"
     },

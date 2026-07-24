@@ -35,7 +35,24 @@
 
   .cl-swatches__item {
     position: relative;
-    display: inline-flex;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  /* Below-swatch tag text sits after the trigger (visual order: below) by default; the
+     "above" position setting flips it to render first within the same column. */
+  .cl-swatches[data-below-text-position='above'] .cl-swatch-item-label {
+    order: -1;
+  }
+
+  .cl-swatch-item-label {
+    font-size: var(--cl-below-swatch-text-font-size, 11px);
+    line-height: 1.2;
+    text-align: center;
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-subdued-text));
+    max-inline-size: calc(var(--cl-swatch-size, 28px) * 2.2);
   }
 
   .cl-swatch-trigger {
@@ -99,13 +116,6 @@
 
   .cl-swatch--faded {
     opacity: 0.4;
-  }
-
-  .cl-swatches__below-text {
-    margin: var(--margin-2xs, 8px) 0 0;
-    font-size: var(--font-paragraph-small--size);
-    color: rgb(var(--color-foreground-rgb) / var(--opacity-subdued-text));
-    text-align: center;
   }
 
   /* Tooltip: rendered via the native Popover API so it escapes any ancestor
