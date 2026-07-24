@@ -154,7 +154,7 @@ class MarqueeComponent extends Component {
 
   #handleResize = debounce(async () => {
     const { marqueeItems } = this.refs;
-    const { newNumberOfCopies, isHorizontalResize } = await this.#queryNumberOfCopies();
+    const { numberOfCopies: newNumberOfCopies, isHorizontalResize } = await this.#queryNumberOfCopies();
 
     // opt out of marquee manipulation on vertical resizes
     if (!isHorizontalResize) return;
@@ -190,6 +190,10 @@ class MarqueeComponent extends Component {
 
     clone.setAttribute('aria-hidden', 'true');
     clone.removeAttribute('ref');
+    // The clone's descendants (e.g. the marqueeItems[] container) still carry their own `ref`
+    // attributes; left in place, the Component base class picks up this hidden duplicate as an
+    // extra ref target, inflating marqueeItems.length and corrupting the next resize's copy count.
+    clone.querySelectorAll('[ref]').forEach((el) => el.removeAttribute('ref'));
 
     this.refs.wrapper.appendChild(clone);
   }
