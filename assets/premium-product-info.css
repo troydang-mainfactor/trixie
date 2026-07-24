@@ -184,6 +184,11 @@ premium-product-info[data-mode='accordion'] .ppi-item__trigger[aria-expanded='tr
 .ppi-item__panel {
   display: grid;
   grid-template-rows: 1fr;
+  /* overflow: hidden belongs on the collapsing grid track itself, not just its inner wrapper -
+     content with its own intrinsic minimum size (an <img> in rich text content, for example)
+     can keep the inner wrapper from actually reaching 0 height even with min-height: 0 set on
+     it; clipping at this level too guarantees nothing shows once the row is collapsed. */
+  overflow: hidden;
   transition: grid-template-rows var(--ppi-animation-speed, 250ms) var(--animation-easing, ease-in-out);
 }
 
@@ -254,6 +259,11 @@ premium-product-info[data-layout-style='1'] .ppi-item {
   border-radius: var(--ppi-corner-radius, 12px);
   background: var(--ppi-item-bg, rgb(var(--color-background-rgb)));
   overflow: hidden;
+  /* Belt-and-suspenders alongside .ppi-item__panel's own overflow: hidden - a rounded, clipped
+     ancestor around a CSS Grid row that's mid-transition is exactly the case where relying on a
+     single overflow: hidden can leave a sliver of content visible in some browsers; contain:
+     paint gives the renderer a hard guarantee nothing paints past this box's edge. */
+  contain: paint;
   transition: box-shadow var(--ppi-animation-speed, 250ms) var(--animation-easing, ease-in-out),
     transform var(--ppi-animation-speed, 250ms) var(--animation-easing, ease-in-out),
     background-color var(--ppi-animation-speed, 250ms) var(--animation-easing, ease-in-out),
@@ -443,6 +453,8 @@ premium-product-info[data-layout-style='7'] .ppi-item {
   border-radius: var(--ppi-corner-radius, 12px);
   background: var(--ppi-item-bg, rgb(var(--color-background-rgb)));
   padding-inline: var(--ppi-item-padding, 16px);
+  overflow: hidden;
+  contain: paint;
 }
 
 premium-product-info[data-layout-style='7'] .ppi-item + .ppi-item {
@@ -485,6 +497,7 @@ premium-product-info[data-mode='accordion'][data-show-dividers='true']:not([data
     border: var(--ppi-mobile-border-width, 1px) solid var(--ppi-mobile-border-color, rgb(var(--color-border-rgb) / 1));
     border-radius: var(--ppi-mobile-border-radius, 8px);
     overflow: hidden;
+    contain: paint;
   }
 
   premium-product-info[data-mode='accordion'][data-mobile-border='true']:not([data-layout-style='1']):not([data-layout-style='7'])
