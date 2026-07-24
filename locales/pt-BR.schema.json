@@ -1017,7 +1017,10 @@
     "combined_listings_tooltip": "Tooltip",
     "combined_listings_availability": "Availability",
     "combined_listings_below_text": "Below-swatch text",
-    "combined_listings_below_text_info": "Add tag-based text rules below as blocks. Each swatch checks its own linked product's tags (not the product you're currently viewing), so the same swatch shows the same text no matter which listing in the group you're on. The first matching rule wins per swatch."
+    "combined_listings_below_text_info": "Add tag-based text rules below as blocks. Each swatch checks its own linked product's tags (not the product you're currently viewing), so the same swatch shows the same text no matter which listing in the group you're on. The first matching rule wins per swatch.",
+    "product_badge_rules": "Product badge rules",
+    "product_badge_rules_info": "Configure badges here that show automatically on both product cards and the product page, based on product tags. Add a rule below for each tag you want to turn into a badge - a product with no matching tag, and no sale/sold out status, shows no badge at all.",
+    "product_badge_rule": "Badge rule"
   },
   "html_defaults": {
     "share_information_about_your": "<p>Compartilhe informações sobre sua marca com seus clientes. Descreva um produto, faça anúncios ou dê as boas-vindas aos clientes em sua loja.</p>",
@@ -1146,7 +1149,10 @@
     "combined_listings_swatch_border": "Unselected swatches have no border; hovering shows a light border, and the selected swatch shows a solid border at this thickness",
     "split_title_on_dash": "If the title contains \" - \", the text after it shows smaller on its own line",
     "show_above_media_mobile": "On product pages, moves this block above the media gallery on mobile only. Has no effect outside a product page layout.",
-    "marquee_speed": "Higher values scroll faster"
+    "marquee_speed": "Higher values scroll faster",
+    "product_badge_rule_tag": "Matches exactly and case-insensitively - \"New Arrival\" and \"new arrival\" match the same rule. Not a partial/substring match.",
+    "product_badge_rule_text_color": "Optional. Automatically chosen for readable contrast against the background color when left blank.",
+    "product_badge_position_pdp": "Independent of the card badge position set in Theme settings > Badges."
   },
   "categories": {
     "basic": "Básico",

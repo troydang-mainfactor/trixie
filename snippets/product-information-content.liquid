@@ -108,6 +108,8 @@
         data-testid="product-information-media"
       >
         {{ media_gallery }}
+        {%- render 'product-badges', product: product, position: settings.badge_position_pdp -%}
+        {%- render 'product-badges-styles' -%}
       </div>
     {% endcapture %}
 
@@ -141,6 +143,7 @@
   }
 
   .product-information__media {
+    position: relative;
     order: 0;
     width: 0;
     min-width: 100%;
