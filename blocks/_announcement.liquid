@@ -5,6 +5,33 @@
 {%- assign block_index = section.blocks | find_index: 'id', block.id -%}
 
 {%- unless plain_text == '' -%}
+  {%- if section.settings.display_style == 'marquee' -%}
+    <div
+      class="
+        announcement-bar__marquee-item
+        text-block
+        text-block--{{ block.id }}
+        custom-typography
+        {% if block_settings.font_size != "" %}custom-font-size{% endif %}
+        {% if block_settings.weight != "" %}custom-font-weight{% endif %}
+      "
+      style="
+        {% render 'typography-style', settings: block_settings, preset: 'custom' %}
+        {% if block_settings.text_color != blank %}--color: {{ block_settings.text_color }}; --color-rgb: {{ block_settings.text_color.rgb }};{% endif %}
+        --line-height: 1;
+      "
+      {{ block.shopify_attributes }}
+    >
+      {%- if block_settings.link != blank -%}
+        <a
+          class="announcement-bar__text announcement-bar__marquee-link"
+          href="{{ block_settings.link }}"
+        >{{- block.settings.text -}}</a>
+      {%- else -%}
+        <p class="announcement-bar__text">{{- block.settings.text -}}</p>
+      {%- endif -%}
+    </div>
+  {%- else -%}
   <slideshow-slide
     ref="slides[]"
     class="
@@ -42,6 +69,7 @@
       </a>
     {% endif %}
   </slideshow-slide>
+  {%- endif -%}
 {%- endunless -%}
 
 {% stylesheet %}
