@@ -1,4 +1,5 @@
 import { Component } from '@theme/component';
+import { requestIdleCallback } from '@theme/utilities';
 import { ProductSelectEvent } from '@shopify/events';
 
 /**
@@ -200,6 +201,28 @@ if (!customElements.get('combined-listings-picker')) {
  * @extends {CombinedListingsBase}
  */
 class CombinedListingsCardSwatches extends CombinedListingsBase {
+  connectedCallback() {
+    super.connectedCallback();
+    // Each swatch's target image sits inert inside a <template>, so the browser never fetches
+    // it until cloned into the document — the click handler would otherwise trigger a cold
+    // fetch + decode right when the shopper expects an instant swap. Warm the cache ahead of
+    // time instead, off the critical rendering path.
+    requestIdleCallback(() => this.#prefetchSwatchImages());
+  }
+
+  #prefetchSwatchImages() {
+    const templates = this.querySelectorAll('template[data-cl-swap-image]');
+    for (const template of templates) {
+      const img = /** @type {HTMLTemplateElement} */ (template).content.querySelector('img');
+      if (!(img instanceof HTMLImageElement) || !img.src) continue;
+
+      const preload = new Image();
+      preload.srcset = img.srcset;
+      preload.sizes = img.sizes;
+      preload.src = img.src;
+    }
+  }
+
   /** @param {Event} event */
   selectSwatch(event) {
     const trigger = /** @type {HTMLButtonElement} */ (event.target);
