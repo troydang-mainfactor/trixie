@@ -365,6 +365,17 @@
             "badge_style": "secondary"
           }
         },
+        "item_aqYdDc": {
+          "type": "item",
+          "settings": {
+            "heading": "Ingredients",
+            "content": "<p>{{ product.metafields.custom.ingredients | metafield_tag }}</p>",
+            "tab_label": "",
+            "icon": "none",
+            "badge_text": "",
+            "badge_style": "secondary"
+          }
+        },
         "item_x6CGBd": {
           "type": "item",
           "settings": {
@@ -375,28 +386,17 @@
             "badge_text": "",
             "badge_style": "secondary"
           }
-        },
-        "item_aqYdDc": {
-          "type": "item",
-          "settings": {
-            "heading": "Item 3",
-            "content": "<p>{{ product.metafields.custom.ingredients | metafield_tag }}</p>",
-            "tab_label": "",
-            "icon": "none",
-            "badge_text": "",
-            "badge_style": "secondary"
-          }
         }
       },
       "block_order": [
         "item_JxPExr",
-        "item_x6CGBd",
-        "item_aqYdDc"
+        "item_aqYdDc",
+        "item_x6CGBd"
       ],
       "name": "Product Info Tabs",
       "settings": {
         "accessible_heading": "",
-        "layout_style": "4",
+        "layout_style": "5",
         "section_width": "page",
         "content_max_width": 1200,
         "content_alignment": "left",
@@ -419,10 +419,10 @@
         "active_shadow": "none",
         "corner_radius": 18,
         "border_width": 2,
-        "border_color": "",
-        "item_background": "",
-        "hover_background": "",
-        "hover_border_color": "",
+        "border_color": "{{ settings.color_palette.foreground }}",
+        "item_background": "{{ settings.color_palette.foreground }}",
+        "hover_background": "{{ settings.color_palette.foreground }}",
+        "hover_border_color": "{{ settings.color_palette.foreground }}",
         "card_shadow": "subtle",
         "item_padding": 8,
         "underline_thickness": 4,
