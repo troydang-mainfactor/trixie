@@ -181,19 +181,15 @@ premium-product-info[data-mode='accordion'] .ppi-item__trigger[aria-expanded='tr
   transform: scaleY(0);
 }
 
+/* Accordion open/close height is driven directly by JS (measuring scrollHeight and animating an
+   explicit `height` via the Web Animations API - the same technique this theme already uses for
+   e.g. assets/show-more.js), not by a CSS-only grid-template-rows trick. That trick relies on an
+   `fr`-track / auto-height grid container resolving to true 0, which content with its own
+   intrinsic minimum size (padding, an <img> in rich text, line-height on text) doesn't reliably
+   do in every browser - the practical symptom was a sliver of the "collapsed" panel's content
+   staying visible. An explicit pixel height with overflow: hidden has no such ambiguity. */
 .ppi-item__panel {
-  display: grid;
-  grid-template-rows: 1fr;
-  /* overflow: hidden belongs on the collapsing grid track itself, not just its inner wrapper -
-     content with its own intrinsic minimum size (an <img> in rich text content, for example)
-     can keep the inner wrapper from actually reaching 0 height even with min-height: 0 set on
-     it; clipping at this level too guarantees nothing shows once the row is collapsed. */
   overflow: hidden;
-  transition: grid-template-rows var(--ppi-animation-speed, 250ms) var(--animation-easing, ease-in-out);
-}
-
-.ppi-item__panel[data-skip-transition] {
-  transition: none;
 }
 
 .ppi-item__panel[hidden] {
@@ -201,17 +197,7 @@ premium-product-info[data-mode='accordion'] .ppi-item__trigger[aria-expanded='tr
 }
 
 .ppi-item__panel-inner {
-  overflow: hidden;
-  min-height: 0;
   padding-block-start: var(--ppi-content-gap, 20px);
-}
-
-premium-product-info[data-mode='accordion'] .ppi-item__panel[data-expanded='false'] {
-  grid-template-rows: 0fr;
-}
-
-premium-product-info[data-mode='accordion'] .ppi-item__panel[data-expanded='false'] .ppi-item__panel-inner {
-  padding-block-start: 0;
 }
 
 /* Tab panels cross-fade in rather than popping - a discrete `display` swap can still transition
@@ -229,7 +215,6 @@ premium-product-info[data-mode='accordion'] .ppi-item__panel[data-expanded='fals
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ppi-item__panel,
   .ppi-item__trigger,
   .ppi-item__expand-icon--rotating,
   .ppi-item__expand-icon-vertical,
