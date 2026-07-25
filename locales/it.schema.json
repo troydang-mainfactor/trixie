@@ -1325,5 +1325,53 @@
       "collection_limit": "Vengono controllati solo i primi 250 prodotti della collezione. Utilizzato solo quando il tipo di corrispondenza sopra è impostato su Collezione.",
       "variant_id": "Lascia vuoto per usare la prima variante disponibile del prodotto."
     }
+  },
+  "custom_cart_drawer": {
+    "names": {
+      "milestone_tier": "Traguardo"
+    },
+    "content": {
+      "header_zone": "Zona intestazione",
+      "milestone_bar": "Barra di avanzamento dei traguardi",
+      "cross_sell": "Carosello di cross-selling",
+      "footer_zone": "Zona piè di pagina"
+    },
+    "settings": {
+      "enable": "Usa carrello personalizzato",
+      "background": "Colore di sfondo",
+      "text_color": "Colore del testo",
+      "show_milestone_bar": "Mostra barra di avanzamento dei traguardi",
+      "track_color": "Colore della traccia",
+      "fill_color": "Colore di riempimento",
+      "bar_height": "Altezza della barra",
+      "show_cross_sell": "Mostra carosello di cross-selling",
+      "heading": "Titolo",
+      "product_source": "Origine prodotti",
+      "products": "Prodotti",
+      "max_products": "Numero massimo di prodotti da mostrare",
+      "show_savings_badge": "Mostra badge di risparmio",
+      "show_lock_icon": "Mostra icona lucchetto sul pulsante di pagamento",
+      "threshold": "Importo soglia",
+      "label": "Etichetta",
+      "icon": "Icona",
+      "custom_icon": "Icona personalizzata"
+    },
+    "options": {
+      "collection": "Collezione",
+      "manual": "Elenco manuale",
+      "gift": "Scatola regalo",
+      "shipping": "Camion delle consegne",
+      "discount": "Etichetta sconto"
+    },
+    "info": {
+      "enable": "Sostituisce il carrello predefinito ovunque appaia. Disattiva per tornare immediatamente al carrello originale del tema.",
+      "threshold": "Inserisci l'importo nella valuta del tuo negozio, ad es. 50.00 per 50,00 €.",
+      "cross_sell_source_scope_collection": "Utilizzato solo quando l'Origine prodotti sopra è impostata su Collezione.",
+      "cross_sell_source_scope_manual": "Utilizzato solo quando l'Origine prodotti sopra è impostata su Elenco manuale."
+    },
+    "text_defaults": {
+      "cross_sell_heading": "Potrebbe piacerti anche",
+      "milestone_label": "Premio"
+    }
   }
 }

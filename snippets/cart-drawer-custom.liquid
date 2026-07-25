@@ -1,0 +1,286 @@
+{%- doc -%}
+  Custom cart drawer - schema-driven alternative to Horizon's default cart drawer.
+
+  Rendered from two places, exactly like the default drawer it replaces:
+  layout/theme.liquid (initial page load) and sections/cart-drawer-section.liquid
+  (Section Rendering API target after cart changes). Neither call site has a
+  natural `section` variable bound to sections/cart-drawer-section.liquid's own
+  settings/blocks (layout.liquid has no section context at all; this snippet is
+  rendered BY a render call, not a {% section %} tag), so every setting/block
+  read here goes through the `sections['cart-drawer-section']` global lookup
+  instead - the same technique already used elsewhere in this theme for
+  cross-referencing a section by id.
+
+  PHASE 2 (structural layout): the three-zone flex layout, sticky header/footer,
+  and scrollable middle are real, as are all settings-driven colors/toggles.
+  Line items, the cross-sell carousel, and anything computed from real cart
+  totals are placeholder content - wired in later phases.
+
+  @param {boolean} [render_wrapper] - When true, wraps in the SRA section wrapper.
+{%- enddoc -%}
+
+{% liquid
+  assign render_wrapper = render_wrapper | default: true, allow_false: true
+
+  # theme-check-disable UndefinedObject
+  assign drawer_section = sections['cart-drawer-section']
+  # theme-check-enable UndefinedObject
+  assign drawer_settings = drawer_section.settings
+%}
+
+{%- if settings.cart_type == 'drawer' and template.name != 'cart' -%}
+  {% if render_wrapper %}
+    <div
+      id="shopify-section-cart-drawer-section"
+      class="shopify-section"
+    >
+  {% endif %}
+
+  {% capture cart_badge_html %}
+    <span
+      class="theme-drawer__badge{% if cart.item_count == 0 %} visually-hidden{% endif %}"
+      aria-hidden="true"
+      {% if cart.item_count <= 99 %}
+        data-maintain-ratio
+      {% endif %}
+    >
+      {{- cart.item_count -}}
+    </span>
+    {% if cart.item_count > 0 %}
+      <span class="visually-hidden">{{ 'accessibility.cart_count' | t }}: {{ cart.item_count }}</span>
+    {% endif %}
+  {% endcapture %}
+  {% assign cart_drawer_title = 'content.cart_title' | t %}
+
+  <theme-drawer
+    id="cart-drawer"
+    data-skip-node-update
+  >
+    <dialog
+      ref="panel"
+      class="theme-drawer__dialog custom-cart-drawer__dialog color-custom-drawer"
+      aria-labelledby="cart-drawer-heading"
+    >
+      <cart-drawer-component
+        {% if settings.auto_open_cart_drawer and template.name != 'cart' %}
+          auto-open
+        {% endif %}
+      >
+        <div
+          class="custom-cart-drawer"
+          style="
+            --custom-cart-drawer-header-bg: {{ drawer_settings.header_background_color }};
+            --custom-cart-drawer-header-text: {{ drawer_settings.header_text_color }};
+            --custom-cart-drawer-footer-bg: {{ drawer_settings.footer_background_color }};
+            --custom-cart-drawer-footer-text: {{ drawer_settings.footer_text_color }};
+          "
+        >
+          <div class="custom-cart-drawer__header">
+            {% render 'theme-drawer-header',
+              title: cart_drawer_title,
+              drawer_id: 'cart-drawer',
+              heading_id: 'cart-drawer-heading',
+              title_append: cart_badge_html
+            %}
+
+            {% if drawer_settings.show_milestone_bar %}
+              {% render 'cart-drawer-custom-milestones', drawer_section: drawer_section %}
+            {% endif %}
+          </div>
+
+          <scroll-hint class="custom-cart-drawer__middle">
+            {% comment %}
+              PHASE 2 PLACEHOLDER - real line items (image, title, variant, quantity
+              stepper, price, remove button) are wired in phase 3.
+            {% endcomment %}
+            <div class="custom-cart-drawer__placeholder-note">
+              Structural preview: line items and cross-sell carousel are wired in
+              a later phase.
+            </div>
+            {% for i in (1..4) %}
+              <div class="custom-cart-drawer__placeholder-item">
+                <div class="custom-cart-drawer__placeholder-thumb"></div>
+                <div class="custom-cart-drawer__placeholder-lines">
+                  <span class="custom-cart-drawer__placeholder-line custom-cart-drawer__placeholder-line--title"></span>
+                  <span class="custom-cart-drawer__placeholder-line custom-cart-drawer__placeholder-line--variant"></span>
+                </div>
+              </div>
+            {% endfor %}
+          </scroll-hint>
+
+          <div class="custom-cart-drawer__footer">
+            {% comment %}
+              PHASE 2 PLACEHOLDER - subtotal/discount amounts and the checkout
+              button's dynamic total are wired to real cart data in phase 3.
+            {% endcomment %}
+            <div class="custom-cart-drawer__totals">
+              <div class="custom-cart-drawer__row">
+                <span>{{ 'content.cart_subtotal' | t }}</span>
+                <span class="custom-cart-drawer__placeholder-text">$--.--</span>
+              </div>
+              {% if drawer_settings.show_discount_savings_badge %}
+                <div class="custom-cart-drawer__row custom-cart-drawer__row--discount">
+                  <span>
+                    {{ 'content.discounts' | t }}
+                    <span class="custom-cart-drawer__savings-badge">--%</span>
+                  </span>
+                  <span class="custom-cart-drawer__placeholder-text">-$--.--</span>
+                </div>
+              {% endif %}
+            </div>
+            <button
+              type="button"
+              class="custom-cart-drawer__checkout button"
+              disabled
+            >
+              {% if drawer_settings.show_checkout_lock_icon %}
+                <span
+                  class="svg-wrapper"
+                  aria-hidden="true"
+                >
+                  {{- 'icon-lock.svg' | inline_asset_content -}}
+                </span>
+              {% endif %}
+              <span>{{ 'content.checkout' | t }} · $--.--</span>
+            </button>
+          </div>
+        </div>
+      </cart-drawer-component>
+    </dialog>
+  </theme-drawer>
+
+  {% if render_wrapper %}
+    </div>
+  {% endif %}
+{%- endif -%}
+
+{% stylesheet %}
+  .custom-cart-drawer__dialog {
+    padding: 0;
+    max-width: 30rem;
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+  }
+
+  .custom-cart-drawer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    height: 100dvh;
+  }
+
+  .custom-cart-drawer__header {
+    flex-shrink: 0;
+    background: var(--custom-cart-drawer-header-bg);
+    color: var(--custom-cart-drawer-header-text);
+  }
+
+  .custom-cart-drawer__header .theme-drawer__header {
+    color: inherit;
+  }
+
+  .custom-cart-drawer__header .theme-drawer__close-button {
+    color: inherit;
+  }
+
+  .custom-cart-drawer__middle {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    touch-action: pan-y;
+    padding: var(--padding-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-md);
+  }
+
+  .custom-cart-drawer__footer {
+    flex-shrink: 0;
+    background: var(--custom-cart-drawer-footer-bg);
+    color: var(--custom-cart-drawer-footer-text);
+    padding: var(--padding-lg);
+    padding-bottom: max(var(--padding-lg), env(safe-area-inset-bottom));
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-md);
+  }
+
+  .custom-cart-drawer__totals {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xs);
+  }
+
+  .custom-cart-drawer__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--gap-xs);
+  }
+
+  .custom-cart-drawer__savings-badge {
+    display: inline-flex;
+    align-items: center;
+    padding-inline: var(--padding-xs);
+    border-radius: var(--style-border-radius-buttons-secondary, 4px);
+    background: rgb(var(--color-rgb, var(--color-foreground-rgb)) / var(--opacity-10));
+    font-size: var(--font-size--xs);
+  }
+
+  .custom-cart-drawer__checkout {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap-2xs);
+    min-height: 44px;
+  }
+
+  .custom-cart-drawer__placeholder-note {
+    font-size: var(--font-size--xs);
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-subdued-text));
+    padding-block-end: var(--padding-xs);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .custom-cart-drawer__placeholder-item {
+    display: flex;
+    gap: var(--gap-md);
+  }
+
+  .custom-cart-drawer__placeholder-thumb {
+    flex-shrink: 0;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: var(--style-border-radius-buttons-secondary, 4px);
+    background: rgb(var(--color-foreground-rgb) / var(--opacity-10));
+  }
+
+  .custom-cart-drawer__placeholder-lines {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xs);
+    padding-block-start: var(--padding-xs);
+  }
+
+  .custom-cart-drawer__placeholder-line {
+    display: block;
+    height: 0.75rem;
+    border-radius: var(--style-border-radius-buttons-secondary, 4px);
+    background: rgb(var(--color-foreground-rgb) / var(--opacity-10));
+  }
+
+  .custom-cart-drawer__placeholder-line--title {
+    width: 70%;
+  }
+
+  .custom-cart-drawer__placeholder-line--variant {
+    width: 40%;
+  }
+
+  .custom-cart-drawer__placeholder-text {
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-subdued-text));
+  }
+{% endstylesheet %}

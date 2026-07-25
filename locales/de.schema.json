@@ -1325,5 +1325,53 @@
       "collection_limit": "Es werden nur die ersten 250 Produkte der Kollektion geprüft. Wird nur verwendet, wenn der Übereinstimmungstyp oben auf Kollektion eingestellt ist.",
       "variant_id": "Leer lassen, um die erste verfügbare Variante des Produkts zu verwenden."
     }
+  },
+  "custom_cart_drawer": {
+    "names": {
+      "milestone_tier": "Meilenstein"
+    },
+    "content": {
+      "header_zone": "Kopfbereich",
+      "milestone_bar": "Meilenstein-Fortschrittsbalken",
+      "cross_sell": "Cross-Selling-Karussell",
+      "footer_zone": "Fußbereich"
+    },
+    "settings": {
+      "enable": "Individuellen Warenkorb verwenden",
+      "background": "Hintergrundfarbe",
+      "text_color": "Textfarbe",
+      "show_milestone_bar": "Meilenstein-Fortschrittsbalken anzeigen",
+      "track_color": "Spurfarbe",
+      "fill_color": "Füllfarbe",
+      "bar_height": "Balkenhöhe",
+      "show_cross_sell": "Cross-Selling-Karussell anzeigen",
+      "heading": "Überschrift",
+      "product_source": "Produktquelle",
+      "products": "Produkte",
+      "max_products": "Maximale Anzahl anzuzeigender Produkte",
+      "show_savings_badge": "Rabatt-Abzeichen anzeigen",
+      "show_lock_icon": "Schloss-Symbol auf dem Checkout-Button anzeigen",
+      "threshold": "Schwellenbetrag",
+      "label": "Beschriftung",
+      "icon": "Symbol",
+      "custom_icon": "Eigenes Symbol"
+    },
+    "options": {
+      "collection": "Kollektion",
+      "manual": "Manuelle Liste",
+      "gift": "Geschenkbox",
+      "shipping": "Lieferwagen",
+      "discount": "Rabatt-Etikett"
+    },
+    "info": {
+      "enable": "Ersetzt den Standard-Warenkorb überall, wo er erscheint. Deaktivieren, um sofort zum ursprünglichen Warenkorb des Themes zurückzukehren.",
+      "threshold": "Geben Sie den Betrag in der Währung Ihres Shops ein, z. B. 50.00 für 50,00 €.",
+      "cross_sell_source_scope_collection": "Wird nur verwendet, wenn Produktquelle oben auf Kollektion eingestellt ist.",
+      "cross_sell_source_scope_manual": "Wird nur verwendet, wenn Produktquelle oben auf Manuelle Liste eingestellt ist."
+    },
+    "text_defaults": {
+      "cross_sell_heading": "Das könnte Ihnen auch gefallen",
+      "milestone_label": "Prämie"
+    }
   }
 }

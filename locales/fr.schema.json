@@ -1325,5 +1325,53 @@
       "collection_limit": "Seuls les 250 premiers produits de la collection sont vérifiés. Utilisé uniquement lorsque le type de correspondance ci-dessus est défini sur Collection.",
       "variant_id": "Laissez vide pour utiliser la première variante disponible du produit."
     }
+  },
+  "custom_cart_drawer": {
+    "names": {
+      "milestone_tier": "Palier"
+    },
+    "content": {
+      "header_zone": "Zone d'en-tête",
+      "milestone_bar": "Barre de progression des paliers",
+      "cross_sell": "Carrousel de vente croisée",
+      "footer_zone": "Zone de pied de page"
+    },
+    "settings": {
+      "enable": "Utiliser le panier personnalisé",
+      "background": "Couleur de fond",
+      "text_color": "Couleur du texte",
+      "show_milestone_bar": "Afficher la barre de progression des paliers",
+      "track_color": "Couleur de la piste",
+      "fill_color": "Couleur de remplissage",
+      "bar_height": "Hauteur de la barre",
+      "show_cross_sell": "Afficher le carrousel de vente croisée",
+      "heading": "Titre",
+      "product_source": "Source des produits",
+      "products": "Produits",
+      "max_products": "Nombre maximum de produits à afficher",
+      "show_savings_badge": "Afficher le badge d'économies",
+      "show_lock_icon": "Afficher l'icône de cadenas sur le bouton de paiement",
+      "threshold": "Montant du seuil",
+      "label": "Libellé",
+      "icon": "Icône",
+      "custom_icon": "Icône personnalisée"
+    },
+    "options": {
+      "collection": "Collection",
+      "manual": "Liste manuelle",
+      "gift": "Boîte cadeau",
+      "shipping": "Camion de livraison",
+      "discount": "Étiquette de remise"
+    },
+    "info": {
+      "enable": "Remplace le panier par défaut partout où il apparaît. Désactivez pour revenir instantanément au panier d'origine du thème.",
+      "threshold": "Saisissez le montant dans la devise de votre boutique, par ex. 50.00 pour 50,00 €.",
+      "cross_sell_source_scope_collection": "Utilisé uniquement lorsque la Source des produits ci-dessus est définie sur Collection.",
+      "cross_sell_source_scope_manual": "Utilisé uniquement lorsque la Source des produits ci-dessus est définie sur Liste manuelle."
+    },
+    "text_defaults": {
+      "cross_sell_heading": "Vous pourriez aussi aimer",
+      "milestone_label": "Récompense"
+    }
   }
 }

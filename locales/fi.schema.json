@@ -1325,5 +1325,53 @@
       "collection_limit": "Vain kokoelman ensimmäiset 250 tuotetta tarkistetaan. Käytetään vain, kun yllä oleva vastaavuustyyppi on asetettu arvoon Kokoelma.",
       "variant_id": "Jätä tyhjäksi käyttääksesi tuotteen ensimmäistä saatavilla olevaa versiota."
     }
+  },
+  "custom_cart_drawer": {
+    "names": {
+      "milestone_tier": "Virstanpylväs"
+    },
+    "content": {
+      "header_zone": "Yläosan alue",
+      "milestone_bar": "Virstanpylväiden edistymispalkki",
+      "cross_sell": "Lisämyyntikaruselli",
+      "footer_zone": "Alaosan alue"
+    },
+    "settings": {
+      "enable": "Käytä mukautettua ostoskoria",
+      "background": "Taustaväri",
+      "text_color": "Tekstin väri",
+      "show_milestone_bar": "Näytä virstanpylväiden edistymispalkki",
+      "track_color": "Radan väri",
+      "fill_color": "Täyttöväri",
+      "bar_height": "Palkin korkeus",
+      "show_cross_sell": "Näytä lisämyyntikaruselli",
+      "heading": "Otsikko",
+      "product_source": "Tuotteiden lähde",
+      "products": "Tuotteet",
+      "max_products": "Näytettävien tuotteiden enimmäismäärä",
+      "show_savings_badge": "Näytä säästömerkki",
+      "show_lock_icon": "Näytä lukon kuvake kassapainikkeessa",
+      "threshold": "Kynnysarvon summa",
+      "label": "Nimike",
+      "icon": "Kuvake",
+      "custom_icon": "Mukautettu kuvake"
+    },
+    "options": {
+      "collection": "Kokoelma",
+      "manual": "Manuaalinen luettelo",
+      "gift": "Lahjarasia",
+      "shipping": "Toimitusauto",
+      "discount": "Alennustarra"
+    },
+    "info": {
+      "enable": "Korvaa oletusostoskorin kaikkialla, missä se näkyy. Poista käytöstä palataksesi välittömästi teeman alkuperäiseen ostoskoriin.",
+      "threshold": "Anna summa myymäläsi valuutassa, esim. 50.00 tarkoittaa 50,00 €.",
+      "cross_sell_source_scope_collection": "Käytetään vain, kun yllä oleva Tuotteiden lähde on asetettu arvoon Kokoelma.",
+      "cross_sell_source_scope_manual": "Käytetään vain, kun yllä oleva Tuotteiden lähde on asetettu arvoon Manuaalinen luettelo."
+    },
+    "text_defaults": {
+      "cross_sell_heading": "Saatat pitää myös näistä",
+      "milestone_label": "Palkinto"
+    }
   }
 }
