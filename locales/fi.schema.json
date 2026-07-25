@@ -1328,24 +1328,19 @@
   },
   "custom_cart_drawer": {
     "names": {
-            "group": "Mukautettu ostoskori"
+      "group": "Mukautettu ostoskori"
     },
     "content": {
       "header_zone": "Yläosan alue",
-      "milestone_bar": "Virstanpylväiden edistymispalkki",
-            "milestone_slots_note": "Enintään 4 virstanpylvästä, näytetään järjestyksessä. Jätä virstanpylvään kynnysarvo tyhjäksi, jos et halua käyttää sitä.",
-      "milestone_1": "Virstanpylväs 1",
-      "milestone_2": "Virstanpylväs 2",
-      "milestone_3": "Virstanpylväs 3",
-      "milestone_4": "Virstanpylväs 4",
-"cross_sell": "Lisämyyntikaruselli",
-      "footer_zone": "Alaosan alue"
+      "cross_sell": "Lisämyyntikaruselli",
+      "footer_zone": "Alaosan alue",
+      "free_shipping_bar": "Ilmaisen toimituksen edistymispalkki",
+      "style_zone": "Tyyli"
     },
     "settings": {
       "enable": "Käytä mukautettua ostoskoria",
       "background": "Taustaväri",
       "text_color": "Tekstin väri",
-      "show_milestone_bar": "Näytä virstanpylväiden edistymispalkki",
       "track_color": "Radan väri",
       "fill_color": "Täyttöväri",
       "bar_height": "Palkin korkeus",
@@ -1356,17 +1351,16 @@
       "max_products": "Näytettävien tuotteiden enimmäismäärä",
       "show_savings_badge": "Näytä säästömerkki",
       "show_lock_icon": "Näytä lukon kuvake kassapainikkeessa",
-      "threshold": "Kynnysarvon summa",
-      "label": "Nimike",
-      "icon": "Kuvake",
-      "custom_icon": "Mukautettu kuvake"
+      "threshold": "Ilmaisen toimituksen raja",
+      "show_free_shipping_bar": "Näytä ilmaisen toimituksen edistymispalkki",
+      "corner_style": "Kulmatyyli"
     },
     "options": {
       "collection": "Kokoelma",
       "manual": "Manuaalinen luettelo",
-      "gift": "Lahjarasia",
-      "shipping": "Toimitusauto",
-      "discount": "Alennustarra"
+      "square": "Neliö",
+      "rounded": "Pyöristetty",
+      "pill": "Pilleri"
     },
     "info": {
       "enable": "Korvaa oletusostoskorin kaikkialla, missä se näkyy. Poista käytöstä palataksesi välittömästi teeman alkuperäiseen ostoskoriin.",
@@ -1375,8 +1369,7 @@
       "cross_sell_source_scope_manual": "Käytetään vain, kun yllä oleva Tuotteiden lähde on asetettu arvoon Manuaalinen luettelo."
     },
     "text_defaults": {
-      "cross_sell_heading": "Saatat pitää myös näistä",
-      "milestone_label": "Palkinto"
+      "cross_sell_heading": "Saatat pitää myös näistä"
     }
   }
 }

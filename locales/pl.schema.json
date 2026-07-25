@@ -1328,24 +1328,19 @@
   },
   "custom_cart_drawer": {
     "names": {
-            "group": "Niestandardowy koszyk"
+      "group": "Niestandardowy koszyk"
     },
     "content": {
       "header_zone": "Strefa nagłówka",
-      "milestone_bar": "Pasek postępu kamieni milowych",
-            "milestone_slots_note": "Do 4 kamieni milowych, wyświetlanych w kolejności. Pozostaw pustą kwotę progową kamienia milowego, aby pozostał nieużywany.",
-      "milestone_1": "Kamień milowy 1",
-      "milestone_2": "Kamień milowy 2",
-      "milestone_3": "Kamień milowy 3",
-      "milestone_4": "Kamień milowy 4",
-"cross_sell": "Karuzela sprzedaży krzyżowej",
-      "footer_zone": "Strefa stopki"
+      "cross_sell": "Karuzela sprzedaży krzyżowej",
+      "footer_zone": "Strefa stopki",
+      "free_shipping_bar": "Pasek postępu darmowej wysyłki",
+      "style_zone": "Styl"
     },
     "settings": {
       "enable": "Użyj niestandardowego koszyka",
       "background": "Kolor tła",
       "text_color": "Kolor tekstu",
-      "show_milestone_bar": "Pokaż pasek postępu kamieni milowych",
       "track_color": "Kolor ścieżki",
       "fill_color": "Kolor wypełnienia",
       "bar_height": "Wysokość paska",
@@ -1356,17 +1351,16 @@
       "max_products": "Maksymalna liczba wyświetlanych produktów",
       "show_savings_badge": "Pokaż odznakę rabatu",
       "show_lock_icon": "Pokaż ikonę kłódki na przycisku realizacji zamówienia",
-      "threshold": "Kwota progowa",
-      "label": "Etykieta",
-      "icon": "Ikona",
-      "custom_icon": "Niestandardowa ikona"
+      "threshold": "Próg darmowej wysyłki",
+      "show_free_shipping_bar": "Pokaż pasek postępu darmowej wysyłki",
+      "corner_style": "Styl narożników"
     },
     "options": {
       "collection": "Kolekcja",
       "manual": "Lista ręczna",
-      "gift": "Pudełko z prezentem",
-      "shipping": "Ciężarówka dostawcza",
-      "discount": "Etykieta rabatu"
+      "square": "Kwadratowy",
+      "rounded": "Zaokrąglony",
+      "pill": "Owalny"
     },
     "info": {
       "enable": "Zastępuje domyślny koszyk wszędzie tam, gdzie się pojawia. Wyłącz, aby natychmiast wrócić do oryginalnego koszyka motywu.",
@@ -1375,8 +1369,7 @@
       "cross_sell_source_scope_manual": "Używane tylko wtedy, gdy powyższe Źródło produktów jest ustawione na Lista ręczna."
     },
     "text_defaults": {
-      "cross_sell_heading": "Może spodoba Ci się również",
-      "milestone_label": "Nagroda"
+      "cross_sell_heading": "Może spodoba Ci się również"
     }
   }
 }

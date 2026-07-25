@@ -357,7 +357,9 @@
   },
   "custom_cart_drawer": {
     "content": {
-      "savings_badge": "{{ percentage }}%お得"
+      "savings_badge": "{{ percentage }}%お得",
+      "free_shipping_remaining": "送料無料まであと{{ amount }}",
+      "free_shipping_reached": "送料無料になりました！"
     }
   }
 }
