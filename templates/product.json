@@ -47,11 +47,11 @@
           "type": "_product-details",
           "static": true,
           "settings": {
-            "width": "fit-content",
+            "width": "fill",
             "custom_width": 100,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
-            "height": "fill",
+            "height": "fit",
             "details_position": "flex-start",
             "gap": 25,
             "sticky_details_desktop": true,
