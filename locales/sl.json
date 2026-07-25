@@ -368,5 +368,10 @@
   },
   "premium_product_info": {
     "default_label": "Product information"
+  },
+  "custom_cart_drawer": {
+    "content": {
+      "savings_badge": "Prihranite {{ percentage }}%"
+    }
   }
 }

@@ -1,0 +1,183 @@
+{%- doc -%}
+  Renders one real cart line item for the custom cart drawer.
+
+  Mirrors snippets/cart-products.liquid's own wiring conventions exactly:
+  item.index is 0-based, quantity-selector adds its own +1 internally for
+  data-cart-line, and the remove button's on:click target does the same +1
+  independently - so quantity changes and removal route through the exact
+  same CartItemsComponent mechanics the default drawer already relies on.
+
+  @param {object} item - A cart line item (from cart.items).
+{%- enddoc -%}
+
+{% liquid
+  assign can_update_quantity = item.instructions.can_update_quantity | default: true, allow_false: true
+  assign can_remove = item.instructions.can_remove | default: true, allow_false: true
+
+  assign compare_at_line_price = item.variant.compare_at_price | times: item.quantity
+  assign show_strikethrough = false
+  assign strikethrough_price = 0
+
+  if item.original_line_price != item.final_line_price
+    assign show_strikethrough = true
+    assign strikethrough_price = item.original_line_price
+    if compare_at_line_price > item.original_line_price
+      assign strikethrough_price = compare_at_line_price
+    endif
+  elsif compare_at_line_price > item.original_line_price
+    assign show_strikethrough = true
+    assign strikethrough_price = compare_at_line_price
+  endif
+%}
+
+<div
+  class="custom-cart-drawer__line-item"
+  id="CartItem-{{ item.key }}"
+  data-key="{{ item.key }}"
+>
+  {% if item.image %}
+    <a
+      href="{{ item.url }}"
+      class="custom-cart-drawer__line-item-media"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      {{-
+        item.image
+        | image_url: width: 200
+        | image_tag: widths: '100,150,200', sizes: '80px', alt: item.image.alt, loading: 'lazy'
+      -}}
+    </a>
+  {% endif %}
+
+  <div class="custom-cart-drawer__line-item-info">
+    <div class="custom-cart-drawer__line-item-title-row">
+      <a
+        href="{{ item.url }}"
+        class="custom-cart-drawer__line-item-title"
+      >
+        {{- item.product.title -}}
+      </a>
+      <button
+        class="button custom-cart-drawer__line-item-remove"
+        type="button"
+        aria-label="{{ 'accessibility.remove_item' | t: title: item.title | escape }}"
+        on:click="/onLineItemRemove/{{ item.index | plus: 1 }}"
+        {% unless can_remove %}
+          hidden
+        {% endunless %}
+      >
+        {{- 'icon-delete.svg' | inline_asset_content -}}
+        <span class="visually-hidden">{{ 'accessibility.remove' | t }}</span>
+      </button>
+    </div>
+
+    {%- unless item.product.has_only_default_variant -%}
+      <p class="custom-cart-drawer__line-item-variant">
+        {%- for option in item.options_with_values -%}
+          {{- option.value -}}
+          {%- unless forloop.last -%}
+            ,&nbsp;
+          {%- endunless -%}
+        {%- endfor -%}
+      </p>
+    {%- endunless -%}
+
+    <div class="custom-cart-drawer__line-item-footer">
+      {% render 'quantity-selector',
+        product: item.product,
+        variant: item.variant,
+        in_cart_quantity: item.quantity,
+        line_index: item.index,
+        class: 'custom-cart-drawer__quantity',
+        can_update_quantity: can_update_quantity
+      %}
+
+      <div class="custom-cart-drawer__line-item-price">
+        {%- if show_strikethrough -%}
+          <span class="visually-hidden">{{ 'content.price_sale' | t }}</span>
+        {%- endif -%}
+        <span>{{ item.final_line_price | money }}</span>
+        {%- if show_strikethrough -%}
+          <span class="visually-hidden">{{ 'content.price_regular' | t }}</span>
+          <s class="compare-at-price">{{ strikethrough_price | money }}</s>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .custom-cart-drawer__line-item {
+    display: flex;
+    gap: var(--gap-md);
+  }
+
+  .custom-cart-drawer__line-item-media {
+    flex-shrink: 0;
+    display: block;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: var(--style-border-radius-buttons-secondary, 4px);
+    overflow: hidden;
+  }
+
+  .custom-cart-drawer__line-item-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .custom-cart-drawer__line-item-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-3xs);
+  }
+
+  .custom-cart-drawer__line-item-title-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--gap-xs);
+  }
+
+  .custom-cart-drawer__line-item-title {
+    font-weight: var(--font-paragraph--weight-bold, 600);
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .custom-cart-drawer__line-item-remove {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-subdued-text));
+  }
+
+  .custom-cart-drawer__line-item-variant {
+    margin: 0;
+    font-size: var(--font-size--sm);
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-subdued-text));
+  }
+
+  .custom-cart-drawer__line-item-footer {
+    margin-block-start: auto;
+    padding-block-start: var(--padding-xs);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--gap-xs);
+  }
+
+  .custom-cart-drawer__line-item-price {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-2xs);
+    font-size: var(--font-size--sm);
+  }
+{% endstylesheet %}
