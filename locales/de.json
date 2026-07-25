@@ -357,9 +357,7 @@
   },
   "custom_cart_drawer": {
     "content": {
-      "savings_badge": "Sie sparen {{ percentage }}%",
-      "free_shipping_remaining": "Noch {{ amount }} bis zum kostenlosen Versand",
-      "free_shipping_reached": "Du hast kostenlosen Versand freigeschaltet!"
+      "savings_badge": "Sie sparen {{ percentage }}%"
     }
   }
 }

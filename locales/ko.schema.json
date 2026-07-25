@@ -1344,6 +1344,8 @@
       "track_color": "트랙 색상",
       "fill_color": "채우기 색상",
       "bar_height": "바 높이",
+      "free_shipping_remaining_text": "진행 메시지",
+      "free_shipping_reached_text": "기준 금액 도달 시 메시지",
       "show_cross_sell": "교차 판매 캐러셀 표시",
       "heading": "제목",
       "product_source": "상품 소스",
@@ -1353,7 +1355,8 @@
       "show_lock_icon": "체크아웃 버튼에 잠금 아이콘 표시",
       "threshold": "무료 배송 기준 금액",
       "show_free_shipping_bar": "무료 배송 진행률 표시줄 표시",
-      "corner_style": "모서리 스타일"
+      "corner_style": "모서리 스타일",
+      "thumbnail_size": "제품 이미지 크기"
     },
     "options": {
       "collection": "컬렉션",
@@ -1365,6 +1368,7 @@
     "info": {
       "enable": "표시되는 모든 곳에서 기본 장바구니를 대체합니다. 끄면 테마의 원래 장바구니로 즉시 돌아갑니다.",
       "threshold": "스토어 통화로 금액을 입력하세요(예: 50.00).",
+      "free_shipping_amount_token": "남은 금액이 표시될 위치에 [amount]를 사용하세요. 예: \"무료 배송까지 [amount] 남음\"",
       "cross_sell_source_scope_collection": "위의 상품 소스가 컬렉션으로 설정된 경우에만 사용됩니다.",
       "cross_sell_source_scope_manual": "위의 상품 소스가 수동 목록으로 설정된 경우에만 사용됩니다."
     },

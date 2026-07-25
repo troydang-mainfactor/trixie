@@ -357,9 +357,7 @@
   },
   "custom_cart_drawer": {
     "content": {
-      "savings_badge": "ประหยัด {{ percentage }}%",
-      "free_shipping_remaining": "อีก {{ amount }} รับส่งฟรี",
-      "free_shipping_reached": "คุณได้รับสิทธิ์จัดส่งฟรีแล้ว!"
+      "savings_badge": "ประหยัด {{ percentage }}%"
     }
   }
 }

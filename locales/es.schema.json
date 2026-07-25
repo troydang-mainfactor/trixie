@@ -1344,6 +1344,8 @@
       "track_color": "Color de la pista",
       "fill_color": "Color de relleno",
       "bar_height": "Altura de la barra",
+      "free_shipping_remaining_text": "Mensaje de progreso",
+      "free_shipping_reached_text": "Mensaje al alcanzar el umbral",
       "show_cross_sell": "Mostrar carrusel de venta cruzada",
       "heading": "Título",
       "product_source": "Origen de los productos",
@@ -1353,7 +1355,8 @@
       "show_lock_icon": "Mostrar icono de candado en el botón de pago",
       "threshold": "Umbral de envío gratis",
       "show_free_shipping_bar": "Mostrar barra de progreso de envío gratis",
-      "corner_style": "Estilo de esquinas"
+      "corner_style": "Estilo de esquinas",
+      "thumbnail_size": "Tamaño de la imagen del producto"
     },
     "options": {
       "collection": "Colección",
@@ -1365,6 +1368,7 @@
     "info": {
       "enable": "Sustituye al carrito predeterminado en todos los lugares donde aparece. Desactívalo para volver instantáneamente al carrito original del tema.",
       "threshold": "Introduce el importe en la moneda de tu tienda, por ejemplo 50.00 para 50,00 €.",
+      "free_shipping_amount_token": "Usa [amount] donde debería aparecer el importe restante, por ejemplo, \"Te faltan [amount] para el envío gratis\".",
       "cross_sell_source_scope_collection": "Solo se usa cuando el Origen de los productos anterior está establecido en Colección.",
       "cross_sell_source_scope_manual": "Solo se usa cuando el Origen de los productos anterior está establecido en Lista manual."
     },

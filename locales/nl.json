@@ -357,9 +357,7 @@
   },
   "custom_cart_drawer": {
     "content": {
-      "savings_badge": "Bespaar {{ percentage }}%",
-      "free_shipping_remaining": "Nog {{ amount }} voor gratis verzending",
-      "free_shipping_reached": "Je hebt gratis verzending vrijgespeeld!"
+      "savings_badge": "Bespaar {{ percentage }}%"
     }
   }
 }

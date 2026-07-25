@@ -364,9 +364,7 @@
   },
   "custom_cart_drawer": {
     "content": {
-      "savings_badge": "Ahorras {{ percentage }}%",
-      "free_shipping_remaining": "Te faltan {{ amount }} para el envío gratis",
-      "free_shipping_reached": "¡Has desbloqueado el envío gratis!"
+      "savings_badge": "Ahorras {{ percentage }}%"
     }
   }
 }

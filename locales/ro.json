@@ -364,9 +364,7 @@
   },
   "custom_cart_drawer": {
     "content": {
-      "savings_badge": "Economisești {{ percentage }}%",
-      "free_shipping_remaining": "Mai sunt {{ amount }} până la livrare gratuită",
-      "free_shipping_reached": "Ai deblocat livrarea gratuită!"
+      "savings_badge": "Economisești {{ percentage }}%"
     }
   }
 }

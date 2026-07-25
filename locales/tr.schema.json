@@ -1344,6 +1344,8 @@
       "track_color": "Parça rengi",
       "fill_color": "Dolgu rengi",
       "bar_height": "Çubuk yüksekliği",
+      "free_shipping_remaining_text": "İlerleme mesajı",
+      "free_shipping_reached_text": "Eşiğe ulaşıldığında gösterilecek mesaj",
       "show_cross_sell": "Çapraz satış karuselini göster",
       "heading": "Başlık",
       "product_source": "Ürün kaynağı",
@@ -1353,7 +1355,8 @@
       "show_lock_icon": "Ödeme düğmesinde kilit simgesini göster",
       "threshold": "Ücretsiz kargo eşiği",
       "show_free_shipping_bar": "Ücretsiz kargo ilerleme çubuğunu göster",
-      "corner_style": "Köşe stili"
+      "corner_style": "Köşe stili",
+      "thumbnail_size": "Ürün görseli boyutu"
     },
     "options": {
       "collection": "Koleksiyon",
@@ -1365,6 +1368,7 @@
     "info": {
       "enable": "Göründüğü her yerde varsayılan sepetin yerini alır. Temanın orijinal sepetine anında geri dönmek için kapatın.",
       "threshold": "Tutarı mağazanızın para biriminde girin, örn. 50,00 TL için 50.00.",
+      "free_shipping_amount_token": "Kalan tutarın görüneceği yere [amount] kullanın, örn. \"Ücretsiz kargoya [amount] kaldı\".",
       "cross_sell_source_scope_collection": "Yalnızca yukarıdaki Ürün kaynağı Koleksiyon olarak ayarlandığında kullanılır.",
       "cross_sell_source_scope_manual": "Yalnızca yukarıdaki Ürün kaynağı Manuel liste olarak ayarlandığında kullanılır."
     },

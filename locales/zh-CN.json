@@ -357,9 +357,7 @@
   },
   "custom_cart_drawer": {
     "content": {
-      "savings_badge": "节省 {{ percentage }}%",
-      "free_shipping_remaining": "还差 {{ amount }} 即可包邮",
-      "free_shipping_reached": "您已获得免运费！"
+      "savings_badge": "节省 {{ percentage }}%"
     }
   }
 }

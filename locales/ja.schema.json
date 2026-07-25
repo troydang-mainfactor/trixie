@@ -1344,6 +1344,8 @@
       "track_color": "トラックの色",
       "fill_color": "塗りつぶしの色",
       "bar_height": "バーの高さ",
+      "free_shipping_remaining_text": "進捗メッセージ",
+      "free_shipping_reached_text": "しきい値到達時のメッセージ",
       "show_cross_sell": "クロスセルカルーセルを表示",
       "heading": "見出し",
       "product_source": "商品のソース",
@@ -1353,7 +1355,8 @@
       "show_lock_icon": "チェックアウトボタンに鍵アイコンを表示",
       "threshold": "送料無料のしきい値",
       "show_free_shipping_bar": "送料無料プログレスバーを表示",
-      "corner_style": "角のスタイル"
+      "corner_style": "角のスタイル",
+      "thumbnail_size": "商品画像のサイズ"
     },
     "options": {
       "collection": "コレクション",
@@ -1365,6 +1368,7 @@
     "info": {
       "enable": "表示されるすべての場所でデフォルトのカートを置き換えます。オフにすると、テーマの元のカートにすぐに戻ります。",
       "threshold": "ストアの通貨で金額を入力してください（例: 50.00で¥50）。",
+      "free_shipping_amount_token": "残り金額を表示したい箇所に [amount] を使用してください。例：「送料無料まであと[amount]」",
       "cross_sell_source_scope_collection": "上の「商品のソース」が「コレクション」に設定されている場合のみ使用されます。",
       "cross_sell_source_scope_manual": "上の「商品のソース」が「手動リスト」に設定されている場合のみ使用されます。"
     },

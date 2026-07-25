@@ -1344,6 +1344,8 @@
       "track_color": "Spurfarbe",
       "fill_color": "Füllfarbe",
       "bar_height": "Balkenhöhe",
+      "free_shipping_remaining_text": "Fortschrittstext",
+      "free_shipping_reached_text": "Nachricht bei Erreichen des Schwellenwerts",
       "show_cross_sell": "Cross-Selling-Karussell anzeigen",
       "heading": "Überschrift",
       "product_source": "Produktquelle",
@@ -1353,7 +1355,8 @@
       "show_lock_icon": "Schloss-Symbol auf dem Checkout-Button anzeigen",
       "threshold": "Schwellenwert für kostenlosen Versand",
       "show_free_shipping_bar": "Fortschrittsbalken für kostenlosen Versand anzeigen",
-      "corner_style": "Eckenstil"
+      "corner_style": "Eckenstil",
+      "thumbnail_size": "Produktbildgröße"
     },
     "options": {
       "collection": "Kollektion",
@@ -1365,6 +1368,7 @@
     "info": {
       "enable": "Ersetzt den Standard-Warenkorb überall, wo er erscheint. Deaktivieren, um sofort zum ursprünglichen Warenkorb des Themes zurückzukehren.",
       "threshold": "Geben Sie den Betrag in der Währung Ihres Shops ein, z. B. 50.00 für 50,00 €.",
+      "free_shipping_amount_token": "Verwenden Sie [amount] an der Stelle, an der der verbleibende Betrag erscheinen soll, z. B. „Noch [amount] bis zum kostenlosen Versand“.",
       "cross_sell_source_scope_collection": "Wird nur verwendet, wenn Produktquelle oben auf Kollektion eingestellt ist.",
       "cross_sell_source_scope_manual": "Wird nur verwendet, wenn Produktquelle oben auf Manuelle Liste eingestellt ist."
     },

@@ -357,9 +357,7 @@
   },
   "custom_cart_drawer": {
     "content": {
-      "savings_badge": "Tiết kiệm {{ percentage }}%",
-      "free_shipping_remaining": "Còn {{ amount }} nữa để được miễn phí vận chuyển",
-      "free_shipping_reached": "Bạn đã được miễn phí vận chuyển!"
+      "savings_badge": "Tiết kiệm {{ percentage }}%"
     }
   }
 }

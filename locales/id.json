@@ -357,9 +357,7 @@
   },
   "custom_cart_drawer": {
     "content": {
-      "savings_badge": "Hemat {{ percentage }}%",
-      "free_shipping_remaining": "{{ amount }} lagi untuk pengiriman gratis",
-      "free_shipping_reached": "Anda mendapatkan pengiriman gratis!"
+      "savings_badge": "Hemat {{ percentage }}%"
     }
   }
 }

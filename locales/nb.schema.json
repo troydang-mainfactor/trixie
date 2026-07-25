@@ -1344,6 +1344,8 @@
       "track_color": "Sporfarge",
       "fill_color": "Fyllfarge",
       "bar_height": "Linjehøyde",
+      "free_shipping_remaining_text": "Fremdriftsmelding",
+      "free_shipping_reached_text": "Melding når terskelen er nådd",
       "show_cross_sell": "Vis mersalgskarusell",
       "heading": "Overskrift",
       "product_source": "Produktkilde",
@@ -1353,7 +1355,8 @@
       "show_lock_icon": "Vis låseikon på kassaknappen",
       "threshold": "Terskel for gratis frakt",
       "show_free_shipping_bar": "Vis fremdriftslinje for gratis frakt",
-      "corner_style": "Hjørnestil"
+      "corner_style": "Hjørnestil",
+      "thumbnail_size": "Produktbildestørrelse"
     },
     "options": {
       "collection": "Kolleksjon",
@@ -1365,6 +1368,7 @@
     "info": {
       "enable": "Erstatter standard handlekurv overalt der den vises. Slå av for å gå umiddelbart tilbake til temaets opprinnelige handlekurv.",
       "threshold": "Angi beløpet i butikkens valuta, f.eks. 50.00 for 50,00 kr.",
+      "free_shipping_amount_token": "Bruk [amount] der det gjenstående beløpet skal vises, f.eks. \"[amount] igjen til gratis frakt\".",
       "cross_sell_source_scope_collection": "Brukes bare når Produktkilde ovenfor er satt til Kolleksjon.",
       "cross_sell_source_scope_manual": "Brukes bare når Produktkilde ovenfor er satt til Manuell liste."
     },

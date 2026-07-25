@@ -1344,6 +1344,8 @@
       "track_color": "轨道颜色",
       "fill_color": "填充颜色",
       "bar_height": "进度条高度",
+      "free_shipping_remaining_text": "进度提示文案",
+      "free_shipping_reached_text": "达到门槛时的提示文案",
       "show_cross_sell": "显示交叉销售轮播",
       "heading": "标题",
       "product_source": "商品来源",
@@ -1353,7 +1355,8 @@
       "show_lock_icon": "在结账按钮上显示锁定图标",
       "threshold": "包邮门槛",
       "show_free_shipping_bar": "显示包邮进度条",
-      "corner_style": "圆角样式"
+      "corner_style": "圆角样式",
+      "thumbnail_size": "产品图片尺寸"
     },
     "options": {
       "collection": "系列",
@@ -1365,6 +1368,7 @@
     "info": {
       "enable": "在出现的所有位置替换默认购物车。关闭后可立即恢复主题的原始购物车。",
       "threshold": "请输入以店铺货币计的金额，例如 50.00 表示 ¥50.00。",
+      "free_shipping_amount_token": "在需要显示剩余金额的位置使用 [amount]，例如“还差 [amount] 即可包邮”。",
       "cross_sell_source_scope_collection": "仅当上方的商品来源设置为系列时使用。",
       "cross_sell_source_scope_manual": "仅当上方的商品来源设置为手动列表时使用。"
     },

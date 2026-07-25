@@ -1344,6 +1344,8 @@
       "track_color": "軌道顏色",
       "fill_color": "填滿顏色",
       "bar_height": "進度條高度",
+      "free_shipping_remaining_text": "進度提示文字",
+      "free_shipping_reached_text": "達到門檻時的提示文字",
       "show_cross_sell": "顯示交叉銷售輪播",
       "heading": "標題",
       "product_source": "商品來源",
@@ -1353,7 +1355,8 @@
       "show_lock_icon": "在結帳按鈕上顯示鎖定圖示",
       "threshold": "免運門檻",
       "show_free_shipping_bar": "顯示免運進度條",
-      "corner_style": "圓角樣式"
+      "corner_style": "圓角樣式",
+      "thumbnail_size": "商品圖片尺寸"
     },
     "options": {
       "collection": "系列",
@@ -1365,6 +1368,7 @@
     "info": {
       "enable": "在出現的所有位置取代預設購物車。關閉後可立即恢復主題的原始購物車。",
       "threshold": "請輸入以商店幣別計的金額，例如 50.00 表示 $50.00。",
+      "free_shipping_amount_token": "在需要顯示剩餘金額的位置使用 [amount]，例如「還差 [amount] 即可享免運費」。",
       "cross_sell_source_scope_collection": "僅當上方的商品來源設為系列時使用。",
       "cross_sell_source_scope_manual": "僅當上方的商品來源設為手動清單時使用。"
     },

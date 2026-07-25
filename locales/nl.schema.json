@@ -1344,6 +1344,8 @@
       "track_color": "Kleur van het spoor",
       "fill_color": "Vulkleur",
       "bar_height": "Balkhoogte",
+      "free_shipping_remaining_text": "Voortgangsbericht",
+      "free_shipping_reached_text": "Bericht bij bereiken van drempel",
       "show_cross_sell": "Cross-sell carrousel tonen",
       "heading": "Titel",
       "product_source": "Productbron",
@@ -1353,7 +1355,8 @@
       "show_lock_icon": "Slotpictogram op afrekenknop tonen",
       "threshold": "Drempel voor gratis verzending",
       "show_free_shipping_bar": "Voortgangsbalk voor gratis verzending weergeven",
-      "corner_style": "Hoekstijl"
+      "corner_style": "Hoekstijl",
+      "thumbnail_size": "Productafbeeldingsgrootte"
     },
     "options": {
       "collection": "Collectie",
@@ -1365,6 +1368,7 @@
     "info": {
       "enable": "Vervangt de standaard winkelwagen overal waar deze verschijnt. Zet uit om direct terug te keren naar de originele winkelwagen van het thema.",
       "threshold": "Voer het bedrag in de valuta van je winkel in, bijv. 50.00 voor € 50,00.",
+      "free_shipping_amount_token": "Gebruik [amount] op de plek waar het resterende bedrag moet verschijnen, bijv. \"Nog [amount] voor gratis verzending\".",
       "cross_sell_source_scope_collection": "Alleen gebruikt wanneer Productbron hierboven is ingesteld op Collectie.",
       "cross_sell_source_scope_manual": "Alleen gebruikt wanneer Productbron hierboven is ingesteld op Handmatige lijst."
     },

@@ -5,6 +5,11 @@
   threshold (settings.free_shipping_threshold). Renders nothing if the
   threshold is blank/zero, or once the cart has reached/passed it (shows
   a "reached" message instead of a full bar with nothing left to fill).
+
+  Both messages are merchant-editable text settings (not translation keys)
+  so they can be customized per-store; settings.free_shipping_remaining_text
+  uses the literal placeholder "[amount]" for where the remaining total
+  should be substituted in.
 {%- enddoc -%}
 
 {% liquid
@@ -22,6 +27,11 @@
       assign fill_percent = cart.total_price | times: 100.0 | divided_by: threshold
       assign fill_percent = fill_percent | at_most: 100
     endif
+
+    assign remaining_money = remaining | money
+    assign remaining_text_template = settings.free_shipping_remaining_text | default: 'Spend [amount] more for free shipping'
+    assign remaining_text = remaining_text_template | replace: '[amount]', remaining_money
+    assign reached_text = settings.free_shipping_reached_text | default: "You've unlocked free shipping!"
   %}
 
   <div
@@ -34,9 +44,9 @@
   >
     <p class="custom-cart-drawer__free-shipping-message">
       {% if reached %}
-        {{ 'custom_cart_drawer.content.free_shipping_reached' | t }}
+        {{ reached_text }}
       {% else %}
-        {{ 'custom_cart_drawer.content.free_shipping_remaining' | t: amount: remaining | money }}
+        {{ remaining_text }}
       {% endif %}
     </p>
     <div class="custom-cart-drawer__milestone-track">
@@ -52,6 +62,7 @@
   .custom-cart-drawer__free-shipping {
     padding-inline: var(--padding-lg);
     padding-block-end: var(--padding-lg);
+    text-align: center;
   }
 
   .custom-cart-drawer__free-shipping-message {

@@ -357,9 +357,7 @@
   },
   "custom_cart_drawer": {
     "content": {
-      "savings_badge": "Spara {{ percentage }}%",
-      "free_shipping_remaining": "{{ amount }} kvar till fri frakt",
-      "free_shipping_reached": "Du har låst upp fri frakt!"
+      "savings_badge": "Spara {{ percentage }}%"
     }
   }
 }

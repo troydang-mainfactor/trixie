@@ -1344,6 +1344,8 @@
       "track_color": "Kolor ścieżki",
       "fill_color": "Kolor wypełnienia",
       "bar_height": "Wysokość paska",
+      "free_shipping_remaining_text": "Komunikat postępu",
+      "free_shipping_reached_text": "Komunikat po osiągnięciu progu",
       "show_cross_sell": "Pokaż karuzelę sprzedaży krzyżowej",
       "heading": "Nagłówek",
       "product_source": "Źródło produktów",
@@ -1353,7 +1355,8 @@
       "show_lock_icon": "Pokaż ikonę kłódki na przycisku realizacji zamówienia",
       "threshold": "Próg darmowej wysyłki",
       "show_free_shipping_bar": "Pokaż pasek postępu darmowej wysyłki",
-      "corner_style": "Styl narożników"
+      "corner_style": "Styl narożników",
+      "thumbnail_size": "Rozmiar zdjęcia produktu"
     },
     "options": {
       "collection": "Kolekcja",
@@ -1365,6 +1368,7 @@
     "info": {
       "enable": "Zastępuje domyślny koszyk wszędzie tam, gdzie się pojawia. Wyłącz, aby natychmiast wrócić do oryginalnego koszyka motywu.",
       "threshold": "Wpisz kwotę w walucie Twojego sklepu, np. 50.00 dla 50,00 zł.",
+      "free_shipping_amount_token": "Użyj [amount] w miejscu, w którym ma się pojawić pozostała kwota, np. „Jeszcze [amount] do darmowej wysyłki”.",
       "cross_sell_source_scope_collection": "Używane tylko wtedy, gdy powyższe Źródło produktów jest ustawione na Kolekcja.",
       "cross_sell_source_scope_manual": "Używane tylko wtedy, gdy powyższe Źródło produktów jest ustawione na Lista ręczna."
     },

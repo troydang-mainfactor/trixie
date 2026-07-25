@@ -357,9 +357,7 @@
   },
   "custom_cart_drawer": {
     "content": {
-      "savings_badge": "{{ percentage }}% tasarruf edin",
-      "free_shipping_remaining": "Ücretsiz kargoya {{ amount }} kaldı",
-      "free_shipping_reached": "Ücretsiz kargo kazandınız!"
+      "savings_badge": "{{ percentage }}% tasarruf edin"
     }
   }
 }
