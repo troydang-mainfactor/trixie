@@ -72,11 +72,14 @@
         {%- render 'format-price', price: button_price -%}
       </span>
     {%- endif -%}
-    {% comment %} checkmark burst markup {% endcomment %}
-    <span class="add-to-cart__added">
-      <span class="svg-wrapper add-to-cart__added-icon">
-        {{- 'icon-checkmark-burst.svg' | inline_asset_content -}}
-      </span>
+    {% comment %} pulsing dots "added" indicator {% endcomment %}
+    <span
+      class="add-to-cart__added"
+      aria-hidden="true"
+    >
+      <span class="add-to-cart__dot"></span>
+      <span class="add-to-cart__dot"></span>
+      <span class="add-to-cart__dot"></span>
     </span>
   </button>
 </add-to-cart-component>
