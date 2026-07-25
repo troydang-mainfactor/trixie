@@ -1325,5 +1325,53 @@
       "collection_limit": "Koleksiyondaki yalnızca ilk 250 ürün kontrol edilir. Yalnızca yukarıdaki Eşleşme türü Koleksiyon olarak ayarlandığında kullanılır.",
       "variant_id": "Ürünün ilk mevcut varyantını kullanmak için boş bırakın."
     }
+  },
+  "custom_cart_drawer": {
+    "names": {
+      "milestone_tier": "Kilometre taşı"
+    },
+    "content": {
+      "header_zone": "Üstbilgi alanı",
+      "milestone_bar": "Kilometre taşı ilerleme çubuğu",
+      "cross_sell": "Çapraz satış karuseli",
+      "footer_zone": "Altbilgi alanı"
+    },
+    "settings": {
+      "enable": "Özel sepeti kullan",
+      "background": "Arka plan rengi",
+      "text_color": "Metin rengi",
+      "show_milestone_bar": "Kilometre taşı ilerleme çubuğunu göster",
+      "track_color": "Parça rengi",
+      "fill_color": "Dolgu rengi",
+      "bar_height": "Çubuk yüksekliği",
+      "show_cross_sell": "Çapraz satış karuselini göster",
+      "heading": "Başlık",
+      "product_source": "Ürün kaynağı",
+      "products": "Ürünler",
+      "max_products": "Gösterilecek maksimum ürün sayısı",
+      "show_savings_badge": "İndirim rozetini göster",
+      "show_lock_icon": "Ödeme düğmesinde kilit simgesini göster",
+      "threshold": "Eşik tutarı",
+      "label": "Etiket",
+      "icon": "Simge",
+      "custom_icon": "Özel simge"
+    },
+    "options": {
+      "collection": "Koleksiyon",
+      "manual": "Manuel liste",
+      "gift": "Hediye kutusu",
+      "shipping": "Teslimat kamyonu",
+      "discount": "İndirim etiketi"
+    },
+    "info": {
+      "enable": "Göründüğü her yerde varsayılan sepetin yerini alır. Temanın orijinal sepetine anında geri dönmek için kapatın.",
+      "threshold": "Tutarı mağazanızın para biriminde girin, örn. 50,00 TL için 50.00.",
+      "cross_sell_source_scope_collection": "Yalnızca yukarıdaki Ürün kaynağı Koleksiyon olarak ayarlandığında kullanılır.",
+      "cross_sell_source_scope_manual": "Yalnızca yukarıdaki Ürün kaynağı Manuel liste olarak ayarlandığında kullanılır."
+    },
+    "text_defaults": {
+      "cross_sell_heading": "Bunu da beğenebilirsiniz",
+      "milestone_label": "Ödül"
+    }
   }
 }

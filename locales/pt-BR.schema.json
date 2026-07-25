@@ -1325,5 +1325,53 @@
       "collection_limit": "Apenas os primeiros 250 produtos da coleção são verificados. Usado apenas quando o Tipo de correspondência acima estiver definido como Coleção.",
       "variant_id": "Deixe em branco para usar a primeira variante disponível do produto."
     }
+  },
+  "custom_cart_drawer": {
+    "names": {
+      "milestone_tier": "Marco"
+    },
+    "content": {
+      "header_zone": "Zona de cabeçalho",
+      "milestone_bar": "Barra de progresso de marcos",
+      "cross_sell": "Carrossel de venda cruzada",
+      "footer_zone": "Zona de rodapé"
+    },
+    "settings": {
+      "enable": "Usar carrinho personalizado",
+      "background": "Cor de fundo",
+      "text_color": "Cor do texto",
+      "show_milestone_bar": "Mostrar barra de progresso de marcos",
+      "track_color": "Cor da trilha",
+      "fill_color": "Cor de preenchimento",
+      "bar_height": "Altura da barra",
+      "show_cross_sell": "Mostrar carrossel de venda cruzada",
+      "heading": "Título",
+      "product_source": "Origem dos produtos",
+      "products": "Produtos",
+      "max_products": "Número máximo de produtos a exibir",
+      "show_savings_badge": "Mostrar selo de economia",
+      "show_lock_icon": "Mostrar ícone de cadeado no botão de finalização de compra",
+      "threshold": "Valor limite",
+      "label": "Rótulo",
+      "icon": "Ícone",
+      "custom_icon": "Ícone personalizado"
+    },
+    "options": {
+      "collection": "Coleção",
+      "manual": "Lista manual",
+      "gift": "Caixa de presente",
+      "shipping": "Caminhão de entrega",
+      "discount": "Etiqueta de desconto"
+    },
+    "info": {
+      "enable": "Substitui o carrinho padrão em todos os lugares onde ele aparece. Desative para reverter instantaneamente ao carrinho original do tema.",
+      "threshold": "Insira o valor na moeda da sua loja, por exemplo, 50.00 para R$ 50,00.",
+      "cross_sell_source_scope_collection": "Usado apenas quando a Origem dos produtos acima estiver definida como Coleção.",
+      "cross_sell_source_scope_manual": "Usado apenas quando a Origem dos produtos acima estiver definida como Lista manual."
+    },
+    "text_defaults": {
+      "cross_sell_heading": "Você também pode gostar",
+      "milestone_label": "Recompensa"
+    }
   }
 }

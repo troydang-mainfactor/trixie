@@ -1325,5 +1325,53 @@
       "collection_limit": "Sprawdzanych jest tylko pierwszych 250 produktów w kolekcji. Używane tylko wtedy, gdy powyższy typ dopasowania jest ustawiony na Kolekcja.",
       "variant_id": "Pozostaw puste, aby użyć pierwszego dostępnego wariantu produktu."
     }
+  },
+  "custom_cart_drawer": {
+    "names": {
+      "milestone_tier": "Kamień milowy"
+    },
+    "content": {
+      "header_zone": "Strefa nagłówka",
+      "milestone_bar": "Pasek postępu kamieni milowych",
+      "cross_sell": "Karuzela sprzedaży krzyżowej",
+      "footer_zone": "Strefa stopki"
+    },
+    "settings": {
+      "enable": "Użyj niestandardowego koszyka",
+      "background": "Kolor tła",
+      "text_color": "Kolor tekstu",
+      "show_milestone_bar": "Pokaż pasek postępu kamieni milowych",
+      "track_color": "Kolor ścieżki",
+      "fill_color": "Kolor wypełnienia",
+      "bar_height": "Wysokość paska",
+      "show_cross_sell": "Pokaż karuzelę sprzedaży krzyżowej",
+      "heading": "Nagłówek",
+      "product_source": "Źródło produktów",
+      "products": "Produkty",
+      "max_products": "Maksymalna liczba wyświetlanych produktów",
+      "show_savings_badge": "Pokaż odznakę rabatu",
+      "show_lock_icon": "Pokaż ikonę kłódki na przycisku realizacji zamówienia",
+      "threshold": "Kwota progowa",
+      "label": "Etykieta",
+      "icon": "Ikona",
+      "custom_icon": "Niestandardowa ikona"
+    },
+    "options": {
+      "collection": "Kolekcja",
+      "manual": "Lista ręczna",
+      "gift": "Pudełko z prezentem",
+      "shipping": "Ciężarówka dostawcza",
+      "discount": "Etykieta rabatu"
+    },
+    "info": {
+      "enable": "Zastępuje domyślny koszyk wszędzie tam, gdzie się pojawia. Wyłącz, aby natychmiast wrócić do oryginalnego koszyka motywu.",
+      "threshold": "Wpisz kwotę w walucie Twojego sklepu, np. 50.00 dla 50,00 zł.",
+      "cross_sell_source_scope_collection": "Używane tylko wtedy, gdy powyższe Źródło produktów jest ustawione na Kolekcja.",
+      "cross_sell_source_scope_manual": "Używane tylko wtedy, gdy powyższe Źródło produktów jest ustawione na Lista ręczna."
+    },
+    "text_defaults": {
+      "cross_sell_heading": "Może spodoba Ci się również",
+      "milestone_label": "Nagroda"
+    }
   }
 }

@@ -1325,5 +1325,53 @@
       "collection_limit": "Kontroluje se pouze prvních 250 produktů v kolekci. Používá se pouze v případě, že je výše uvedený typ shody nastaven na Kolekci.",
       "variant_id": "Ponechte prázdné pro použití první dostupné varianty produktu."
     }
+  },
+  "custom_cart_drawer": {
+    "names": {
+      "milestone_tier": "Milník"
+    },
+    "content": {
+      "header_zone": "Zóna záhlaví",
+      "milestone_bar": "Milníkový ukazatel průběhu",
+      "cross_sell": "Kolotoč doplňkového prodeje",
+      "footer_zone": "Zóna zápatí"
+    },
+    "settings": {
+      "enable": "Použít vlastní košík",
+      "background": "Barva pozadí",
+      "text_color": "Barva textu",
+      "show_milestone_bar": "Zobrazit milníkový ukazatel průběhu",
+      "track_color": "Barva dráhy",
+      "fill_color": "Barva výplně",
+      "bar_height": "Výška lišty",
+      "show_cross_sell": "Zobrazit kolotoč doplňkového prodeje",
+      "heading": "Nadpis",
+      "product_source": "Zdroj produktů",
+      "products": "Produkty",
+      "max_products": "Maximální počet zobrazených produktů",
+      "show_savings_badge": "Zobrazit odznak slevy",
+      "show_lock_icon": "Zobrazit ikonu zámku na tlačítku pokladny",
+      "threshold": "Prahová částka",
+      "label": "Popisek",
+      "icon": "Ikona",
+      "custom_icon": "Vlastní ikona"
+    },
+    "options": {
+      "collection": "Kolekce",
+      "manual": "Ruční seznam",
+      "gift": "Krabička s dárkem",
+      "shipping": "Nákladní auto",
+      "discount": "Slevový štítek"
+    },
+    "info": {
+      "enable": "Nahradí výchozí košík všude, kde se zobrazuje. Vypnutím se okamžitě vrátíte k původnímu košíku motivu.",
+      "threshold": "Zadejte částku v měně vašeho obchodu, např. 50.00 pro 50,00 Kč.",
+      "cross_sell_source_scope_collection": "Použije se pouze pokud je Zdroj produktů nastaven na Kolekce.",
+      "cross_sell_source_scope_manual": "Použije se pouze pokud je Zdroj produktů nastaven na Ruční seznam."
+    },
+    "text_defaults": {
+      "cross_sell_heading": "Mohlo by se vám také líbit",
+      "milestone_label": "Odměna"
+    }
   }
 }

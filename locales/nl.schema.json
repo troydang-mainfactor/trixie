@@ -1325,5 +1325,53 @@
       "collection_limit": "Alleen de eerste 250 producten in de collectie worden gecontroleerd. Wordt alleen gebruikt wanneer Overeenkomsttype hierboven is ingesteld op Collectie.",
       "variant_id": "Laat leeg om de eerste beschikbare variant van het product te gebruiken."
     }
+  },
+  "custom_cart_drawer": {
+    "names": {
+      "milestone_tier": "Mijlpaal"
+    },
+    "content": {
+      "header_zone": "Headerzone",
+      "milestone_bar": "Mijlpaal-voortgangsbalk",
+      "cross_sell": "Cross-sell carrousel",
+      "footer_zone": "Footerzone"
+    },
+    "settings": {
+      "enable": "Aangepaste winkelwagen gebruiken",
+      "background": "Achtergrondkleur",
+      "text_color": "Tekstkleur",
+      "show_milestone_bar": "Mijlpaal-voortgangsbalk tonen",
+      "track_color": "Kleur van het spoor",
+      "fill_color": "Vulkleur",
+      "bar_height": "Balkhoogte",
+      "show_cross_sell": "Cross-sell carrousel tonen",
+      "heading": "Titel",
+      "product_source": "Productbron",
+      "products": "Producten",
+      "max_products": "Maximum aantal te tonen producten",
+      "show_savings_badge": "Kortingsbadge tonen",
+      "show_lock_icon": "Slotpictogram op afrekenknop tonen",
+      "threshold": "Drempelbedrag",
+      "label": "Label",
+      "icon": "Pictogram",
+      "custom_icon": "Aangepast pictogram"
+    },
+    "options": {
+      "collection": "Collectie",
+      "manual": "Handmatige lijst",
+      "gift": "Cadeaudoos",
+      "shipping": "Bezorgwagen",
+      "discount": "Kortingslabel"
+    },
+    "info": {
+      "enable": "Vervangt de standaard winkelwagen overal waar deze verschijnt. Zet uit om direct terug te keren naar de originele winkelwagen van het thema.",
+      "threshold": "Voer het bedrag in de valuta van je winkel in, bijv. 50.00 voor € 50,00.",
+      "cross_sell_source_scope_collection": "Alleen gebruikt wanneer Productbron hierboven is ingesteld op Collectie.",
+      "cross_sell_source_scope_manual": "Alleen gebruikt wanneer Productbron hierboven is ingesteld op Handmatige lijst."
+    },
+    "text_defaults": {
+      "cross_sell_heading": "Dit vind je misschien ook leuk",
+      "milestone_label": "Beloning"
+    }
   }
 }

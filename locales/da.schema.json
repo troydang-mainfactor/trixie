@@ -1325,5 +1325,53 @@
       "collection_limit": "Kun de første 250 produkter i kollektionen kontrolleres. Bruges kun, når Matchtype ovenfor er indstillet til Kollektion.",
       "variant_id": "Lad stå tomt for at bruge produktets første tilgængelige variant."
     }
+  },
+  "custom_cart_drawer": {
+    "names": {
+      "milestone_tier": "Milepæl"
+    },
+    "content": {
+      "header_zone": "Header-zone",
+      "milestone_bar": "Milepæl-fremskridtslinje",
+      "cross_sell": "Krydssalg-karrusel",
+      "footer_zone": "Footer-zone"
+    },
+    "settings": {
+      "enable": "Brug tilpasset kurv",
+      "background": "Baggrundsfarve",
+      "text_color": "Tekstfarve",
+      "show_milestone_bar": "Vis milepæl-fremskridtslinje",
+      "track_color": "Sporfarve",
+      "fill_color": "Udfyldningsfarve",
+      "bar_height": "Linjehøjde",
+      "show_cross_sell": "Vis krydssalg-karrusel",
+      "heading": "Overskrift",
+      "product_source": "Produktkilde",
+      "products": "Produkter",
+      "max_products": "Maks. antal produkter at vise",
+      "show_savings_badge": "Vis rabatmærke",
+      "show_lock_icon": "Vis låseikon på betalingsknappen",
+      "threshold": "Tærskelbeløb",
+      "label": "Etiket",
+      "icon": "Ikon",
+      "custom_icon": "Brugerdefineret ikon"
+    },
+    "options": {
+      "collection": "Kollektion",
+      "manual": "Manuel liste",
+      "gift": "Gaveæske",
+      "shipping": "Leveringsbil",
+      "discount": "Rabatmærke"
+    },
+    "info": {
+      "enable": "Erstatter standardkurven overalt, hvor den vises. Slå fra for straks at gå tilbage til temaets oprindelige kurv.",
+      "threshold": "Indtast beløbet i din butiks valuta, f.eks. 50.00 for 50,00 kr.",
+      "cross_sell_source_scope_collection": "Bruges kun, når Produktkilde ovenfor er sat til Kollektion.",
+      "cross_sell_source_scope_manual": "Bruges kun, når Produktkilde ovenfor er sat til Manuel liste."
+    },
+    "text_defaults": {
+      "cross_sell_heading": "Du vil måske også kunne lide",
+      "milestone_label": "Belønning"
+    }
   }
 }

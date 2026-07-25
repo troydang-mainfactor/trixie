@@ -147,7 +147,12 @@
       </footer>
     </div>
 
-    {% render 'cart-drawer', render_wrapper: true %}
+    {% # theme-check-disable-next-line UndefinedObject %}
+    {% if sections['cart-drawer-section'].settings.enable_custom_drawer %}
+      {% render 'cart-drawer-custom', render_wrapper: true %}
+    {% else %}
+      {% render 'cart-drawer', render_wrapper: true %}
+    {% endif %}
     {% render 'theme-drawer' %}
 
     {% render 'search-modal' %}
