@@ -397,7 +397,7 @@
       "name": "Product Info Tabs",
       "settings": {
         "accessible_heading": "",
-        "layout_style": "1",
+        "layout_style": "5",
         "section_width": "page",
         "content_max_width": 1200,
         "mobile_side_padding": 16,
