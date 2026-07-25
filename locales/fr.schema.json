@@ -1293,5 +1293,37 @@
       "placeholder_2": "Item 2",
       "placeholder_3": "Item 3"
     }
+  },
+  "auto_add_to_cart": {
+    "names": {
+      "section": "Ajout automatique au panier"
+    },
+    "content": {
+      "setup": "Ajoutez cette section une seule fois à votre groupe En-tête ou Pied de page. Elle n'a aucun rendu visible - elle surveille simplement le panier et ajoute automatiquement l'article configuré ci-dessous.",
+      "trigger": "Déclencheur",
+      "item": "Article à ajouter automatiquement"
+    },
+    "settings": {
+      "enabled": "Activé",
+      "trigger_type": "Type de déclencheur",
+      "subtotal_threshold_amount": "Seuil de sous-total",
+      "match_type": "Type de correspondance",
+      "trigger_product": "Produit",
+      "trigger_collection": "Collection",
+      "product_to_add": "Produit à ajouter",
+      "specific_variant_id": "ID de variante spécifique (facultatif)"
+    },
+    "options": {
+      "cart_subtotal": "Le sous-total du panier atteint un montant",
+      "product_or_collection_in_cart": "Produit ou collection spécifique dans le panier",
+      "product": "Produit",
+      "collection": "Collection"
+    },
+    "info": {
+      "threshold_currency": "Saisissez le montant dans la devise de votre boutique, par ex. 50.00 pour 50,00 €.",
+      "trigger_reference_scope": "Utilisé uniquement lorsque le type de correspondance ci-dessus est défini sur Produit.",
+      "collection_limit": "Seuls les 250 premiers produits de la collection sont vérifiés. Utilisé uniquement lorsque le type de correspondance ci-dessus est défini sur Collection.",
+      "variant_id": "Laissez vide pour utiliser la première variante disponible du produit."
+    }
   }
 }

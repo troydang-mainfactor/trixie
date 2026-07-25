@@ -1293,5 +1293,37 @@
       "placeholder_2": "Item 2",
       "placeholder_3": "Item 3"
     }
+  },
+  "auto_add_to_cart": {
+    "names": {
+      "section": "Sepete otomatik ekle"
+    },
+    "content": {
+      "setup": "Bu bölümü Üstbilgi veya Altbilgi grubunuza bir kez ekleyin. Görünür bir çıktısı yoktur - yalnızca sepeti izler ve aşağıda yapılandırılan ürünü otomatik olarak ekler.",
+      "trigger": "Tetikleyici",
+      "item": "Otomatik eklenecek ürün"
+    },
+    "settings": {
+      "enabled": "Etkin",
+      "trigger_type": "Tetikleyici türü",
+      "subtotal_threshold_amount": "Ara toplam eşiği",
+      "match_type": "Eşleşme türü",
+      "trigger_product": "Ürün",
+      "trigger_collection": "Koleksiyon",
+      "product_to_add": "Eklenecek ürün",
+      "specific_variant_id": "Belirli varyant kimliği (isteğe bağlı)"
+    },
+    "options": {
+      "cart_subtotal": "Sepet ara toplamı bir tutara ulaştığında",
+      "product_or_collection_in_cart": "Sepette belirli bir ürün veya koleksiyon",
+      "product": "Ürün",
+      "collection": "Koleksiyon"
+    },
+    "info": {
+      "threshold_currency": "Tutarı mağazanızın para biriminde girin, örn. 50,00 TL için 50.00.",
+      "trigger_reference_scope": "Yalnızca yukarıdaki Eşleşme türü Ürün olarak ayarlandığında kullanılır.",
+      "collection_limit": "Koleksiyondaki yalnızca ilk 250 ürün kontrol edilir. Yalnızca yukarıdaki Eşleşme türü Koleksiyon olarak ayarlandığında kullanılır.",
+      "variant_id": "Ürünün ilk mevcut varyantını kullanmak için boş bırakın."
+    }
   }
 }

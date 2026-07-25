@@ -1293,5 +1293,37 @@
       "placeholder_2": "Item 2",
       "placeholder_3": "Item 3"
     }
+  },
+  "auto_add_to_cart": {
+    "names": {
+      "section": "Automatyczne dodawanie do koszyka"
+    },
+    "content": {
+      "setup": "Dodaj tę sekcję raz do grupy Nagłówek lub Stopka. Nie ma widocznego wyniku - jedynie obserwuje koszyk i automatycznie dodaje skonfigurowany poniżej produkt.",
+      "trigger": "Wyzwalacz",
+      "item": "Produkt do automatycznego dodania"
+    },
+    "settings": {
+      "enabled": "Włączone",
+      "trigger_type": "Typ wyzwalacza",
+      "subtotal_threshold_amount": "Próg sumy częściowej",
+      "match_type": "Typ dopasowania",
+      "trigger_product": "Produkt",
+      "trigger_collection": "Kolekcja",
+      "product_to_add": "Produkt do dodania",
+      "specific_variant_id": "Konkretny ID wariantu (opcjonalnie)"
+    },
+    "options": {
+      "cart_subtotal": "Suma częściowa koszyka osiąga kwotę",
+      "product_or_collection_in_cart": "Konkretny produkt lub kolekcja w koszyku",
+      "product": "Produkt",
+      "collection": "Kolekcja"
+    },
+    "info": {
+      "threshold_currency": "Wpisz kwotę w walucie Twojego sklepu, np. 50.00 dla 50,00 zł.",
+      "trigger_reference_scope": "Używane tylko wtedy, gdy powyższy typ dopasowania jest ustawiony na Produkt.",
+      "collection_limit": "Sprawdzanych jest tylko pierwszych 250 produktów w kolekcji. Używane tylko wtedy, gdy powyższy typ dopasowania jest ustawiony na Kolekcja.",
+      "variant_id": "Pozostaw puste, aby użyć pierwszego dostępnego wariantu produktu."
+    }
   }
 }

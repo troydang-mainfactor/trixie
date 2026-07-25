@@ -1293,5 +1293,37 @@
       "placeholder_2": "Item 2",
       "placeholder_3": "Item 3"
     }
+  },
+  "auto_add_to_cart": {
+    "names": {
+      "section": "Automatisch zum Warenkorb hinzufügen"
+    },
+    "content": {
+      "setup": "Fügen Sie diesen Abschnitt einmal zu Ihrer Header- oder Footer-Gruppe hinzu. Er hat keine sichtbare Ausgabe - er überwacht nur den Warenkorb und fügt automatisch den unten konfigurierten Artikel hinzu.",
+      "trigger": "Auslöser",
+      "item": "Automatisch hinzuzufügender Artikel"
+    },
+    "settings": {
+      "enabled": "Aktiviert",
+      "trigger_type": "Auslösertyp",
+      "subtotal_threshold_amount": "Zwischensummen-Schwellenwert",
+      "match_type": "Übereinstimmungstyp",
+      "trigger_product": "Produkt",
+      "trigger_collection": "Kollektion",
+      "product_to_add": "Hinzuzufügendes Produkt",
+      "specific_variant_id": "Bestimmte Varianten-ID (optional)"
+    },
+    "options": {
+      "cart_subtotal": "Warenkorb-Zwischensumme erreicht Betrag",
+      "product_or_collection_in_cart": "Bestimmtes Produkt oder Kollektion im Warenkorb",
+      "product": "Produkt",
+      "collection": "Kollektion"
+    },
+    "info": {
+      "threshold_currency": "Geben Sie den Betrag in der Währung Ihres Shops ein, z. B. 50.00 für 50,00 €.",
+      "trigger_reference_scope": "Wird nur verwendet, wenn der Übereinstimmungstyp oben auf Produkt eingestellt ist.",
+      "collection_limit": "Es werden nur die ersten 250 Produkte der Kollektion geprüft. Wird nur verwendet, wenn der Übereinstimmungstyp oben auf Kollektion eingestellt ist.",
+      "variant_id": "Leer lassen, um die erste verfügbare Variante des Produkts zu verwenden."
+    }
   }
 }

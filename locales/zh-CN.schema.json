@@ -1293,5 +1293,37 @@
       "placeholder_2": "Item 2",
       "placeholder_3": "Item 3"
     }
+  },
+  "auto_add_to_cart": {
+    "names": {
+      "section": "自动加入购物车"
+    },
+    "content": {
+      "setup": "只需将此区块添加到页眉或页脚分组一次。它没有可见的输出内容，只是监控购物车，并自动添加下方配置的商品。",
+      "trigger": "触发条件",
+      "item": "自动添加的商品"
+    },
+    "settings": {
+      "enabled": "启用",
+      "trigger_type": "触发类型",
+      "subtotal_threshold_amount": "小计门槛",
+      "match_type": "匹配类型",
+      "trigger_product": "商品",
+      "trigger_collection": "系列",
+      "product_to_add": "要添加的商品",
+      "specific_variant_id": "指定变体ID（可选）"
+    },
+    "options": {
+      "cart_subtotal": "购物车小计达到指定金额",
+      "product_or_collection_in_cart": "购物车中包含指定商品或系列",
+      "product": "商品",
+      "collection": "系列"
+    },
+    "info": {
+      "threshold_currency": "请输入以店铺货币计的金额，例如 50.00 表示 ¥50.00。",
+      "trigger_reference_scope": "仅当上方的匹配类型设置为商品时使用。",
+      "collection_limit": "仅检查该系列中的前 250 件商品。仅当上方的匹配类型设置为系列时使用。",
+      "variant_id": "留空则使用该商品的第一个可购买变体。"
+    }
   }
 }

@@ -1293,5 +1293,37 @@
       "placeholder_2": "Item 2",
       "placeholder_3": "Item 3"
     }
+  },
+  "auto_add_to_cart": {
+    "names": {
+      "section": "Auto add to cart"
+    },
+    "content": {
+      "setup": "Add this section once to your Header or Footer group. It has no visible output - it just watches the cart and automatically adds the configured item below.",
+      "trigger": "Trigger",
+      "item": "Item to auto-add"
+    },
+    "settings": {
+      "enabled": "Enabled",
+      "trigger_type": "Trigger type",
+      "subtotal_threshold_amount": "Subtotal threshold",
+      "match_type": "Match type",
+      "trigger_product": "Product",
+      "trigger_collection": "Collection",
+      "product_to_add": "Product to add",
+      "specific_variant_id": "Specific variant ID (optional)"
+    },
+    "options": {
+      "cart_subtotal": "Cart subtotal reaches amount",
+      "product_or_collection_in_cart": "Specific product or collection in cart",
+      "product": "Product",
+      "collection": "Collection"
+    },
+    "info": {
+      "threshold_currency": "Enter the amount in your store's currency, e.g. 50.00 for $50.00.",
+      "trigger_reference_scope": "Only used when Match type above is set to Product.",
+      "collection_limit": "Only the first 250 products in the collection are checked. Only used when Match type above is set to Collection.",
+      "variant_id": "Leave blank to use the product's first available variant."
+    }
   }
 }

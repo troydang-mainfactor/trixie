@@ -1293,5 +1293,37 @@
       "placeholder_2": "Item 2",
       "placeholder_3": "Item 3"
     }
+  },
+  "auto_add_to_cart": {
+    "names": {
+      "section": "カート自動追加"
+    },
+    "content": {
+      "setup": "このセクションをヘッダーまたはフッターグループに一度追加してください。表示上の出力はありません。カートを監視し、以下で設定した商品を自動的に追加します。",
+      "trigger": "トリガー",
+      "item": "自動追加する商品"
+    },
+    "settings": {
+      "enabled": "有効",
+      "trigger_type": "トリガーの種類",
+      "subtotal_threshold_amount": "小計のしきい値",
+      "match_type": "一致タイプ",
+      "trigger_product": "商品",
+      "trigger_collection": "コレクション",
+      "product_to_add": "追加する商品",
+      "specific_variant_id": "特定のバリエーションID（任意）"
+    },
+    "options": {
+      "cart_subtotal": "カートの小計が金額に達したとき",
+      "product_or_collection_in_cart": "特定の商品またはコレクションがカートに入っているとき",
+      "product": "商品",
+      "collection": "コレクション"
+    },
+    "info": {
+      "threshold_currency": "ストアの通貨で金額を入力してください（例: 50.00で¥50）。",
+      "trigger_reference_scope": "上の「一致タイプ」が「商品」に設定されている場合のみ使用されます。",
+      "collection_limit": "コレクション内の最初の250件の商品のみが確認されます。上の「一致タイプ」が「コレクション」に設定されている場合のみ使用されます。",
+      "variant_id": "空欄にすると、商品の最初の購入可能なバリエーションが使用されます。"
+    }
   }
 }

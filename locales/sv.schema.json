@@ -1293,5 +1293,37 @@
       "placeholder_2": "Item 2",
       "placeholder_3": "Item 3"
     }
+  },
+  "auto_add_to_cart": {
+    "names": {
+      "section": "Lägg automatiskt i varukorgen"
+    },
+    "content": {
+      "setup": "Lägg till den här sektionen en gång i din sidhuvud- eller sidfotsgrupp. Den har ingen synlig utdata - den bevakar bara varukorgen och lägger automatiskt till den konfigurerade produkten nedan.",
+      "trigger": "Utlösare",
+      "item": "Produkt att lägga till automatiskt"
+    },
+    "settings": {
+      "enabled": "Aktiverad",
+      "trigger_type": "Utlösartyp",
+      "subtotal_threshold_amount": "Delsummetröskel",
+      "match_type": "Matchningstyp",
+      "trigger_product": "Produkt",
+      "trigger_collection": "Kollektion",
+      "product_to_add": "Produkt att lägga till",
+      "specific_variant_id": "Specifikt variant-ID (valfritt)"
+    },
+    "options": {
+      "cart_subtotal": "Varukorgens delsumma når ett belopp",
+      "product_or_collection_in_cart": "Specifik produkt eller kollektion i varukorgen",
+      "product": "Produkt",
+      "collection": "Kollektion"
+    },
+    "info": {
+      "threshold_currency": "Ange beloppet i din butiks valuta, t.ex. 50.00 för 50,00 kr.",
+      "trigger_reference_scope": "Används endast när Matchningstyp ovan är inställd på Produkt.",
+      "collection_limit": "Endast de första 250 produkterna i kollektionen kontrolleras. Används endast när Matchningstyp ovan är inställd på Kollektion.",
+      "variant_id": "Lämna tomt för att använda produktens första tillgängliga variant."
+    }
   }
 }
