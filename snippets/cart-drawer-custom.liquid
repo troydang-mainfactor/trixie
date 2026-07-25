@@ -47,11 +47,6 @@
   {% endcapture %}
   {% assign cart_drawer_title = 'content.cart_title' | t %}
 
-  <div
-    class="custom-cart-drawer-backdrop"
-    data-cart-drawer-backdrop
-  ></div>
-
   <theme-drawer
     id="cart-drawer"
     data-skip-node-update
@@ -149,33 +144,12 @@
     </dialog>
   </theme-drawer>
 
-  <script
-    src="{{ 'cart-drawer-custom.js' | asset_url }}"
-    type="module"
-    fetchpriority="low"
-  ></script>
-
   {% if render_wrapper %}
     </div>
   {% endif %}
 {%- endif -%}
 
 {% stylesheet %}
-  .custom-cart-drawer-backdrop {
-    position: fixed;
-    inset: 0;
-    z-index: calc(var(--layer-sticky) - 1);
-    background: rgb(var(--backdrop-color-rgb) / var(--backdrop-opacity));
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity var(--animation-speed) var(--animation-easing);
-  }
-
-  body:has(#cart-drawer[open]) .custom-cart-drawer-backdrop {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
   .custom-cart-drawer__dialog {
     padding: 0;
     max-width: 30rem;
