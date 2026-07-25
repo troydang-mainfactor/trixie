@@ -17,28 +17,25 @@
   # This block is shared between the PDP and featured-product sections (both
   # of which pair it with their own on-page variant-picker block, which keeps
   # the hidden variant id in sync as the shopper picks options) and cards on
-  # collection/search-style grids rendered by _product-card.liquid (which have
-  # no on-card picker at all). Without a picker, submitting this form always
-  # adds whichever variant Shopify resolves as "first available" - silently
-  # the wrong one for a product with real variant options. closest.is_product_card
-  # (set only by _product-card.liquid, see its content_for 'blocks' call) is
-  # the precise signal for that no-picker card context - checking template.name
-  # instead would incorrectly also match featured-product sections on non-PDP
-  # templates that DO have their own picker. Route only the true no-picker case
-  # through the same quick-add mechanism the product-card gallery's hover
-  # button already uses, so the shopper picks a variant before anything is added.
-  # Also requires quick_add/mobile_quick_add to be on, since that's what
-  # renders the #quick-add-dialog modal shell in layout/theme.liquid - without
-  # it the button would open nothing. Falls back to the plain button below,
-  # same as if the merchant had turned quick add off entirely. Computed as its
-  # own variable first since Liquid has no parentheses to group the "or" here.
+  # collection/search-style grids (which have no on-card picker at all).
+  # Without a picker, submitting this form always adds whichever variant
+  # Shopify resolves as "first available" - silently the wrong one for a
+  # product with real variant options.
+  #
+  # There's no reliable way to detect "am I on a no-picker card" purely from
+  # Liquid context here (closest.<type> only allows one argument per
+  # content_for call, and that slot is already used for `product`), so this
+  # is opt-in per block instance via block.settings.open_quick_add_for_variants
+  # instead - turned on for the add-to-cart block instance configured inside
+  # collection/search card templates, left off (default) everywhere else so
+  # the PDP and featured-product's own variant pickers are untouched.
   assign quick_add_enabled = false
   if settings.quick_add or settings.mobile_quick_add
     assign quick_add_enabled = true
   endif
 
   assign needs_variant_choice = false
-  if closest.is_product_card and product.has_only_default_variant == false and product.available and quick_add_enabled
+  if block.settings.open_quick_add_for_variants and product.has_only_default_variant == false and product.available and quick_add_enabled
     assign needs_variant_choice = true
   endif
 %}
@@ -110,6 +107,13 @@
       "id": "show_price",
       "label": "t:settings.show_price_in_button",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "open_quick_add_for_variants",
+      "label": "t:settings.open_quick_add_for_variants",
+      "info": "t:info.open_quick_add_for_variants",
+      "default": false
     },
     {
       "type": "select",
