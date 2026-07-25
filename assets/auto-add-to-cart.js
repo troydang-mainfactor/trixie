@@ -162,18 +162,21 @@ if (config && config.targetVariantId) {
   }
 
   document.addEventListener(StandardEvents.cartLinesUpdate, async (event) => {
-    /** @type {{source?: string} | undefined} */
-    let detail;
+    // Only skip when we can positively confirm this is our own dispatched event
+    // (see announceCartChange) - anything else (including a rejected/missing/
+    // oddly-shaped promise from a dispatcher we don't fully control) should
+    // still trigger a re-check. Checks are cheap and idempotent, so erring
+    // toward "check anyway" is safe; erring toward "skip" is what caused the
+    // trigger to silently stop firing until the next full page load.
+    let isOwnEvent = false;
     try {
-      ({ detail } = await event.promise);
+      const resolved = await event.promise;
+      isOwnEvent = resolved?.detail?.source === SOURCE;
     } catch {
-      // The mutation that triggered this event failed - cart state is unchanged.
-      return;
+      // Ignore - fall through to scheduleCheck() below.
     }
 
-    // Ignore our own dispatched event (see addTargetToCart) to avoid re-checking
-    // immediately after we just added the item ourselves.
-    if (detail?.source === SOURCE) return;
+    if (isOwnEvent) return;
 
     scheduleCheck();
   });
