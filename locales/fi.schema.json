@@ -1328,12 +1328,17 @@
   },
   "custom_cart_drawer": {
     "names": {
-      "milestone_tier": "Virstanpylväs"
+            "group": "Mukautettu ostoskori"
     },
     "content": {
       "header_zone": "Yläosan alue",
       "milestone_bar": "Virstanpylväiden edistymispalkki",
-      "cross_sell": "Lisämyyntikaruselli",
+            "milestone_slots_note": "Enintään 4 virstanpylvästä, näytetään järjestyksessä. Jätä virstanpylvään kynnysarvo tyhjäksi, jos et halua käyttää sitä.",
+      "milestone_1": "Virstanpylväs 1",
+      "milestone_2": "Virstanpylväs 2",
+      "milestone_3": "Virstanpylväs 3",
+      "milestone_4": "Virstanpylväs 4",
+"cross_sell": "Lisämyyntikaruselli",
       "footer_zone": "Alaosan alue"
     },
     "settings": {

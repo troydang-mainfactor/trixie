@@ -1,0 +1,43 @@
+{%- doc -%}
+  Renders one milestone icon+label badge, positioned along the progress track.
+
+  @param {number} threshold - This milestone's dollar threshold.
+  @param {string} label - Merchant-entered label text.
+  @param {string} icon - One of: gift, shipping, discount, custom.
+  @param {string} [custom_icon] - Image, used when icon == 'custom'.
+  @param {number} max_threshold - The highest active milestone's threshold, used to position this badge along the track.
+  @param {number} fill_percent - Current fill percentage of the track, used to decide the "reached" state.
+{%- enddoc -%}
+
+{% liquid
+  assign tier_position = 100
+  if max_threshold > 0
+    assign tier_position = threshold | times: 100.0 | divided_by: max_threshold
+  endif
+  assign tier_position = tier_position | at_most: 100
+
+  assign icon_asset = 'icon-gift.svg'
+  case icon
+    when 'shipping'
+      assign icon_asset = 'icon-shipping.svg'
+    when 'discount'
+      assign icon_asset = 'icon-discount.svg'
+  endcase
+%}
+
+<div
+  class="custom-cart-drawer__milestone-badge{% if fill_percent >= tier_position %} custom-cart-drawer__milestone-badge--reached{% endif %}"
+  style="left: {{ tier_position }}%;"
+>
+  <span
+    class="custom-cart-drawer__milestone-icon"
+    aria-hidden="true"
+  >
+    {%- if icon == 'custom' and custom_icon != blank -%}
+      {{- custom_icon | image_url: width: 40 | image_tag -}}
+    {%- else -%}
+      {{- icon_asset | inline_asset_content -}}
+    {%- endif -%}
+  </span>
+  <span class="custom-cart-drawer__milestone-label">{{ label }}</span>
+</div>

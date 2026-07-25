@@ -1328,12 +1328,17 @@
   },
   "custom_cart_drawer": {
     "names": {
-      "milestone_tier": "Mijlpaal"
+            "group": "Aangepaste winkelwagen"
     },
     "content": {
       "header_zone": "Headerzone",
       "milestone_bar": "Mijlpaal-voortgangsbalk",
-      "cross_sell": "Cross-sell carrousel",
+            "milestone_slots_note": "Tot 4 mijlpalen, weergegeven in volgorde. Laat de drempel van een mijlpaal leeg om deze ongebruikt te laten.",
+      "milestone_1": "Mijlpaal 1",
+      "milestone_2": "Mijlpaal 2",
+      "milestone_3": "Mijlpaal 3",
+      "milestone_4": "Mijlpaal 4",
+"cross_sell": "Cross-sell carrousel",
       "footer_zone": "Footerzone"
     },
     "settings": {

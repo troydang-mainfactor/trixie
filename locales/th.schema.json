@@ -1328,12 +1328,17 @@
   },
   "custom_cart_drawer": {
     "names": {
-      "milestone_tier": "เป้าหมาย"
+            "group": "ตะกร้าสินค้าที่กำหนดเอง"
     },
     "content": {
       "header_zone": "โซนส่วนหัว",
       "milestone_bar": "แถบความคืบหน้าเป้าหมาย",
-      "cross_sell": "แคโรเซลการขายต่อยอด",
+            "milestone_slots_note": "สูงสุด 4 เป้าหมาย แสดงตามลำดับ เว้นจำนวนเงินเกณฑ์ของเป้าหมายว่างไว้เพื่อไม่ใช้งาน",
+      "milestone_1": "เป้าหมาย 1",
+      "milestone_2": "เป้าหมาย 2",
+      "milestone_3": "เป้าหมาย 3",
+      "milestone_4": "เป้าหมาย 4",
+"cross_sell": "แคโรเซลการขายต่อยอด",
       "footer_zone": "โซนส่วนท้าย"
     },
     "settings": {

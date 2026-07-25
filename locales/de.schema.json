@@ -1328,12 +1328,17 @@
   },
   "custom_cart_drawer": {
     "names": {
-      "milestone_tier": "Meilenstein"
+            "group": "Individueller Warenkorb"
     },
     "content": {
       "header_zone": "Kopfbereich",
       "milestone_bar": "Meilenstein-Fortschrittsbalken",
-      "cross_sell": "Cross-Selling-Karussell",
+            "milestone_slots_note": "Bis zu 4 Meilensteine, in der angezeigten Reihenfolge. Lassen Sie den Schwellenwert eines Meilensteins leer, um ihn ungenutzt zu lassen.",
+      "milestone_1": "Meilenstein 1",
+      "milestone_2": "Meilenstein 2",
+      "milestone_3": "Meilenstein 3",
+      "milestone_4": "Meilenstein 4",
+"cross_sell": "Cross-Selling-Karussell",
       "footer_zone": "Fußbereich"
     },
     "settings": {

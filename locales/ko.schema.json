@@ -1328,12 +1328,17 @@
   },
   "custom_cart_drawer": {
     "names": {
-      "milestone_tier": "마일스톤"
+            "group": "커스텀 장바구니"
     },
     "content": {
       "header_zone": "헤더 영역",
       "milestone_bar": "마일스톤 진행률 표시줄",
-      "cross_sell": "교차 판매 캐러셀",
+            "milestone_slots_note": "최대 4개의 마일스톤이 순서대로 표시됩니다. 사용하지 않으려면 마일스톤의 기준 금액을 비워두세요.",
+      "milestone_1": "마일스톤 1",
+      "milestone_2": "마일스톤 2",
+      "milestone_3": "마일스톤 3",
+      "milestone_4": "마일스톤 4",
+"cross_sell": "교차 판매 캐러셀",
       "footer_zone": "푸터 영역"
     },
     "settings": {
