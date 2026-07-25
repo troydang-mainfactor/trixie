@@ -257,6 +257,11 @@ class CombinedListingsCardSwatches extends CombinedListingsBase {
       quickAddVariantId: quickAddVariantId ?? '',
       available: productAvailable !== 'false',
     });
+    this.#syncBuyButtons(productCard, {
+      productId: productId ?? '',
+      quickAddVariantId: quickAddVariantId ?? '',
+      available: productAvailable !== 'false',
+    });
 
     this.#dispatchAnalyticsEvent({ productId: productId ?? '', productTitle: productTitle ?? '', productUrl });
   }
@@ -322,6 +327,32 @@ class CombinedListingsCardSwatches extends CombinedListingsBase {
     if (variantInput instanceof HTMLInputElement) {
       variantInput.value = quickAddVariantId;
       variantInput.disabled = !available || !quickAddVariantId;
+    }
+  }
+
+  /**
+   * Keeps the buy-buttons block's add-to-cart form pointed at the currently selected swatch's
+   * product/variant. Unlike the normal variant-picker flow, this swap never triggers the server
+   * round trip that would otherwise sync the form, so without this the button keeps submitting
+   * whichever product the card originally rendered with.
+   * @param {Element | null | undefined} productCard
+   * @param {{productId: string, quickAddVariantId: string, available: boolean}} target
+   */
+  #syncBuyButtons(productCard, { productId, quickAddVariantId, available }) {
+    const productForm = productCard?.querySelector('product-form-component');
+    if (!(productForm instanceof HTMLElement)) return;
+
+    productForm.dataset.productId = productId;
+
+    const variantInput = productForm.querySelector('[ref="variantId"]');
+    const canAddToCart = available && !!quickAddVariantId;
+    if (variantInput instanceof HTMLInputElement) {
+      variantInput.value = canAddToCart ? quickAddVariantId : '';
+    }
+
+    const addToCart = productForm.querySelector('add-to-cart-component');
+    if (addToCart instanceof HTMLElement && 'disable' in addToCart && 'enable' in addToCart) {
+      /** @type {any} */ (addToCart)[canAddToCart ? 'enable' : 'disable']();
     }
   }
 
