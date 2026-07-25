@@ -1332,12 +1332,8 @@
     },
     "content": {
       "header_zone": "Header zone",
-      "milestone_bar": "Milestone progress bar",
-      "milestone_slots_note": "Up to 4 milestones, shown in order. Leave a milestone's threshold blank to leave it unused.",
-      "milestone_1": "Milestone 1",
-      "milestone_2": "Milestone 2",
-      "milestone_3": "Milestone 3",
-      "milestone_4": "Milestone 4",
+      "free_shipping_bar": "Free shipping progress bar",
+      "style_zone": "Style",
       "cross_sell": "Cross-sell carousel",
       "footer_zone": "Footer zone"
     },
@@ -1345,10 +1341,11 @@
       "enable": "Use custom cart drawer",
       "background": "Background color",
       "text_color": "Text color",
-      "show_milestone_bar": "Show milestone progress bar",
+      "show_free_shipping_bar": "Show free shipping progress bar",
       "track_color": "Track color",
       "fill_color": "Fill color",
       "bar_height": "Bar height",
+      "corner_style": "Corner style",
       "show_cross_sell": "Show cross-sell carousel",
       "heading": "Heading",
       "product_source": "Product source",
@@ -1356,17 +1353,14 @@
       "max_products": "Maximum products to show",
       "show_savings_badge": "Show discount savings badge",
       "show_lock_icon": "Show lock icon on checkout button",
-      "threshold": "Threshold amount",
-      "label": "Label",
-      "icon": "Icon",
-      "custom_icon": "Custom icon"
+      "threshold": "Free shipping threshold"
     },
     "options": {
       "collection": "Collection",
       "manual": "Manual list",
-      "gift": "Gift box",
-      "shipping": "Shipping truck",
-      "discount": "Discount tag"
+      "square": "Square",
+      "rounded": "Rounded",
+      "pill": "Pill"
     },
     "info": {
       "enable": "Replaces the default cart drawer everywhere it appears. Turn off to instantly revert to the theme's original drawer.",
@@ -1375,8 +1369,7 @@
       "cross_sell_source_scope_manual": "Only used when Product source above is set to Manual list."
     },
     "text_defaults": {
-      "cross_sell_heading": "You may also like",
-      "milestone_label": "Reward"
+      "cross_sell_heading": "You may also like"
     }
   }
 }

@@ -371,7 +371,9 @@
   },
   "custom_cart_drawer": {
     "content": {
-      "savings_badge": "Sutaupote {{ percentage }}%"
+      "savings_badge": "Sutaupote {{ percentage }}%",
+      "free_shipping_remaining": "Iki nemokamo pristatymo liko {{ amount }}",
+      "free_shipping_reached": "Jums priklauso nemokamas pristatymas!"
     }
   }
 }

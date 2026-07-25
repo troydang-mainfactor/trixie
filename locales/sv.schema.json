@@ -1328,24 +1328,19 @@
   },
   "custom_cart_drawer": {
     "names": {
-            "group": "Anpassad varukorg"
+      "group": "Anpassad varukorg"
     },
     "content": {
       "header_zone": "Rubrikzon",
-      "milestone_bar": "Milstolpe-förloppsindikator",
-            "milestone_slots_note": "Upp till 4 milstolpar, visas i ordning. Lämna en milstolpes tröskel tom för att lämna den oanvänd.",
-      "milestone_1": "Milstolpe 1",
-      "milestone_2": "Milstolpe 2",
-      "milestone_3": "Milstolpe 3",
-      "milestone_4": "Milstolpe 4",
-"cross_sell": "Korsförsäljningskarusell",
-      "footer_zone": "Sidfotszon"
+      "cross_sell": "Korsförsäljningskarusell",
+      "footer_zone": "Sidfotszon",
+      "free_shipping_bar": "Förloppsindikator för fri frakt",
+      "style_zone": "Stil"
     },
     "settings": {
       "enable": "Använd anpassad varukorg",
       "background": "Bakgrundsfärg",
       "text_color": "Textfärg",
-      "show_milestone_bar": "Visa milstolpe-förloppsindikator",
       "track_color": "Spårfärg",
       "fill_color": "Fyllningsfärg",
       "bar_height": "Stapelhöjd",
@@ -1356,17 +1351,16 @@
       "max_products": "Max antal produkter att visa",
       "show_savings_badge": "Visa rabattmärke",
       "show_lock_icon": "Visa låsikon på kassaknappen",
-      "threshold": "Tröskelbelopp",
-      "label": "Etikett",
-      "icon": "Ikon",
-      "custom_icon": "Anpassad ikon"
+      "threshold": "Gräns för fri frakt",
+      "show_free_shipping_bar": "Visa förloppsindikator för fri frakt",
+      "corner_style": "Hörnstil"
     },
     "options": {
       "collection": "Kollektion",
       "manual": "Manuell lista",
-      "gift": "Presentförpackning",
-      "shipping": "Leveransbil",
-      "discount": "Rabattmärke"
+      "square": "Fyrkantig",
+      "rounded": "Rundad",
+      "pill": "Piller-form"
     },
     "info": {
       "enable": "Ersätter standardvarukorgen överallt där den visas. Stäng av för att omedelbart återgå till temats ursprungliga varukorg.",
@@ -1375,8 +1369,7 @@
       "cross_sell_source_scope_manual": "Används endast när Produktkälla ovan är inställd på Manuell lista."
     },
     "text_defaults": {
-      "cross_sell_heading": "Du kanske också gillar",
-      "milestone_label": "Belöning"
+      "cross_sell_heading": "Du kanske också gillar"
     }
   }
 }

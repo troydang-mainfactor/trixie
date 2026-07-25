@@ -1328,24 +1328,19 @@
   },
   "custom_cart_drawer": {
     "names": {
-            "group": "Carrello personalizzato"
+      "group": "Carrello personalizzato"
     },
     "content": {
       "header_zone": "Zona intestazione",
-      "milestone_bar": "Barra di avanzamento dei traguardi",
-            "milestone_slots_note": "Fino a 4 traguardi, mostrati in ordine. Lascia vuota la soglia di un traguardo per lasciarlo inutilizzato.",
-      "milestone_1": "Traguardo 1",
-      "milestone_2": "Traguardo 2",
-      "milestone_3": "Traguardo 3",
-      "milestone_4": "Traguardo 4",
-"cross_sell": "Carosello di cross-selling",
-      "footer_zone": "Zona piè di pagina"
+      "cross_sell": "Carosello di cross-selling",
+      "footer_zone": "Zona piè di pagina",
+      "free_shipping_bar": "Barra di avanzamento spedizione gratuita",
+      "style_zone": "Stile"
     },
     "settings": {
       "enable": "Usa carrello personalizzato",
       "background": "Colore di sfondo",
       "text_color": "Colore del testo",
-      "show_milestone_bar": "Mostra barra di avanzamento dei traguardi",
       "track_color": "Colore della traccia",
       "fill_color": "Colore di riempimento",
       "bar_height": "Altezza della barra",
@@ -1356,17 +1351,16 @@
       "max_products": "Numero massimo di prodotti da mostrare",
       "show_savings_badge": "Mostra badge di risparmio",
       "show_lock_icon": "Mostra icona lucchetto sul pulsante di pagamento",
-      "threshold": "Importo soglia",
-      "label": "Etichetta",
-      "icon": "Icona",
-      "custom_icon": "Icona personalizzata"
+      "threshold": "Soglia per la spedizione gratuita",
+      "show_free_shipping_bar": "Mostra barra di avanzamento spedizione gratuita",
+      "corner_style": "Stile degli angoli"
     },
     "options": {
       "collection": "Collezione",
       "manual": "Elenco manuale",
-      "gift": "Scatola regalo",
-      "shipping": "Camion delle consegne",
-      "discount": "Etichetta sconto"
+      "square": "Squadrato",
+      "rounded": "Arrotondato",
+      "pill": "Pillola"
     },
     "info": {
       "enable": "Sostituisce il carrello predefinito ovunque appaia. Disattiva per tornare immediatamente al carrello originale del tema.",
@@ -1375,8 +1369,7 @@
       "cross_sell_source_scope_manual": "Utilizzato solo quando l'Origine prodotti sopra è impostata su Elenco manuale."
     },
     "text_defaults": {
-      "cross_sell_heading": "Potrebbe piacerti anche",
-      "milestone_label": "Premio"
+      "cross_sell_heading": "Potrebbe piacerti anche"
     }
   }
 }

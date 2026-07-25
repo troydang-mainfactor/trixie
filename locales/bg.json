@@ -357,7 +357,9 @@
   },
   "custom_cart_drawer": {
     "content": {
-      "savings_badge": "Спестявате {{ percentage }}%"
+      "savings_badge": "Спестявате {{ percentage }}%",
+      "free_shipping_remaining": "Остават {{ amount }} до безплатна доставка",
+      "free_shipping_reached": "Отключихте безплатна доставка!"
     }
   }
 }

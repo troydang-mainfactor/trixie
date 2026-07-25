@@ -357,7 +357,9 @@
   },
   "custom_cart_drawer": {
     "content": {
-      "savings_badge": "Εξοικονομείτε {{ percentage }}%"
+      "savings_badge": "Εξοικονομείτε {{ percentage }}%",
+      "free_shipping_remaining": "Απομένουν {{ amount }} για δωρεάν αποστολή",
+      "free_shipping_reached": "Ξεκλειδώσατε δωρεάν αποστολή!"
     }
   }
 }

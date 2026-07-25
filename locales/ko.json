@@ -357,7 +357,9 @@
   },
   "custom_cart_drawer": {
     "content": {
-      "savings_badge": "{{ percentage }}% 할인"
+      "savings_badge": "{{ percentage }}% 할인",
+      "free_shipping_remaining": "무료 배송까지 {{ amount }} 남음",
+      "free_shipping_reached": "무료 배송 혜택을 받으셨습니다!"
     }
   }
 }

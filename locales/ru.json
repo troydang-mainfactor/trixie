@@ -371,7 +371,9 @@
   },
   "custom_cart_drawer": {
     "content": {
-      "savings_badge": "Экономия {{ percentage }}%"
+      "savings_badge": "Экономия {{ percentage }}%",
+      "free_shipping_remaining": "Осталось {{ amount }} до бесплатной доставки",
+      "free_shipping_reached": "Вы получили бесплатную доставку!"
     }
   }
 }

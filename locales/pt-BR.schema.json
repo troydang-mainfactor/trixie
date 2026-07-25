@@ -1328,24 +1328,19 @@
   },
   "custom_cart_drawer": {
     "names": {
-            "group": "Carrinho personalizado"
+      "group": "Carrinho personalizado"
     },
     "content": {
       "header_zone": "Zona de cabeçalho",
-      "milestone_bar": "Barra de progresso de marcos",
-            "milestone_slots_note": "Até 4 marcos, exibidos em ordem. Deixe o limite de um marco em branco para deixá-lo sem uso.",
-      "milestone_1": "Marco 1",
-      "milestone_2": "Marco 2",
-      "milestone_3": "Marco 3",
-      "milestone_4": "Marco 4",
-"cross_sell": "Carrossel de venda cruzada",
-      "footer_zone": "Zona de rodapé"
+      "cross_sell": "Carrossel de venda cruzada",
+      "footer_zone": "Zona de rodapé",
+      "free_shipping_bar": "Barra de progresso de frete grátis",
+      "style_zone": "Estilo"
     },
     "settings": {
       "enable": "Usar carrinho personalizado",
       "background": "Cor de fundo",
       "text_color": "Cor do texto",
-      "show_milestone_bar": "Mostrar barra de progresso de marcos",
       "track_color": "Cor da trilha",
       "fill_color": "Cor de preenchimento",
       "bar_height": "Altura da barra",
@@ -1356,17 +1351,16 @@
       "max_products": "Número máximo de produtos a exibir",
       "show_savings_badge": "Mostrar selo de economia",
       "show_lock_icon": "Mostrar ícone de cadeado no botão de finalização de compra",
-      "threshold": "Valor limite",
-      "label": "Rótulo",
-      "icon": "Ícone",
-      "custom_icon": "Ícone personalizado"
+      "threshold": "Limite para frete grátis",
+      "show_free_shipping_bar": "Mostrar barra de progresso de frete grátis",
+      "corner_style": "Estilo dos cantos"
     },
     "options": {
       "collection": "Coleção",
       "manual": "Lista manual",
-      "gift": "Caixa de presente",
-      "shipping": "Caminhão de entrega",
-      "discount": "Etiqueta de desconto"
+      "square": "Quadrado",
+      "rounded": "Arredondado",
+      "pill": "Formato pílula"
     },
     "info": {
       "enable": "Substitui o carrinho padrão em todos os lugares onde ele aparece. Desative para reverter instantaneamente ao carrinho original do tema.",
@@ -1375,8 +1369,7 @@
       "cross_sell_source_scope_manual": "Usado apenas quando a Origem dos produtos acima estiver definida como Lista manual."
     },
     "text_defaults": {
-      "cross_sell_heading": "Você também pode gostar",
-      "milestone_label": "Recompensa"
+      "cross_sell_heading": "Você também pode gostar"
     }
   }
 }

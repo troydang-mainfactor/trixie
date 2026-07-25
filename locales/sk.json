@@ -371,7 +371,9 @@
   },
   "custom_cart_drawer": {
     "content": {
-      "savings_badge": "Ušetríte {{ percentage }}%"
+      "savings_badge": "Ušetríte {{ percentage }}%",
+      "free_shipping_remaining": "Do bezplatnej dopravy chýba {{ amount }}",
+      "free_shipping_reached": "Máte nárok na bezplatnú dopravu!"
     }
   }
 }

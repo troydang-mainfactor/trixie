@@ -22,16 +22,32 @@
   everywhere, including from layout.liquid (which has no `section` variable
   at all), sidestepping that entirely.
 
-  Not yet carried over from the previous attempt (deferred until this simpler
-  foundation is confirmed stable): the discount-savings-percentage badge and
-  the lock icon on the checkout button, since both would require forking
-  cart-summary.liquid too rather than just adding to this file.
+  cart-summary.liquid is forked as cart-summary-custom.liquid (price on the
+  checkout button, subtotal/discount lines always shown above it, and the
+  savings-badge/lock-icon toggles wired up) since those changes touch the
+  totals/checkout markup directly - everything else (line items, quantity
+  steppers, remove buttons) still comes from the untouched originals.
 
   @param {boolean} [render_wrapper] - When true, wraps the drawer in the section wrapper that the Section Rendering API adds automatically.
 {% enddoc %}
 
 {%- liquid
   assign render_wrapper = render_wrapper | default: true, allow_false: true
+
+  case settings.custom_drawer_corner_style
+    when 'square'
+      assign custom_drawer_radius_sm = '0px'
+      assign custom_drawer_radius_md = '0px'
+      assign custom_drawer_radius_pill = '0px'
+    when 'pill'
+      assign custom_drawer_radius_sm = '10px'
+      assign custom_drawer_radius_md = '18px'
+      assign custom_drawer_radius_pill = '999px'
+    else
+      assign custom_drawer_radius_sm = '6px'
+      assign custom_drawer_radius_md = '10px'
+      assign custom_drawer_radius_pill = '999px'
+  endcase
 -%}
 
 {%- if settings.cart_type == 'drawer' and template.name != 'cart' -%}
@@ -88,6 +104,11 @@
         <div
           class="cart-drawer__inner{% if cart.empty? %} cart-drawer--empty{% endif %}"
           data-hydration-key="cart-drawer-inner"
+          style="
+            --custom-drawer-radius-sm: {{ custom_drawer_radius_sm }};
+            --custom-drawer-radius-md: {{ custom_drawer_radius_md }};
+            --custom-drawer-radius-pill: {{ custom_drawer_radius_pill }};
+          "
         >
           {%- if cart.empty? -%}
             <div class="theme-drawer__header">
@@ -160,7 +181,7 @@
                     --custom-drawer-footer-text: {{ settings.custom_drawer_footer_text_color }};
                   "
                 >
-                  {% render 'cart-summary', section_id: 'cart-drawer-section' %}
+                  {% render 'cart-summary-custom', section_id: 'cart-drawer-section' %}
                 </div>
               </scroll-hint>
             {%- endif -%}
@@ -339,5 +360,55 @@
   .cart-drawer__summary.custom-cart-drawer-zones__footer-zone {
     background-color: var(--custom-drawer-footer-bg);
     color: var(--custom-drawer-footer-text);
+  }
+
+  /* Compact, uniform line items: larger product image, smaller pill-style
+     quantity selector and remove button. Scoped to .cart-drawer__items so it
+     only affects rows rendered inside this drawer - cart-products.liquid
+     itself is untouched. */
+  .cart-drawer__items .cart-items__table-row {
+    grid-template-columns: clamp(4.75rem, 26cqi, 6.25rem) minmax(0, 1fr) minmax(4rem, auto);
+    align-items: center;
+    column-gap: var(--gap-md);
+  }
+
+  .cart-drawer__items .cart-items__media-container {
+    border-radius: var(--custom-drawer-radius-md, 10px);
+    overflow: hidden;
+  }
+
+  .cart-drawer__items .cart-items__quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-2xs);
+  }
+
+  .cart-drawer__items .quantity-selector {
+    --quantity-selector-width: 84px;
+
+    border-radius: var(--custom-drawer-radius-pill, 999px);
+  }
+
+  .cart-drawer__items .quantity-selector .quantity-minus,
+  .cart-drawer__items .quantity-selector .quantity-plus {
+    width: 30px;
+    height: 30px;
+    border-radius: var(--custom-drawer-radius-pill, 999px);
+  }
+
+  .cart-drawer__items .cart-items__remove {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--custom-drawer-radius-pill, 999px);
+    background-color: rgb(var(--color-foreground-rgb) / var(--opacity-10));
+  }
+
+  .cart-drawer__items .cart-items__remove svg {
+    width: var(--icon-size-xs);
+    height: var(--icon-size-xs);
   }
 {% endstylesheet %}

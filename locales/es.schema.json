@@ -1328,24 +1328,19 @@
   },
   "custom_cart_drawer": {
     "names": {
-            "group": "Carrito personalizado"
+      "group": "Carrito personalizado"
     },
     "content": {
       "header_zone": "Zona de encabezado",
-      "milestone_bar": "Barra de progreso de hitos",
-            "milestone_slots_note": "Hasta 4 hitos, mostrados en orden. Deja en blanco el umbral de un hito para dejarlo sin usar.",
-      "milestone_1": "Hito 1",
-      "milestone_2": "Hito 2",
-      "milestone_3": "Hito 3",
-      "milestone_4": "Hito 4",
-"cross_sell": "Carrusel de venta cruzada",
-      "footer_zone": "Zona de pie de página"
+      "cross_sell": "Carrusel de venta cruzada",
+      "footer_zone": "Zona de pie de página",
+      "free_shipping_bar": "Barra de progreso de envío gratis",
+      "style_zone": "Estilo"
     },
     "settings": {
       "enable": "Usar carrito personalizado",
       "background": "Color de fondo",
       "text_color": "Color de texto",
-      "show_milestone_bar": "Mostrar barra de progreso de hitos",
       "track_color": "Color de la pista",
       "fill_color": "Color de relleno",
       "bar_height": "Altura de la barra",
@@ -1356,17 +1351,16 @@
       "max_products": "Número máximo de productos a mostrar",
       "show_savings_badge": "Mostrar insignia de ahorro",
       "show_lock_icon": "Mostrar icono de candado en el botón de pago",
-      "threshold": "Importe del umbral",
-      "label": "Etiqueta",
-      "icon": "Icono",
-      "custom_icon": "Icono personalizado"
+      "threshold": "Umbral de envío gratis",
+      "show_free_shipping_bar": "Mostrar barra de progreso de envío gratis",
+      "corner_style": "Estilo de esquinas"
     },
     "options": {
       "collection": "Colección",
       "manual": "Lista manual",
-      "gift": "Caja de regalo",
-      "shipping": "Camión de reparto",
-      "discount": "Etiqueta de descuento"
+      "square": "Cuadrado",
+      "rounded": "Redondeado",
+      "pill": "Píldora"
     },
     "info": {
       "enable": "Sustituye al carrito predeterminado en todos los lugares donde aparece. Desactívalo para volver instantáneamente al carrito original del tema.",
@@ -1375,8 +1369,7 @@
       "cross_sell_source_scope_manual": "Solo se usa cuando el Origen de los productos anterior está establecido en Lista manual."
     },
     "text_defaults": {
-      "cross_sell_heading": "También te puede gustar",
-      "milestone_label": "Recompensa"
+      "cross_sell_heading": "También te puede gustar"
     }
   }
 }

@@ -1328,24 +1328,19 @@
   },
   "custom_cart_drawer": {
     "names": {
-            "group": "Özel sepet"
+      "group": "Özel sepet"
     },
     "content": {
       "header_zone": "Üstbilgi alanı",
-      "milestone_bar": "Kilometre taşı ilerleme çubuğu",
-            "milestone_slots_note": "Sırayla gösterilen en fazla 4 kilometre taşı. Kullanılmayan bırakmak için bir kilometre taşının eşiğini boş bırakın.",
-      "milestone_1": "Kilometre taşı 1",
-      "milestone_2": "Kilometre taşı 2",
-      "milestone_3": "Kilometre taşı 3",
-      "milestone_4": "Kilometre taşı 4",
-"cross_sell": "Çapraz satış karuseli",
-      "footer_zone": "Altbilgi alanı"
+      "cross_sell": "Çapraz satış karuseli",
+      "footer_zone": "Altbilgi alanı",
+      "free_shipping_bar": "Ücretsiz kargo ilerleme çubuğu",
+      "style_zone": "Stil"
     },
     "settings": {
       "enable": "Özel sepeti kullan",
       "background": "Arka plan rengi",
       "text_color": "Metin rengi",
-      "show_milestone_bar": "Kilometre taşı ilerleme çubuğunu göster",
       "track_color": "Parça rengi",
       "fill_color": "Dolgu rengi",
       "bar_height": "Çubuk yüksekliği",
@@ -1356,17 +1351,16 @@
       "max_products": "Gösterilecek maksimum ürün sayısı",
       "show_savings_badge": "İndirim rozetini göster",
       "show_lock_icon": "Ödeme düğmesinde kilit simgesini göster",
-      "threshold": "Eşik tutarı",
-      "label": "Etiket",
-      "icon": "Simge",
-      "custom_icon": "Özel simge"
+      "threshold": "Ücretsiz kargo eşiği",
+      "show_free_shipping_bar": "Ücretsiz kargo ilerleme çubuğunu göster",
+      "corner_style": "Köşe stili"
     },
     "options": {
       "collection": "Koleksiyon",
       "manual": "Manuel liste",
-      "gift": "Hediye kutusu",
-      "shipping": "Teslimat kamyonu",
-      "discount": "İndirim etiketi"
+      "square": "Köşeli",
+      "rounded": "Yuvarlatılmış",
+      "pill": "Hap şekli"
     },
     "info": {
       "enable": "Göründüğü her yerde varsayılan sepetin yerini alır. Temanın orijinal sepetine anında geri dönmek için kapatın.",
@@ -1375,8 +1369,7 @@
       "cross_sell_source_scope_manual": "Yalnızca yukarıdaki Ürün kaynağı Manuel liste olarak ayarlandığında kullanılır."
     },
     "text_defaults": {
-      "cross_sell_heading": "Bunu da beğenebilirsiniz",
-      "milestone_label": "Ödül"
+      "cross_sell_heading": "Bunu da beğenebilirsiniz"
     }
   }
 }

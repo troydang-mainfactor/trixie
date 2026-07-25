@@ -1328,24 +1328,19 @@
   },
   "custom_cart_drawer": {
     "names": {
-            "group": "커스텀 장바구니"
+      "group": "커스텀 장바구니"
     },
     "content": {
       "header_zone": "헤더 영역",
-      "milestone_bar": "마일스톤 진행률 표시줄",
-            "milestone_slots_note": "최대 4개의 마일스톤이 순서대로 표시됩니다. 사용하지 않으려면 마일스톤의 기준 금액을 비워두세요.",
-      "milestone_1": "마일스톤 1",
-      "milestone_2": "마일스톤 2",
-      "milestone_3": "마일스톤 3",
-      "milestone_4": "마일스톤 4",
-"cross_sell": "교차 판매 캐러셀",
-      "footer_zone": "푸터 영역"
+      "cross_sell": "교차 판매 캐러셀",
+      "footer_zone": "푸터 영역",
+      "free_shipping_bar": "무료 배송 진행률 표시줄",
+      "style_zone": "스타일"
     },
     "settings": {
       "enable": "커스텀 장바구니 사용",
       "background": "배경 색상",
       "text_color": "텍스트 색상",
-      "show_milestone_bar": "마일스톤 진행률 표시줄 표시",
       "track_color": "트랙 색상",
       "fill_color": "채우기 색상",
       "bar_height": "바 높이",
@@ -1356,17 +1351,16 @@
       "max_products": "표시할 최대 상품 수",
       "show_savings_badge": "할인 배지 표시",
       "show_lock_icon": "체크아웃 버튼에 잠금 아이콘 표시",
-      "threshold": "기준 금액",
-      "label": "라벨",
-      "icon": "아이콘",
-      "custom_icon": "사용자 지정 아이콘"
+      "threshold": "무료 배송 기준 금액",
+      "show_free_shipping_bar": "무료 배송 진행률 표시줄 표시",
+      "corner_style": "모서리 스타일"
     },
     "options": {
       "collection": "컬렉션",
       "manual": "수동 목록",
-      "gift": "선물 상자",
-      "shipping": "배송 트럭",
-      "discount": "할인 태그"
+      "square": "사각형",
+      "rounded": "둥근 모서리",
+      "pill": "필 모양"
     },
     "info": {
       "enable": "표시되는 모든 곳에서 기본 장바구니를 대체합니다. 끄면 테마의 원래 장바구니로 즉시 돌아갑니다.",
@@ -1375,8 +1369,7 @@
       "cross_sell_source_scope_manual": "위의 상품 소스가 수동 목록으로 설정된 경우에만 사용됩니다."
     },
     "text_defaults": {
-      "cross_sell_heading": "이런 상품은 어떠세요",
-      "milestone_label": "혜택"
+      "cross_sell_heading": "이런 상품은 어떠세요"
     }
   }
 }

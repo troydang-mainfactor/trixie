@@ -1328,24 +1328,19 @@
   },
   "custom_cart_drawer": {
     "names": {
-            "group": "Vlastní košík"
+      "group": "Vlastní košík"
     },
     "content": {
       "header_zone": "Zóna záhlaví",
-      "milestone_bar": "Milníkový ukazatel průběhu",
-            "milestone_slots_note": "Až 4 milníky, zobrazené v pořadí. Ponechte prahovou hodnotu milníku prázdnou, pokud ho nechcete použít.",
-      "milestone_1": "Milník 1",
-      "milestone_2": "Milník 2",
-      "milestone_3": "Milník 3",
-      "milestone_4": "Milník 4",
-"cross_sell": "Kolotoč doplňkového prodeje",
-      "footer_zone": "Zóna zápatí"
+      "cross_sell": "Kolotoč doplňkového prodeje",
+      "footer_zone": "Zóna zápatí",
+      "free_shipping_bar": "Ukazatel průběhu dopravy zdarma",
+      "style_zone": "Styl"
     },
     "settings": {
       "enable": "Použít vlastní košík",
       "background": "Barva pozadí",
       "text_color": "Barva textu",
-      "show_milestone_bar": "Zobrazit milníkový ukazatel průběhu",
       "track_color": "Barva dráhy",
       "fill_color": "Barva výplně",
       "bar_height": "Výška lišty",
@@ -1356,17 +1351,16 @@
       "max_products": "Maximální počet zobrazených produktů",
       "show_savings_badge": "Zobrazit odznak slevy",
       "show_lock_icon": "Zobrazit ikonu zámku na tlačítku pokladny",
-      "threshold": "Prahová částka",
-      "label": "Popisek",
-      "icon": "Ikona",
-      "custom_icon": "Vlastní ikona"
+      "threshold": "Práh dopravy zdarma",
+      "show_free_shipping_bar": "Zobrazit ukazatel průběhu dopravy zdarma",
+      "corner_style": "Styl rohů"
     },
     "options": {
       "collection": "Kolekce",
       "manual": "Ruční seznam",
-      "gift": "Krabička s dárkem",
-      "shipping": "Nákladní auto",
-      "discount": "Slevový štítek"
+      "square": "Hranaté",
+      "rounded": "Zaoblené",
+      "pill": "Pilulka"
     },
     "info": {
       "enable": "Nahradí výchozí košík všude, kde se zobrazuje. Vypnutím se okamžitě vrátíte k původnímu košíku motivu.",
@@ -1375,8 +1369,7 @@
       "cross_sell_source_scope_manual": "Použije se pouze pokud je Zdroj produktů nastaven na Ruční seznam."
     },
     "text_defaults": {
-      "cross_sell_heading": "Mohlo by se vám také líbit",
-      "milestone_label": "Odměna"
+      "cross_sell_heading": "Mohlo by se vám také líbit"
     }
   }
 }

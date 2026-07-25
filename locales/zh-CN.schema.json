@@ -1328,24 +1328,19 @@
   },
   "custom_cart_drawer": {
     "names": {
-            "group": "自定义购物车"
+      "group": "自定义购物车"
     },
     "content": {
       "header_zone": "顶部区域",
-      "milestone_bar": "里程碑进度条",
-            "milestone_slots_note": "最多 4 个里程碑，按顺序显示。将里程碑的门槛金额留空即可不使用该里程碑。",
-      "milestone_1": "里程碑1",
-      "milestone_2": "里程碑2",
-      "milestone_3": "里程碑3",
-      "milestone_4": "里程碑4",
-"cross_sell": "交叉销售轮播",
-      "footer_zone": "底部区域"
+      "cross_sell": "交叉销售轮播",
+      "footer_zone": "底部区域",
+      "free_shipping_bar": "包邮进度条",
+      "style_zone": "样式"
     },
     "settings": {
       "enable": "使用自定义购物车",
       "background": "背景颜色",
       "text_color": "文字颜色",
-      "show_milestone_bar": "显示里程碑进度条",
       "track_color": "轨道颜色",
       "fill_color": "填充颜色",
       "bar_height": "进度条高度",
@@ -1356,17 +1351,16 @@
       "max_products": "显示的最大商品数量",
       "show_savings_badge": "显示折扣徽章",
       "show_lock_icon": "在结账按钮上显示锁定图标",
-      "threshold": "门槛金额",
-      "label": "标签",
-      "icon": "图标",
-      "custom_icon": "自定义图标"
+      "threshold": "包邮门槛",
+      "show_free_shipping_bar": "显示包邮进度条",
+      "corner_style": "圆角样式"
     },
     "options": {
       "collection": "系列",
       "manual": "手动列表",
-      "gift": "礼品盒",
-      "shipping": "配送卡车",
-      "discount": "折扣标签"
+      "square": "直角",
+      "rounded": "圆角",
+      "pill": "胶囊形"
     },
     "info": {
       "enable": "在出现的所有位置替换默认购物车。关闭后可立即恢复主题的原始购物车。",
@@ -1375,8 +1369,7 @@
       "cross_sell_source_scope_manual": "仅当上方的商品来源设置为手动列表时使用。"
     },
     "text_defaults": {
-      "cross_sell_heading": "您可能还喜欢",
-      "milestone_label": "奖励"
+      "cross_sell_heading": "您可能还喜欢"
     }
   }
 }

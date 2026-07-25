@@ -1328,24 +1328,19 @@
   },
   "custom_cart_drawer": {
     "names": {
-            "group": "Tilpasset kurv"
+      "group": "Tilpasset kurv"
     },
     "content": {
       "header_zone": "Header-zone",
-      "milestone_bar": "Milepæl-fremskridtslinje",
-            "milestone_slots_note": "Op til 4 milepæle, vist i rækkefølge. Lad en milepæls tærskel stå tom for at lade den være ubrugt.",
-      "milestone_1": "Milepæl 1",
-      "milestone_2": "Milepæl 2",
-      "milestone_3": "Milepæl 3",
-      "milestone_4": "Milepæl 4",
-"cross_sell": "Krydssalg-karrusel",
-      "footer_zone": "Footer-zone"
+      "cross_sell": "Krydssalg-karrusel",
+      "footer_zone": "Footer-zone",
+      "free_shipping_bar": "Fremskridtslinje for gratis fragt",
+      "style_zone": "Stil"
     },
     "settings": {
       "enable": "Brug tilpasset kurv",
       "background": "Baggrundsfarve",
       "text_color": "Tekstfarve",
-      "show_milestone_bar": "Vis milepæl-fremskridtslinje",
       "track_color": "Sporfarve",
       "fill_color": "Udfyldningsfarve",
       "bar_height": "Linjehøjde",
@@ -1356,17 +1351,16 @@
       "max_products": "Maks. antal produkter at vise",
       "show_savings_badge": "Vis rabatmærke",
       "show_lock_icon": "Vis låseikon på betalingsknappen",
-      "threshold": "Tærskelbeløb",
-      "label": "Etiket",
-      "icon": "Ikon",
-      "custom_icon": "Brugerdefineret ikon"
+      "threshold": "Grænse for gratis fragt",
+      "show_free_shipping_bar": "Vis fremskridtslinje for gratis fragt",
+      "corner_style": "Hjørnestil"
     },
     "options": {
       "collection": "Kollektion",
       "manual": "Manuel liste",
-      "gift": "Gaveæske",
-      "shipping": "Leveringsbil",
-      "discount": "Rabatmærke"
+      "square": "Firkantet",
+      "rounded": "Afrundet",
+      "pill": "Pilleform"
     },
     "info": {
       "enable": "Erstatter standardkurven overalt, hvor den vises. Slå fra for straks at gå tilbage til temaets oprindelige kurv.",
@@ -1375,8 +1369,7 @@
       "cross_sell_source_scope_manual": "Bruges kun, når Produktkilde ovenfor er sat til Manuel liste."
     },
     "text_defaults": {
-      "cross_sell_heading": "Du vil måske også kunne lide",
-      "milestone_label": "Belønning"
+      "cross_sell_heading": "Du vil måske også kunne lide"
     }
   }
 }

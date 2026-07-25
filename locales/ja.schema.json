@@ -1328,24 +1328,19 @@
   },
   "custom_cart_drawer": {
     "names": {
-            "group": "カスタムカート"
+      "group": "カスタムカート"
     },
     "content": {
       "header_zone": "ヘッダーゾーン",
-      "milestone_bar": "マイルストーン進捗バー",
-            "milestone_slots_note": "最大4つのマイルストーンを順番に表示します。使用しないマイルストーンはしきい値を空欄にしてください。",
-      "milestone_1": "マイルストーン1",
-      "milestone_2": "マイルストーン2",
-      "milestone_3": "マイルストーン3",
-      "milestone_4": "マイルストーン4",
-"cross_sell": "クロスセルカルーセル",
-      "footer_zone": "フッターゾーン"
+      "cross_sell": "クロスセルカルーセル",
+      "footer_zone": "フッターゾーン",
+      "free_shipping_bar": "送料無料プログレスバー",
+      "style_zone": "スタイル"
     },
     "settings": {
       "enable": "カスタムカートを使用",
       "background": "背景色",
       "text_color": "文字色",
-      "show_milestone_bar": "マイルストーン進捗バーを表示",
       "track_color": "トラックの色",
       "fill_color": "塗りつぶしの色",
       "bar_height": "バーの高さ",
@@ -1356,17 +1351,16 @@
       "max_products": "表示する商品の最大数",
       "show_savings_badge": "割引バッジを表示",
       "show_lock_icon": "チェックアウトボタンに鍵アイコンを表示",
-      "threshold": "しきい値の金額",
-      "label": "ラベル",
-      "icon": "アイコン",
-      "custom_icon": "カスタムアイコン"
+      "threshold": "送料無料のしきい値",
+      "show_free_shipping_bar": "送料無料プログレスバーを表示",
+      "corner_style": "角のスタイル"
     },
     "options": {
       "collection": "コレクション",
       "manual": "手動リスト",
-      "gift": "ギフトボックス",
-      "shipping": "配送トラック",
-      "discount": "割引タグ"
+      "square": "スクエア",
+      "rounded": "ラウンド",
+      "pill": "ピル型"
     },
     "info": {
       "enable": "表示されるすべての場所でデフォルトのカートを置き換えます。オフにすると、テーマの元のカートにすぐに戻ります。",
@@ -1375,8 +1369,7 @@
       "cross_sell_source_scope_manual": "上の「商品のソース」が「手動リスト」に設定されている場合のみ使用されます。"
     },
     "text_defaults": {
-      "cross_sell_heading": "こちらもおすすめです",
-      "milestone_label": "特典"
+      "cross_sell_heading": "こちらもおすすめです"
     }
   }
 }

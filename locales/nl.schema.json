@@ -1328,24 +1328,19 @@
   },
   "custom_cart_drawer": {
     "names": {
-            "group": "Aangepaste winkelwagen"
+      "group": "Aangepaste winkelwagen"
     },
     "content": {
       "header_zone": "Headerzone",
-      "milestone_bar": "Mijlpaal-voortgangsbalk",
-            "milestone_slots_note": "Tot 4 mijlpalen, weergegeven in volgorde. Laat de drempel van een mijlpaal leeg om deze ongebruikt te laten.",
-      "milestone_1": "Mijlpaal 1",
-      "milestone_2": "Mijlpaal 2",
-      "milestone_3": "Mijlpaal 3",
-      "milestone_4": "Mijlpaal 4",
-"cross_sell": "Cross-sell carrousel",
-      "footer_zone": "Footerzone"
+      "cross_sell": "Cross-sell carrousel",
+      "footer_zone": "Footerzone",
+      "free_shipping_bar": "Voortgangsbalk voor gratis verzending",
+      "style_zone": "Stijl"
     },
     "settings": {
       "enable": "Aangepaste winkelwagen gebruiken",
       "background": "Achtergrondkleur",
       "text_color": "Tekstkleur",
-      "show_milestone_bar": "Mijlpaal-voortgangsbalk tonen",
       "track_color": "Kleur van het spoor",
       "fill_color": "Vulkleur",
       "bar_height": "Balkhoogte",
@@ -1356,17 +1351,16 @@
       "max_products": "Maximum aantal te tonen producten",
       "show_savings_badge": "Kortingsbadge tonen",
       "show_lock_icon": "Slotpictogram op afrekenknop tonen",
-      "threshold": "Drempelbedrag",
-      "label": "Label",
-      "icon": "Pictogram",
-      "custom_icon": "Aangepast pictogram"
+      "threshold": "Drempel voor gratis verzending",
+      "show_free_shipping_bar": "Voortgangsbalk voor gratis verzending weergeven",
+      "corner_style": "Hoekstijl"
     },
     "options": {
       "collection": "Collectie",
       "manual": "Handmatige lijst",
-      "gift": "Cadeaudoos",
-      "shipping": "Bezorgwagen",
-      "discount": "Kortingslabel"
+      "square": "Vierkant",
+      "rounded": "Afgerond",
+      "pill": "Pilvorm"
     },
     "info": {
       "enable": "Vervangt de standaard winkelwagen overal waar deze verschijnt. Zet uit om direct terug te keren naar de originele winkelwagen van het thema.",
@@ -1375,8 +1369,7 @@
       "cross_sell_source_scope_manual": "Alleen gebruikt wanneer Productbron hierboven is ingesteld op Handmatige lijst."
     },
     "text_defaults": {
-      "cross_sell_heading": "Dit vind je misschien ook leuk",
-      "milestone_label": "Beloning"
+      "cross_sell_heading": "Dit vind je misschien ook leuk"
     }
   }
 }

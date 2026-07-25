@@ -1328,24 +1328,19 @@
   },
   "custom_cart_drawer": {
     "names": {
-            "group": "Individueller Warenkorb"
+      "group": "Individueller Warenkorb"
     },
     "content": {
       "header_zone": "Kopfbereich",
-      "milestone_bar": "Meilenstein-Fortschrittsbalken",
-            "milestone_slots_note": "Bis zu 4 Meilensteine, in der angezeigten Reihenfolge. Lassen Sie den Schwellenwert eines Meilensteins leer, um ihn ungenutzt zu lassen.",
-      "milestone_1": "Meilenstein 1",
-      "milestone_2": "Meilenstein 2",
-      "milestone_3": "Meilenstein 3",
-      "milestone_4": "Meilenstein 4",
-"cross_sell": "Cross-Selling-Karussell",
-      "footer_zone": "Fußbereich"
+      "cross_sell": "Cross-Selling-Karussell",
+      "footer_zone": "Fußbereich",
+      "free_shipping_bar": "Fortschrittsbalken für kostenlosen Versand",
+      "style_zone": "Stil"
     },
     "settings": {
       "enable": "Individuellen Warenkorb verwenden",
       "background": "Hintergrundfarbe",
       "text_color": "Textfarbe",
-      "show_milestone_bar": "Meilenstein-Fortschrittsbalken anzeigen",
       "track_color": "Spurfarbe",
       "fill_color": "Füllfarbe",
       "bar_height": "Balkenhöhe",
@@ -1356,17 +1351,16 @@
       "max_products": "Maximale Anzahl anzuzeigender Produkte",
       "show_savings_badge": "Rabatt-Abzeichen anzeigen",
       "show_lock_icon": "Schloss-Symbol auf dem Checkout-Button anzeigen",
-      "threshold": "Schwellenbetrag",
-      "label": "Beschriftung",
-      "icon": "Symbol",
-      "custom_icon": "Eigenes Symbol"
+      "threshold": "Schwellenwert für kostenlosen Versand",
+      "show_free_shipping_bar": "Fortschrittsbalken für kostenlosen Versand anzeigen",
+      "corner_style": "Eckenstil"
     },
     "options": {
       "collection": "Kollektion",
       "manual": "Manuelle Liste",
-      "gift": "Geschenkbox",
-      "shipping": "Lieferwagen",
-      "discount": "Rabatt-Etikett"
+      "square": "Eckig",
+      "rounded": "Abgerundet",
+      "pill": "Pillenform"
     },
     "info": {
       "enable": "Ersetzt den Standard-Warenkorb überall, wo er erscheint. Deaktivieren, um sofort zum ursprünglichen Warenkorb des Themes zurückzukehren.",
@@ -1375,8 +1369,7 @@
       "cross_sell_source_scope_manual": "Wird nur verwendet, wenn Produktquelle oben auf Manuelle Liste eingestellt ist."
     },
     "text_defaults": {
-      "cross_sell_heading": "Das könnte Ihnen auch gefallen",
-      "milestone_label": "Prämie"
+      "cross_sell_heading": "Das könnte Ihnen auch gefallen"
     }
   }
 }

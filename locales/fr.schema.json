@@ -1328,24 +1328,19 @@
   },
   "custom_cart_drawer": {
     "names": {
-            "group": "Panier personnalisé"
+      "group": "Panier personnalisé"
     },
     "content": {
       "header_zone": "Zone d'en-tête",
-      "milestone_bar": "Barre de progression des paliers",
-            "milestone_slots_note": "Jusqu'à 4 paliers, affichés dans l'ordre. Laissez le seuil d'un palier vide pour le laisser inutilisé.",
-      "milestone_1": "Palier 1",
-      "milestone_2": "Palier 2",
-      "milestone_3": "Palier 3",
-      "milestone_4": "Palier 4",
-"cross_sell": "Carrousel de vente croisée",
-      "footer_zone": "Zone de pied de page"
+      "cross_sell": "Carrousel de vente croisée",
+      "footer_zone": "Zone de pied de page",
+      "free_shipping_bar": "Barre de progression de la livraison gratuite",
+      "style_zone": "Style"
     },
     "settings": {
       "enable": "Utiliser le panier personnalisé",
       "background": "Couleur de fond",
       "text_color": "Couleur du texte",
-      "show_milestone_bar": "Afficher la barre de progression des paliers",
       "track_color": "Couleur de la piste",
       "fill_color": "Couleur de remplissage",
       "bar_height": "Hauteur de la barre",
@@ -1356,17 +1351,16 @@
       "max_products": "Nombre maximum de produits à afficher",
       "show_savings_badge": "Afficher le badge d'économies",
       "show_lock_icon": "Afficher l'icône de cadenas sur le bouton de paiement",
-      "threshold": "Montant du seuil",
-      "label": "Libellé",
-      "icon": "Icône",
-      "custom_icon": "Icône personnalisée"
+      "threshold": "Seuil de livraison gratuite",
+      "show_free_shipping_bar": "Afficher la barre de progression de la livraison gratuite",
+      "corner_style": "Style des angles"
     },
     "options": {
       "collection": "Collection",
       "manual": "Liste manuelle",
-      "gift": "Boîte cadeau",
-      "shipping": "Camion de livraison",
-      "discount": "Étiquette de remise"
+      "square": "Carré",
+      "rounded": "Arrondi",
+      "pill": "Pilule"
     },
     "info": {
       "enable": "Remplace le panier par défaut partout où il apparaît. Désactivez pour revenir instantanément au panier d'origine du thème.",
@@ -1375,8 +1369,7 @@
       "cross_sell_source_scope_manual": "Utilisé uniquement lorsque la Source des produits ci-dessus est définie sur Liste manuelle."
     },
     "text_defaults": {
-      "cross_sell_heading": "Vous pourriez aussi aimer",
-      "milestone_label": "Récompense"
+      "cross_sell_heading": "Vous pourriez aussi aimer"
     }
   }
 }

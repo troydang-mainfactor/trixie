@@ -357,7 +357,9 @@
   },
   "custom_cart_drawer": {
     "content": {
-      "savings_badge": "Säästät {{ percentage }}%"
+      "savings_badge": "Säästät {{ percentage }}%",
+      "free_shipping_remaining": "{{ amount }} ilmaiseen toimitukseen",
+      "free_shipping_reached": "Olet ansainnut ilmaisen toimituksen!"
     }
   }
 }

@@ -1,104 +1,62 @@
 {%- doc -%}
-  Milestone progress bar for the custom cart drawer's header zone.
+  Free shipping progress bar for the custom cart drawer's header zone.
 
-  Reads from global theme settings (four fixed milestone slots -
-  milestone_1_* through milestone_4_*) rather than section blocks, since
-  sections/cart-drawer-section.liquid has no editor-reachable settings
-  surface of its own (see cart-drawer-custom.liquid's doc comment). A slot
-  is skipped entirely when its threshold is blank/zero, so merchants who
-  only want 1-2 milestones simply leave the rest empty.
-
-  PHASE 2: renders real tiers (threshold/label/icon) from theme settings -
-  the fill percentage is a placeholder until phase 3 wires this to
-  cart.total_price.
+  Single bar, driven by real cart.total_price against one merchant-set
+  threshold (settings.free_shipping_threshold). Renders nothing if the
+  threshold is blank/zero, or once the cart has reached/passed it (shows
+  a "reached" message instead of a full bar with nothing left to fill).
 {%- enddoc -%}
 
 {% liquid
-  assign m1 = settings.milestone_1_threshold | default: 0
-  assign m2 = settings.milestone_2_threshold | default: 0
-  assign m3 = settings.milestone_3_threshold | default: 0
-  assign m4 = settings.milestone_4_threshold | default: 0
-
-  assign max_threshold = 0
-  if m1 > max_threshold
-    assign max_threshold = m1
-  endif
-  if m2 > max_threshold
-    assign max_threshold = m2
-  endif
-  if m3 > max_threshold
-    assign max_threshold = m3
-  endif
-  if m4 > max_threshold
-    assign max_threshold = m4
-  endif
-
-  # PHASE 2 PLACEHOLDER - replaced with a real cart.total_price-based value in phase 3.
-  assign placeholder_fill_percent = 45
+  assign threshold = settings.free_shipping_threshold | default: 0
 %}
 
-{% if max_threshold > 0 %}
+{% if threshold > 0 %}
+  {% liquid
+    assign remaining = threshold | minus: cart.total_price
+    assign reached = false
+    if remaining <= 0
+      assign reached = true
+      assign fill_percent = 100
+    else
+      assign fill_percent = cart.total_price | times: 100.0 | divided_by: threshold
+      assign fill_percent = fill_percent | at_most: 100
+    endif
+  %}
+
   <div
-    class="custom-cart-drawer__milestones"
+    class="custom-cart-drawer__free-shipping"
     style="
-      --milestone-track-color: {{ settings.milestone_track_color }};
-      --milestone-fill-color: {{ settings.milestone_fill_color }};
-      --milestone-bar-height: {{ settings.milestone_bar_height | default: 8 }}px;
+      --milestone-track-color: {{ settings.free_shipping_track_color }};
+      --milestone-fill-color: {{ settings.free_shipping_fill_color }};
+      --milestone-bar-height: {{ settings.free_shipping_bar_height | default: 8 }}px;
     "
   >
+    <p class="custom-cart-drawer__free-shipping-message">
+      {% if reached %}
+        {{ 'custom_cart_drawer.content.free_shipping_reached' | t }}
+      {% else %}
+        {{ 'custom_cart_drawer.content.free_shipping_remaining' | t: amount: remaining | money }}
+      {% endif %}
+    </p>
     <div class="custom-cart-drawer__milestone-track">
       <div
         class="custom-cart-drawer__milestone-fill"
-        style="width: {{ placeholder_fill_percent }}%;"
+        style="width: {{ fill_percent }}%;"
       ></div>
-      {% if m1 > 0 %}
-        {% render 'cart-drawer-custom-milestone-badge',
-          threshold: m1,
-          label: settings.milestone_1_label,
-          icon: settings.milestone_1_icon,
-          custom_icon: settings.milestone_1_custom_icon,
-          max_threshold: max_threshold,
-          fill_percent: placeholder_fill_percent
-        %}
-      {% endif %}
-      {% if m2 > 0 %}
-        {% render 'cart-drawer-custom-milestone-badge',
-          threshold: m2,
-          label: settings.milestone_2_label,
-          icon: settings.milestone_2_icon,
-          custom_icon: settings.milestone_2_custom_icon,
-          max_threshold: max_threshold,
-          fill_percent: placeholder_fill_percent
-        %}
-      {% endif %}
-      {% if m3 > 0 %}
-        {% render 'cart-drawer-custom-milestone-badge',
-          threshold: m3,
-          label: settings.milestone_3_label,
-          icon: settings.milestone_3_icon,
-          custom_icon: settings.milestone_3_custom_icon,
-          max_threshold: max_threshold,
-          fill_percent: placeholder_fill_percent
-        %}
-      {% endif %}
-      {% if m4 > 0 %}
-        {% render 'cart-drawer-custom-milestone-badge',
-          threshold: m4,
-          label: settings.milestone_4_label,
-          icon: settings.milestone_4_icon,
-          custom_icon: settings.milestone_4_custom_icon,
-          max_threshold: max_threshold,
-          fill_percent: placeholder_fill_percent
-        %}
-      {% endif %}
     </div>
   </div>
 {% endif %}
 
 {% stylesheet %}
-  .custom-cart-drawer__milestones {
+  .custom-cart-drawer__free-shipping {
     padding-inline: var(--padding-lg);
     padding-block-end: var(--padding-lg);
+  }
+
+  .custom-cart-drawer__free-shipping-message {
+    margin: 0 0 var(--margin-2xs);
+    font-size: var(--font-size--sm);
   }
 
   .custom-cart-drawer__milestone-track {
@@ -106,7 +64,7 @@
     height: var(--milestone-bar-height);
     border-radius: calc(var(--milestone-bar-height) / 2);
     background: var(--milestone-track-color);
-    margin-block-start: var(--padding-xl);
+    overflow: hidden;
   }
 
   .custom-cart-drawer__milestone-fill {
@@ -114,41 +72,5 @@
     border-radius: inherit;
     background: var(--milestone-fill-color);
     transition: width var(--animation-speed) var(--animation-easing);
-  }
-
-  .custom-cart-drawer__milestone-badge {
-    position: absolute;
-    top: 50%;
-    translate: -50% -50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--gap-3xs);
-  }
-
-  .custom-cart-drawer__milestone-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: calc(var(--milestone-bar-height) + 12px);
-    height: calc(var(--milestone-bar-height) + 12px);
-    border-radius: 50%;
-    background: var(--milestone-track-color);
-    color: var(--milestone-fill-color);
-    opacity: 0.6;
-  }
-
-  .custom-cart-drawer__milestone-badge--reached .custom-cart-drawer__milestone-icon {
-    background: var(--milestone-fill-color);
-    color: var(--custom-cart-drawer-header-bg);
-    opacity: 1;
-  }
-
-  .custom-cart-drawer__milestone-label {
-    position: absolute;
-    top: 100%;
-    margin-block-start: var(--gap-3xs);
-    font-size: var(--font-size--xs);
-    white-space: nowrap;
   }
 {% endstylesheet %}
