@@ -10,6 +10,15 @@ import { CartLinesUpdateEvent, StandardEvents } from '@shopify/events';
  * sticky add-to-cart, and cart-items-component quantity/remove - both drawer
  * and /cart page) already dispatches through, so one listener here covers all
  * of them without touching any of those files.
+ *
+ * Keeps the target item in sync with the trigger condition in both
+ * directions: adds it when the trigger becomes satisfied and it's missing,
+ * and removes it when the trigger stops being satisfied and it's present.
+ * Note: removal is unconditional on the trigger state - if a customer adds
+ * the exact same variant themselves as a genuine purchase, it's still
+ * removed once the trigger no longer holds, since there's no reliable way
+ * to distinguish "we added this" from "the customer added this" without the
+ * kind of persistent tracking this feature deliberately avoids.
  */
 
 const SOURCE = 'auto-add-to-cart';
@@ -57,27 +66,20 @@ if (config && config.targetVariantId) {
     return false;
   }
 
-  async function addTargetToCart() {
-    const response = await fetch(
-      Theme.routes.cart_add_url,
-      fetchConfig('json', { body: JSON.stringify({ id: config.targetVariantId, quantity: 1 }) })
-    );
-
-    if (!response.ok) {
-      console.warn('[auto-add-to-cart] Failed to add target item to cart', await response.json().catch(() => null));
-      return;
-    }
-
-    const cart = await fetchCart();
-
-    // Announce the change on the shared bus so cart-icon, the auto-open drawer,
-    // header-actions, etc. all pick it up exactly like any other cart change.
-    // Tagging detail.source lets our own listener below ignore this event.
+  /**
+   * Announces a change on the shared bus so cart-icon, the auto-open drawer,
+   * header-actions, cart-items-component, etc. all pick it up exactly like
+   * any other cart change. Tagging detail.source lets our own listener above
+   * ignore this event instead of re-checking right after we just acted.
+   * @param {'add' | 'remove'} action
+   * @param {{items: unknown, item_count: number}} cart
+   */
+  function announceCartChange(action, cart) {
     document.dispatchEvent(
       new CartLinesUpdateEvent({
-        action: 'add',
-        context: 'product',
-        lines: [{ merchandiseId: config.targetVariantId, quantity: 1 }],
+        action,
+        context: action === 'add' ? 'product' : 'cart',
+        lines: [{ merchandiseId: config.targetVariantId, quantity: action === 'add' ? 1 : 0 }],
         promise: Promise.resolve({
           cart,
           detail: {
@@ -91,11 +93,47 @@ if (config && config.targetVariantId) {
     );
   }
 
+  async function addTargetToCart() {
+    const response = await fetch(
+      Theme.routes.cart_add_url,
+      fetchConfig('json', { body: JSON.stringify({ id: config.targetVariantId, quantity: 1 }) })
+    );
+
+    if (!response.ok) {
+      console.warn('[auto-add-to-cart] Failed to add target item to cart', await response.json().catch(() => null));
+      return;
+    }
+
+    announceCartChange('add', await fetchCart());
+  }
+
+  async function removeTargetFromCart() {
+    const response = await fetch(
+      Theme.routes.cart_update_url,
+      fetchConfig('json', { body: JSON.stringify({ updates: { [config.targetVariantId]: 0 } }) })
+    );
+
+    if (!response.ok) {
+      console.warn(
+        '[auto-add-to-cart] Failed to remove target item from cart',
+        await response.json().catch(() => null)
+      );
+      return;
+    }
+
+    announceCartChange('remove', await fetchCart());
+  }
+
   async function runCheck() {
     const cart = await fetchCart();
-    if (isTargetInCart(cart)) return;
-    if (!shouldTrigger(cart)) return;
-    await addTargetToCart();
+    const targetPresent = isTargetInCart(cart);
+    const triggerSatisfied = shouldTrigger(cart);
+
+    if (triggerSatisfied && !targetPresent) {
+      await addTargetToCart();
+    } else if (!triggerSatisfied && targetPresent) {
+      await removeTargetFromCart();
+    }
   }
 
   /**
