@@ -19,7 +19,7 @@
           "name": "t:names.announcement",
           "settings": {
             "text": "Shop our latest arrivals!",
-            "link": "",
+            "link": "shopify://collections/12-under-gifts",
             "font": "var(--font-subheading--family)",
             "font_size": "0.75rem",
             "weight": "",
@@ -52,7 +52,7 @@
       "settings": {
         "display_style": "marquee",
         "speed": 5,
-        "marquee_speed_factor": 25,
+        "marquee_speed_factor": 50,
         "marquee_direction": "normal",
         "marquee_gap": 24,
         "section_width": "page-width",
