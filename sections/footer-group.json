@@ -225,8 +225,8 @@
           "settings": {
             "tag": "lovebirds",
             "label": "lovebirds",
-            "background_color": "",
-            "text_color": ""
+            "background_color": "#FFFFFF",
+            "text_color": "#000000"
           }
         },
         "badge_rule_pjj3xd": {
