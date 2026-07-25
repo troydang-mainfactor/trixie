@@ -101,6 +101,7 @@
     "view_all": "Alle ansehen",
     "add": "Hinzufügen",
     "choose": "Auswählen",
+    "choose_option": "{{ option }} wählen",
     "added": "Hinzugefügt",
     "show_less": "Weniger anzeigen",
     "show_more": "Mehr anzeigen",

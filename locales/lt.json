@@ -105,6 +105,7 @@
     "view_all": "Peržiūrėti visus",
     "add": "Pridėti",
     "choose": "Rinktis",
+    "choose_option": "Pasirinkite {{ option }}",
     "added": "Pridėta",
     "show_less": "Rodyti mažiau",
     "show_more": "Rodyti daugiau",

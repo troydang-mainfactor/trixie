@@ -12,6 +12,35 @@
   assign scoped_class = block.settings.style_class | append: '--' | append: block.id
   assign class = 'add-to-cart-button ' | append: block.settings.style_class | append: ' ' | append: scoped_class
   assign id = 'BuyButtons-ProductSubmitButton-' | append: block.id
+  assign product = closest.product
+
+  # This block is shared between the PDP and featured-product sections (both
+  # of which pair it with their own on-page variant-picker block, which keeps
+  # the hidden variant id in sync as the shopper picks options) and cards on
+  # collection/search-style grids rendered by _product-card.liquid (which have
+  # no on-card picker at all). Without a picker, submitting this form always
+  # adds whichever variant Shopify resolves as "first available" - silently
+  # the wrong one for a product with real variant options. closest.is_product_card
+  # (set only by _product-card.liquid, see its content_for 'blocks' call) is
+  # the precise signal for that no-picker card context - checking template.name
+  # instead would incorrectly also match featured-product sections on non-PDP
+  # templates that DO have their own picker. Route only the true no-picker case
+  # through the same quick-add mechanism the product-card gallery's hover
+  # button already uses, so the shopper picks a variant before anything is added.
+  # Also requires quick_add/mobile_quick_add to be on, since that's what
+  # renders the #quick-add-dialog modal shell in layout/theme.liquid - without
+  # it the button would open nothing. Falls back to the plain button below,
+  # same as if the merchant had turned quick add off entirely. Computed as its
+  # own variable first since Liquid has no parentheses to group the "or" here.
+  assign quick_add_enabled = false
+  if settings.quick_add or settings.mobile_quick_add
+    assign quick_add_enabled = true
+  endif
+
+  assign needs_variant_choice = false
+  if closest.is_product_card and product.has_only_default_variant == false and product.available and quick_add_enabled
+    assign needs_variant_choice = true
+  endif
 %}
 {% render 'button-custom-styles', block_settings: block.settings, block_id: block.id %}
 {% render 'add-to-cart-button-styles' %}
@@ -21,15 +50,54 @@
   {{ block.shopify_attributes }}
   style="--add-to-cart-font-case: {{ settings.button_text_case }};"
 >
-  {% render 'add-to-cart-button',
-    id: id,
-    class: class,
-    can_add_to_cart: can_add_to_cart,
-    product: closest.product,
-    add_to_cart_text: add_to_cart_text,
-    data_testid: 'standalone-add-to-cart',
-    show_price: block.settings.show_price
-  %}
+  {% if needs_variant_choice %}
+    {% liquid
+      assign uses_selling_plans = false
+      if product.requires_selling_plan or product.selling_plan_groups.size > 0
+        assign uses_selling_plans = true
+      endif
+      assign option_name = product.options_with_values.first.name
+      assign choose_text = 'actions.choose_option' | t: option: option_name
+    %}
+    {% render 'quick-add-styles' %}
+    <quick-add-component
+      class="quick-add custom-color-quick-add"
+      data-product-title="{{ product.title }}"
+      data-product-id="{{ product.id }}"
+      data-quick-add-button="choose"
+      data-product-options-count="{{ product.options.size }}"
+      data-uses-selling-plans="{{ uses_selling_plans }}"
+    >
+      <button
+        id="{{ id }}"
+        type="button"
+        name="add"
+        class="button {{ class }}"
+        on:click="quick-add-component/handleClick"
+        data-testid="standalone-add-to-cart"
+      >
+        {%- unless block.settings.show_price -%}
+          <span
+            aria-hidden="true"
+            class="svg-wrapper add-to-cart-icon"
+          >
+            {{- 'icon-add-to-cart.svg' | inline_asset_content -}}
+          </span>
+        {%- endunless -%}
+        {{- choose_text -}}
+      </button>
+    </quick-add-component>
+  {% else %}
+    {% render 'add-to-cart-button',
+      id: id,
+      class: class,
+      can_add_to_cart: can_add_to_cart,
+      product: product,
+      add_to_cart_text: add_to_cart_text,
+      data_testid: 'standalone-add-to-cart',
+      show_price: block.settings.show_price
+    %}
+  {% endif %}
 </span>
 
 {% schema %}

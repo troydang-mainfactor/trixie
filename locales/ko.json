@@ -101,6 +101,7 @@
     "view_all": "모두 보기",
     "add": "추가",
     "choose": "선택",
+    "choose_option": "{{ option }} 선택",
     "added": "추가됨",
     "show_less": "간단히 표시",
     "show_more": "자세히 표시",

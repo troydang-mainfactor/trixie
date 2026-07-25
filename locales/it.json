@@ -103,6 +103,7 @@
     "view_all": "Visualizza tutto",
     "add": "Aggiungi",
     "choose": "Scegli",
+    "choose_option": "Scegli {{ option }}",
     "added": "Aggiunto",
     "show_less": "Mostra meno",
     "show_more": "Mostra di più",

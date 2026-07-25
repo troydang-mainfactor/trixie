@@ -103,6 +103,7 @@
     "view_all": "Prikaži sve",
     "add": "Dodaj",
     "choose": "Odaberi",
+    "choose_option": "Odaberite {{ option }}",
     "added": "Dodano",
     "show_less": "Prikaži manje",
     "show_more": "Prikaži više",
