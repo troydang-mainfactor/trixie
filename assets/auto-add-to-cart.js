@@ -72,20 +72,23 @@ if (config && config.targetVariantId) {
    * any other cart change. Tagging detail.source lets our own listener above
    * ignore this event instead of re-checking right after we just acted.
    * @param {'add' | 'remove'} action
-   * @param {{items: unknown, item_count: number}} cart
+   * @param {object} ajaxCart - Raw /cart.js response.
    */
-  function announceCartChange(action, cart) {
+  function announceCartChange(action, ajaxCart) {
     document.dispatchEvent(
       new CartLinesUpdateEvent({
         action,
         context: action === 'add' ? 'product' : 'cart',
         lines: [{ merchandiseId: config.targetVariantId, quantity: action === 'add' ? 1 : 0 }],
         promise: Promise.resolve({
-          cart,
+          // Other listeners (cart-icon, header-actions, cart-drawer,
+          // cart-items-component) expect the normalized cart shape, not the
+          // raw ajax response - matches how product-form.js resolves this.
+          cart: CartLinesUpdateEvent.createCartFromAjaxResponse(ajaxCart),
           detail: {
             source: SOURCE,
-            items: cart.items,
-            itemCount: cart.item_count,
+            items: ajaxCart.items,
+            itemCount: ajaxCart.item_count,
             didError: false,
           },
         }),
