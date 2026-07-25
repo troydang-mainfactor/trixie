@@ -1328,12 +1328,17 @@
   },
   "custom_cart_drawer": {
     "names": {
-      "milestone_tier": "Milepæl"
+            "group": "Tilpasset handlekurv"
     },
     "content": {
       "header_zone": "Topptekstsone",
       "milestone_bar": "Milepæl-fremdriftslinje",
-      "cross_sell": "Mersalgskarusell",
+            "milestone_slots_note": "Opptil 4 milepæler, vist i rekkefølge. La en milepæls terskel stå tom for å la den være ubrukt.",
+      "milestone_1": "Milepæl 1",
+      "milestone_2": "Milepæl 2",
+      "milestone_3": "Milepæl 3",
+      "milestone_4": "Milepæl 4",
+"cross_sell": "Mersalgskarusell",
       "footer_zone": "Bunntekstsone"
     },
     "settings": {

@@ -3,13 +3,13 @@
 
   Rendered from two places, exactly like the default drawer it replaces:
   layout/theme.liquid (initial page load) and sections/cart-drawer-section.liquid
-  (Section Rendering API target after cart changes). Neither call site has a
-  natural `section` variable bound to sections/cart-drawer-section.liquid's own
-  settings/blocks (layout.liquid has no section context at all; this snippet is
-  rendered BY a render call, not a {% section %} tag), so every setting/block
-  read here goes through the `sections['cart-drawer-section']` global lookup
-  instead - the same technique already used elsewhere in this theme for
-  cross-referencing a section by id.
+  (Section Rendering API target after cart changes). All configuration lives in
+  global theme settings (Theme Editor > Theme settings), not section settings -
+  sections/cart-drawer-section.liquid is never referenced from any template or
+  section group, so it has no editor-reachable settings surface of its own.
+  Global `settings.*` is available unconditionally everywhere, including from
+  layout.liquid (which has no `section` variable at all), so this sidesteps
+  that entirely.
 
   PHASE 2 (structural layout): the three-zone flex layout, sticky header/footer,
   and scrollable middle are real, as are all settings-driven colors/toggles.
@@ -21,11 +21,6 @@
 
 {% liquid
   assign render_wrapper = render_wrapper | default: true, allow_false: true
-
-  # theme-check-disable UndefinedObject
-  assign drawer_section = sections['cart-drawer-section']
-  # theme-check-enable UndefinedObject
-  assign drawer_settings = drawer_section.settings
 %}
 
 {%- if settings.cart_type == 'drawer' and template.name != 'cart' -%}
@@ -69,10 +64,10 @@
         <div
           class="custom-cart-drawer"
           style="
-            --custom-cart-drawer-header-bg: {{ drawer_settings.header_background_color }};
-            --custom-cart-drawer-header-text: {{ drawer_settings.header_text_color }};
-            --custom-cart-drawer-footer-bg: {{ drawer_settings.footer_background_color }};
-            --custom-cart-drawer-footer-text: {{ drawer_settings.footer_text_color }};
+            --custom-cart-drawer-header-bg: {{ settings.custom_drawer_header_background_color }};
+            --custom-cart-drawer-header-text: {{ settings.custom_drawer_header_text_color }};
+            --custom-cart-drawer-footer-bg: {{ settings.custom_drawer_footer_background_color }};
+            --custom-cart-drawer-footer-text: {{ settings.custom_drawer_footer_text_color }};
           "
         >
           <div class="custom-cart-drawer__header">
@@ -83,8 +78,8 @@
               title_append: cart_badge_html
             %}
 
-            {% if drawer_settings.show_milestone_bar %}
-              {% render 'cart-drawer-custom-milestones', drawer_section: drawer_section %}
+            {% if settings.show_milestone_bar %}
+              {% render 'cart-drawer-custom-milestones' %}
             {% endif %}
           </div>
 
@@ -118,7 +113,7 @@
                 <span>{{ 'content.cart_subtotal' | t }}</span>
                 <span class="custom-cart-drawer__placeholder-text">$--.--</span>
               </div>
-              {% if drawer_settings.show_discount_savings_badge %}
+              {% if settings.show_discount_savings_badge %}
                 <div class="custom-cart-drawer__row custom-cart-drawer__row--discount">
                   <span>
                     {{ 'content.discounts' | t }}
@@ -133,7 +128,7 @@
               class="custom-cart-drawer__checkout button"
               disabled
             >
-              {% if drawer_settings.show_checkout_lock_icon %}
+              {% if settings.show_checkout_lock_icon %}
                 <span
                   class="svg-wrapper"
                   aria-hidden="true"

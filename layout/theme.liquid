@@ -147,8 +147,7 @@
       </footer>
     </div>
 
-    {% # theme-check-disable-next-line UndefinedObject %}
-    {% if sections['cart-drawer-section'].settings.enable_custom_drawer %}
+    {% if settings.enable_custom_drawer %}
       {% render 'cart-drawer-custom', render_wrapper: true %}
     {% else %}
       {% render 'cart-drawer', render_wrapper: true %}

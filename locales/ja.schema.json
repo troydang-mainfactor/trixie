@@ -1328,12 +1328,17 @@
   },
   "custom_cart_drawer": {
     "names": {
-      "milestone_tier": "マイルストーン"
+            "group": "カスタムカート"
     },
     "content": {
       "header_zone": "ヘッダーゾーン",
       "milestone_bar": "マイルストーン進捗バー",
-      "cross_sell": "クロスセルカルーセル",
+            "milestone_slots_note": "最大4つのマイルストーンを順番に表示します。使用しないマイルストーンはしきい値を空欄にしてください。",
+      "milestone_1": "マイルストーン1",
+      "milestone_2": "マイルストーン2",
+      "milestone_3": "マイルストーン3",
+      "milestone_4": "マイルストーン4",
+"cross_sell": "クロスセルカルーセル",
       "footer_zone": "フッターゾーン"
     },
     "settings": {

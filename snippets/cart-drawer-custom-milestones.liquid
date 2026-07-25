@@ -1,32 +1,49 @@
 {%- doc -%}
   Milestone progress bar for the custom cart drawer's header zone.
 
-  @param {object} drawer_section - sections['cart-drawer-section'], passed through
-    so this snippet doesn't need its own separate global lookup.
+  Reads from global theme settings (four fixed milestone slots -
+  milestone_1_* through milestone_4_*) rather than section blocks, since
+  sections/cart-drawer-section.liquid has no editor-reachable settings
+  surface of its own (see cart-drawer-custom.liquid's doc comment). A slot
+  is skipped entirely when its threshold is blank/zero, so merchants who
+  only want 1-2 milestones simply leave the rest empty.
 
-  PHASE 2: renders real tiers (threshold/label/icon) from merchant-configured
-  blocks - the fill percentage is a placeholder until phase 3 wires this to
+  PHASE 2: renders real tiers (threshold/label/icon) from theme settings -
+  the fill percentage is a placeholder until phase 3 wires this to
   cart.total_price.
 {%- enddoc -%}
 
 {% liquid
-  assign milestone_settings = drawer_section.settings
-  assign tiers = drawer_section.blocks | where: 'type', 'milestone_tier'
+  assign m1 = settings.milestone_1_threshold | default: 0
+  assign m2 = settings.milestone_2_threshold | default: 0
+  assign m3 = settings.milestone_3_threshold | default: 0
+  assign m4 = settings.milestone_4_threshold | default: 0
+
+  assign max_threshold = 0
+  if m1 > max_threshold
+    assign max_threshold = m1
+  endif
+  if m2 > max_threshold
+    assign max_threshold = m2
+  endif
+  if m3 > max_threshold
+    assign max_threshold = m3
+  endif
+  if m4 > max_threshold
+    assign max_threshold = m4
+  endif
+
+  # PHASE 2 PLACEHOLDER - replaced with a real cart.total_price-based value in phase 3.
+  assign placeholder_fill_percent = 45
 %}
 
-{% if tiers.size > 0 %}
-  {% liquid
-    assign last_tier = tiers | last
-    assign last_threshold = last_tier.settings.threshold | default: 0
-    # PHASE 2 PLACEHOLDER - replaced with a real cart.total_price-based value in phase 3.
-    assign placeholder_fill_percent = 45
-  %}
+{% if max_threshold > 0 %}
   <div
     class="custom-cart-drawer__milestones"
     style="
-      --milestone-track-color: {{ milestone_settings.milestone_track_color }};
-      --milestone-fill-color: {{ milestone_settings.milestone_fill_color }};
-      --milestone-bar-height: {{ milestone_settings.milestone_bar_height | default: 8 }}px;
+      --milestone-track-color: {{ settings.milestone_track_color }};
+      --milestone-fill-color: {{ settings.milestone_fill_color }};
+      --milestone-bar-height: {{ settings.milestone_bar_height | default: 8 }}px;
     "
   >
     <div class="custom-cart-drawer__milestone-track">
@@ -34,40 +51,46 @@
         class="custom-cart-drawer__milestone-fill"
         style="width: {{ placeholder_fill_percent }}%;"
       ></div>
-      {% for tier in tiers %}
-        {% liquid
-          assign tier_threshold = tier.settings.threshold | default: 0
-          assign tier_position = 100
-          if last_threshold > 0
-            assign tier_position = tier_threshold | times: 100.0 | divided_by: last_threshold
-          endif
-          assign tier_position = tier_position | at_most: 100
-
-          assign icon_asset = 'icon-gift.svg'
-          case tier.settings.icon
-            when 'shipping'
-              assign icon_asset = 'icon-shipping.svg'
-            when 'discount'
-              assign icon_asset = 'icon-discount.svg'
-          endcase
+      {% if m1 > 0 %}
+        {% render 'cart-drawer-custom-milestone-badge',
+          threshold: m1,
+          label: settings.milestone_1_label,
+          icon: settings.milestone_1_icon,
+          custom_icon: settings.milestone_1_custom_icon,
+          max_threshold: max_threshold,
+          fill_percent: placeholder_fill_percent
         %}
-        <div
-          class="custom-cart-drawer__milestone-badge{% if placeholder_fill_percent >= tier_position %} custom-cart-drawer__milestone-badge--reached{% endif %}"
-          style="left: {{ tier_position }}%;"
-        >
-          <span
-            class="custom-cart-drawer__milestone-icon"
-            aria-hidden="true"
-          >
-            {%- if tier.settings.icon == 'custom' and tier.settings.custom_icon != blank -%}
-              {{- tier.settings.custom_icon | image_url: width: 40 | image_tag -}}
-            {%- else -%}
-              {{- icon_asset | inline_asset_content -}}
-            {%- endif -%}
-          </span>
-          <span class="custom-cart-drawer__milestone-label">{{ tier.settings.label }}</span>
-        </div>
-      {% endfor %}
+      {% endif %}
+      {% if m2 > 0 %}
+        {% render 'cart-drawer-custom-milestone-badge',
+          threshold: m2,
+          label: settings.milestone_2_label,
+          icon: settings.milestone_2_icon,
+          custom_icon: settings.milestone_2_custom_icon,
+          max_threshold: max_threshold,
+          fill_percent: placeholder_fill_percent
+        %}
+      {% endif %}
+      {% if m3 > 0 %}
+        {% render 'cart-drawer-custom-milestone-badge',
+          threshold: m3,
+          label: settings.milestone_3_label,
+          icon: settings.milestone_3_icon,
+          custom_icon: settings.milestone_3_custom_icon,
+          max_threshold: max_threshold,
+          fill_percent: placeholder_fill_percent
+        %}
+      {% endif %}
+      {% if m4 > 0 %}
+        {% render 'cart-drawer-custom-milestone-badge',
+          threshold: m4,
+          label: settings.milestone_4_label,
+          icon: settings.milestone_4_icon,
+          custom_icon: settings.milestone_4_custom_icon,
+          max_threshold: max_threshold,
+          fill_percent: placeholder_fill_percent
+        %}
+      {% endif %}
     </div>
   </div>
 {% endif %}

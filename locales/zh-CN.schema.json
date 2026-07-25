@@ -1328,12 +1328,17 @@
   },
   "custom_cart_drawer": {
     "names": {
-      "milestone_tier": "里程碑"
+            "group": "自定义购物车"
     },
     "content": {
       "header_zone": "顶部区域",
       "milestone_bar": "里程碑进度条",
-      "cross_sell": "交叉销售轮播",
+            "milestone_slots_note": "最多 4 个里程碑，按顺序显示。将里程碑的门槛金额留空即可不使用该里程碑。",
+      "milestone_1": "里程碑1",
+      "milestone_2": "里程碑2",
+      "milestone_3": "里程碑3",
+      "milestone_4": "里程碑4",
+"cross_sell": "交叉销售轮播",
       "footer_zone": "底部区域"
     },
     "settings": {
