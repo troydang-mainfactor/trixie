@@ -1,0 +1,147 @@
+{%- comment -%}
+  Auto add to cart - sitewide utility section with no visible output.
+
+  Add this section once to the Header or Footer group (Theme Editor). When
+  enabled, it watches the cart via the theme's cart-lines-update event bus and
+  automatically adds a merchant-configured product/variant once a trigger
+  condition is met: either the cart subtotal reaching a threshold, or a
+  specific product/collection being present in the cart. The check is
+  idempotent - it never adds the target item if it's already a cart line item.
+  It intentionally does not track manual removal, so if a customer removes the
+  auto-added item and the trigger condition still holds, the next cart update
+  will add it again.
+{%- endcomment -%}
+
+{% liquid
+  assign target_variant_id = section.settings.target_variant_id
+  if target_variant_id == blank
+    assign target_variant_id = section.settings.target_product.selected_or_first_available_variant.id
+  endif
+
+  assign cart_contains_collection_product_ids = ''
+  assign should_resolve_collection = false
+  if section.settings.trigger_type == 'cart_contains' and section.settings.cart_contains_type == 'collection' and section.settings.cart_contains_collection != blank
+    assign should_resolve_collection = true
+  endif
+
+  if should_resolve_collection
+    paginate section.settings.cart_contains_collection.products by 250
+      assign cart_contains_collection_product_ids = section.settings.cart_contains_collection.products | map: 'id'
+    endpaginate
+  endif
+%}
+
+{% if section.settings.enabled and target_variant_id != blank %}
+  <script type="application/json" id="auto-add-to-cart-config">
+    {
+      "triggerType": {{ section.settings.trigger_type | json }},
+      "subtotalThresholdCents": {{ section.settings.subtotal_threshold | times: 100 | round | json }},
+      "cartContainsType": {{ section.settings.cart_contains_type | json }},
+      "cartContainsProductId": {{ section.settings.cart_contains_product.id | json }},
+      "cartContainsCollectionProductIds": {{ cart_contains_collection_product_ids | json }},
+      "targetVariantId": {{ target_variant_id | json }}
+    }
+  </script>
+  <script
+    src="{{ 'auto-add-to-cart.js' | asset_url }}"
+    type="module"
+  ></script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "t:auto_add_to_cart.names.section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:auto_add_to_cart.content.setup"
+    },
+    {
+      "type": "checkbox",
+      "id": "enabled",
+      "label": "t:auto_add_to_cart.settings.enabled",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:auto_add_to_cart.content.trigger"
+    },
+    {
+      "type": "select",
+      "id": "trigger_type",
+      "label": "t:auto_add_to_cart.settings.trigger_type",
+      "options": [
+        {
+          "value": "subtotal",
+          "label": "t:auto_add_to_cart.options.cart_subtotal"
+        },
+        {
+          "value": "cart_contains",
+          "label": "t:auto_add_to_cart.options.product_or_collection_in_cart"
+        }
+      ],
+      "default": "subtotal"
+    },
+    {
+      "type": "number",
+      "id": "subtotal_threshold",
+      "label": "t:auto_add_to_cart.settings.subtotal_threshold_amount",
+      "info": "t:auto_add_to_cart.info.threshold_currency",
+      "default": 50,
+      "visible_if": "{{ section.settings.trigger_type == 'subtotal' }}"
+    },
+    {
+      "type": "select",
+      "id": "cart_contains_type",
+      "label": "t:auto_add_to_cart.settings.match_type",
+      "options": [
+        {
+          "value": "product",
+          "label": "t:auto_add_to_cart.options.product"
+        },
+        {
+          "value": "collection",
+          "label": "t:auto_add_to_cart.options.collection"
+        }
+      ],
+      "default": "product",
+      "visible_if": "{{ section.settings.trigger_type == 'cart_contains' }}"
+    },
+    {
+      "type": "product",
+      "id": "cart_contains_product",
+      "label": "t:auto_add_to_cart.settings.trigger_product",
+      "info": "t:auto_add_to_cart.info.trigger_reference_scope"
+    },
+    {
+      "type": "collection",
+      "id": "cart_contains_collection",
+      "label": "t:auto_add_to_cart.settings.trigger_collection",
+      "info": "t:auto_add_to_cart.info.collection_limit"
+    },
+    {
+      "type": "header",
+      "content": "t:auto_add_to_cart.content.item"
+    },
+    {
+      "type": "product",
+      "id": "target_product",
+      "label": "t:auto_add_to_cart.settings.product_to_add"
+    },
+    {
+      "type": "text",
+      "id": "target_variant_id",
+      "label": "t:auto_add_to_cart.settings.specific_variant_id",
+      "info": "t:auto_add_to_cart.info.variant_id"
+    }
+  ],
+  "enabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "presets": [
+    {
+      "name": "t:auto_add_to_cart.names.section"
+    }
+  ]
+}
+{% endschema %}
