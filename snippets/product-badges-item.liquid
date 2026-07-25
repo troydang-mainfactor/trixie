@@ -1,0 +1,22 @@
+{%- doc -%}
+  Renders a single badge_system_badge metaobject entry. Always renders the label as real text
+  (never icon-only) so each badge is announced correctly by assistive tech, and each call
+  produces its own distinct element - a caller looping over several badges gets several
+  separately-announced elements, never one merged text blob.
+
+  @param {object} entry - A badge_system_badge metaobject entry.
+
+  @example
+  {% render 'product-badges-item', entry: entry %}
+{%- enddoc -%}
+
+{%- if entry.label.value != blank -%}
+  <div class="product-badges__badge product-badges__badge--{{ entry.style.value | default: 'primary' }}">
+    {%- if entry.icon.value != blank -%}
+      <span class="product-badges__badge-icon" aria-hidden="true">
+        {{- entry.icon.value | image_url: width: 32 | image_tag: loading: 'lazy', alt: '', widths: '16, 32' -}}
+      </span>
+    {%- endif -%}
+    <span class="product-badges__badge-label">{{- entry.label.value -}}</span>
+  </div>
+{%- endif -%}

@@ -601,7 +601,9 @@
     "show_above_media_mobile": "Show above media on mobile (product pages)",
     "display_style": "Display style",
     "show_price_in_button": "Show price in button",
-    "font_size": "Font size"
+    "font_size": "Font size",
+    "new_badge_days": "New badge: days",
+    "max_badges": "Max badges shown"
   },
   "options": {
     "apple": "Mela",
@@ -1017,7 +1019,11 @@
     "combined_listings_tooltip": "Tooltip",
     "combined_listings_availability": "Availability",
     "combined_listings_below_text": "Below-swatch text",
-    "combined_listings_below_text_info": "Add tag-based text rules below as blocks. Each swatch checks its own linked product's tags (not the product you're currently viewing), so the same swatch shows the same text no matter which listing in the group you're on. The first matching rule wins per swatch."
+    "combined_listings_below_text_info": "Add tag-based text rules below as blocks. Each swatch checks its own linked product's tags (not the product you're currently viewing), so the same swatch shows the same text no matter which listing in the group you're on. The first matching rule wins per swatch.",
+    "badge_legacy_settings": "Legacy card badge settings",
+    "badge_legacy_settings_info": "Superseded by the badge_system metaobject entries above - kept here only for stores still using the old position/color settings directly. New stores should ignore this section.",
+    "badge_system_info": "Badges (Sale, Sold Out, New, Preorder, and any custom badges) are configured as Badge entries in Settings > Custom data, not here - see the theme's badge system setup script. This setting only controls the \"New\" badge's automatic threshold.",
+    "product_badges_block": "Product badges"
   },
   "html_defaults": {
     "share_information_about_your": "<p>Condividi informazioni sul tuo brand con i clienti. Descrivi un prodotto, fai annunci o dai il benvenuto ai clienti nel tuo negozio.</p>",
@@ -1146,7 +1152,9 @@
     "combined_listings_swatch_border": "Unselected swatches have no border; hovering shows a light border, and the selected swatch shows a solid border at this thickness",
     "split_title_on_dash": "If the title contains \" - \", the text after it shows smaller on its own line",
     "show_above_media_mobile": "On product pages, moves this block above the media gallery on mobile only. Has no effect outside a product page layout.",
-    "marquee_speed": "Higher values scroll faster"
+    "marquee_speed": "Higher values scroll faster",
+    "new_badge_days": "How many days after a product is created its automatic \"New\" badge (if enabled) keeps showing.",
+    "product_badges_max": "Caps how many badges show here, independent of the card's own overlay cap (which is fixed at 3 per position)."
   },
   "categories": {
     "product_list": "Collezione in evidenza",

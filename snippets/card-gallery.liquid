@@ -13,14 +13,24 @@
   assign block_settings = block.settings
   assign image_sizes = '(min-width: 750px) 50vw, 100vw'
 
-  # Check if product has badges and determine position
-  assign has_badges = false
-  assign badge_position = null
+  # Which corners will actually show a badge (see snippets/product-badges.liquid, the single
+  # source of truth for resolving/rendering badges - this only re-derives which position classes
+  # to add to the card, by checking the same rendered output for the position wrapper classes it
+  # will emit, rather than re-implementing the resolution logic here). Multiple positions can be
+  # active at once now (e.g. a top-left Sale badge and a top-right New badge together), unlike
+  # the single global badge_position this used to key off.
+  assign badge_position_classes = ''
   if product != blank
-    if product.available == false or product.compare_at_price > product.price
-      assign has_badges = true
-      assign badge_position = settings.badge_position
-    endif
+    capture badges_preview
+      render 'product-badges', product: product, context: 'image'
+    endcapture
+    assign badge_positions = 'top-left,top-right,bottom-left,bottom-right' | split: ','
+    for position in badge_positions
+      assign position_class = 'product-badges--' | append: position
+      if badges_preview contains position_class
+        assign badge_position_classes = badge_position_classes | append: ' card-gallery--badge-' | append: position
+      endif
+    endfor
   endif
 
   # if the card-gallery has a section.settings.product_card_size:
@@ -65,7 +75,7 @@
 
 <div
   ref="cardGallery"
-  class="card-gallery card-gallery-{{ block.id }} spacing-style border-style{% if has_badges %} card-gallery--badge-{{ badge_position }}{% endif %}"
+  class="card-gallery card-gallery-{{ block.id }} spacing-style border-style{{ badge_position_classes }}"
   style="
     {% render 'border-override', settings: block_settings %}
     {% render 'spacing-style', settings: block_settings %}

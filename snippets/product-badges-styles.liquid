@@ -1,5 +1,7 @@
 {%- doc -%}
-  Product badge styles consolidated into a single snippet.
+  Product badge styles consolidated into a single snippet. Shared by the image/card overlay
+  context (blocks/_product-card-gallery.liquid, snippets/card-gallery.liquid) and the product
+  page content-block context (blocks/product-badges.liquid), both via snippets/product-badges.liquid.
 
   @example
   {% render 'product-badges-styles' %}
@@ -7,25 +9,47 @@
 
 {% stylesheet %}
   .product-badges {
-    --badge-inset: max(var(--padding-xs), calc((var(--border-radius) + var(--padding-xs)) * (1 - cos(45deg))));
+    /* --border-radius/--padding-*-start fallbacks matter here specifically because this
+       renders on the product page too, where there's no card spacing-style wrapper setting
+       these - without a fallback, an undefined custom property makes the whole calc() invalid. */
+    --badge-inset: max(var(--padding-xs), calc((var(--border-radius, 0px) + var(--padding-xs)) * (1 - cos(45deg))));
 
     position: absolute;
     z-index: var(--layer-flat);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--padding-3xs, 4px);
   }
 
   .product-badges--bottom-left {
-    bottom: calc(var(--badge-inset) + var(--padding-block-start));
-    left: calc(var(--badge-inset) + var(--padding-inline-start));
+    bottom: calc(var(--badge-inset) + var(--padding-block-start, 0px));
+    left: calc(var(--badge-inset) + var(--padding-inline-start, 0px));
   }
 
   .product-badges--top-left {
-    top: calc(var(--badge-inset) + var(--padding-block-start));
-    left: calc(var(--badge-inset) + var(--padding-inline-start));
+    top: calc(var(--badge-inset) + var(--padding-block-start, 0px));
+    left: calc(var(--badge-inset) + var(--padding-inline-start, 0px));
   }
 
   .product-badges--top-right {
-    top: calc(var(--badge-inset) + var(--padding-block-start));
-    right: calc(var(--badge-inset) + var(--padding-inline-start));
+    top: calc(var(--badge-inset) + var(--padding-block-start, 0px));
+    right: calc(var(--badge-inset) + var(--padding-inline-start, 0px));
+    align-items: flex-end;
+  }
+
+  .product-badges--bottom-right {
+    bottom: calc(var(--badge-inset) + var(--padding-block-start, 0px));
+    right: calc(var(--badge-inset) + var(--padding-inline-start, 0px));
+    align-items: flex-end;
+  }
+
+  /* Content-block context (product page): a plain flex row, not absolutely positioned. */
+  .product-badges-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--padding-2xs, 6px);
   }
 
   .product-badges__badge {
@@ -33,19 +57,55 @@
 
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: var(--padding-3xs, 4px);
     text-align: center;
-    color: var(--color-foreground);
-    background: var(--color-background);
     font-size: var(--badge-font-size);
     font-family: var(--badge-font-family);
     font-weight: var(--badge-font-weight);
     text-transform: var(--badge-text-transform);
     border-radius: var(--badge-border-radius);
-  }
-
-  .product-badges__badge--rectangle {
     padding-block: var(--badge-rectangle-padding-block);
     padding-inline: var(--badge-rectangle-padding-inline);
+    /* max-inline-size: a merchant-entered label can be far longer than "Sale" - cap width and
+       wrap rather than letting it stretch across a narrow card. */
+    max-inline-size: min(60vw, 12rem);
+    overflow-wrap: break-word;
+  }
+
+  .product-badges__badge-icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    inline-size: 1em;
+    block-size: 1em;
+  }
+
+  .product-badges__badge-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /* Style presets - built from the theme's existing color_palette + opacity tokens (this theme
+     has no per-section color-scheme system to map onto instead; see snippets/contrast-override.liquid
+     for the same token pattern used by the theme's other "custom color" surfaces). */
+  .product-badges__badge--primary {
+    background: var(--color-foreground);
+    color: var(--color-background);
+  }
+
+  .product-badges__badge--secondary {
+    background: rgb(var(--color-foreground-rgb) / 0.08);
+    color: var(--color-foreground);
+  }
+
+  .product-badges__badge--outline {
+    background: none;
+    border: 1px solid rgb(var(--color-foreground-rgb) / 0.3);
+    color: var(--color-foreground);
+  }
+
+  .product-badges__badge--inverse {
+    background: var(--color-background);
+    color: var(--color-foreground);
   }
 {% endstylesheet %}
