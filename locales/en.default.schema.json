@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "categories": {
     "banners": "Banners",
@@ -152,10 +161,7 @@
     "disclosures": "Disclosures",
     "disclosures_metafield_content": "Required safety warnings and regulatory disclosures for this product.",
     "app_required_for_ratings": "An app is required for product ratings. [Learn more](https://help.shopify.com/manual/apps)",
-    "navigation": "Navigation",
-    "product_badge_rules": "Product badge rules",
-    "product_badge_rules_info": "Configure badges here that show automatically on both product cards and the product page, based on product tags. Add a rule below for each tag you want to turn into a badge - a product with no matching tag, and no sale/sold out status, shows no badge at all.",
-    "product_badge_rule": "Badge rule"
+    "navigation": "Navigation"
   },
   "html_defaults": {
     "join_our_email_list": "<h2>Join our email list</h2>",
@@ -245,10 +251,7 @@
     "video_autoplay": "Videos will be muted by default",
     "video_external": "Use a YouTube or Vimeo URL",
     "pills_usage": "Used for applied filters, discount codes, and search suggestions",
-    "media_type_info": "Features are populated from your menu links",
-    "product_badge_rule_tag": "Matches exactly and case-insensitively - \"New Arrival\" and \"new arrival\" match the same rule. Not a partial/substring match.",
-    "product_badge_rule_text_color": "Optional. Automatically chosen for readable contrast against the background color when left blank.",
-    "product_badge_position_pdp": "Independent of the card badge position set in Theme settings > Badges."
+    "media_type_info": "Features are populated from your menu links"
   },
   "names": {
     "column": "Column",

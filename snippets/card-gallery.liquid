@@ -13,17 +13,11 @@
   assign block_settings = block.settings
   assign image_sizes = '(min-width: 750px) 50vw, 100vw'
 
-  # Check if product has badges (sold out / sale / a matching tag rule - see
-  # snippets/product-badges-resolve.liquid, the single source of truth for this) and determine
-  # position, so the responsive badge-position CSS below applies for a tag badge just as much as
-  # for sold-out/sale.
+  # Check if product has badges and determine position
   assign has_badges = false
   assign badge_position = null
   if product != blank
-    capture badge_keys
-      render 'product-badges-resolve', product: product
-    endcapture
-    if badge_keys != blank
+    if product.available == false or product.compare_at_price > product.price
       assign has_badges = true
       assign badge_position = settings.badge_position
     endif
