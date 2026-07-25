@@ -19,6 +19,12 @@
 
   if show_price
     assign button_price = product.selected_or_first_available_variant.price | default: product.price_min
+    assign button_compare_at_price = product.selected_or_first_available_variant.compare_at_price
+
+    assign show_button_compare_price = false
+    if button_compare_at_price > button_price
+      assign show_button_compare_price = true
+    endif
   endif
 -%}
 
@@ -58,6 +64,11 @@
           class="add-to-cart-button__price-divider"
           aria-hidden="true"
         >|</span>
+        {%- if show_button_compare_price -%}
+          <span class="visually-hidden">{{ 'content.price_regular' | t }}&nbsp;</span>
+          <span class="compare-at-price">{%- render 'format-price', price: button_compare_at_price -%}</span>
+          <span class="visually-hidden">{{ 'content.price_sale' | t }}&nbsp;</span>
+        {%- endif -%}
         {%- render 'format-price', price: button_price -%}
       </span>
     {%- endif -%}

@@ -213,4 +213,20 @@
   .add-to-cart-button__price-divider {
     opacity: 0.5;
   }
+
+  /* Keep the button label on one line on product cards - narrow mobile columns otherwise
+     wrap "Add to bag" (plus the price, when shown) onto a second line. */
+  :is(.product-grid__item, .resource-list__item) .add-to-cart-button {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  @media screen and (max-width: 749px) {
+    :is(.product-grid__item, .resource-list__item)
+      .product-form-buttons
+      > *:not(.quantity-selector-wrapper, .quantity-rules, .quantity-label, .volume-pricing, .product-form-text__error) {
+      min-width: 0;
+    }
+  }
 {% endstylesheet %}

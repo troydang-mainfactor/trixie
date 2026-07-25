@@ -313,6 +313,7 @@
   "products": {
     "product": {
       "add_to_cart": "Lisää ostoskoriin",
+      "pre_order": "Ennakkotilaa",
       "added_to_cart": "Lisätty ostoskoriin",
       "adding_to_cart": "Lisätään...",
       "add_to_cart_error": "Ostoskoriin lisättäessä tapahtui virhe",

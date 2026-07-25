@@ -355,6 +355,7 @@
   "products": {
     "product": {
       "add_to_cart": "Add to bag",
+      "pre_order": "Pre-order",
       "adding_to_cart": "Adding...",
       "added_to_cart": "Added to bag",
       "add_to_cart_error": "Error adding to bag",

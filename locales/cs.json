@@ -325,6 +325,7 @@
   "products": {
     "product": {
       "add_to_cart": "Přidat do košíku",
+      "pre_order": "Předobjednávka",
       "adding_to_cart": "Přidávání do košíku...",
       "added_to_cart": "Přidáno do košíku",
       "add_to_cart_error": "Chyba při přidávání do košíku",

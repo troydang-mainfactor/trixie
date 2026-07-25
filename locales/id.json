@@ -313,6 +313,7 @@
   "products": {
     "product": {
       "add_to_cart": "Tambahkan ke keranjang",
+      "pre_order": "Pra-pesan",
       "added_to_cart": "Ditambahkan ke keranjang",
       "adding_to_cart": "Menambahkan...",
       "add_to_cart_error": "Kesalahan saat menambahkan ke keranjang",
