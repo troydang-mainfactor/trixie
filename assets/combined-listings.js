@@ -339,7 +339,10 @@ class CombinedListingsCardSwatches extends CombinedListingsBase {
    * @param {{productId: string, quickAddVariantId: string, available: boolean}} target
    */
   #syncBuyButtons(productCard, { productId, quickAddVariantId, available }) {
-    const productForm = productCard?.querySelector('product-form-component');
+    // Scoped to .buy-buttons-block: quick-add-component renders its own separate
+    // product-form-component earlier in the card for its "Add" flow, and an unscoped
+    // lookup would match that one instead of the visible buy-buttons block's form.
+    const productForm = productCard?.querySelector('.buy-buttons-block product-form-component');
     if (!(productForm instanceof HTMLElement)) return;
 
     productForm.dataset.productId = productId;

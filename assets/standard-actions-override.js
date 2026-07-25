@@ -1,5 +1,5 @@
 /**
- * Horizon overrides for Shopify.actions:
+ * Theme overrides for Shopify.actions:
  * - updateCart: emit events from the cart drawer scope.
  * - openCart: open the cart drawer (fall back to /cart when absent).
  */
