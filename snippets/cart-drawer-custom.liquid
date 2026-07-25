@@ -353,15 +353,21 @@
     color: var(--custom-drawer-header-text);
   }
 
-  /* .theme-drawer__header, .theme-drawer__badge, and .theme-drawer__close-button
+  /* .theme-drawer__header, .theme-drawer__title, and .theme-drawer__badge
      all set their own explicit `color` in theme-drawer-styles.liquid, which breaks
      plain `color: inherit` (it would inherit from the nearest explicit ancestor,
      not from the header zone two levels up) - set the custom color directly on
-     each instead of relying on inheritance. */
+     each instead of relying on inheritance.
+
+     .theme-drawer__close-button is deliberately excluded: it always sits on
+     its own light `--color-background` circle regardless of the header's own
+     background color, and has its own adaptive contrast logic (the oklch
+     @supports block in theme-drawer-styles.liquid). Forcing it to the header
+     text color made its icon invisible whenever that text color was light
+     (light icon on its own light circle). */
   .custom-cart-drawer-zones__header-zone .theme-drawer__header,
   .custom-cart-drawer-zones__header-zone .theme-drawer__title,
-  .custom-cart-drawer-zones__header-zone .theme-drawer__badge,
-  .custom-cart-drawer-zones__header-zone .theme-drawer__close-button {
+  .custom-cart-drawer-zones__header-zone .theme-drawer__badge {
     color: var(--custom-drawer-header-text);
   }
 
