@@ -1,6 +1,6 @@
 {% doc %}
-  Outputs scoped CSS custom properties for the button-custom and button-3d style classes,
-  and direct color overrides for the button-unstyled (link) style.
+  Outputs scoped CSS custom properties for the button-custom style class and
+  direct color overrides for the button-unstyled (link) style.
 
   @param {object} block_settings - The block's settings object
   @param {string} block_id - The block ID used to scope the CSS
@@ -23,7 +23,7 @@
   {% endstyle %}
 {% endif %}
 
-{% if block_settings.style_class == 'button-custom' or block_settings.style_class == 'button-3d' %}
+{% if block_settings.style_class == 'button-custom' %}
   {%- assign effective_background_color = block_settings.custom_button_background
     | default: settings.palette_primary_button_background
   %}
@@ -49,30 +49,17 @@
   {%- assign effective_hover_bg = hover_parts[0] -%}
   {%- assign effective_hover_text = hover_parts[1] -%}
   {%- assign effective_hover_border = hover_parts[2] -%}
-  {%- assign scoped_selector = '.' | append: block_settings.style_class | append: '--' | append: block_id -%}
   {% style %}
-    .{{ block_settings.style_class }}--{{ block_id }} {
+    .button-custom--{{ block_id }} {
       --button-background-color: rgb({{ effective_background_color.rgba }});
       --button-color: rgb({{ effective_text_color.rgba }});
       --button-border-color: rgb({{ effective_border_color.rgba }});
       --button-focus-outline-color: rgb({{ effective_focus_outline_color.rgb }});
-      --button-border-width: {{ block_settings.custom_border_width | default: 1 }}px;
     }
-    .{{ block_settings.style_class }}--{{ block_id }}:hover {
+    .button-custom--{{ block_id }}:hover {
       --button-background-color: {{ effective_hover_bg }};
       --button-color: {{ effective_hover_text }};
       --button-border-color: {{ effective_hover_border }};
-    }
-    {% comment %}
-      Repeating the (already-unique) scoped class doubles selector specificity without
-      assuming any sibling class, so this reliably wins over base.css's .button/.button-secondary
-      rules for these same properties regardless of stylesheet source order.
-    {% endcomment %}
-    {{ scoped_selector }}{{ scoped_selector }} {
-      border-radius: {{ block_settings.custom_border_radius | default: 0 }}px;
-      font-family: {{ block_settings.custom_font | default: 'var(--font-body--family)' }};
-      font-size: {{ block_settings.custom_font_size | default: 14 }}px;
-      text-transform: {{ block_settings.custom_text_case | default: 'none' }};
     }
   {% endstyle %}
 {% endif %}

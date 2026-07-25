@@ -57,10 +57,6 @@
           "label": "t:options.secondary"
         },
         {
-          "value": "button-3d",
-          "label": "t:options.pressable_3d"
-        },
-        {
           "value": "button-custom",
           "label": "t:options.custom"
         }
@@ -71,7 +67,7 @@
     {
       "type": "header",
       "content": "t:content.button_colors",
-      "visible_if": "{{ block.settings.style_class == 'button-custom' or block.settings.style_class == 'button-3d' }}"
+      "visible_if": "{{ block.settings.style_class == \"button-custom\" }}"
     },
     {
       "type": "color",
@@ -79,7 +75,7 @@
       "label": "t:settings.background",
       "default": "{{ settings.color_palette.foreground }}",
       "alpha": true,
-      "visible_if": "{{ block.settings.style_class == 'button-custom' or block.settings.style_class == 'button-3d' }}"
+      "visible_if": "{{ block.settings.style_class == 'button-custom' }}"
     },
     {
       "type": "color",
@@ -87,7 +83,7 @@
       "label": "t:settings.text",
       "default": "{{ settings.color_palette.background }}",
       "alpha": true,
-      "visible_if": "{{ block.settings.style_class == 'button-custom' or block.settings.style_class == 'button-3d' }}"
+      "visible_if": "{{ block.settings.style_class == 'button-custom' }}"
     },
     {
       "type": "color",
@@ -95,92 +91,7 @@
       "label": "t:settings.borders",
       "default": "{{ settings.color_palette.background }}",
       "alpha": true,
-      "visible_if": "{{ block.settings.style_class == 'button-custom' or block.settings.style_class == 'button-3d' }}"
-    },
-    {
-      "type": "header",
-      "content": "t:content.borders",
-      "visible_if": "{{ block.settings.style_class == 'button-custom' or block.settings.style_class == 'button-3d' }}"
-    },
-    {
-      "type": "range",
-      "id": "custom_border_width",
-      "label": "t:settings.border_width",
-      "min": 0,
-      "max": 10,
-      "step": 1,
-      "unit": "px",
-      "default": 1,
-      "visible_if": "{{ block.settings.style_class == 'button-custom' or block.settings.style_class == 'button-3d' }}"
-    },
-    {
-      "type": "range",
-      "id": "custom_border_radius",
-      "label": "t:settings.border_radius",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 12,
-      "visible_if": "{{ block.settings.style_class == 'button-custom' or block.settings.style_class == 'button-3d' }}"
-    },
-    {
-      "type": "header",
-      "content": "t:content.typography",
-      "visible_if": "{{ block.settings.style_class == 'button-custom' or block.settings.style_class == 'button-3d' }}"
-    },
-    {
-      "type": "select",
-      "id": "custom_font",
-      "label": "t:settings.font",
-      "options": [
-        {
-          "value": "var(--font-body--family)",
-          "label": "t:options.body"
-        },
-        {
-          "value": "var(--font-subheading--family)",
-          "label": "t:options.subheading"
-        },
-        {
-          "value": "var(--font-heading--family)",
-          "label": "t:options.heading"
-        },
-        {
-          "value": "var(--font-accent--family)",
-          "label": "t:options.accent"
-        }
-      ],
-      "default": "var(--font-body--family)",
-      "visible_if": "{{ block.settings.style_class == 'button-custom' or block.settings.style_class == 'button-3d' }}"
-    },
-    {
-      "type": "range",
-      "id": "custom_font_size",
-      "label": "t:settings.font_size",
-      "min": 10,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "default": 14,
-      "visible_if": "{{ block.settings.style_class == 'button-custom' or block.settings.style_class == 'button-3d' }}"
-    },
-    {
-      "type": "select",
-      "id": "custom_text_case",
-      "label": "t:settings.text_case",
-      "options": [
-        {
-          "value": "none",
-          "label": "t:options.none"
-        },
-        {
-          "value": "uppercase",
-          "label": "t:options.uppercase"
-        }
-      ],
-      "default": "none",
-      "visible_if": "{{ block.settings.style_class == 'button-custom' or block.settings.style_class == 'button-3d' }}"
+      "visible_if": "{{ block.settings.style_class == 'button-custom' }}"
     }
   ]
 }
