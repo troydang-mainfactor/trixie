@@ -1293,5 +1293,37 @@
       "placeholder_2": "Item 2",
       "placeholder_3": "Item 3"
     }
+  },
+  "auto_add_to_cart": {
+    "names": {
+      "section": "Automatisk legg i handlekurv"
+    },
+    "content": {
+      "setup": "Legg til denne seksjonen én gang i topp- eller bunntekstgruppen din. Den har ingen synlig visning - den overvåker bare handlekurven og legger automatisk til det konfigurerte produktet nedenfor.",
+      "trigger": "Utløser",
+      "item": "Produkt som legges til automatisk"
+    },
+    "settings": {
+      "enabled": "Aktivert",
+      "trigger_type": "Utløsertype",
+      "subtotal_threshold_amount": "Delsum-terskel",
+      "match_type": "Samsvarstype",
+      "trigger_product": "Produkt",
+      "trigger_collection": "Kolleksjon",
+      "product_to_add": "Produkt som skal legges til",
+      "specific_variant_id": "Spesifikk variant-ID (valgfritt)"
+    },
+    "options": {
+      "cart_subtotal": "Handlekurvens delsum når et beløp",
+      "product_or_collection_in_cart": "Bestemt produkt eller kolleksjon i handlekurven",
+      "product": "Produkt",
+      "collection": "Kolleksjon"
+    },
+    "info": {
+      "threshold_currency": "Angi beløpet i butikkens valuta, f.eks. 50.00 for 50,00 kr.",
+      "trigger_reference_scope": "Brukes bare når Samsvarstype ovenfor er satt til Produkt.",
+      "collection_limit": "Bare de første 250 produktene i kolleksjonen sjekkes. Brukes bare når Samsvarstype ovenfor er satt til Kolleksjon.",
+      "variant_id": "La stå tomt for å bruke produktets første tilgjengelige variant."
+    }
   }
 }

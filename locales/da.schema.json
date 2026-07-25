@@ -1293,5 +1293,37 @@
       "placeholder_2": "Item 2",
       "placeholder_3": "Item 3"
     }
+  },
+  "auto_add_to_cart": {
+    "names": {
+      "section": "Auto tilføj til kurv"
+    },
+    "content": {
+      "setup": "Tilføj denne sektion én gang til din Header- eller Footer-gruppe. Den har intet synligt output - den overvåger blot kurven og tilføjer automatisk den konfigurerede vare nedenfor.",
+      "trigger": "Udløser",
+      "item": "Vare der tilføjes automatisk"
+    },
+    "settings": {
+      "enabled": "Aktiveret",
+      "trigger_type": "Udløsertype",
+      "subtotal_threshold_amount": "Subtotal-tærskel",
+      "match_type": "Matchtype",
+      "trigger_product": "Produkt",
+      "trigger_collection": "Kollektion",
+      "product_to_add": "Produkt der skal tilføjes",
+      "specific_variant_id": "Specifikt variant-id (valgfrit)"
+    },
+    "options": {
+      "cart_subtotal": "Kurvens subtotal når et beløb",
+      "product_or_collection_in_cart": "Bestemt produkt eller kollektion i kurven",
+      "product": "Produkt",
+      "collection": "Kollektion"
+    },
+    "info": {
+      "threshold_currency": "Indtast beløbet i din butiks valuta, f.eks. 50.00 for 50,00 kr.",
+      "trigger_reference_scope": "Bruges kun, når Matchtype ovenfor er indstillet til Produkt.",
+      "collection_limit": "Kun de første 250 produkter i kollektionen kontrolleres. Bruges kun, når Matchtype ovenfor er indstillet til Kollektion.",
+      "variant_id": "Lad stå tomt for at bruge produktets første tilgængelige variant."
+    }
   }
 }

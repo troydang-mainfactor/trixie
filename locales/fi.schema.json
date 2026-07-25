@@ -1293,5 +1293,37 @@
       "placeholder_2": "Item 2",
       "placeholder_3": "Item 3"
     }
+  },
+  "auto_add_to_cart": {
+    "names": {
+      "section": "Lisää automaattisesti ostoskoriin"
+    },
+    "content": {
+      "setup": "Lisää tämä osio kerran ylä- tai alatunnisteryhmääsi. Sillä ei ole näkyvää sisältöä - se vain tarkkailee ostoskoria ja lisää automaattisesti alla määritetyn tuotteen.",
+      "trigger": "Laukaisin",
+      "item": "Automaattisesti lisättävä tuote"
+    },
+    "settings": {
+      "enabled": "Käytössä",
+      "trigger_type": "Laukaisimen tyyppi",
+      "subtotal_threshold_amount": "Välisumman kynnysarvo",
+      "match_type": "Vastaavuustyyppi",
+      "trigger_product": "Tuote",
+      "trigger_collection": "Kokoelma",
+      "product_to_add": "Lisättävä tuote",
+      "specific_variant_id": "Tietty versiotunnus (valinnainen)"
+    },
+    "options": {
+      "cart_subtotal": "Ostoskorin välisumma saavuttaa summan",
+      "product_or_collection_in_cart": "Tietty tuote tai kokoelma ostoskorissa",
+      "product": "Tuote",
+      "collection": "Kokoelma"
+    },
+    "info": {
+      "threshold_currency": "Anna summa myymäläsi valuutassa, esim. 50.00 tarkoittaa 50,00 €.",
+      "trigger_reference_scope": "Käytetään vain, kun yllä oleva vastaavuustyyppi on asetettu arvoon Tuote.",
+      "collection_limit": "Vain kokoelman ensimmäiset 250 tuotetta tarkistetaan. Käytetään vain, kun yllä oleva vastaavuustyyppi on asetettu arvoon Kokoelma.",
+      "variant_id": "Jätä tyhjäksi käyttääksesi tuotteen ensimmäistä saatavilla olevaa versiota."
+    }
   }
 }

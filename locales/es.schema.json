@@ -1293,5 +1293,37 @@
       "placeholder_2": "Item 2",
       "placeholder_3": "Item 3"
     }
+  },
+  "auto_add_to_cart": {
+    "names": {
+      "section": "Añadir automáticamente al carrito"
+    },
+    "content": {
+      "setup": "Añade esta sección una vez a tu grupo de encabezado o pie de página. No tiene salida visible: solo supervisa el carrito y añade automáticamente el artículo configurado a continuación.",
+      "trigger": "Activador",
+      "item": "Artículo para añadir automáticamente"
+    },
+    "settings": {
+      "enabled": "Activado",
+      "trigger_type": "Tipo de activador",
+      "subtotal_threshold_amount": "Umbral de subtotal",
+      "match_type": "Tipo de coincidencia",
+      "trigger_product": "Producto",
+      "trigger_collection": "Colección",
+      "product_to_add": "Producto a añadir",
+      "specific_variant_id": "ID de variante específico (opcional)"
+    },
+    "options": {
+      "cart_subtotal": "El subtotal del carrito alcanza un importe",
+      "product_or_collection_in_cart": "Producto o colección específicos en el carrito",
+      "product": "Producto",
+      "collection": "Colección"
+    },
+    "info": {
+      "threshold_currency": "Introduce el importe en la moneda de tu tienda, por ejemplo 50.00 para 50,00 €.",
+      "trigger_reference_scope": "Solo se usa cuando el tipo de coincidencia anterior está establecido en Producto.",
+      "collection_limit": "Solo se comprueban los primeros 250 productos de la colección. Solo se usa cuando el tipo de coincidencia anterior está establecido en Colección.",
+      "variant_id": "Déjalo en blanco para usar la primera variante disponible del producto."
+    }
   }
 }

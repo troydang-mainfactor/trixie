@@ -1293,5 +1293,37 @@
       "placeholder_2": "Item 2",
       "placeholder_3": "Item 3"
     }
+  },
+  "auto_add_to_cart": {
+    "names": {
+      "section": "Automatické přidání do košíku"
+    },
+    "content": {
+      "setup": "Přidejte tuto sekci jednou do skupiny Záhlaví nebo Zápatí. Nemá žádný viditelný výstup - pouze sleduje košík a automaticky přidá níže nastavenou položku.",
+      "trigger": "Spouštěč",
+      "item": "Položka k automatickému přidání"
+    },
+    "settings": {
+      "enabled": "Povoleno",
+      "trigger_type": "Typ spouštěče",
+      "subtotal_threshold_amount": "Práh mezisoučtu",
+      "match_type": "Typ shody",
+      "trigger_product": "Produkt",
+      "trigger_collection": "Kolekce",
+      "product_to_add": "Produkt k přidání",
+      "specific_variant_id": "Konkrétní ID varianty (volitelné)"
+    },
+    "options": {
+      "cart_subtotal": "Mezisoučet košíku dosáhne částky",
+      "product_or_collection_in_cart": "Konkrétní produkt nebo kolekce v košíku",
+      "product": "Produkt",
+      "collection": "Kolekce"
+    },
+    "info": {
+      "threshold_currency": "Zadejte částku v měně vašeho obchodu, např. 50.00 pro 50,00 Kč.",
+      "trigger_reference_scope": "Používá se pouze v případě, že je výše uvedený typ shody nastaven na Produkt.",
+      "collection_limit": "Kontroluje se pouze prvních 250 produktů v kolekci. Používá se pouze v případě, že je výše uvedený typ shody nastaven na Kolekci.",
+      "variant_id": "Ponechte prázdné pro použití první dostupné varianty produktu."
+    }
   }
 }

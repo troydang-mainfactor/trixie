@@ -1293,5 +1293,37 @@
       "placeholder_2": "Item 2",
       "placeholder_3": "Item 3"
     }
+  },
+  "auto_add_to_cart": {
+    "names": {
+      "section": "Automatisch toevoegen aan winkelwagen"
+    },
+    "content": {
+      "setup": "Voeg deze sectie eenmalig toe aan je Header- of Footer-groep. Er is geen zichtbare uitvoer - hij houdt alleen de winkelwagen in de gaten en voegt automatisch het hieronder ingestelde product toe.",
+      "trigger": "Trigger",
+      "item": "Automatisch toe te voegen product"
+    },
+    "settings": {
+      "enabled": "Ingeschakeld",
+      "trigger_type": "Triggertype",
+      "subtotal_threshold_amount": "Subtotaaldrempel",
+      "match_type": "Overeenkomsttype",
+      "trigger_product": "Product",
+      "trigger_collection": "Collectie",
+      "product_to_add": "Toe te voegen product",
+      "specific_variant_id": "Specifieke variant-ID (optioneel)"
+    },
+    "options": {
+      "cart_subtotal": "Subtotaal winkelwagen bereikt bedrag",
+      "product_or_collection_in_cart": "Specifiek product of collectie in winkelwagen",
+      "product": "Product",
+      "collection": "Collectie"
+    },
+    "info": {
+      "threshold_currency": "Voer het bedrag in de valuta van je winkel in, bijv. 50.00 voor € 50,00.",
+      "trigger_reference_scope": "Wordt alleen gebruikt wanneer Overeenkomsttype hierboven is ingesteld op Product.",
+      "collection_limit": "Alleen de eerste 250 producten in de collectie worden gecontroleerd. Wordt alleen gebruikt wanneer Overeenkomsttype hierboven is ingesteld op Collectie.",
+      "variant_id": "Laat leeg om de eerste beschikbare variant van het product te gebruiken."
+    }
   }
 }

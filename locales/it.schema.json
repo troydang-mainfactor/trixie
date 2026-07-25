@@ -1293,5 +1293,37 @@
       "placeholder_2": "Item 2",
       "placeholder_3": "Item 3"
     }
+  },
+  "auto_add_to_cart": {
+    "names": {
+      "section": "Aggiunta automatica al carrello"
+    },
+    "content": {
+      "setup": "Aggiungi questa sezione una sola volta al gruppo Intestazione o Piè di pagina. Non ha alcun output visibile: monitora semplicemente il carrello e aggiunge automaticamente l'articolo configurato di seguito.",
+      "trigger": "Attivatore",
+      "item": "Articolo da aggiungere automaticamente"
+    },
+    "settings": {
+      "enabled": "Abilitato",
+      "trigger_type": "Tipo di attivatore",
+      "subtotal_threshold_amount": "Soglia del subtotale",
+      "match_type": "Tipo di corrispondenza",
+      "trigger_product": "Prodotto",
+      "trigger_collection": "Collezione",
+      "product_to_add": "Prodotto da aggiungere",
+      "specific_variant_id": "ID variante specifico (facoltativo)"
+    },
+    "options": {
+      "cart_subtotal": "Il subtotale del carrello raggiunge un importo",
+      "product_or_collection_in_cart": "Prodotto o collezione specifici nel carrello",
+      "product": "Prodotto",
+      "collection": "Collezione"
+    },
+    "info": {
+      "threshold_currency": "Inserisci l'importo nella valuta del tuo negozio, ad es. 50.00 per 50,00 €.",
+      "trigger_reference_scope": "Utilizzato solo quando il tipo di corrispondenza sopra è impostato su Prodotto.",
+      "collection_limit": "Vengono controllati solo i primi 250 prodotti della collezione. Utilizzato solo quando il tipo di corrispondenza sopra è impostato su Collezione.",
+      "variant_id": "Lascia vuoto per usare la prima variante disponibile del prodotto."
+    }
   }
 }

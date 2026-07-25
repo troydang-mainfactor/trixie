@@ -1293,5 +1293,37 @@
       "placeholder_2": "Item 2",
       "placeholder_3": "Item 3"
     }
+  },
+  "auto_add_to_cart": {
+    "names": {
+      "section": "自動加入購物車"
+    },
+    "content": {
+      "setup": "只需將此區塊新增到頁首或頁尾群組一次。它沒有可見的輸出內容，只會監控購物車，並自動加入下方設定的商品。",
+      "trigger": "觸發條件",
+      "item": "自動加入的商品"
+    },
+    "settings": {
+      "enabled": "已啟用",
+      "trigger_type": "觸發類型",
+      "subtotal_threshold_amount": "小計門檻",
+      "match_type": "比對類型",
+      "trigger_product": "商品",
+      "trigger_collection": "系列",
+      "product_to_add": "要加入的商品",
+      "specific_variant_id": "指定款式ID（選填）"
+    },
+    "options": {
+      "cart_subtotal": "購物車小計達到指定金額",
+      "product_or_collection_in_cart": "購物車中含有指定商品或系列",
+      "product": "商品",
+      "collection": "系列"
+    },
+    "info": {
+      "threshold_currency": "請輸入以商店幣別計的金額，例如 50.00 表示 $50.00。",
+      "trigger_reference_scope": "僅當上方的比對類型設為商品時使用。",
+      "collection_limit": "僅檢查該系列中的前 250 項商品。僅當上方的比對類型設為系列時使用。",
+      "variant_id": "留空則使用該商品第一個可購買的款式。"
+    }
   }
 }
