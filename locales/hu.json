@@ -336,6 +336,7 @@
   "products": {
     "product": {
       "add_to_cart": "Hozzáadás a kosárhoz",
+      "pre_order": "Előrendelés",
       "adding_to_cart": "Hozzáadás…",
       "added_to_cart": "Hozzáadva a kosárhoz",
       "add_to_cart_error": "Nem tudtuk hozzáadni a terméket a kosárhoz",

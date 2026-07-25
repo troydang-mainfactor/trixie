@@ -313,6 +313,7 @@
   "products": {
     "product": {
       "add_to_cart": "In den Warenkorb legen",
+      "pre_order": "Vorbestellen",
       "added_to_cart": "Zum Warenkorb hinzugefügt",
       "adding_to_cart": "Wird hinzugefügt...",
       "add_to_cart_error": "Fehler beim Hinzufügen zum Warenkorb",

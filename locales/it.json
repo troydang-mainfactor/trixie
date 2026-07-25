@@ -343,6 +343,7 @@
   "products": {
     "product": {
       "add_to_cart": "Aggiungi al carrello",
+      "pre_order": "Preordina",
       "adding_to_cart": "Aggiunta in corso...",
       "added_to_cart": "Aggiunto al carrello",
       "add_to_cart_error": "Errore durante l'aggiunta al carrello",

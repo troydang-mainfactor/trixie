@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "blocks": {
     "load_video": "Video laden: {{ description }}",
@@ -327,6 +336,7 @@
   "products": {
     "product": {
       "add_to_cart": "Aan winkelwagen toevoegen",
+      "pre_order": "Vooraf bestellen",
       "adding_to_cart": "Toevoegen...",
       "added_to_cart": "Toegevoegd aan winkelwagen",
       "add_to_cart_error": "Fout bij het toevoegen aan de winkelwagen",

@@ -313,6 +313,7 @@
   "products": {
     "product": {
       "add_to_cart": "カートに追加する",
+      "pre_order": "予約注文",
       "added_to_cart": "カートに追加済み",
       "adding_to_cart": "追加中...",
       "add_to_cart_error": "カートに追加する際にエラーが発生しました",

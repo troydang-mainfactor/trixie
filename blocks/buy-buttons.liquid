@@ -34,6 +34,10 @@
       assign add_to_cart_text = 'products.product.unavailable' | t
     endif
   endif
+
+  if can_add_to_cart and product.tags contains 'pre-order'
+    assign add_to_cart_text = 'products.product.pre_order' | t
+  endif
 %}
 
 <span

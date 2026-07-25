@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "blocks": {
     "load_video": "加载视频：{{ description }}",
@@ -304,6 +313,7 @@
   "products": {
     "product": {
       "add_to_cart": "添加到购物车",
+      "pre_order": "预订",
       "added_to_cart": "添加到购物车",
       "adding_to_cart": "正在添加...",
       "add_to_cart_error": "添加到购物车时出错",

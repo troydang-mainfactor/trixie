@@ -319,6 +319,7 @@
   "products": {
     "product": {
       "add_to_cart": "Ajouter au panier",
+      "pre_order": "Précommander",
       "added_to_cart": "Ajouté au panier",
       "adding_to_cart": "Ajout...",
       "add_to_cart_error": "Erreur lors de l’ajout au panier",

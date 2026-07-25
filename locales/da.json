@@ -313,6 +313,7 @@
   "products": {
     "product": {
       "add_to_cart": "Læg i indkøbskurven",
+      "pre_order": "Forudbestil",
       "added_to_cart": "Lagt i indkøbskurv",
       "adding_to_cart": "Tilføjer...",
       "add_to_cart_error": "Der opstod en fejl, da du lagde varen i indkøbskurven",

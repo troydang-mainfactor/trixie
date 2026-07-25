@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "blocks": {
     "load_video": "Загрузить видео: {{ description }}",
@@ -341,6 +350,7 @@
   "products": {
     "product": {
       "add_to_cart": "Добавить в корзину",
+      "pre_order": "Предзаказ",
       "adding_to_cart": "Добавление...",
       "added_to_cart": "Товар добавлен в корзину",
       "add_to_cart_error": "Возникла ошибка при добавлении в корзину",
