@@ -1,31 +1,38 @@
-{%- doc -%}
+{% doc %}
   Custom cart drawer - schema-driven alternative to Horizon's default cart drawer.
+
+  This is a fork of snippets/cart-drawer.liquid (kept as close to that original
+  as possible on purpose, after an earlier from-scratch rebuild of the line
+  items/footer had multiple bugs). It reuses cart-products.liquid,
+  cart-summary.liquid, and cart-items-component.liquid completely unmodified,
+  exactly like the default drawer does - line items, quantity steppers, remove
+  buttons, subtotal, discounts, tax info, and the checkout form/button are all
+  the same already-proven code, not reimplemented. The only additions are the
+  milestone progress bar and the header/footer zone background colors, both
+  scoped to classes unique to this file so they can never affect the default
+  drawer's own styling.
 
   Rendered from two places, exactly like the default drawer it replaces:
   layout/theme.liquid (initial page load) and sections/cart-drawer-section.liquid
-  (Section Rendering API target after cart changes). All configuration lives in
-  global theme settings (Theme Editor > Theme settings), not section settings -
-  sections/cart-drawer-section.liquid is never referenced from any template or
-  section group, so it has no editor-reachable settings surface of its own.
-  Global `settings.*` is available unconditionally everywhere, including from
-  layout.liquid (which has no `section` variable at all), so this sidesteps
-  that entirely.
+  (Section Rendering API target after cart changes). Configuration lives in
+  global theme settings (Theme Editor > Theme settings) rather than section
+  settings, since sections/cart-drawer-section.liquid is never referenced from
+  any template or section group and so has no editor-reachable settings
+  surface of its own - global `settings.*` is available unconditionally
+  everywhere, including from layout.liquid (which has no `section` variable
+  at all), sidestepping that entirely.
 
-  PHASE 3: real line items, empty-cart state, and real subtotal/discount/
-  checkout totals. The cross-sell carousel is still a later phase.
+  Not yet carried over from the previous attempt (deferred until this simpler
+  foundation is confirmed stable): the discount-savings-percentage badge and
+  the lock icon on the checkout button, since both would require forking
+  cart-summary.liquid too rather than just adding to this file.
 
-  Line items reuse the theme's own quantity-selector snippet and the
-  CartItemsComponent custom element (via cart-items-component.liquid)
-  unchanged, so quantity changes and removal route through the exact same
-  /cart/change.js + CartLinesUpdateEvent mechanics the default drawer already
-  relies on - only the visual markup around them is custom.
+  @param {boolean} [render_wrapper] - When true, wraps the drawer in the section wrapper that the Section Rendering API adds automatically.
+{% enddoc %}
 
-  @param {boolean} [render_wrapper] - When true, wraps in the SRA section wrapper.
-{%- enddoc -%}
-
-{% liquid
+{%- liquid
   assign render_wrapper = render_wrapper | default: true, allow_false: true
-%}
+-%}
 
 {%- if settings.cart_type == 'drawer' and template.name != 'cart' -%}
   {% if render_wrapper %}
@@ -36,46 +43,28 @@
   {% endif %}
 
   <script
-    src="{{ 'component-cart-items.js' | asset_url }}"
     type="module"
+    src="{{ 'cart-drawer.js' | asset_url }}"
     fetchpriority="low"
   ></script>
-  <script
-    src="{{ 'component-cart-quantity-selector.js' | asset_url }}"
-    type="module"
-    fetchpriority="low"
-  ></script>
-  {% render 'quantity-selector-styles' %}
 
-  {% capture cart_badge_html %}
-    <span
-      class="theme-drawer__badge{% if cart.item_count == 0 %} visually-hidden{% endif %}"
-      aria-hidden="true"
-      {% if cart.item_count <= 99 %}
-        data-maintain-ratio
-      {% endif %}
+  {% capture empty_cart_drawer_content %}
+    <div
+      class="cart-drawer__content"
+      aria-label="{{ 'accessibility.cart' | t }}"
     >
-      {{- cart.item_count -}}
-    </span>
-    {% if cart.item_count > 0 %}
-      <span class="visually-hidden">{{ 'accessibility.cart_count' | t }}: {{ cart.item_count }}</span>
-    {% endif %}
-  {% endcapture %}
-  {% assign cart_drawer_title = 'content.cart_title' | t %}
+      <h2
+        class="theme-drawer__title h4"
+        id="cart-drawer-heading"
+      >
+        {{ 'content.your_cart_is_empty' | t }}
+      </h2>
 
-  {% liquid
-    assign has_discount = false
-    assign total_savings = 0
-    if cart.cart_level_discount_applications.size > 0
-      assign has_discount = true
-      assign total_savings = cart.cart_level_discount_applications | map: 'total_allocated_amount' | sum
-    endif
-
-    assign savings_percent = 0
-    if has_discount and cart.items_subtotal_price > 0
-      assign savings_percent = total_savings | times: 100.0 | divided_by: cart.items_subtotal_price | round
-    endif
-  %}
+      <div class="cart-drawer__items">
+        {% render 'cart-products', force_empty: true, context: 'drawer' %}
+      </div>
+    </div>
+    {% endcapture %}
 
   <theme-drawer
     id="cart-drawer"
@@ -83,115 +72,104 @@
   >
     <dialog
       ref="panel"
-      class="theme-drawer__dialog custom-cart-drawer__dialog color-custom-drawer"
+      class="theme-drawer__dialog color-custom-drawer"
       aria-labelledby="cart-drawer-heading"
+      cart-summary-sticky="true"
     >
       <cart-drawer-component
         {% if settings.auto_open_cart_drawer and template.name != 'cart' %}
           auto-open
         {% endif %}
       >
+        <template id="empty-cart-template">
+          {{ empty_cart_drawer_content }}
+        </template>
+
         <div
-          class="custom-cart-drawer{% if cart.empty? %} cart-drawer--empty{% endif %}"
-          style="
-            --custom-cart-drawer-header-bg: {{ settings.custom_drawer_header_background_color }};
-            --custom-cart-drawer-header-text: {{ settings.custom_drawer_header_text_color }};
-            --custom-cart-drawer-footer-bg: {{ settings.custom_drawer_footer_background_color }};
-            --custom-cart-drawer-footer-text: {{ settings.custom_drawer_footer_text_color }};
-          "
+          class="cart-drawer__inner{% if cart.empty? %} cart-drawer--empty{% endif %}"
+          data-hydration-key="cart-drawer-inner"
         >
-          <div class="custom-cart-drawer__header">
-            {% render 'theme-drawer-header',
-              title: cart_drawer_title,
-              drawer_id: 'cart-drawer',
-              heading_id: 'cart-drawer-heading',
-              title_append: cart_badge_html
-            %}
-
-            {% if settings.show_milestone_bar %}
-              {% render 'cart-drawer-custom-milestones' %}
-            {% endif %}
-          </div>
-
-          {% if cart.empty? %}
-            <div class="custom-cart-drawer__empty">
-              <h2
-                class="theme-drawer__title h4"
-                id="cart-drawer-heading-empty"
+          {%- if cart.empty? -%}
+            <div class="theme-drawer__header">
+              <button
+                on:click="#cart-drawer/close"
+                class="theme-drawer__close-button cart-drawer__close-button--empty"
+                type="button"
+                aria-label="{{ 'actions.close' | t }}"
               >
-                {{ 'content.your_cart_is_empty' | t }}
-              </h2>
-              <a
-                class="button custom-cart-drawer__empty-button"
-                href="{{ settings.empty_cart_button_link | default: routes.all_products_collection_url }}"
-              >
-                <span class="button-text">{{ 'actions.continue_shopping' | t }}</span>
-              </a>
+                <span class="svg-wrapper">
+                  {{- 'icon-close.svg' | inline_asset_content -}}
+                </span>
+              </button>
             </div>
-          {% else %}
-            <form
-              action="{{ routes.cart_url }}"
-              class="custom-cart-drawer__body"
-              id="cart-form"
-              method="post"
+          {%- else -%}
+            <div
+              class="custom-cart-drawer-zones__header-zone"
+              style="
+                --custom-drawer-header-bg: {{ settings.custom_drawer_header_background_color }};
+                --custom-drawer-header-text: {{ settings.custom_drawer_header_text_color }};
+              "
             >
-              <scroll-hint class="custom-cart-drawer__middle">
-                {% capture line_items %}
-                  {% for item in cart.items %}
-                    {% render 'cart-drawer-custom-line-item', item: item %}
-                  {% endfor %}
-                {% endcapture %}
-                {% render 'cart-items-component',
-                  children: line_items,
-                  is_drawer: true,
-                  section_id: 'cart-drawer-section'
-                %}
-              </scroll-hint>
-
-              <div class="custom-cart-drawer__footer">
-                <div class="custom-cart-drawer__totals">
-                  <div class="custom-cart-drawer__row">
-                    <span>{{ 'content.cart_subtotal' | t }}</span>
-                    <span data-testid="cart-subtotal-value">{{ cart.items_subtotal_price | money }}</span>
-                  </div>
-                  {% if has_discount %}
-                    <div class="custom-cart-drawer__row custom-cart-drawer__row--discount">
-                      <span>
-                        {{ 'content.discounts' | t }}
-                        {% if settings.show_discount_savings_badge %}
-                          <span class="custom-cart-drawer__savings-badge">
-                            {{ 'custom_cart_drawer.content.savings_badge' | t: percentage: savings_percent }}
-                          </span>
-                        {% endif %}
-                      </span>
-                      <span>-{{ total_savings | money }}</span>
-                    </div>
+              {% capture cart_badge_html %}
+                <span
+                  class="theme-drawer__badge{% if cart.item_count == 0 %} visually-hidden{% endif %}"
+                  aria-hidden="true"
+                  {% if cart.item_count <= 99 %}
+                    data-maintain-ratio
                   {% endif %}
-                </div>
-
-                {% render 'tax-info', has_discounts_enabled: settings.show_add_discount_code %}
-
-                <button
-                  type="submit"
-                  name="checkout"
-                  class="custom-cart-drawer__checkout button"
-                  {% unless cart.item_count > 0 %}
-                    disabled
-                  {% endunless %}
                 >
-                  {% if settings.show_checkout_lock_icon %}
-                    <span
-                      class="svg-wrapper"
-                      aria-hidden="true"
-                    >
-                      {{- 'icon-lock.svg' | inline_asset_content -}}
-                    </span>
-                  {% endif %}
-                  <span>{{ 'content.checkout' | t }} · {{ cart.total_price | money }}</span>
-                </button>
-              </div>
-            </form>
-          {% endif %}
+                  {{- cart.item_count -}}
+                </span>
+                {% if cart.item_count > 0 %}
+                  <span class="visually-hidden">
+                    {{ 'accessibility.cart_count' | t }}: {{ cart.item_count }}
+                  </span>
+                {% endif %}
+              {% endcapture %}
+              {% assign cart_drawer_title = 'content.cart_title' | t %}
+              {% render 'theme-drawer-header',
+                title: cart_drawer_title,
+                drawer_id: 'cart-drawer',
+                heading_id: 'cart-drawer-heading',
+                title_append: cart_badge_html
+              %}
+
+              {% if settings.show_milestone_bar %}
+                {% render 'cart-drawer-custom-milestones' %}
+              {% endif %}
+            </div>
+          {%- endif -%}
+
+          {% capture cart_items_children %}
+            {%- if cart.empty? -%}
+              {{ empty_cart_drawer_content }}
+            {%- else -%}
+              <scroll-hint
+                class="cart-drawer__content"
+                aria-label="{{ 'accessibility.cart' | t }}"
+                style="--header-height: 60px;"
+              >
+                <scroll-hint class="cart-drawer__items">
+                  {% render 'cart-products', context: 'drawer' %}
+                </scroll-hint>
+
+                <div
+                  class="cart-drawer__summary custom-cart-drawer-zones__footer-zone"
+                  style="
+                    --custom-drawer-footer-bg: {{ settings.custom_drawer_footer_background_color }};
+                    --custom-drawer-footer-text: {{ settings.custom_drawer_footer_text_color }};
+                  "
+                >
+                  {% render 'cart-summary', section_id: 'cart-drawer-section' %}
+                </div>
+              </scroll-hint>
+            {%- endif -%}
+          {% endcapture %}
+          {% render 'cart-items-component',
+            children: cart_items_children,
+            is_drawer: true,
+            section_id: 'cart-drawer-section'
+          %}
         </div>
       </cart-drawer-component>
     </dialog>
@@ -203,103 +181,163 @@
 {%- endif -%}
 
 {% stylesheet %}
-  .custom-cart-drawer__dialog {
+  cart-drawer-component {
+    --cart-drawer-padding: var(--theme-drawer-padding);
+    --font-paragraph--line-height: 1;
+    display: contents;
+  }
+
+  .cart-drawer__inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .cart-drawer__inner > .cart-items-component {
+    flex: 1;
+    min-height: 0;
+    height: auto;
+  }
+
+  .cart-drawer__content {
+    height: calc(100% - var(--header-height));
+    display: flex;
+    flex-direction: column;
     padding: 0;
-    max-width: 30rem;
-    width: 100%;
-    height: 100%;
-    height: 100dvh;
-  }
-
-  .custom-cart-drawer {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    height: 100dvh;
-  }
-
-  .custom-cart-drawer__header {
-    flex-shrink: 0;
-    background: var(--custom-cart-drawer-header-bg);
-    color: var(--custom-cart-drawer-header-text);
-  }
-
-  .custom-cart-drawer__header .theme-drawer__header {
-    color: inherit;
-  }
-
-  .custom-cart-drawer__header .theme-drawer__close-button {
-    color: inherit;
-  }
-
-  .custom-cart-drawer__empty {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: var(--gap-md);
-    padding: var(--padding-lg);
-    text-align: center;
-  }
-
-  .custom-cart-drawer__body {
-    flex: 1;
-    min-height: 0;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .custom-cart-drawer__middle {
-    flex: 1;
-    min-height: 0;
+    background-color: var(--color-background);
+    flex-grow: 1;
     overflow-y: auto;
-    touch-action: pan-y;
-    padding: var(--padding-lg);
-    display: flex;
-    flex-direction: column;
-    gap: var(--gap-lg);
   }
 
-  .custom-cart-drawer__footer {
-    flex-shrink: 0;
-    background: var(--custom-cart-drawer-footer-bg);
-    color: var(--custom-cart-drawer-footer-text);
-    padding: var(--padding-lg);
-    padding-bottom: max(var(--padding-lg), env(safe-area-inset-bottom));
+  .cart-drawer__items {
     display: flex;
     flex-direction: column;
-    gap: var(--gap-md);
+    padding-inline: var(--cart-drawer-padding);
+    overflow-y: auto;
   }
 
-  .custom-cart-drawer__totals {
+  .cart-drawer__items .cart-items__table-row {
+    padding-bottom: var(--gap-xl);
+    border-bottom: var(--style-border-width) solid rgb(var(--color-foreground-rgb) / var(--opacity-10-25));
+    margin-bottom: var(--gap-xl);
+  }
+
+  .cart-drawer__items .cart-items__table-row:has(+ .cart-items__nested-line) {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  .cart-drawer__items .cart-items__table-row:last-child {
+    border-bottom: none;
+    padding-block-end: 0;
+    margin-block-end: 0;
+  }
+
+  .cart-drawer__close-button--empty {
+    margin-inline-start: auto;
+  }
+
+  .cart-drawer__summary {
+    --cart-drawer-summary-padding: var(--padding-lg);
+
+    position: sticky;
+    bottom: 0;
+    z-index: 1;
     display: flex;
     flex-direction: column;
-    gap: var(--gap-xs);
-  }
-
-  .custom-cart-drawer__row {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: var(--gap-xs);
+    gap: var(--gap-xl);
+    padding: var(--cart-drawer-summary-padding);
+    margin-top: auto;
+    background-color: var(--color-background);
+    /* stylelint-disable-next-line color-named */
+    mask-image: linear-gradient(to bottom, transparent, black var(--cart-drawer-summary-padding));
+
+    @media screen and (min-width: 750px) {
+      --cart-drawer-summary-padding: var(--padding-2xl);
+    }
   }
 
-  .custom-cart-drawer__savings-badge {
-    display: inline-flex;
-    align-items: center;
-    padding-inline: var(--padding-xs);
-    border-radius: var(--style-border-radius-buttons-secondary, 4px);
-    background: rgb(var(--color-rgb, var(--color-foreground-rgb)) / var(--opacity-10));
-    font-size: var(--font-size--xs);
+  .theme-drawer__dialog[cart-summary-sticky='false'] .cart-drawer__summary {
+    position: static;
+    mask-image: none;
   }
 
-  .custom-cart-drawer__checkout {
-    width: 100%;
-    display: flex;
+  .theme-drawer__dialog[cart-summary-sticky='false'] .cart-drawer__items {
+    overflow: unset;
+  }
+
+  .cart-actions summary {
+    padding-inline: 0;
+    padding-block: var(--padding-sm);
+    line-height: 1.2;
+    min-height: var(--minimum-touch-target);
+  }
+
+  .cart-drawer__summary .cart__summary-totals:not(:has(.cart__subtotal-container:empty)) {
+    border-block-start: var(--style-border-width) solid rgb(var(--color-foreground-rgb) / var(--opacity-10-25));
+    padding-block-start: var(--padding-2xl);
+  }
+
+  .cart-drawer__summary .cart-note {
+    @media screen and (min-width: 750px) {
+      margin-block-start: var(--margin-3xs);
+    }
+  }
+
+  .cart-drawer--empty .cart-drawer__content {
+    text-align: center;
     align-items: center;
     justify-content: center;
-    gap: var(--gap-2xs);
-    min-height: 44px;
+    min-height: auto;
+  }
+
+  .cart-drawer--empty .cart-drawer__items {
+    padding-inline: 0;
+  }
+
+  cart-drawer-component:not(:has(.cart-form)) .cart-drawer__content {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+
+  cart-drawer-component:not(:has(.cart-form)) .cart-drawer__items {
+    padding-inline: 0;
+  }
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    html:active-view-transition-type(empty-cart-drawer) {
+      .theme-drawer__close-button {
+        view-transition-name: cart-drawer-close-button;
+      }
+    }
+  }
+
+  :active-view-transition {
+    .cart-drawer__header,
+    .cart-drawer__content {
+      background: transparent;
+    }
+  }
+
+  /* Additions on top of the forked original: header/footer zone colors
+     (scoped to classes unique to this file, so they can never affect the
+     default drawer's own .theme-drawer__header/.cart-drawer__summary
+     styling) and spacing for the milestone bar. */
+  .custom-cart-drawer-zones__header-zone {
+    background-color: var(--custom-drawer-header-bg);
+    color: var(--custom-drawer-header-text);
+  }
+
+  .custom-cart-drawer-zones__header-zone .theme-drawer__title,
+  .custom-cart-drawer-zones__header-zone .theme-drawer__close-button {
+    color: inherit;
+  }
+
+  .cart-drawer__summary.custom-cart-drawer-zones__footer-zone {
+    background-color: var(--custom-drawer-footer-bg);
+    color: var(--custom-drawer-footer-text);
   }
 {% endstylesheet %}
