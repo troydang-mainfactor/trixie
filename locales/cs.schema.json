@@ -1344,6 +1344,8 @@
       "track_color": "Barva dráhy",
       "fill_color": "Barva výplně",
       "bar_height": "Výška lišty",
+      "free_shipping_remaining_text": "Zpráva o průběhu",
+      "free_shipping_reached_text": "Zpráva po dosažení limitu",
       "show_cross_sell": "Zobrazit kolotoč doplňkového prodeje",
       "heading": "Nadpis",
       "product_source": "Zdroj produktů",
@@ -1353,7 +1355,8 @@
       "show_lock_icon": "Zobrazit ikonu zámku na tlačítku pokladny",
       "threshold": "Práh dopravy zdarma",
       "show_free_shipping_bar": "Zobrazit ukazatel průběhu dopravy zdarma",
-      "corner_style": "Styl rohů"
+      "corner_style": "Styl rohů",
+      "thumbnail_size": "Velikost obrázku produktu"
     },
     "options": {
       "collection": "Kolekce",
@@ -1365,6 +1368,7 @@
     "info": {
       "enable": "Nahradí výchozí košík všude, kde se zobrazuje. Vypnutím se okamžitě vrátíte k původnímu košíku motivu.",
       "threshold": "Zadejte částku v měně vašeho obchodu, např. 50.00 pro 50,00 Kč.",
+      "free_shipping_amount_token": "Použijte [amount] tam, kde se má zobrazit zbývající částka, např. „Do dopravy zdarma vám zbývá [amount]“.",
       "cross_sell_source_scope_collection": "Použije se pouze pokud je Zdroj produktů nastaven na Kolekce.",
       "cross_sell_source_scope_manual": "Použije se pouze pokud je Zdroj produktů nastaven na Ruční seznam."
     },

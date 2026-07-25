@@ -364,9 +364,7 @@
   },
   "custom_cart_drawer": {
     "content": {
-      "savings_badge": "Uštedite {{ percentage }}%",
-      "free_shipping_remaining": "Još {{ amount }} do besplatne dostave",
-      "free_shipping_reached": "Ostvarili ste besplatnu dostavu!"
+      "savings_badge": "Uštedite {{ percentage }}%"
     }
   }
 }

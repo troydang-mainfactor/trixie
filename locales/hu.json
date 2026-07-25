@@ -357,9 +357,7 @@
   },
   "custom_cart_drawer": {
     "content": {
-      "savings_badge": "{{ percentage }}% megtakarítás",
-      "free_shipping_remaining": "Már csak {{ amount }} az ingyenes szállításig",
-      "free_shipping_reached": "Ingyenes szállítást szereztél!"
+      "savings_badge": "{{ percentage }}% megtakarítás"
     }
   }
 }

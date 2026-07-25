@@ -1344,6 +1344,8 @@
       "track_color": "Radan väri",
       "fill_color": "Täyttöväri",
       "bar_height": "Palkin korkeus",
+      "free_shipping_remaining_text": "Edistymisviesti",
+      "free_shipping_reached_text": "Viesti, kun raja saavutetaan",
       "show_cross_sell": "Näytä lisämyyntikaruselli",
       "heading": "Otsikko",
       "product_source": "Tuotteiden lähde",
@@ -1353,7 +1355,8 @@
       "show_lock_icon": "Näytä lukon kuvake kassapainikkeessa",
       "threshold": "Ilmaisen toimituksen raja",
       "show_free_shipping_bar": "Näytä ilmaisen toimituksen edistymispalkki",
-      "corner_style": "Kulmatyyli"
+      "corner_style": "Kulmatyyli",
+      "thumbnail_size": "Tuotekuvan koko"
     },
     "options": {
       "collection": "Kokoelma",
@@ -1365,6 +1368,7 @@
     "info": {
       "enable": "Korvaa oletusostoskorin kaikkialla, missä se näkyy. Poista käytöstä palataksesi välittömästi teeman alkuperäiseen ostoskoriin.",
       "threshold": "Anna summa myymäläsi valuutassa, esim. 50.00 tarkoittaa 50,00 €.",
+      "free_shipping_amount_token": "Käytä kohtaa [amount] siellä, missä jäljellä olevan summan tulisi näkyä, esim. \"[amount] ilmaiseen toimitukseen\".",
       "cross_sell_source_scope_collection": "Käytetään vain, kun yllä oleva Tuotteiden lähde on asetettu arvoon Kokoelma.",
       "cross_sell_source_scope_manual": "Käytetään vain, kun yllä oleva Tuotteiden lähde on asetettu arvoon Manuaalinen luettelo."
     },

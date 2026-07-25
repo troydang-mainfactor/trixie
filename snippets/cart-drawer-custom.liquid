@@ -108,6 +108,7 @@
             --custom-drawer-radius-sm: {{ custom_drawer_radius_sm }};
             --custom-drawer-radius-md: {{ custom_drawer_radius_md }};
             --custom-drawer-radius-pill: {{ custom_drawer_radius_pill }};
+            --custom-drawer-thumbnail-size: {{ settings.custom_drawer_thumbnail_size | default: 96 }}px;
           "
         >
           {%- if cart.empty? -%}
@@ -155,7 +156,7 @@
                 title_append: cart_badge_html
               %}
 
-              {% if settings.show_milestone_bar %}
+              {% if settings.show_free_shipping_bar %}
                 {% render 'cart-drawer-custom-milestones' %}
               {% endif %}
             </div>
@@ -352,29 +353,80 @@
     color: var(--custom-drawer-header-text);
   }
 
+  /* .theme-drawer__header, .theme-drawer__badge, and .theme-drawer__close-button
+     all set their own explicit `color` in theme-drawer-styles.liquid, which breaks
+     plain `color: inherit` (it would inherit from the nearest explicit ancestor,
+     not from the header zone two levels up) - set the custom color directly on
+     each instead of relying on inheritance. */
+  .custom-cart-drawer-zones__header-zone .theme-drawer__header,
   .custom-cart-drawer-zones__header-zone .theme-drawer__title,
+  .custom-cart-drawer-zones__header-zone .theme-drawer__badge,
   .custom-cart-drawer-zones__header-zone .theme-drawer__close-button {
-    color: inherit;
+    color: var(--custom-drawer-header-text);
   }
 
   .cart-drawer__summary.custom-cart-drawer-zones__footer-zone {
     background-color: var(--custom-drawer-footer-bg);
     color: var(--custom-drawer-footer-text);
+    /* Remove the scroll-fade mask the original drawer uses above its sticky
+       summary - it read as an unwanted gradient once the footer has its own
+       background color. */
+    mask-image: none;
   }
 
-  /* Compact, uniform line items: larger product image, smaller pill-style
-     quantity selector and remove button. Scoped to .cart-drawer__items so it
-     only affects rows rendered inside this drawer - cart-products.liquid
-     itself is untouched. */
+  /* Same explicit-color-breaks-inheritance issue as the header: force every
+     text-bearing descendant except form controls, pills/badges with their own
+     background, and the checkout button (which uses the theme's own button
+     color scheme) to the custom footer text color. */
+  .cart-drawer__summary.custom-cart-drawer-zones__footer-zone
+    :not(input, textarea, .button, .button *, .cart-discount__pill, .cart-discount__pill *, .custom-cart-drawer-zones__savings-badge, .additional-checkout-buttons, .additional-checkout-buttons *) {
+    color: var(--custom-drawer-footer-text);
+  }
+
+  /* Compact, uniform line items condensed to the height of the product image
+     (one uniform block per row), with a merchant-controlled thumbnail size
+     and a smaller pill-style quantity selector/remove button. Scoped to
+     .cart-drawer__items so it only affects rows rendered inside this drawer -
+     cart-products.liquid itself is untouched. */
   .cart-drawer__items .cart-items__table-row {
-    grid-template-columns: clamp(4.75rem, 26cqi, 6.25rem) minmax(0, 1fr) minmax(4rem, auto);
-    align-items: center;
+    grid-template-columns: var(--custom-drawer-thumbnail-size, 96px) minmax(0, 1fr) minmax(3.5rem, auto);
+    grid-auto-rows: min-content;
+    align-items: stretch;
     column-gap: var(--gap-md);
+    min-height: var(--custom-drawer-thumbnail-size, 96px);
+  }
+
+  .cart-drawer__items .cart-items__media {
+    height: var(--custom-drawer-thumbnail-size, 96px);
   }
 
   .cart-drawer__items .cart-items__media-container {
+    width: var(--custom-drawer-thumbnail-size, 96px);
+    height: var(--custom-drawer-thumbnail-size, 96px);
     border-radius: var(--custom-drawer-radius-md, 10px);
     overflow: hidden;
+  }
+
+  .cart-drawer__items .cart-items__details,
+  .cart-drawer__items .cart-items__quantity {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-height: var(--custom-drawer-thumbnail-size, 96px);
+    overflow: hidden;
+  }
+
+  .cart-drawer__items .cart-items__title {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .cart-drawer__items .cart-items__product-info,
+  .cart-drawer__items .cart-items__variants-wrapper,
+  .cart-drawer__items .cart-items__unit-price-wrapper {
+    font-size: var(--font-size--xs);
   }
 
   .cart-drawer__items .cart-items__quantity-controls {
@@ -384,15 +436,20 @@
   }
 
   .cart-drawer__items .quantity-selector {
-    --quantity-selector-width: 84px;
+    /* Redefining --minimum-touch-target here (rather than sizing the
+       .quantity-minus/.quantity-plus buttons directly) keeps it in sync with
+       quantity-selector-styles.liquid's own input max-width formula
+       (quantity-selector-width - minimum-touch-target * 2) - hardcoding the
+       button size without this caused that formula to go negative and hide
+       the number entirely on narrow (mobile) widths. */
+    --quantity-selector-width: 100px;
+    --minimum-touch-target: 30px;
 
     border-radius: var(--custom-drawer-radius-pill, 999px);
   }
 
   .cart-drawer__items .quantity-selector .quantity-minus,
   .cart-drawer__items .quantity-selector .quantity-plus {
-    width: 30px;
-    height: 30px;
     border-radius: var(--custom-drawer-radius-pill, 999px);
   }
 

@@ -1711,6 +1711,19 @@
         "default": 8
       },
       {
+        "type": "text",
+        "id": "free_shipping_remaining_text",
+        "label": "t:custom_cart_drawer.settings.free_shipping_remaining_text",
+        "info": "t:custom_cart_drawer.info.free_shipping_amount_token",
+        "default": "Spend [amount] more for free shipping"
+      },
+      {
+        "type": "text",
+        "id": "free_shipping_reached_text",
+        "label": "t:custom_cart_drawer.settings.free_shipping_reached_text",
+        "default": "You've unlocked free shipping!"
+      },
+      {
         "type": "header",
         "content": "t:custom_cart_drawer.content.style_zone"
       },
@@ -1733,6 +1746,16 @@
           }
         ],
         "default": "rounded"
+      },
+      {
+        "type": "range",
+        "id": "custom_drawer_thumbnail_size",
+        "label": "t:custom_cart_drawer.settings.thumbnail_size",
+        "min": 60,
+        "max": 140,
+        "step": 4,
+        "unit": "px",
+        "default": 96
       },
       {
         "type": "header",
