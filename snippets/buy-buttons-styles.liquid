@@ -12,6 +12,13 @@
     width: 100%;
   }
 
+  /* Anchor the buy buttons to the bottom of the card so they line up across a row
+     regardless of how much content (e.g. a combined-listings swatch row) sits above
+     them on other cards. */
+  :is(.product-grid__item, .resource-list__item) .product-grid__card > .buy-buttons-block {
+    margin-top: auto;
+  }
+
   .product-form-buttons {
     display: flex;
     flex-wrap: wrap;
