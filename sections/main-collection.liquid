@@ -123,45 +123,30 @@
       "default": "grid"
     },
     {
-      "type": "select",
-      "id": "product_card_size",
-      "label": "t:settings.card_size",
-      "options": [
-        {
-          "value": "small",
-          "label": "t:options.small"
-        },
-        {
-          "value": "medium",
-          "label": "t:options.medium"
-        },
-        {
-          "value": "large",
-          "label": "t:options.large"
-        },
-        {
-          "value": "extra-large",
-          "label": "t:options.extra_large"
-        }
-      ],
-      "default": "medium",
+      "type": "range",
+      "id": "columns",
+      "label": "t:settings.columns",
+      "min": 1,
+      "max": 8,
+      "step": 1,
+      "default": 4,
       "visible_if": "{{ section.settings.layout_type == 'grid' }}"
     },
     {
       "type": "select",
-      "id": "mobile_product_card_size",
-      "label": "t:settings.mobile_card_size",
+      "id": "mobile_columns",
+      "label": "t:settings.mobile_columns",
       "options": [
         {
-          "value": "small",
-          "label": "t:options.small"
+          "value": "1",
+          "label": "t:options.one_number"
         },
         {
-          "value": "large",
-          "label": "t:options.large"
+          "value": "2",
+          "label": "t:options.two_number"
         }
       ],
-      "default": "small"
+      "default": "2"
     },
     {
       "type": "checkbox",

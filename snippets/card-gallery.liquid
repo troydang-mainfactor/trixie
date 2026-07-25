@@ -23,21 +23,10 @@
     endif
   endif
 
-  # if the card-gallery has a section.settings.product_card_size:
-  # assume grid-template autofill(card-size, 1fr) and calculate the sizes attribute based on the minimum card size
-  #
-  # if section has section.settings.columns:
-  # assume grid-template repeat(column-count, 1fr) and calculate the sizes attribute based on the number of columns
-  if section.settings.product_card_size
-    capture card_size
-      render 'util-product-grid-card-size', section: section
-    endcapture
-    assign card_size = card_size | strip | replace: 'px', '' | plus: 0
-    capture sizes_attribute
-      render 'util-autofill-img-size-attr', card_size: card_size, card_gap: section.settings.columns_gap_horizontal
-    endcapture
-    assign image_sizes = sizes_attribute | strip
-  elsif section.settings.columns and section.settings.layout_type != 'editorial'
+  # Every grid-template repeat(column-count, 1fr) section (main-collection, search-results,
+  # product-list, collection-list, product-recommendations, carousel) sets section.settings.columns -
+  # calculate the sizes attribute based on the number of columns.
+  if section.settings.columns and section.settings.layout_type != 'editorial'
     assign viewport_width = 100.0 | divided_by: section.settings.columns
     assign sizes_attribute = '(min-width: 750px) [viewport_width]vw, 100vw' | replace: '[viewport_width]', viewport_width
     assign image_sizes = sizes_attribute | strip

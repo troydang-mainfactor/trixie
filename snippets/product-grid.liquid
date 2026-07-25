@@ -15,17 +15,12 @@
   endif
 -%}
 
-{% capture product_card_size %}
-  {% render 'util-product-grid-card-size' section: section %}
-{% endcapture %}
-{% assign product_card_size = product_card_size | strip %}
-
 {% style %}
   @media screen and (min-width: 750px) {
     {% case section.settings.layout_type %}
       {% when 'grid' %}
         .product-grid--{{ section.id }}:is(.product-grid--grid) {
-          --product-grid-columns-desktop: repeat(auto-fill, minmax({{ product_card_size }}, 1fr));
+          --product-grid-columns-desktop: repeat({{ section.settings.columns }}, 1fr);
         }
 
 
@@ -49,16 +44,6 @@
 
         .product-grid--{{ section.id }}:not([product-grid-view='zoom-out']):is(.product-grid--organic) {
           --product-grid-columns-desktop: repeat(4, 1fr);
-        }
-    {% endcase %}
-
-    /* This logic helps prevent displaying one column for an large or extra-large product card size on a small screen. We want it to display at least two columns. */
-    {% case section.settings.product_card_size %}
-      {% when 'extra-large' or 'large' %}
-        @container product-grid (max-width: calc({{ product_card_size }} * 3 + {{ section.settings.columns_gap_horizontal }}px * 2)) {
-          .product-grid--{{ section.id }}:is(.product-grid--grid) {
-            --product-grid-columns-desktop: repeat(2, 1fr);
-          }
         }
     {% endcase %}
 
@@ -126,14 +111,13 @@
         <h4 class="main-collection-grid__title">{{ title }}</h4>
       {% endif %}
       <ul
-        class="product-grid product-grid--{{ section.id }} product-grid--{{ section.settings.layout_type }} {% if section.settings.mobile_product_card_size == 'large' %} product-grid-mobile--large{% endif %}"
+        class="product-grid product-grid--{{ section.id }} product-grid--{{ section.settings.layout_type }}"
         data-testid="product-grid"
         product-grid-view="default"
         ref="grid"
         role="list"
         data-last-page="{{ paginate.pages }}"
-        data-product-card-size="{{ section.settings.product_card_size }}"
-        style="--mobile-columns: {% if section.settings.mobile_product_card_size == 'large' %}1{% else %}2{% endif %};"
+        style="--mobile-columns: {{ section.settings.mobile_columns }}; --product-grid-columns-mobile: repeat({{ section.settings.mobile_columns }}, 1fr);"
       >
         {% comment %}
           This script is used to set the grid view on the product grid stored in sessionStorage. Keeping it here helps us prevent seeing the default state.
@@ -201,7 +185,7 @@
     --mobile-columns: 2; /* Default value */
 
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: var(--product-grid-columns-mobile, repeat(2, 1fr));
     gap: var(--product-grid-gap);
     margin: auto;
     padding: 0;
@@ -235,8 +219,7 @@
     row-gap: var(--padding-xs);
   }
 
-  [product-grid-view='mobile-single'],
-  .product-grid-mobile--large {
+  [product-grid-view='mobile-single'] {
     @media screen and (max-width: 749px) {
       grid-template-columns: 1fr;
     }
