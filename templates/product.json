@@ -47,7 +47,7 @@
           "type": "_product-details",
           "static": true,
           "settings": {
-            "width": "fill",
+            "width": "fit-content",
             "custom_width": 100,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
@@ -287,7 +287,12 @@
                     "style_class": "button",
                     "custom_button_background": "{{ settings.color_palette.foreground }}",
                     "custom_button_text": "{{ settings.color_palette.background }}",
-                    "custom_button_border": "{{ settings.color_palette.background }}"
+                    "custom_button_border": "{{ settings.color_palette.background }}",
+                    "custom_border_width": 1,
+                    "custom_border_radius": 12,
+                    "custom_font": "var(--font-body--family)",
+                    "custom_font_size": 14,
+                    "custom_text_case": "none"
                   },
                   "blocks": {}
                 },
@@ -343,9 +348,9 @@
       "settings": {
         "content_width": "content-center-aligned",
         "desktop_media_position": "left",
-        "equal_columns": false,
-        "limit_details_width": false,
-        "gap": 12,
+        "equal_columns": true,
+        "limit_details_width": true,
+        "gap": 0,
         "enable_sticky_add_to_cart": false,
         "background_color": "{{ settings.color_palette.background }}",
         "padding-block-start": 10,
