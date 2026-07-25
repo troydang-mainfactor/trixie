@@ -230,13 +230,22 @@
     background-color: var(--color-background);
     flex-grow: 1;
     overflow-y: auto;
+    /* Stop an over-scroll at the top/bottom of this list from "chaining" into
+       the page/drawer behind it - without this, iOS Safari/Chrome can rubber-band
+       the whole fixed drawer up and down instead of just this list. */
+    overscroll-behavior: contain;
   }
 
   .cart-drawer__items {
     display: flex;
     flex-direction: column;
     padding-inline: var(--cart-drawer-padding);
+    /* Extra breathing room between the header/milestone zone and the first
+       line item - the default drawer doesn't need this since it has no
+       milestone bar sitting directly above the item list. */
+    padding-block-start: var(--padding-2xl);
     overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   .cart-drawer__items .cart-items__table-row {
@@ -317,6 +326,7 @@
 
   .cart-drawer--empty .cart-drawer__items {
     padding-inline: 0;
+    padding-block-start: 0;
   }
 
   cart-drawer-component:not(:has(.cart-form)) .cart-drawer__content {
@@ -413,20 +423,22 @@
     overflow: hidden;
   }
 
+  /* No max-height/overflow-hidden clipping here and no -webkit-line-clamp on
+     the title (below) - both were found to interfere with touch scrolling
+     of the line-item list on mobile (nested overflow/clip regions inside a
+     scrolling container is a known source of that), so rows size to their
+     natural content height instead of being force-clipped to the image. */
   .cart-drawer__items .cart-items__details,
   .cart-drawer__items .cart-items__quantity {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-height: var(--custom-drawer-thumbnail-size, 96px);
-    overflow: hidden;
   }
 
   .cart-drawer__items .cart-items__title {
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
+    white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .cart-drawer__items .cart-items__product-info,
@@ -451,12 +463,27 @@
     --quantity-selector-width: 100px;
     --minimum-touch-target: 30px;
 
+    /* Fixed height instead of the inherited align-self: stretch, which sized
+       the pill off whatever its tallest sibling happened to be (inconsistent
+       next to the fixed 30px remove button). */
+    flex: 0 0 auto;
+    align-self: center;
+    height: 30px;
     border-radius: var(--custom-drawer-radius-pill, 999px);
   }
 
-  .cart-drawer__items .quantity-selector .quantity-minus,
+  /* Round only the outer corners of each button (matching how
+     quantity-selector-styles.liquid rounds the original) rather than all
+     four corners of each - rounding every corner of the + button caused it
+     to visually poke out past the pill container's own curved right edge. */
+  .cart-drawer__items .quantity-selector .quantity-minus {
+    border-start-start-radius: var(--custom-drawer-radius-pill, 999px);
+    border-end-start-radius: var(--custom-drawer-radius-pill, 999px);
+  }
+
   .cart-drawer__items .quantity-selector .quantity-plus {
-    border-radius: var(--custom-drawer-radius-pill, 999px);
+    border-start-end-radius: var(--custom-drawer-radius-pill, 999px);
+    border-end-end-radius: var(--custom-drawer-radius-pill, 999px);
   }
 
   .cart-drawer__items .cart-items__remove {
