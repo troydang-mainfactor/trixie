@@ -1,0 +1,191 @@
+{%- doc -%}
+  Resolves and renders product badges from the badge_system metaobject system - the single
+  shared implementation for both the product card/image overlay
+  (blocks/_product-card-gallery.liquid via snippets/card-gallery.liquid) and the product page
+  content block (blocks/product-badges.liquid), so a product can never show a different badge
+  in one place than the other.
+
+  Precedence (the one place this is decided - callers never re-derive it):
+  1. Automatic badges - every `badge_system_badge` metaobject entry with mode "automatic" and
+     enabled true, whose rule matches this product/variant. Read from the `metaobjects` global
+     (https://shopify.dev/docs/api/liquid/objects/metaobjects), not the product's own metafield -
+     automatic badges apply to every matching product with no per-product assignment.
+  2. Manual badges - the product's own `badge_system.badges` metafield (a list reference to
+     `badge_system_badge` entries), in stored order, filtered to enabled true.
+  Disabled entries (enabled: false) are excluded from both groups entirely.
+
+  `context: 'image'` groups the result by `position` (skipping `position: none` entirely) and
+  caps each position group at 3, reusing the theme's existing `.product-badges` overlay classes
+  and responsive positioning. `context: 'content'` ignores `position` (it's an overlay-only
+  concept) and renders a flat, capped list via `max`, for the product-page badge block.
+
+  @param {object} product - The product to resolve badges for.
+  @param {object} [variant] - The variant to evaluate on_sale/sold_out against. Falls back to
+    product-level `available`/`compare_at_price` when omitted (card/collection-grid context).
+  @param {string} context - 'image' or 'content'.
+  @param {number} [max] - Content context only: max badges shown. Default 3.
+
+  @example
+  {% render 'product-badges', product: product, context: 'image' %}
+  {% render 'product-badges', product: product, variant: product.selected_or_first_available_variant, context: 'content', max: block.settings.max_badges %}
+{%- enddoc -%}
+
+{%- liquid
+  assign automatic_source = metaobjects['badge_system_badge'].values
+  assign manual_source = product.metafields.badge_system.badges.value
+
+  assign eval_available = product.available
+  assign eval_compare_at_price = product.compare_at_price
+  assign eval_price = product.price
+  if variant != blank
+    assign eval_available = variant.available
+    assign eval_compare_at_price = variant.compare_at_price
+    assign eval_price = variant.price
+  endif
+
+  # "Preorder" is inherently variant/inventory-level - there's no product-level inventory policy
+  # to check, so this always falls back to the selected/first available variant regardless of
+  # whether the caller passed one explicitly.
+  assign preorder_variant = variant | default: product.selected_or_first_available_variant
+
+  assign now_seconds = 'now' | date: '%s' | times: 1
+  assign created_seconds = product.created_at | date: '%s' | times: 1
+  assign product_age_days = now_seconds | minus: created_seconds | divided_by: 86400
+
+  # Shared inline custom properties for every badge wrapper below - these come from the theme's
+  # existing (still-active) Badges settings for shape/typography; only the old per-type *color*
+  # settings (badge_sale_background_color etc.) are superseded by the new style presets.
+  assign badge_wrapper_style = '--badge-border-radius: ' | append: settings.badge_corner_radius | append: 'px; --badge-font-family: var(--font-' | append: settings.badge_font_family | append: '--family); --badge-font-weight: var(--font-' | append: settings.badge_font_family | append: '--weight); --badge-text-transform: ' | append: settings.badge_text_transform | append: ';'
+
+  # Builds a real array of matched metaobject entries (not just IDs) - `where` on the source
+  # array by a unique `id` returns exactly the one matching item as a 1-element array, which
+  # `concat` can append; this avoids ever needing to "look an entry back up by ID" later.
+  assign matched_entries = '' | split: ','
+
+  for entry in automatic_source
+    if entry.mode.value != 'automatic' or entry.enabled.value != true
+      continue
+    endif
+
+    assign rule_matches = false
+    case entry.rule.value
+      when 'on_sale'
+        if eval_available and eval_compare_at_price > eval_price
+          assign rule_matches = true
+        endif
+      when 'sold_out'
+        if eval_available == false
+          assign rule_matches = true
+        endif
+      when 'new'
+        if product.created_at != blank and product_age_days <= settings.new_badge_days
+          assign rule_matches = true
+        endif
+      when 'preorder'
+        if preorder_variant.available and preorder_variant.inventory_policy == 'continue' and preorder_variant.inventory_quantity <= 0
+          assign rule_matches = true
+        endif
+    endcase
+
+    if rule_matches
+      assign matched_entry_array = automatic_source | where: 'id', entry.id
+      assign matched_entries = matched_entries | concat: matched_entry_array
+    endif
+  endfor
+
+  for entry in manual_source
+    if entry.enabled.value == true
+      assign matched_entry_array = manual_source | where: 'id', entry.id
+      assign matched_entries = matched_entries | concat: matched_entry_array
+    endif
+  endfor
+-%}
+
+{%- if matched_entries.size > 0 -%}
+  {%- if context == 'image' -%}
+    {%- liquid
+      assign top_left = '' | split: ','
+      assign top_right = '' | split: ','
+      assign bottom_left = '' | split: ','
+      assign bottom_right = '' | split: ','
+
+      for entry in matched_entries
+        if entry.placement_context.value == blank
+          continue
+        endif
+        unless entry.placement_context.value contains 'image'
+          continue
+        endunless
+
+        assign one_entry_array = matched_entries | where: 'id', entry.id
+
+        case entry.position.value
+          when 'top-left'
+            if top_left.size < 3
+              assign top_left = top_left | concat: one_entry_array
+            endif
+          when 'top-right'
+            if top_right.size < 3
+              assign top_right = top_right | concat: one_entry_array
+            endif
+          when 'bottom-left'
+            if bottom_left.size < 3
+              assign bottom_left = bottom_left | concat: one_entry_array
+            endif
+          when 'bottom-right'
+            if bottom_right.size < 3
+              assign bottom_right = bottom_right | concat: one_entry_array
+            endif
+          # position: none (or unset) - deliberately excluded from image/overlay rendering.
+        endcase
+      endfor
+    -%}
+
+    {%- if top_left.size > 0 -%}
+      <div class="product-badges product-badges--top-left" style="{{ badge_wrapper_style }}">
+        {%- for entry in top_left -%}{%- render 'product-badges-item', entry: entry -%}{%- endfor -%}
+      </div>
+    {%- endif -%}
+    {%- if top_right.size > 0 -%}
+      <div class="product-badges product-badges--top-right" style="{{ badge_wrapper_style }}">
+        {%- for entry in top_right -%}{%- render 'product-badges-item', entry: entry -%}{%- endfor -%}
+      </div>
+    {%- endif -%}
+    {%- if bottom_left.size > 0 -%}
+      <div class="product-badges product-badges--bottom-left" style="{{ badge_wrapper_style }}">
+        {%- for entry in bottom_left -%}{%- render 'product-badges-item', entry: entry -%}{%- endfor -%}
+      </div>
+    {%- endif -%}
+    {%- if bottom_right.size > 0 -%}
+      <div class="product-badges product-badges--bottom-right" style="{{ badge_wrapper_style }}">
+        {%- for entry in bottom_right -%}{%- render 'product-badges-item', entry: entry -%}{%- endfor -%}
+      </div>
+    {%- endif -%}
+  {%- else -%}
+    {%- liquid
+      assign content_max = max | default: 3
+      assign content_entries = '' | split: ','
+
+      for entry in matched_entries
+        if content_entries.size >= content_max
+          break
+        endif
+        if entry.placement_context.value == blank
+          continue
+        endif
+        unless entry.placement_context.value contains 'content'
+          continue
+        endunless
+        assign one_entry_array = matched_entries | where: 'id', entry.id
+        assign content_entries = content_entries | concat: one_entry_array
+      endfor
+    -%}
+    {%- if content_entries.size > 0 -%}
+      <div class="product-badges-content" style="{{ badge_wrapper_style }}">
+        {%- for entry in content_entries -%}{%- render 'product-badges-item', entry: entry -%}{%- endfor -%}
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- render 'product-badges-styles' -%}

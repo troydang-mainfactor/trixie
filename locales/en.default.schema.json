@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin language editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "categories": {
     "banners": "Banners",
@@ -161,7 +152,11 @@
     "disclosures": "Disclosures",
     "disclosures_metafield_content": "Required safety warnings and regulatory disclosures for this product.",
     "app_required_for_ratings": "An app is required for product ratings. [Learn more](https://help.shopify.com/manual/apps)",
-    "navigation": "Navigation"
+    "navigation": "Navigation",
+    "badge_legacy_settings": "Legacy card badge settings",
+    "badge_legacy_settings_info": "Superseded by the badge_system metaobject entries above - kept here only for stores still using the old position/color settings directly. New stores should ignore this section.",
+    "badge_system_info": "Badges (Sale, Sold Out, New, Preorder, and any custom badges) are configured as Badge entries in Settings > Custom data, not here - see the theme's badge system setup script. This setting only controls the \"New\" badge's automatic threshold.",
+    "product_badges_block": "Product badges"
   },
   "html_defaults": {
     "join_our_email_list": "<h2>Join our email list</h2>",
@@ -251,7 +246,9 @@
     "video_autoplay": "Videos will be muted by default",
     "video_external": "Use a YouTube or Vimeo URL",
     "pills_usage": "Used for applied filters, discount codes, and search suggestions",
-    "media_type_info": "Features are populated from your menu links"
+    "media_type_info": "Features are populated from your menu links",
+    "new_badge_days": "How many days after a product is created its automatic \"New\" badge (if enabled) keeps showing.",
+    "product_badges_max": "Caps how many badges show here, independent of the card's own overlay cap (which is fixed at 3 per position)."
   },
   "names": {
     "column": "Column",
@@ -1128,7 +1125,9 @@
     "top_row_background": "Top row background",
     "top_row_text": "Top row text",
     "bottom_row_background": "Bottom row background",
-    "bottom_row_text": "Bottom row text"
+    "bottom_row_text": "Bottom row text",
+    "new_badge_days": "New badge: days",
+    "max_badges": "Max badges shown"
   },
   "text_defaults": {
     "accordion_heading": "Accordion heading",
