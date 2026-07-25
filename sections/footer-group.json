@@ -216,39 +216,10 @@
         "padding-block-start": 20,
         "padding-block-end": 48
       }
-    },
-    "product_badge_rules": {
-      "type": "product-badge-rules",
-      "blocks": {
-        "badge_rule_fHrReg": {
-          "type": "badge-rule",
-          "settings": {
-            "tag": "lovebirds",
-            "label": "lovebirds",
-            "background_color": "#FFFFFF",
-            "text_color": "#000000"
-          }
-        },
-        "badge_rule_pjj3xd": {
-          "type": "badge-rule",
-          "settings": {
-            "tag": "new",
-            "label": "new",
-            "background_color": "#000000",
-            "text_color": "#ffffff"
-          }
-        }
-      },
-      "block_order": [
-        "badge_rule_fHrReg",
-        "badge_rule_pjj3xd"
-      ],
-      "settings": {}
     }
   },
   "order": [
     "footer_m9NzUG",
-    "footer_utilities_jLGE8U",
-    "product_badge_rules"
+    "footer_utilities_jLGE8U"
   ]
 }

@@ -7,39 +7,25 @@
 
 {% stylesheet %}
   .product-badges {
-    /* --border-radius, 0px fallback: only ever set by the specific card/image block this renders
-       inside on the card; the product page has no such wrapper, so this must not be assumed. */
-    --badge-inset: max(var(--padding-xs), calc((var(--border-radius, 0px) + var(--padding-xs)) * (1 - cos(45deg))));
+    --badge-inset: max(var(--padding-xs), calc((var(--border-radius) + var(--padding-xs)) * (1 - cos(45deg))));
 
     position: absolute;
     z-index: var(--layer-flat);
-    /* Up to 2 badges can render together now (e.g. sold out + sale, or sold out + a tag rule) -
-       stack them with breathing room instead of letting block-level default flow butt them
-       against each other. */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--padding-3xs, 4px);
   }
 
-  /* Padding fallbacks (, 0px) matter here specifically because this snippet is now also used on
-     the product page, where there's no spacing-style wrapper setting --padding-block-start /
-     --padding-inline-start the way a card block does - without a fallback, an undefined custom
-     property makes the whole calc() invalid. */
   .product-badges--bottom-left {
-    bottom: calc(var(--badge-inset) + var(--padding-block-start, 0px));
-    left: calc(var(--badge-inset) + var(--padding-inline-start, 0px));
+    bottom: calc(var(--badge-inset) + var(--padding-block-start));
+    left: calc(var(--badge-inset) + var(--padding-inline-start));
   }
 
   .product-badges--top-left {
-    top: calc(var(--badge-inset) + var(--padding-block-start, 0px));
-    left: calc(var(--badge-inset) + var(--padding-inline-start, 0px));
+    top: calc(var(--badge-inset) + var(--padding-block-start));
+    left: calc(var(--badge-inset) + var(--padding-inline-start));
   }
 
   .product-badges--top-right {
-    top: calc(var(--badge-inset) + var(--padding-block-start, 0px));
-    right: calc(var(--badge-inset) + var(--padding-inline-start, 0px));
-    align-items: flex-end;
+    top: calc(var(--badge-inset) + var(--padding-block-start));
+    right: calc(var(--badge-inset) + var(--padding-inline-start));
   }
 
   .product-badges__badge {
@@ -56,12 +42,6 @@
     font-weight: var(--badge-font-weight);
     text-transform: var(--badge-text-transform);
     border-radius: var(--badge-border-radius);
-    /* A merchant-entered tag label can be far longer than "Sale"/"Sold out" - cap width and wrap
-       rather than letting it stretch across a narrow card and over the title/price/quick-add.
-       .product-badges is shrink-wrapped (no width of its own to size a % against), so this caps
-       against the viewport instead. */
-    max-inline-size: min(60vw, 12rem);
-    overflow-wrap: break-word;
   }
 
   .product-badges__badge--rectangle {
