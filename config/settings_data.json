@@ -59,6 +59,7 @@
     "badge_sold_out_text_color": "{{ settings.color_palette.foreground }}",
     "badge_text_transform": "none",
     "tag_badges_show_on_card_image": false,
+    "tag_badges_show_on_product_page": false,
     "tag_badge_1_tag": "new",
     "tag_badge_1_text": "new",
     "palette_primary_button_background": "#D80080",
