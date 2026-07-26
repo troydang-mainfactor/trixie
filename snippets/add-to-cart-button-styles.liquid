@@ -198,5 +198,16 @@
       gap: var(--gap-3xs);
       font-size: 0.8125rem;
     }
+
+    /* The button's own horizontal padding (--button-padding-inline, 24px) is fixed
+       and doesn't shrink with the button - on a narrow mobile grid column, "Add to
+       bag | $10.00 $7.50" is wider than the space that padding leaves, so it
+       overflows past the padding and gets clipped flush against the pill's edge
+       instead of sitting inset from it. Dropping the compare-at price (same fix
+       the sticky add-to-cart bar already uses below 389px) shortens it to
+       "Add to bag | $7.50", which fits with room to spare. */
+    :is(.product-grid__item, .resource-list__item) .add-to-cart-button__price .compare-at-price {
+      display: none;
+    }
   }
 {% endstylesheet %}
