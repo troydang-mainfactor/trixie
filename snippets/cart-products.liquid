@@ -212,6 +212,11 @@
                         mode: 'trigger'
                       %}
                     </div>
+                    {% if context == 'drawer' and settings.custom_drawer_item_text != blank %}
+                      <div class="cart-items__custom-text rte">
+                        {{ settings.custom_drawer_item_text }}
+                      </div>
+                    {% endif %}
                     {% if item.product.vendor and block_settings.vendor %}
                       <p>
                         {{ item.product.vendor }}

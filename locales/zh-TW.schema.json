@@ -1364,7 +1364,8 @@
       "cross_sell": "交叉銷售輪播",
       "footer_zone": "頁尾區域",
       "free_shipping_bar": "免運進度條",
-      "style_zone": "樣式"
+      "style_zone": "樣式",
+      "item_text_zone": "商品項目文字"
     },
     "settings": {
       "enable": "使用自訂購物車",
@@ -1385,7 +1386,8 @@
       "threshold": "免運門檻",
       "show_free_shipping_bar": "顯示免運進度條",
       "corner_style": "圓角樣式",
-      "thumbnail_size": "商品圖片尺寸"
+      "thumbnail_size": "商品圖片尺寸",
+      "item_text": "商品標題下方文字"
     },
     "options": {
       "collection": "系列",
@@ -1399,7 +1401,8 @@
       "threshold": "請輸入以商店幣別計的金額，例如 50.00 表示 $50.00。",
       "free_shipping_amount_token": "在需要顯示剩餘金額的位置使用 [amount]，例如「還差 [amount] 即可享免運費」。",
       "cross_sell_source_scope_collection": "僅當上方的商品來源設為系列時使用。",
-      "cross_sell_source_scope_manual": "僅當上方的商品來源設為手動清單時使用。"
+      "cross_sell_source_scope_manual": "僅當上方的商品來源設為手動清單時使用。",
+      "item_text": "顯示在購物車中每個商品標題下方，例如運送說明或保養說明。"
     },
     "text_defaults": {
       "cross_sell_heading": "您可能也會喜歡"

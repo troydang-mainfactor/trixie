@@ -2442,6 +2442,16 @@
       },
       {
         "type": "header",
+        "content": "t:custom_cart_drawer.content.item_text_zone"
+      },
+      {
+        "type": "richtext",
+        "id": "custom_drawer_item_text",
+        "label": "t:custom_cart_drawer.settings.item_text",
+        "info": "t:custom_cart_drawer.info.item_text"
+      },
+      {
+        "type": "header",
         "content": "t:custom_cart_drawer.content.cross_sell"
       },
       {

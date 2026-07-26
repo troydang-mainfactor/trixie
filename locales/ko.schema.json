@@ -1364,7 +1364,8 @@
       "cross_sell": "교차 판매 캐러셀",
       "footer_zone": "푸터 영역",
       "free_shipping_bar": "무료 배송 진행률 표시줄",
-      "style_zone": "스타일"
+      "style_zone": "스타일",
+      "item_text_zone": "품목 텍스트"
     },
     "settings": {
       "enable": "커스텀 장바구니 사용",
@@ -1385,7 +1386,8 @@
       "threshold": "무료 배송 기준 금액",
       "show_free_shipping_bar": "무료 배송 진행률 표시줄 표시",
       "corner_style": "모서리 스타일",
-      "thumbnail_size": "제품 이미지 크기"
+      "thumbnail_size": "제품 이미지 크기",
+      "item_text": "상품명 아래 텍스트"
     },
     "options": {
       "collection": "컬렉션",
@@ -1399,7 +1401,8 @@
       "threshold": "스토어 통화로 금액을 입력하세요(예: 50.00).",
       "free_shipping_amount_token": "남은 금액이 표시될 위치에 [amount]를 사용하세요. 예: \"무료 배송까지 [amount] 남음\"",
       "cross_sell_source_scope_collection": "위의 상품 소스가 컬렉션으로 설정된 경우에만 사용됩니다.",
-      "cross_sell_source_scope_manual": "위의 상품 소스가 수동 목록으로 설정된 경우에만 사용됩니다."
+      "cross_sell_source_scope_manual": "위의 상품 소스가 수동 목록으로 설정된 경우에만 사용됩니다.",
+      "item_text": "장바구니의 각 상품명 아래에 표시됩니다(예: 배송 안내 또는 관리 방법)."
     },
     "text_defaults": {
       "cross_sell_heading": "이런 상품은 어떠세요"

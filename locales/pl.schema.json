@@ -1364,7 +1364,8 @@
       "cross_sell": "Karuzela sprzedaży krzyżowej",
       "footer_zone": "Strefa stopki",
       "free_shipping_bar": "Pasek postępu darmowej wysyłki",
-      "style_zone": "Styl"
+      "style_zone": "Styl",
+      "item_text_zone": "Tekst pozycji koszyka"
     },
     "settings": {
       "enable": "Użyj niestandardowego koszyka",
@@ -1385,7 +1386,8 @@
       "threshold": "Próg darmowej wysyłki",
       "show_free_shipping_bar": "Pokaż pasek postępu darmowej wysyłki",
       "corner_style": "Styl narożników",
-      "thumbnail_size": "Rozmiar zdjęcia produktu"
+      "thumbnail_size": "Rozmiar zdjęcia produktu",
+      "item_text": "Tekst pod nazwą produktu"
     },
     "options": {
       "collection": "Kolekcja",
@@ -1399,7 +1401,8 @@
       "threshold": "Wpisz kwotę w walucie Twojego sklepu, np. 50.00 dla 50,00 zł.",
       "free_shipping_amount_token": "Użyj [amount] w miejscu, w którym ma się pojawić pozostała kwota, np. „Jeszcze [amount] do darmowej wysyłki”.",
       "cross_sell_source_scope_collection": "Używane tylko wtedy, gdy powyższe Źródło produktów jest ustawione na Kolekcja.",
-      "cross_sell_source_scope_manual": "Używane tylko wtedy, gdy powyższe Źródło produktów jest ustawione na Lista ręczna."
+      "cross_sell_source_scope_manual": "Używane tylko wtedy, gdy powyższe Źródło produktów jest ustawione na Lista ręczna.",
+      "item_text": "Wyświetlany pod nazwą każdego produktu w koszyku, np. informacja o wysyłce lub instrukcja pielęgnacji."
     },
     "text_defaults": {
       "cross_sell_heading": "Może spodoba Ci się również"

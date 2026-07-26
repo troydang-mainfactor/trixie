@@ -1364,7 +1364,8 @@
       "cross_sell": "Korsförsäljningskarusell",
       "footer_zone": "Sidfotszon",
       "free_shipping_bar": "Förloppsindikator för fri frakt",
-      "style_zone": "Stil"
+      "style_zone": "Stil",
+      "item_text_zone": "Radtext"
     },
     "settings": {
       "enable": "Använd anpassad varukorg",
@@ -1385,7 +1386,8 @@
       "threshold": "Gräns för fri frakt",
       "show_free_shipping_bar": "Visa förloppsindikator för fri frakt",
       "corner_style": "Hörnstil",
-      "thumbnail_size": "Produktbildstorlek"
+      "thumbnail_size": "Produktbildstorlek",
+      "item_text": "Text under produktnamn"
     },
     "options": {
       "collection": "Kollektion",
@@ -1399,7 +1401,8 @@
       "threshold": "Ange beloppet i din butiks valuta, t.ex. 50.00 för 50,00 kr.",
       "free_shipping_amount_token": "Använd [amount] där det återstående beloppet ska visas, t.ex. \"[amount] kvar till fri frakt\".",
       "cross_sell_source_scope_collection": "Används endast när Produktkälla ovan är inställd på Kollektion.",
-      "cross_sell_source_scope_manual": "Används endast när Produktkälla ovan är inställd på Manuell lista."
+      "cross_sell_source_scope_manual": "Används endast när Produktkälla ovan är inställd på Manuell lista.",
+      "item_text": "Visas under varje produkts namn i kundvagnen, t.ex. en fraktnotering eller skötselinstruktion."
     },
     "text_defaults": {
       "cross_sell_heading": "Du kanske också gillar"

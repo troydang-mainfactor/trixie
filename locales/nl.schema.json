@@ -1364,7 +1364,8 @@
       "cross_sell": "Cross-sell carrousel",
       "footer_zone": "Footerzone",
       "free_shipping_bar": "Voortgangsbalk voor gratis verzending",
-      "style_zone": "Stijl"
+      "style_zone": "Stijl",
+      "item_text_zone": "Tekst bij artikel"
     },
     "settings": {
       "enable": "Aangepaste winkelwagen gebruiken",
@@ -1385,7 +1386,8 @@
       "threshold": "Drempel voor gratis verzending",
       "show_free_shipping_bar": "Voortgangsbalk voor gratis verzending weergeven",
       "corner_style": "Hoekstijl",
-      "thumbnail_size": "Productafbeeldingsgrootte"
+      "thumbnail_size": "Productafbeeldingsgrootte",
+      "item_text": "Tekst onder producttitel"
     },
     "options": {
       "collection": "Collectie",
@@ -1399,7 +1401,8 @@
       "threshold": "Voer het bedrag in de valuta van je winkel in, bijv. 50.00 voor € 50,00.",
       "free_shipping_amount_token": "Gebruik [amount] op de plek waar het resterende bedrag moet verschijnen, bijv. \"Nog [amount] voor gratis verzending\".",
       "cross_sell_source_scope_collection": "Alleen gebruikt wanneer Productbron hierboven is ingesteld op Collectie.",
-      "cross_sell_source_scope_manual": "Alleen gebruikt wanneer Productbron hierboven is ingesteld op Handmatige lijst."
+      "cross_sell_source_scope_manual": "Alleen gebruikt wanneer Productbron hierboven is ingesteld op Handmatige lijst.",
+      "item_text": "Wordt onder de titel van elk product in de winkelwagenlade weergegeven, bijvoorbeeld een verzendopmerking of verzorgingsinstructie."
     },
     "text_defaults": {
       "cross_sell_heading": "Dit vind je misschien ook leuk"

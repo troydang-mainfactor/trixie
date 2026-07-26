@@ -1364,7 +1364,8 @@
       "cross_sell": "交叉销售轮播",
       "footer_zone": "底部区域",
       "free_shipping_bar": "包邮进度条",
-      "style_zone": "样式"
+      "style_zone": "样式",
+      "item_text_zone": "商品行文字"
     },
     "settings": {
       "enable": "使用自定义购物车",
@@ -1385,7 +1386,8 @@
       "threshold": "包邮门槛",
       "show_free_shipping_bar": "显示包邮进度条",
       "corner_style": "圆角样式",
-      "thumbnail_size": "产品图片尺寸"
+      "thumbnail_size": "产品图片尺寸",
+      "item_text": "产品标题下方文字"
     },
     "options": {
       "collection": "系列",
@@ -1399,7 +1401,8 @@
       "threshold": "请输入以店铺货币计的金额，例如 50.00 表示 ¥50.00。",
       "free_shipping_amount_token": "在需要显示剩余金额的位置使用 [amount]，例如“还差 [amount] 即可包邮”。",
       "cross_sell_source_scope_collection": "仅当上方的商品来源设置为系列时使用。",
-      "cross_sell_source_scope_manual": "仅当上方的商品来源设置为手动列表时使用。"
+      "cross_sell_source_scope_manual": "仅当上方的商品来源设置为手动列表时使用。",
+      "item_text": "显示在购物车中每个产品标题下方，例如运输说明或护理说明。"
     },
     "text_defaults": {
       "cross_sell_heading": "您可能还喜欢"

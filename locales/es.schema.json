@@ -1364,7 +1364,8 @@
       "cross_sell": "Carrusel de venta cruzada",
       "footer_zone": "Zona de pie de página",
       "free_shipping_bar": "Barra de progreso de envío gratis",
-      "style_zone": "Estilo"
+      "style_zone": "Estilo",
+      "item_text_zone": "Texto del artículo"
     },
     "settings": {
       "enable": "Usar carrito personalizado",
@@ -1385,7 +1386,8 @@
       "threshold": "Umbral de envío gratis",
       "show_free_shipping_bar": "Mostrar barra de progreso de envío gratis",
       "corner_style": "Estilo de esquinas",
-      "thumbnail_size": "Tamaño de la imagen del producto"
+      "thumbnail_size": "Tamaño de la imagen del producto",
+      "item_text": "Texto debajo del título del producto"
     },
     "options": {
       "collection": "Colección",
@@ -1399,7 +1401,8 @@
       "threshold": "Introduce el importe en la moneda de tu tienda, por ejemplo 50.00 para 50,00 €.",
       "free_shipping_amount_token": "Usa [amount] donde debería aparecer el importe restante, por ejemplo, \"Te faltan [amount] para el envío gratis\".",
       "cross_sell_source_scope_collection": "Solo se usa cuando el Origen de los productos anterior está establecido en Colección.",
-      "cross_sell_source_scope_manual": "Solo se usa cuando el Origen de los productos anterior está establecido en Lista manual."
+      "cross_sell_source_scope_manual": "Solo se usa cuando el Origen de los productos anterior está establecido en Lista manual.",
+      "item_text": "Se muestra debajo del título de cada producto en el carrito, por ejemplo, una nota de envío o instrucciones de cuidado."
     },
     "text_defaults": {
       "cross_sell_heading": "También te puede gustar"

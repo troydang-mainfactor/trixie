@@ -1364,7 +1364,8 @@
       "cross_sell": "Çapraz satış karuseli",
       "footer_zone": "Altbilgi alanı",
       "free_shipping_bar": "Ücretsiz kargo ilerleme çubuğu",
-      "style_zone": "Stil"
+      "style_zone": "Stil",
+      "item_text_zone": "Kalem metni"
     },
     "settings": {
       "enable": "Özel sepeti kullan",
@@ -1385,7 +1386,8 @@
       "threshold": "Ücretsiz kargo eşiği",
       "show_free_shipping_bar": "Ücretsiz kargo ilerleme çubuğunu göster",
       "corner_style": "Köşe stili",
-      "thumbnail_size": "Ürün görseli boyutu"
+      "thumbnail_size": "Ürün görseli boyutu",
+      "item_text": "Ürün başlığının altındaki metin"
     },
     "options": {
       "collection": "Koleksiyon",
@@ -1399,7 +1401,8 @@
       "threshold": "Tutarı mağazanızın para biriminde girin, örn. 50,00 TL için 50.00.",
       "free_shipping_amount_token": "Kalan tutarın görüneceği yere [amount] kullanın, örn. \"Ücretsiz kargoya [amount] kaldı\".",
       "cross_sell_source_scope_collection": "Yalnızca yukarıdaki Ürün kaynağı Koleksiyon olarak ayarlandığında kullanılır.",
-      "cross_sell_source_scope_manual": "Yalnızca yukarıdaki Ürün kaynağı Manuel liste olarak ayarlandığında kullanılır."
+      "cross_sell_source_scope_manual": "Yalnızca yukarıdaki Ürün kaynağı Manuel liste olarak ayarlandığında kullanılır.",
+      "item_text": "Sepetteki her ürünün başlığının altında görüntülenir, örneğin bir kargo notu veya bakım talimatı."
     },
     "text_defaults": {
       "cross_sell_heading": "Bunu da beğenebilirsiniz"

@@ -1364,7 +1364,8 @@
       "cross_sell": "クロスセルカルーセル",
       "footer_zone": "フッターゾーン",
       "free_shipping_bar": "送料無料プログレスバー",
-      "style_zone": "スタイル"
+      "style_zone": "スタイル",
+      "item_text_zone": "商品明細のテキスト"
     },
     "settings": {
       "enable": "カスタムカートを使用",
@@ -1385,7 +1386,8 @@
       "threshold": "送料無料のしきい値",
       "show_free_shipping_bar": "送料無料プログレスバーを表示",
       "corner_style": "角のスタイル",
-      "thumbnail_size": "商品画像のサイズ"
+      "thumbnail_size": "商品画像のサイズ",
+      "item_text": "商品名の下に表示するテキスト"
     },
     "options": {
       "collection": "コレクション",
@@ -1399,7 +1401,8 @@
       "threshold": "ストアの通貨で金額を入力してください（例: 50.00で¥50）。",
       "free_shipping_amount_token": "残り金額を表示したい箇所に [amount] を使用してください。例：「送料無料まであと[amount]」",
       "cross_sell_source_scope_collection": "上の「商品のソース」が「コレクション」に設定されている場合のみ使用されます。",
-      "cross_sell_source_scope_manual": "上の「商品のソース」が「手動リスト」に設定されている場合のみ使用されます。"
+      "cross_sell_source_scope_manual": "上の「商品のソース」が「手動リスト」に設定されている場合のみ使用されます。",
+      "item_text": "カート内の各商品名の下に表示されます（例：配送に関する注意事項やお手入れ方法など）。"
     },
     "text_defaults": {
       "cross_sell_heading": "こちらもおすすめです"

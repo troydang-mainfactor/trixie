@@ -1364,7 +1364,8 @@
       "cross_sell": "Kolotoč doplňkového prodeje",
       "footer_zone": "Zóna zápatí",
       "free_shipping_bar": "Ukazatel průběhu dopravy zdarma",
-      "style_zone": "Styl"
+      "style_zone": "Styl",
+      "item_text_zone": "Text položky"
     },
     "settings": {
       "enable": "Použít vlastní košík",
@@ -1385,7 +1386,8 @@
       "threshold": "Práh dopravy zdarma",
       "show_free_shipping_bar": "Zobrazit ukazatel průběhu dopravy zdarma",
       "corner_style": "Styl rohů",
-      "thumbnail_size": "Velikost obrázku produktu"
+      "thumbnail_size": "Velikost obrázku produktu",
+      "item_text": "Text pod názvem produktu"
     },
     "options": {
       "collection": "Kolekce",
@@ -1399,7 +1401,8 @@
       "threshold": "Zadejte částku v měně vašeho obchodu, např. 50.00 pro 50,00 Kč.",
       "free_shipping_amount_token": "Použijte [amount] tam, kde se má zobrazit zbývající částka, např. „Do dopravy zdarma vám zbývá [amount]“.",
       "cross_sell_source_scope_collection": "Použije se pouze pokud je Zdroj produktů nastaven na Kolekce.",
-      "cross_sell_source_scope_manual": "Použije se pouze pokud je Zdroj produktů nastaven na Ruční seznam."
+      "cross_sell_source_scope_manual": "Použije se pouze pokud je Zdroj produktů nastaven na Ruční seznam.",
+      "item_text": "Zobrazuje se pod názvem každého produktu v košíku, např. poznámka o dopravě nebo pokyny k péči."
     },
     "text_defaults": {
       "cross_sell_heading": "Mohlo by se vám také líbit"

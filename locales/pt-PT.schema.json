@@ -1364,7 +1364,8 @@
       "cross_sell": "Carrossel de venda cruzada",
       "footer_zone": "Zona de rodapé",
       "free_shipping_bar": "Barra de progresso de envio gratuito",
-      "style_zone": "Estilo"
+      "style_zone": "Estilo",
+      "item_text_zone": "Texto do artigo"
     },
     "settings": {
       "enable": "Utilizar carrinho personalizado",
@@ -1385,7 +1386,8 @@
       "threshold": "Limite para envio gratuito",
       "show_free_shipping_bar": "Mostrar barra de progresso de envio gratuito",
       "corner_style": "Estilo dos cantos",
-      "thumbnail_size": "Tamanho da imagem do produto"
+      "thumbnail_size": "Tamanho da imagem do produto",
+      "item_text": "Texto abaixo do título do produto"
     },
     "options": {
       "collection": "Coleção",
@@ -1399,7 +1401,8 @@
       "threshold": "Introduza o valor na moeda da sua loja, por exemplo, 50.00 para 50,00 €.",
       "free_shipping_amount_token": "Use [amount] onde o valor restante deve aparecer, por exemplo, \"Faltam [amount] para envio gratuito\".",
       "cross_sell_source_scope_collection": "Utilizado apenas quando a Origem dos produtos acima está definida como Coleção.",
-      "cross_sell_source_scope_manual": "Utilizado apenas quando a Origem dos produtos acima está definida como Lista manual."
+      "cross_sell_source_scope_manual": "Utilizado apenas quando a Origem dos produtos acima está definida como Lista manual.",
+      "item_text": "Apresentado abaixo do título de cada produto no cesto, por exemplo, uma nota de envio ou instruções de cuidado."
     },
     "text_defaults": {
       "cross_sell_heading": "Também pode gostar"

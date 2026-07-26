@@ -28,6 +28,13 @@
   totals/checkout markup directly - everything else (line items, quantity
   steppers, remove buttons) still comes from the untouched originals.
 
+  cart-products.liquid does have one small addition: a `context == 'drawer'`
+  gated block (matching the drawer/page branching it already does elsewhere
+  in that file) that renders `settings.custom_drawer_item_text` below the
+  product title. It's guarded by the same `context` param the default drawer
+  already passes as 'drawer', so the cart page and default drawer render
+  identically to before.
+
   @param {boolean} [render_wrapper] - When true, wraps the drawer in the section wrapper that the Section Rendering API adds automatically.
 {% enddoc %}
 
@@ -441,6 +448,18 @@
     text-overflow: ellipsis;
   }
 
+  /* Merchant-controlled text (settings.custom_drawer_item_text), rendered
+     below the product title only inside the drawer - see the context ==
+     'drawer' block added to cart-products.liquid. */
+  .cart-drawer__items .cart-items__custom-text {
+    font-size: var(--font-size--xs);
+    margin-block-start: var(--margin-3xs);
+  }
+
+  .cart-drawer__items .cart-items__custom-text > * {
+    margin: 0;
+  }
+
   .cart-drawer__items .cart-items__product-info,
   .cart-drawer__items .cart-items__variants-wrapper,
   .cart-drawer__items .cart-items__unit-price-wrapper {
@@ -453,22 +472,30 @@
     gap: var(--gap-2xs);
   }
 
-  .cart-drawer__items .quantity-selector {
+  /* Chained on .cart-items (the ancestor table wrapper cart-products.liquid
+     puts around every row) instead of relying on .cart-drawer__items alone -
+     cart-products.liquid's own @media (min-width: 750px) rule also targets
+     ".cart-items .quantity-selector" at the same two-class specificity, so
+     whichever stylesheet block happens to load later would silently win and
+     re-inflate the pill back to the page's 36px size on desktop. Adding the
+     extra .cart-items class here (present on the same element) raises this
+     rule to three classes so it always wins regardless of load order. */
+  .cart-drawer__items .cart-items .quantity-selector {
     /* Redefining --minimum-touch-target here (rather than sizing the
        .quantity-minus/.quantity-plus buttons directly) keeps it in sync with
        quantity-selector-styles.liquid's own input max-width formula
        (quantity-selector-width - minimum-touch-target * 2) - hardcoding the
        button size without this caused that formula to go negative and hide
        the number entirely on narrow (mobile) widths. */
-    --quantity-selector-width: 100px;
-    --minimum-touch-target: 30px;
+    --quantity-selector-width: 84px;
+    --minimum-touch-target: 26px;
 
     /* Fixed height instead of the inherited align-self: stretch, which sized
        the pill off whatever its tallest sibling happened to be (inconsistent
-       next to the fixed 30px remove button). */
+       next to the fixed remove button). */
     flex: 0 0 auto;
     align-self: center;
-    height: 30px;
+    height: 26px;
     border-radius: var(--custom-drawer-radius-pill, 999px);
   }
 
@@ -476,19 +503,19 @@
      quantity-selector-styles.liquid rounds the original) rather than all
      four corners of each - rounding every corner of the + button caused it
      to visually poke out past the pill container's own curved right edge. */
-  .cart-drawer__items .quantity-selector .quantity-minus {
+  .cart-drawer__items .cart-items .quantity-selector .quantity-minus {
     border-start-start-radius: var(--custom-drawer-radius-pill, 999px);
     border-end-start-radius: var(--custom-drawer-radius-pill, 999px);
   }
 
-  .cart-drawer__items .quantity-selector .quantity-plus {
+  .cart-drawer__items .cart-items .quantity-selector .quantity-plus {
     border-start-end-radius: var(--custom-drawer-radius-pill, 999px);
     border-end-end-radius: var(--custom-drawer-radius-pill, 999px);
   }
 
   .cart-drawer__items .cart-items__remove {
-    width: 30px;
-    height: 30px;
+    width: 26px;
+    height: 26px;
     padding: 0;
     display: flex;
     align-items: center;

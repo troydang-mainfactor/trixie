@@ -1364,7 +1364,8 @@
       "cross_sell": "Cross-Selling-Karussell",
       "footer_zone": "Fußbereich",
       "free_shipping_bar": "Fortschrittsbalken für kostenlosen Versand",
-      "style_zone": "Stil"
+      "style_zone": "Stil",
+      "item_text_zone": "Text zur Position"
     },
     "settings": {
       "enable": "Individuellen Warenkorb verwenden",
@@ -1385,7 +1386,8 @@
       "threshold": "Schwellenwert für kostenlosen Versand",
       "show_free_shipping_bar": "Fortschrittsbalken für kostenlosen Versand anzeigen",
       "corner_style": "Eckenstil",
-      "thumbnail_size": "Produktbildgröße"
+      "thumbnail_size": "Produktbildgröße",
+      "item_text": "Text unter dem Produkttitel"
     },
     "options": {
       "collection": "Kollektion",
@@ -1399,7 +1401,8 @@
       "threshold": "Geben Sie den Betrag in der Währung Ihres Shops ein, z. B. 50.00 für 50,00 €.",
       "free_shipping_amount_token": "Verwenden Sie [amount] an der Stelle, an der der verbleibende Betrag erscheinen soll, z. B. „Noch [amount] bis zum kostenlosen Versand“.",
       "cross_sell_source_scope_collection": "Wird nur verwendet, wenn Produktquelle oben auf Kollektion eingestellt ist.",
-      "cross_sell_source_scope_manual": "Wird nur verwendet, wenn Produktquelle oben auf Manuelle Liste eingestellt ist."
+      "cross_sell_source_scope_manual": "Wird nur verwendet, wenn Produktquelle oben auf Manuelle Liste eingestellt ist.",
+      "item_text": "Wird unter dem Titel jedes Produkts im Warenkorb angezeigt, z. B. ein Versandhinweis oder eine Pflegeanleitung."
     },
     "text_defaults": {
       "cross_sell_heading": "Das könnte Ihnen auch gefallen"
