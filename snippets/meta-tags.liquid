@@ -15,7 +15,7 @@
 >
 <meta
   name="theme-color"
-  content=""
+  content="{{ settings.color_palette.background }}"
 >
 
 {%- liquid
@@ -104,10 +104,10 @@
 >
 
 <title>
-  {{ page_title }}
-  {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+  {{ page_title | escape }}
+  {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' | escape }}"{% endif -%}
   {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
-  {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+  {%- unless page_title contains shop.name %} &ndash; {{ shop.name | escape }}{% endunless -%}
 </title>
 
 <link
