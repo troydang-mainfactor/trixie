@@ -18,383 +18,248 @@
     --overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
   "
 >
+  <div class="premium-grid">
 
-<div class="premium-grid">
+    {% for block in section.blocks limit: total_tiles %}
+      <div
+        class="premium-grid__item text-{{ block.settings.vertical }}-{{ block.settings.horizontal }}"
+        {{ block.shopify_attributes }}
+      >
 
-{% for block in section.blocks limit: total_tiles %}
+        {% if block.settings.link != blank %}
+          <a href="{{ block.settings.link }}" class="premium-grid__link">
+        {% endif %}
 
-<div
-class="premium-grid__item text-{{ block.settings.vertical }}-{{ block.settings.horizontal }}"
-{{ block.shopify_attributes }}
->
+          {% case section.settings.aspect_ratio %}
+            {% when 'portrait' %}
+              {% assign aspect = '4 / 5' %}
+            {% when 'landscape' %}
+              {% assign aspect = '16 / 9' %}
+            {% when 'square' %}
+              {% assign aspect = '1 / 1' %}
+            {% else %}
+              {% assign aspect = '' %}
+          {% endcase %}
 
-{% if block.settings.link != blank %}
-<a href="{{ block.settings.link }}" class="premium-grid__link">
-{% endif %}
+          <div
+            class="premium-grid__media"
+            {% unless section.settings.aspect_ratio == 'auto' %}
+              style="aspect-ratio:{{ aspect }};"
+            {% endunless %}
+          >
 
-{% case section.settings.aspect_ratio %}
+            {% if block.settings.image %}
+              {{
+                block.settings.image
+                | image_url: width: 2200
+                | image_tag:
+                  loading: 'lazy',
+                  sizes: '100vw',
+                  class: 'premium-grid__image'
+              }}
+            {% else %}
+              {{ 'lifestyle-1' | placeholder_svg_tag }}
+            {% endif %}
 
-{% when 'portrait' %}
-{% assign aspect = '4 / 5' %}
+            <div class="premium-grid__overlay">
+              <div class="premium-grid__content">
 
-{% when 'landscape' %}
-{% assign aspect = '16 / 9' %}
+                {% if block.settings.heading != blank %}
+                  <h2 class="premium-grid__heading">
+                    {{ block.settings.heading }}
+                  </h2>
+                {% endif %}
 
-{% when 'square' %}
-{% assign aspect = '1 / 1' %}
+                {% if block.settings.text != blank %}
+                  <div class="premium-grid__text rte">
+                    {{ block.settings.text }}
+                  </div>
+                {% endif %}
 
-{% else %}
-{% assign aspect = '' %}
+                {% if block.settings.button_label != blank %}
+                  <span class="premium-grid__button">
+                    {{ block.settings.button_label }}
+                  </span>
+                {% endif %}
 
-{% endcase %}
+              </div>
+            </div>
 
-<div
-class="premium-grid__media"
-{% unless aspect == '' %}
-style="aspect-ratio:{{ aspect }};"
-{% endunless %}
->
+          </div>
 
-{% if block.settings.image %}
+        {% if block.settings.link != blank %}
+          </a>
+        {% endif %}
 
-{{
-block.settings.image
-| image_url: width: 2200
-| image_tag:
-loading:'lazy',
-sizes:'100vw',
-class:'premium-grid__image'
-}}
+      </div>
+    {% endfor %}
 
-{% else %}
-
-{{ 'lifestyle-1' | placeholder_svg_tag }}
-
-{% endif %}
-
-<div class="premium-grid__overlay">
-
-<div class="premium-grid__content">
-
-{% if block.settings.heading != blank %}
-<h2 class="premium-grid__heading">
-{{ block.settings.heading }}
-</h2>
-{% endif %}
-
-{% if block.settings.text != blank %}
-<div class="premium-grid__text rte">
-{{ block.settings.text }}
-</div>
-{% endif %}
-
-{% if block.settings.button_label != blank %}
-
-<span class="premium-grid__button">
-{{ block.settings.button_label }}
-</span>
-
-{% endif %}
-
-</div>
-
-</div>
-
-</div>
-
-{% if block.settings.link != blank %}
-</a>
-{% endif %}
-
-</div>
-
-{% endfor %}
-
-</div>
+  </div>
+</section>
 
 <style>
-
-.premium-image-grid{
-width:100%;
-padding-top:var(--padding-top);
-padding-bottom:var(--padding-bottom);
-}
-
-.premium-grid{
-
-display:grid;
-grid-template-columns:repeat(var(--columns),1fr);
-gap:var(--grid-gap);
-
-}
-
-.premium-grid__item{
-
-position:relative;
-overflow:hidden;
-border-radius:var(--radius-desktop);
-
-}
-
-.premium-grid__link{
-
-display:block;
-height:100%;
-width:100%;
-text-decoration:none;
-color:inherit;
-
-}
-
-.premium-grid__media{
-
-position:relative;
-aspect-ratio:1;
-
-}
-
-.premium-grid__image{
-
-width:100%;
-height:100%;
-object-fit:cover;
-display:block;
-
-transition:
-transform .8s cubic-bezier(.22,.61,.36,1),
-filter .45s ease;
-
-}
-
-.premium-grid__overlay{
-
-position:absolute;
-inset:0;
-
-display:flex;
-
-padding:var(--content-padding-desktop);
-
-background:
-
-linear-gradient(
-180deg,
-
-rgba(0,0,0,0) 20%,
-
-rgba(0,0,0,calc(var(--overlay-opacity) * .45)) 55%,
-
-rgba(0,0,0,var(--overlay-opacity)) 100%
-
-);
-
-color:#fff;
-
-transition:background .35s ease;
-
-}
-
-.premium-grid__content{
-
-display:flex;
-flex-direction:column;
-gap:14px;
-
-max-width:420px;
-
-}
-
-.premium-grid__heading{
-
-margin:0;
-
-}
-
-.premium-grid__text{
-
-margin:0;
-
-}
-
-.premium-grid__button{
-
-display:inline-flex;
-align-items:center;
-justify-content:center;
-
-padding:14px 28px;
-
-background:white;
-color:black;
-
-border-radius:999px;
-
-font-weight:600;
-
-opacity:0;
-transform:translateY(12px);
-
-transition:
-
-opacity .35s ease,
-transform .35s ease,
-background .25s ease,
-color .25s ease;
-
-width:max-content;
-
-}
-
-<style>
-
-.premium-image-grid{
-    width:100%;
-}
-
-.premium-grid{
-    display:grid;
-    grid-template-columns:repeat(var(--columns),1fr);
-    width:100%;
-}
-
-.premium-grid__item{
-    position:relative;
-    overflow:hidden;
-    aspect-ratio:1;
-}
-
-.premium-grid__link{
-    display:block;
-    width:100%;
-    height:100%;
-    color:inherit;
-    text-decoration:none;
-}
-
-.premium-grid__image{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    transition:transform .7s cubic-bezier(.2,.8,.2,1);
-}
-
-.premium-grid__overlay{
-    position:absolute;
-    inset:0;
-    display:flex;
-    padding:32px;
-    color:#fff;
-}
-
-.premium-grid__content{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    max-width:420px;
-}
-
-.premium-grid__button{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    padding:14px 28px;
-    background:#fff;
-    color:#000;
-    font-weight:600;
-    border-radius:999px;
-    opacity:0;
-    transform:translateY(10px);
-    transition:.35s ease;
-}
-
-.premium-grid__item:hover .premium-grid__image{
-    transform:scale(1.07);
-}
-
-.premium-grid__item:hover .premium-grid__button{
-    opacity:1;
-    transform:translateY(0);
-}
-
-/* Placement */
-
-.text-top-left .premium-grid__overlay{
-    align-items:flex-start;
-    justify-content:flex-start;
-    text-align:left;
-}
-
-.text-top-center .premium-grid__overlay{
-    align-items:flex-start;
-    justify-content:center;
-    text-align:center;
-}
-
-.text-top-right .premium-grid__overlay{
-    align-items:flex-start;
-    justify-content:flex-end;
-    text-align:right;
-}
-
-.text-center-left .premium-grid__overlay{
-    align-items:center;
-    justify-content:flex-start;
-    text-align:left;
-}
-
-.text-center-center .premium-grid__overlay{
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-}
-
-.text-center-right .premium-grid__overlay{
-    align-items:center;
-    justify-content:flex-end;
-    text-align:right;
-}
-
-.text-bottom-left .premium-grid__overlay{
-    align-items:flex-end;
-    justify-content:flex-start;
-    text-align:left;
-}
-
-.text-bottom-center .premium-grid__overlay{
-    align-items:flex-end;
-    justify-content:center;
-    text-align:center;
-}
-
-.text-bottom-right .premium-grid__overlay{
-    align-items:flex-end;
-    justify-content:flex-end;
-    text-align:right;
-}
-
-/* Mobile */
-
-@media screen and (max-width:749px){
-
-.premium-grid{
-    grid-template-columns:1fr;
-}
-
-.premium-grid__item{
-    aspect-ratio:1;
-}
-
-.premium-grid__overlay{
-    padding:24px;
-}
-
-.premium-grid__button{
-    opacity:1;
-    transform:none;
-}
-
-}
-
+  .premium-image-grid {
+    width: 100%;
+    padding-top: var(--padding-top);
+    padding-bottom: var(--padding-bottom);
+  }
+
+  .premium-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--columns), 1fr);
+    gap: var(--grid-gap);
+  }
+
+  .premium-grid__item {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-desktop);
+  }
+
+  .premium-grid__link {
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .premium-grid__media {
+    position: relative;
+    aspect-ratio: 1;
+  }
+
+  .premium-grid__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    will-change: transform;
+    transition:
+      transform .8s cubic-bezier(.22, .61, .36, 1),
+      filter .45s ease;
+  }
+
+  .premium-grid__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    padding: var(--content-padding-desktop);
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 20%,
+      rgba(0, 0, 0, calc(var(--overlay-opacity) * .45)) 55%,
+      rgba(0, 0, 0, var(--overlay-opacity)) 100%
+    );
+    color: #fff;
+    transition: background .35s ease;
+  }
+
+  .premium-grid__content {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 420px;
+  }
+
+  .premium-grid__heading {
+    margin: 0;
+    line-height: 1.05;
+  }
+
+  .premium-grid__text {
+    margin: 0;
+  }
+
+  .premium-grid__text p {
+    margin: 0;
+  }
+
+  .premium-grid__text > *:last-child {
+    margin-bottom: 0;
+  }
+
+  .premium-grid__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    background: white;
+    color: black;
+    border-radius: 999px;
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(12px);
+    width: max-content;
+    transition:
+      opacity .35s ease,
+      transform .35s ease,
+      background .25s ease,
+      color .25s ease;
+  }
+
+  .premium-grid__button:hover {
+    background: #f5f5f5;
+  }
+
+  /* ----------------------------------------------------
+     Premium Hover Effects
+  ----------------------------------------------------- */
+  @media (hover: hover) {
+    .premium-grid__item:hover .premium-grid__image {
+      transform: scale(1.08);
+    }
+
+    .premium-grid__item:hover .premium-grid__overlay {
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 10%,
+        rgba(0, 0, 0, calc(var(--overlay-opacity) * .65)) 55%,
+        rgba(0, 0, 0, calc(var(--overlay-opacity) + .15)) 100%
+      );
+    }
+
+    .premium-grid__item:hover .premium-grid__button {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ----------------------------------------------------
+     Text Placement
+  ----------------------------------------------------- */
+  .text-top-left .premium-grid__overlay       { align-items: flex-start; justify-content: flex-start; text-align: left; }
+  .text-top-center .premium-grid__overlay     { align-items: flex-start; justify-content: center;     text-align: center; }
+  .text-top-right .premium-grid__overlay      { align-items: flex-start; justify-content: flex-end;   text-align: right; }
+  .text-center-left .premium-grid__overlay    { align-items: center;     justify-content: flex-start; text-align: left; }
+  .text-center-center .premium-grid__overlay  { align-items: center;     justify-content: center;     text-align: center; }
+  .text-center-right .premium-grid__overlay   { align-items: center;     justify-content: flex-end;   text-align: right; }
+  .text-bottom-left .premium-grid__overlay    { align-items: flex-end;   justify-content: flex-start; text-align: left; }
+  .text-bottom-center .premium-grid__overlay  { align-items: flex-end;   justify-content: center;     text-align: center; }
+  .text-bottom-right .premium-grid__overlay   { align-items: flex-end;   justify-content: flex-end;   text-align: right; }
+
+  /* ----------------------------------------------------
+     Mobile
+  ----------------------------------------------------- */
+  @media screen and (max-width: 749px) {
+    .premium-grid {
+      grid-template-columns: repeat({{ section.settings.mobile_columns }}, 1fr);
+      gap: calc(var(--grid-gap) * .75);
+    }
+
+    .premium-grid__item {
+      border-radius: var(--radius-mobile);
+    }
+
+    .premium-grid__overlay {
+      padding: var(--content-padding-mobile);
+    }
+
+    .premium-grid__button {
+      opacity: 1;
+      transform: none;
+    }
+  }
 </style>
 
 {% schema %}
@@ -404,84 +269,194 @@ width:max-content;
   "class": "section",
   "settings": [
     {
-      "type":"range",
-      "id":"columns",
-      "label":"Desktop Columns",
-      "min":1,
-      "max":6,
-      "step":1,
-      "default":3
+      "type": "range",
+      "id": "columns",
+      "label": "Desktop columns",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 3
     },
     {
-      "type":"range",
-      "id":"rows",
-      "label":"Desktop Rows",
-      "min":1,
-      "max":6,
-      "step":1,
-      "default":2
+      "type": "range",
+      "id": "rows",
+      "label": "Desktop rows",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "select",
+      "id": "mobile_columns",
+      "label": "Mobile layout",
+      "default": "1",
+      "options": [
+        { "value": "1", "label": "1 column" },
+        { "value": "2", "label": "2 columns" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "aspect_ratio",
+      "label": "Image aspect ratio",
+      "default": "square",
+      "options": [
+        { "value": "square", "label": "Square" },
+        { "value": "portrait", "label": "Portrait (4:5)" },
+        { "value": "landscape", "label": "Landscape (16:9)" },
+        { "value": "auto", "label": "Original image" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "label": "Grid gap",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "default": 12,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "corner_radius",
+      "label": "Desktop corner radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_corner_radius",
+      "label": "Mobile corner radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "default": 12,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "content_padding",
+      "label": "Desktop content padding",
+      "min": 12,
+      "max": 80,
+      "step": 4,
+      "default": 32,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_content_padding",
+      "label": "Mobile content padding",
+      "min": 8,
+      "max": 48,
+      "step": 2,
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay strength",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 55,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 0,
+      "unit": "px"
     }
   ],
-  "blocks":[
+  "blocks": [
     {
-      "type":"image",
-      "name":"Grid Item",
-      "settings":[
+      "type": "image",
+      "name": "Grid Item",
+      "settings": [
         {
-          "type":"image_picker",
-          "id":"image",
-          "label":"Image"
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
         },
         {
-          "type":"text",
-          "id":"heading",
-          "label":"Heading"
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Collection"
         },
         {
-          "type":"richtext",
-          "id":"text",
-          "label":"Text"
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Tell customers about this collection.</p>"
         },
         {
-          "type":"text",
-          "id":"button_label",
-          "label":"Button Label",
-          "default":"Shop Now"
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Shop now"
         },
         {
-          "type":"url",
-          "id":"link",
-          "label":"Link"
+          "type": "url",
+          "id": "link",
+          "label": "Link"
         },
         {
-          "type":"select",
-          "id":"vertical",
-          "label":"Vertical Position",
-          "default":"bottom",
-          "options":[
-            {"value":"top","label":"Top"},
-            {"value":"center","label":"Center"},
-            {"value":"bottom","label":"Bottom"}
+          "type": "select",
+          "id": "vertical",
+          "label": "Vertical position",
+          "default": "bottom",
+          "options": [
+            { "value": "top", "label": "Top" },
+            { "value": "center", "label": "Center" },
+            { "value": "bottom", "label": "Bottom" }
           ]
         },
         {
-          "type":"select",
-          "id":"horizontal",
-          "label":"Horizontal Position",
-          "default":"left",
-          "options":[
-            {"value":"left","label":"Left"},
-            {"value":"center","label":"Center"},
-            {"value":"right","label":"Right"}
+          "type": "select",
+          "id": "horizontal",
+          "label": "Horizontal position",
+          "default": "left",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
           ]
         }
       ]
     }
   ],
-  "max_blocks":36,
-  "presets":[
+  "max_blocks": 36,
+  "presets": [
     {
-      "name":"Premium Image Grid"
+      "name": "Premium Image Grid",
+      "blocks": [
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" }
+      ]
     }
   ]
 }
