@@ -138,15 +138,15 @@
           "settings": {
             "product_card_gap": 4,
             "background_color": "rgba(0,0,0,0)",
-            "border": "none",
-            "border_width": 1,
+            "border": "solid",
+            "border_width": 3,
             "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "border_color": "{{ settings.color_palette.color5 }}",
+            "border_radius": 15,
+            "padding-block-start": 10,
+            "padding-block-end": 10,
+            "padding-inline-start": 10,
+            "padding-inline-end": 10
           },
           "blocks": {
             "product_card_gallery_677WP3": {
@@ -243,8 +243,8 @@
               "settings": {
                 "stacking": false,
                 "text_color": "",
-                "show_pickup_availability": true,
-                "gift_card_form": true,
+                "show_pickup_availability": false,
+                "gift_card_form": false,
                 "recipient_button_style": "default",
                 "recipient_button_background": "{{ settings.color_palette.background }}",
                 "recipient_button_text": "{{ settings.color_palette.foreground }}",
@@ -285,7 +285,7 @@
                   "settings": {
                     "show_price": true,
                     "open_quick_add_for_variants": false,
-                    "style_class": "button-secondary",
+                    "style_class": "button",
                     "custom_button_background": "{{ settings.color_palette.foreground }}",
                     "custom_button_text": "{{ settings.color_palette.background }}",
                     "custom_button_border": "{{ settings.color_palette.background }}"

@@ -58,7 +58,7 @@
         "section_width": "page-width",
         "background_color": "{{ settings.color_palette.background }}",
         "divider_width": 1,
-        "divider_color": "{{ settings.color_palette.color2 }}",
+        "divider_color": "{{ settings.color_palette.color5 }}",
         "padding-block-start": 15,
         "padding-block-end": 15
       }
