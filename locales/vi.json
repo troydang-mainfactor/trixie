@@ -101,6 +101,7 @@
     "view_all": "Xem tất cả",
     "add": "Thêm",
     "choose": "Chọn",
+    "choose_option": "Chọn {{ option }}",
     "added": "Đã thêm",
     "show_less": "Ẩn bớt",
     "show_more": "Hiển thị thêm",

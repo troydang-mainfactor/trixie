@@ -101,6 +101,7 @@
     "view_all": "Tümünü görüntüle",
     "add": "Ekle",
     "choose": "Seç",
+    "choose_option": "{{ option }} seç",
     "added": "Eklendi",
     "show_less": "Daha az göster",
     "show_more": "Daha fazla göster",

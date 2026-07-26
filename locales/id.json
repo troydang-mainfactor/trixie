@@ -101,6 +101,7 @@
     "view_all": "Lihat semua",
     "add": "Tambahkan",
     "choose": "Pilih",
+    "choose_option": "Pilih {{ option }}",
     "added": "Ditambahkan",
     "show_less": "Sembunyikan lainnya",
     "show_more": "Selengkapnya",

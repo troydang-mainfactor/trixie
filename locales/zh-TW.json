@@ -101,6 +101,7 @@
     "view_all": "檢視全部",
     "add": "新增",
     "choose": "選擇",
+    "choose_option": "選擇{{ option }}",
     "added": "已新增",
     "show_less": "顯示較少",
     "show_more": "顯示更多",

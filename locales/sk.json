@@ -105,6 +105,7 @@
     "view_all": "Zobraziť všetko",
     "add": "Pridať",
     "choose": "Vybrať",
+    "choose_option": "Vyberte {{ option }}",
     "added": "Pridané",
     "show_less": "Zobraziť menej",
     "show_more": "Zobraziť viac",

@@ -101,6 +101,7 @@
     "view_all": "すべて表示",
     "add": "追加",
     "choose": "選択",
+    "choose_option": "{{ option }}を選択",
     "added": "追加済み",
     "show_less": "表示を減らす",
     "show_more": "さらに表示する",

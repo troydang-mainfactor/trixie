@@ -105,6 +105,7 @@
     "view_all": "Prikaži vse",
     "add": "Dodaj",
     "choose": "Izberi",
+    "choose_option": "Izberite {{ option }}",
     "added": "Dodano",
     "show_less": "Prikaži manj",
     "show_more": "Prikaži več",

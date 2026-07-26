@@ -101,6 +101,7 @@
     "view_all": "Alles bekijken",
     "add": "Toevoegen",
     "choose": "Kiezen",
+    "choose_option": "Kies {{ option }}",
     "added": "Toegevoegd",
     "show_less": "Minder weergeven",
     "show_more": "Meer weergeven",

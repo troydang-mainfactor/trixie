@@ -103,6 +103,7 @@
     "view_all": "Vedeți toate",
     "add": "Adăugați",
     "choose": "Alege",
+    "choose_option": "Alege {{ option }}",
     "added": "Adăugat",
     "show_less": "Afișează mai puțin",
     "show_more": "Afișează mai mult",

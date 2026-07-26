@@ -101,6 +101,7 @@
     "view_all": "Összes megtekintése",
     "add": "Hozzáadás",
     "choose": "Kiválasztás",
+    "choose_option": "Válassz {{ option }}",
     "added": "Hozzáadva",
     "show_less": "Kevesebb megjelenítése",
     "show_more": "Több megjelenítése",

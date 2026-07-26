@@ -101,6 +101,7 @@
     "view_all": "Visa alla",
     "add": "Lägg till",
     "choose": "Välj",
+    "choose_option": "Välj {{ option }}",
     "added": "Tillagd",
     "show_less": "Visa färre",
     "show_more": "Visa fler",

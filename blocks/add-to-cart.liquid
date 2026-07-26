@@ -12,6 +12,32 @@
   assign scoped_class = block.settings.style_class | append: '--' | append: block.id
   assign class = 'add-to-cart-button ' | append: block.settings.style_class | append: ' ' | append: scoped_class
   assign id = 'BuyButtons-ProductSubmitButton-' | append: block.id
+  assign product = closest.product
+
+  # This block is shared between the PDP and featured-product sections (both
+  # of which pair it with their own on-page variant-picker block, which keeps
+  # the hidden variant id in sync as the shopper picks options) and cards on
+  # collection/search-style grids (which have no on-card picker at all).
+  # Without a picker, submitting this form always adds whichever variant
+  # Shopify resolves as "first available" - silently the wrong one for a
+  # product with real variant options.
+  #
+  # There's no reliable way to detect "am I on a no-picker card" purely from
+  # Liquid context here (closest.<type> only allows one argument per
+  # content_for call, and that slot is already used for `product`), so this
+  # is opt-in per block instance via block.settings.open_quick_add_for_variants
+  # instead - turned on for the add-to-cart block instance configured inside
+  # collection/search card templates, left off (default) everywhere else so
+  # the PDP and featured-product's own variant pickers are untouched.
+  assign quick_add_enabled = false
+  if settings.quick_add or settings.mobile_quick_add
+    assign quick_add_enabled = true
+  endif
+
+  assign needs_variant_choice = false
+  if block.settings.open_quick_add_for_variants and product.has_only_default_variant == false and product.available and quick_add_enabled
+    assign needs_variant_choice = true
+  endif
 %}
 {% render 'button-custom-styles', block_settings: block.settings, block_id: block.id %}
 {% render 'add-to-cart-button-styles' %}
@@ -21,15 +47,54 @@
   {{ block.shopify_attributes }}
   style="--add-to-cart-font-case: {{ settings.button_text_case }};"
 >
-  {% render 'add-to-cart-button',
-    id: id,
-    class: class,
-    can_add_to_cart: can_add_to_cart,
-    product: closest.product,
-    add_to_cart_text: add_to_cart_text,
-    data_testid: 'standalone-add-to-cart',
-    show_price: block.settings.show_price
-  %}
+  {% if needs_variant_choice %}
+    {% liquid
+      assign uses_selling_plans = false
+      if product.requires_selling_plan or product.selling_plan_groups.size > 0
+        assign uses_selling_plans = true
+      endif
+      assign option_name = product.options_with_values.first.name
+      assign choose_text = 'actions.choose_option' | t: option: option_name
+    %}
+    {% render 'quick-add-styles' %}
+    <quick-add-component
+      class="quick-add custom-color-quick-add"
+      data-product-title="{{ product.title }}"
+      data-product-id="{{ product.id }}"
+      data-quick-add-button="choose"
+      data-product-options-count="{{ product.options.size }}"
+      data-uses-selling-plans="{{ uses_selling_plans }}"
+    >
+      <button
+        id="{{ id }}"
+        type="button"
+        name="add"
+        class="button {{ class }}"
+        on:click="quick-add-component/handleClick"
+        data-testid="standalone-add-to-cart"
+      >
+        {%- unless block.settings.show_price -%}
+          <span
+            aria-hidden="true"
+            class="svg-wrapper add-to-cart-icon"
+          >
+            {{- 'icon-add-to-cart.svg' | inline_asset_content -}}
+          </span>
+        {%- endunless -%}
+        {{- choose_text -}}
+      </button>
+    </quick-add-component>
+  {% else %}
+    {% render 'add-to-cart-button',
+      id: id,
+      class: class,
+      can_add_to_cart: can_add_to_cart,
+      product: product,
+      add_to_cart_text: add_to_cart_text,
+      data_testid: 'standalone-add-to-cart',
+      show_price: block.settings.show_price
+    %}
+  {% endif %}
 </span>
 
 {% schema %}
@@ -42,6 +107,13 @@
       "id": "show_price",
       "label": "t:settings.show_price_in_button",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "open_quick_add_for_variants",
+      "label": "t:settings.open_quick_add_for_variants",
+      "info": "t:info.open_quick_add_for_variants",
+      "default": false
     },
     {
       "type": "select",
