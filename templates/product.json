@@ -23,7 +23,7 @@
             "icons_style": "none",
             "slideshow_controls_style": "thumbnails",
             "slideshow_mobile_controls_style": "thumbnails",
-            "thumbnail_position": "left",
+            "thumbnail_position": "right",
             "thumbnail_width": 82,
             "thumbnail_width_mobile": 124,
             "thumbnail_radius": 0,
