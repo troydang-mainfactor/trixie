@@ -5,7 +5,11 @@
   client-side loop, so there's no added JS cost per card.
 
   @param {object} product - The product to match tags against
-  @param {string} [context] - Rendering context ('card' or 'cart'), only used to vary the wrapper class for spacing
+  @param {string} [context] - Rendering context: 'overlay' (default) for an absolutely
+    positioned 4-corner overlay on a product image (requires a position: relative
+    ancestor, e.g. .product-media-container/.card-gallery), or 'inline' for a plain
+    wrapping row in normal document flow (cart drawer, or this block added directly
+    to a section/column).
 
   @example
   {% render 'product-tag-badges', product: product %}
@@ -45,7 +49,7 @@
 %}
 
 {% if tag_badges_total > 0 %}
-  <div class="custom-tag-badges custom-tag-badges--{{ context | default: 'card' }}">
+  <div class="custom-tag-badges custom-tag-badges--{{ context | default: 'overlay' }}">
     {% for corner_indexes in (1..4) %}
       {% liquid
         case corner_indexes

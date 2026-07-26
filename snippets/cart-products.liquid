@@ -194,7 +194,7 @@
                       endif
                     -%}
                     {% if settings.tag_badges_enable and settings.tag_badges_show_above_cart_title %}
-                      {% render 'product-tag-badges', product: item.product, context: 'cart' %}
+                      {% render 'product-tag-badges', product: item.product, context: 'inline' %}
                     {% endif %}
                     <div class="cart-items__title-row">
                       <a

@@ -6,10 +6,10 @@
 {%- enddoc -%}
 
 {% stylesheet %}
-  /* Card context: absolutely positioned over the product image, one stack
-     per corner. Requires an ancestor with position: relative and
-     container-type: inline-size - .card-gallery already provides both. */
-  .custom-tag-badges--card {
+  /* Overlay context: absolutely positioned over a product image, one stack
+     per corner. Requires an ancestor with position: relative -
+     .card-gallery/.product-media-container already provide it. */
+  .custom-tag-badges--overlay {
     /* --tag-badges-inset is scoped to this component only (not the generic
        --padding-* custom properties many other blocks in this theme already
        use for their own per-block padding settings), so this never
@@ -20,7 +20,7 @@
     inset: 0;
     z-index: var(--layer-flat);
     /* Never intercept clicks/taps - badges must never block the quick-add
-       button, swatches, or anything else on the card. */
+       button, swatches, or anything else on the image. */
     pointer-events: none;
     /* Keep clear of the quick-add button's resting corner (bottom-right) so
        the two never visually collide when both are present. */
@@ -41,21 +41,21 @@
     min-width: 0;
   }
 
-  .custom-tag-badges--card .custom-tag-badges__corner--top-left {
+  .custom-tag-badges--overlay .custom-tag-badges__corner--top-left {
     grid-column: 1;
     grid-row: 1;
     align-items: flex-start;
     justify-self: start;
   }
 
-  .custom-tag-badges--card .custom-tag-badges__corner--top-right {
+  .custom-tag-badges--overlay .custom-tag-badges__corner--top-right {
     grid-column: 2;
     grid-row: 1;
     align-items: flex-end;
     justify-self: end;
   }
 
-  .custom-tag-badges--card .custom-tag-badges__corner--bottom-left {
+  .custom-tag-badges--overlay .custom-tag-badges__corner--bottom-left {
     grid-column: 1;
     grid-row: 2;
     align-items: flex-start;
@@ -63,7 +63,7 @@
     align-self: end;
   }
 
-  .custom-tag-badges--card .custom-tag-badges__corner--bottom-right {
+  .custom-tag-badges--overlay .custom-tag-badges__corner--bottom-right {
     grid-column: 2;
     grid-row: 2;
     align-items: flex-end;
@@ -71,16 +71,17 @@
     align-self: end;
   }
 
-  /* Cart-drawer context: a plain wrapping row above the product title,
-     in normal document flow (no absolute positioning). */
-  .custom-tag-badges--cart {
+  /* Inline context: a plain wrapping row in normal document flow - used by
+     the cart drawer (above the title) and by the standalone Product tag
+     badges block wherever a merchant adds it. */
+  .custom-tag-badges--inline {
     display: flex;
     flex-wrap: wrap;
     gap: var(--gap-3xs);
     margin-block-end: var(--margin-3xs);
   }
 
-  .custom-tag-badges--cart .custom-tag-badges__corner {
+  .custom-tag-badges--inline .custom-tag-badges__corner {
     display: contents;
   }
 
@@ -109,7 +110,7 @@
   }
 
   @container card-gallery-container (max-width: 120px) {
-    .custom-tag-badges--card {
+    .custom-tag-badges--overlay {
       padding-block-end: calc(var(--button-size-sm, 32px) + var(--padding-sm));
     }
   }
