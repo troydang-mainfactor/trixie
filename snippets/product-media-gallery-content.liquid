@@ -364,6 +364,9 @@
                 assign media_sizes = sizes
               endif
           -%}
+          {% if forloop.first and settings.tag_badges_enable and settings.tag_badges_show_on_product_page %}
+            {% render 'product-tag-badges', product: selected_product, context: 'overlay' %}
+          {% endif %}
           {% if block_settings.aspect_ratio != 'adapt' and block_settings.constrain_to_viewport %}
             <div
               class="product-media-constraint-wrapper">

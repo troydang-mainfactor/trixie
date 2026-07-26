@@ -1188,6 +1188,10 @@
             "label": "t:options.bottom_left"
           },
           {
+            "value": "bottom-right",
+            "label": "t:options.bottom_right"
+          },
+          {
             "value": "top-left",
             "label": "t:options.top_left"
           },
@@ -1210,6 +1214,26 @@
         "default": 40
       },
       {
+        "type": "range",
+        "id": "badge_font_size",
+        "label": "t:settings.font_size",
+        "min": 8,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "default": 12
+      },
+      {
+        "type": "range",
+        "id": "badge_border_width",
+        "label": "t:settings.border_width",
+        "min": 0,
+        "max": 4,
+        "step": 1,
+        "unit": "px",
+        "default": 0
+      },
+      {
         "type": "header",
         "content": "t:settings.colors"
       },
@@ -1226,6 +1250,12 @@
       },
       {
         "type": "color",
+        "id": "badge_sale_border_color",
+        "label": "t:settings.badge_sale_border_color",
+        "alpha": true
+      },
+      {
+        "type": "color",
         "id": "badge_sold_out_background_color",
         "label": "t:settings.badge_sold_out_background_color",
         "default": "{{ settings.color_palette.background }}"
@@ -1235,6 +1265,12 @@
         "id": "badge_sold_out_text_color",
         "label": "t:settings.badge_sold_out_text_color",
         "default": "{{ settings.color_palette.foreground }}"
+      },
+      {
+        "type": "color",
+        "id": "badge_sold_out_border_color",
+        "label": "t:settings.badge_sold_out_border_color",
+        "alpha": true
       },
       {
         "type": "header",
@@ -1296,6 +1332,14 @@
         "id": "tag_badges_show_on_card_image",
         "label": "t:settings.tag_badges_show_on_card_image",
         "info": "t:info.tag_badges_show_on_card_image",
+        "default": true,
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "checkbox",
+        "id": "tag_badges_show_on_product_page",
+        "label": "t:settings.tag_badges_show_on_product_page",
+        "info": "t:info.tag_badges_show_on_product_page",
         "default": true,
         "visible_if": "{{ settings.tag_badges_enable }}"
       },
