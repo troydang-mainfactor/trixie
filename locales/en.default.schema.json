@@ -1402,7 +1402,7 @@
       "free_shipping_amount_token": "Use [amount] where the remaining amount should appear, e.g. \"Spend [amount] more for free shipping\".",
       "cross_sell_source_scope_collection": "Only used when Product source above is set to Collection.",
       "cross_sell_source_scope_manual": "Only used when Product source above is set to Manual list.",
-      "item_text": "Shown under every product's title in the cart drawer, e.g. a shipping note or care instruction."
+      "item_text": "Shown under every product's title in the cart drawer, e.g. a shipping note or care instruction. A product can override this with its own text using the \"Cart Drawer Note\" metafield on the product's admin page."
     },
     "text_defaults": {
       "cross_sell_heading": "You may also like"

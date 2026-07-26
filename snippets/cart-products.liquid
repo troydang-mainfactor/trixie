@@ -212,7 +212,18 @@
                         mode: 'trigger'
                       %}
                     </div>
-                    {% if context == 'drawer' and settings.custom_drawer_item_text != blank %}
+                    {%- liquid
+                      # custom.cart_drawer_note is plain text (line breaks only, no rich
+                      # formatting) - it's a per-product override of the merchant's global
+                      # "Line item text" theme setting, which is richtext and already
+                      # outputs its own HTML, so each needs different rendering below.
+                      assign item_note = item.product.metafields.custom.cart_drawer_note.value
+                    -%}
+                    {% if context == 'drawer' and item_note != blank %}
+                      <div class="cart-items__custom-text rte">
+                        {{ item_note | newline_to_br }}
+                      </div>
+                    {% elsif context == 'drawer' and settings.custom_drawer_item_text != blank %}
                       <div class="cart-items__custom-text rte">
                         {{ settings.custom_drawer_item_text }}
                       </div>
