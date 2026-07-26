@@ -922,7 +922,7 @@
     "body_size": "Brödtextstorlek",
     "mobile_size": "Mobil storlek",
     "bottom_row_appearance": "Utseende för nedersta raden",
-    "tag_badges_note": "Konfigurera upp till 8 märken nedan. Varje märke visas automatiskt när en produkt har den matchande taggen (exakt matchning, skiftlägeskänslig). När fler än ett märke tilldelas samma hörn staplas de vertikalt i ordning - Märke 1 först.",
+    "tag_badges_note": "Konfigurera upp till 8 märken nedan. Varje märke visas automatiskt när en produkt har den matchande taggen (exakt matchning, skiftlägeskänslig). När fler än ett märke tilldelas samma hörn staplas de vertikalt i ordning - Märke 1 först. Teckenstorlek och hörnradie delas med Rea/Slutsåld-märkena nedan, i avsnittet Märken, så att alla märken på ett kort matchar.",
     "tag_badge_1": "Märke 1",
     "tag_badge_2": "Märke 2",
     "tag_badge_3": "Märke 3",

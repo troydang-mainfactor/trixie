@@ -156,8 +156,16 @@
 
     {% render 'search-modal' %}
 
-    {% if settings.quick_add or settings.mobile_quick_add %}
-      {% render 'quick-add-modal' %}
-    {% endif %}
+    {% comment %}
+      Always rendered (not gated behind settings.quick_add/mobile_quick_add) -
+      those settings only control the product-card gallery's own hover-overlay
+      quick-add button. The modal shell itself is also needed independently by
+      the "Choose <option>" button add-to-cart.liquid can render on collection
+      cards (see block.settings.open_quick_add_for_variants), which merchants
+      can use even with the hover overlay turned off. The dialog is closed and
+      inert until something explicitly opens it, so rendering it unconditionally
+      costs nothing when unused.
+    {% endcomment %}
+    {% render 'quick-add-modal' %}
   </body>
 </html>

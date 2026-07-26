@@ -29,13 +29,14 @@
   # instead - turned on for the add-to-cart block instance configured inside
   # collection/search card templates, left off (default) everywhere else so
   # the PDP and featured-product's own variant pickers are untouched.
-  assign quick_add_enabled = false
-  if settings.quick_add or settings.mobile_quick_add
-    assign quick_add_enabled = true
-  endif
-
+  #
+  # Deliberately NOT gated on settings.quick_add/mobile_quick_add - those only
+  # control the product-card gallery's own hover-overlay quick-add button, a
+  # separate feature a merchant might turn off while still wanting this
+  # "Choose <option>" button to work (layout/theme.liquid always renders the
+  # modal shell this opens, independent of those two settings).
   assign needs_variant_choice = false
-  if block.settings.open_quick_add_for_variants and product.has_only_default_variant == false and product.available and quick_add_enabled
+  if block.settings.open_quick_add_for_variants and product.has_only_default_variant == false and product.available
     assign needs_variant_choice = true
   endif
 %}
@@ -67,6 +68,7 @@
       matching the "Add to bag" button it replaces.
     {% endcomment %}
     <quick-add-component
+      ref="quickAdd"
       data-product-title="{{ product.title }}"
       data-product-id="{{ product.id }}"
       data-quick-add-button="choose"

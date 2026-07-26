@@ -922,7 +922,7 @@
     "body_size": "Tamanho do corpo do texto",
     "mobile_size": "Tamanho para celular",
     "bottom_row_appearance": "Aparência da linha inferior",
-    "tag_badges_note": "Configure até 8 selos abaixo. Cada um aparece automaticamente quando um produto tem a tag correspondente (correspondência exata, diferencia maiúsculas de minúsculas). Quando mais de um selo é atribuído ao mesmo canto, eles se empilham verticalmente em ordem - Selo 1 primeiro.",
+    "tag_badges_note": "Configure até 8 selos abaixo. Cada um aparece automaticamente quando um produto tem a tag correspondente (correspondência exata, diferencia maiúsculas de minúsculas). Quando mais de um selo é atribuído ao mesmo canto, eles se empilham verticalmente em ordem - Selo 1 primeiro. O tamanho da fonte e o raio dos cantos são compartilhados com os selos de Promoção/Esgotado abaixo, na seção Selos, para que todos os selos em um card combinem.",
     "tag_badge_1": "Selo 1",
     "tag_badge_2": "Selo 2",
     "tag_badge_3": "Selo 3",

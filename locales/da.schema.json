@@ -921,7 +921,7 @@
     "arrows": "Pile",
     "body_size": "Brødtekststørrelse",
     "bottom_row_appearance": "Udseende for nederste række",
-    "tag_badges_note": "Konfigurer op til 8 badges nedenfor. Hvert badge vises automatisk, når et produkt har det matchende tag (nøjagtigt match, forskel på store/små bogstaver). Når mere end ét badge er tildelt samme hjørne, stables de lodret i rækkefølge - Badge 1 først.",
+    "tag_badges_note": "Konfigurer op til 8 badges nedenfor. Hvert badge vises automatisk, når et produkt har det matchende tag (nøjagtigt match, forskel på store/små bogstaver). Når mere end ét badge er tildelt samme hjørne, stables de lodret i rækkefølge - Badge 1 først. Skriftstørrelse og hjørneradius deles med Udsalg/Udsolgt-badges nedenfor, i afsnittet Badges, så alle badges på et kort matcher.",
     "tag_badge_1": "Badge 1",
     "tag_badge_2": "Badge 2",
     "tag_badge_3": "Badge 3",

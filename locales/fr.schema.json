@@ -921,7 +921,7 @@
     "arrows": "Flèches",
     "body_size": "Taille du corps de texte",
     "bottom_row_appearance": "Apparence de la rangée du bas",
-    "tag_badges_note": "Configurez jusqu'à 8 badges ci-dessous. Chacun s'affiche automatiquement lorsqu'un produit possède l'étiquette correspondante (correspondance exacte, sensible à la casse). Lorsque plusieurs badges sont assignés au même coin, ils s'empilent verticalement dans l'ordre - Badge 1 en premier.",
+    "tag_badges_note": "Configurez jusqu'à 8 badges ci-dessous. Chacun s'affiche automatiquement lorsqu'un produit possède l'étiquette correspondante (correspondance exacte, sensible à la casse). Lorsque plusieurs badges sont assignés au même coin, ils s'empilent verticalement dans l'ordre - Badge 1 en premier. La taille de police et le rayon des angles sont partagés avec les badges Promo/Épuisé ci-dessous, dans la section Badges, afin que tous les badges d'une carte correspondent.",
     "tag_badge_1": "Badge 1",
     "tag_badge_2": "Badge 2",
     "tag_badge_3": "Badge 3",

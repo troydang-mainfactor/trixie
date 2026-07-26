@@ -924,7 +924,7 @@
     "arrows": "Pijlen",
     "body_size": "Tekstgrootte",
     "bottom_row_appearance": "Weergave onderste rij",
-    "tag_badges_note": "Configureer hieronder maximaal 8 badges. Elke badge wordt automatisch weergegeven wanneer een product de bijbehorende tag heeft (exacte match, hoofdlettergevoelig). Wanneer meer dan één badge aan dezelfde hoek is toegewezen, worden ze op volgorde verticaal gestapeld - Badge 1 eerst.",
+    "tag_badges_note": "Configureer hieronder maximaal 8 badges. Elke badge wordt automatisch weergegeven wanneer een product de bijbehorende tag heeft (exacte match, hoofdlettergevoelig). Wanneer meer dan één badge aan dezelfde hoek is toegewezen, worden ze op volgorde verticaal gestapeld - Badge 1 eerst. Lettergrootte en hoekradius worden gedeeld met de Uitverkoop-/Uitverkocht-badges hieronder, in het gedeelte Badges, zodat alle badges op een kaart overeenkomen.",
     "tag_badge_1": "Badge 1",
     "tag_badge_2": "Badge 2",
     "tag_badge_3": "Badge 3",

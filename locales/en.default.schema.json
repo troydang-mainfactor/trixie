@@ -42,7 +42,7 @@
     "body_size": "Body size",
     "borders": "Borders",
     "bottom_row_appearance": "Bottom row appearance",
-    "tag_badges_note": "Configure up to 8 badges below. Each shows automatically when a product has the matching tag (exact match, case-sensitive). When more than one badge is assigned to the same corner, they stack vertically in order - Badge 1 first.",
+    "tag_badges_note": "Configure up to 8 badges below. Each shows automatically when a product has the matching tag (exact match, case-sensitive). When more than one badge is assigned to the same corner, they stack vertically in order - Badge 1 first. Font size and corner radius are shared with the Sale/Sold out badges below, in the Badges section, so every badge on a card matches.",
     "tag_badge_1": "Badge 1",
     "tag_badge_2": "Badge 2",
     "tag_badge_3": "Badge 3",

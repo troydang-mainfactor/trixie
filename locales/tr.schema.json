@@ -924,7 +924,7 @@
     "arrows": "Oklar",
     "body_size": "Gövde metni boyutu",
     "bottom_row_appearance": "Alt satır görünümü",
-    "tag_badges_note": "Aşağıda en fazla 8 rozet yapılandırın. Bir ürün eşleşen etikete sahip olduğunda her rozet otomatik olarak görünür (tam eşleşme, büyük/küçük harfe duyarlı). Aynı köşeye birden fazla rozet atandığında, sırayla dikey olarak istiflenirler - önce Rozet 1.",
+    "tag_badges_note": "Aşağıda en fazla 8 rozet yapılandırın. Bir ürün eşleşen etikete sahip olduğunda her rozet otomatik olarak görünür (tam eşleşme, büyük/küçük harfe duyarlı). Aynı köşeye birden fazla rozet atandığında, sırayla dikey olarak istiflenirler - önce Rozet 1. Yazı tipi boyutu ve köşe yarıçapı, aşağıdaki Rozetler bölümündeki İndirim/Tükendi rozetleriyle paylaşılır, böylece bir karttaki tüm rozetler birbiriyle eşleşir.",
     "tag_badge_1": "Rozet 1",
     "tag_badge_2": "Rozet 2",
     "tag_badge_3": "Rozet 3",

@@ -921,7 +921,7 @@
     "arrows": "Pfeile",
     "body_size": "Textgröße",
     "bottom_row_appearance": "Erscheinungsbild der unteren Zeile",
-    "tag_badges_note": "Konfiguriere unten bis zu 8 Badges. Jedes wird automatisch angezeigt, wenn ein Produkt das passende Tag hat (exakte Übereinstimmung, Groß-/Kleinschreibung wird beachtet). Wenn mehr als ein Badge derselben Ecke zugewiesen ist, werden sie in der Reihenfolge vertikal gestapelt - Badge 1 zuerst.",
+    "tag_badges_note": "Konfiguriere unten bis zu 8 Badges. Jedes wird automatisch angezeigt, wenn ein Produkt das passende Tag hat (exakte Übereinstimmung, Groß-/Kleinschreibung wird beachtet). Wenn mehr als ein Badge derselben Ecke zugewiesen ist, werden sie in der Reihenfolge vertikal gestapelt - Badge 1 zuerst. Schriftgröße und Eckenradius werden mit den Sale-/Ausverkauft-Badges weiter unten im Abschnitt „Badges“ geteilt, damit alle Badges auf einer Karte zusammenpassen.",
     "tag_badge_1": "Badge 1",
     "tag_badge_2": "Badge 2",
     "tag_badge_3": "Badge 3",

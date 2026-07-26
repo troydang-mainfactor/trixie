@@ -922,7 +922,7 @@
     "body_size": "Brødtekststørrelse",
     "mobile_size": "Mobilstørrelse",
     "bottom_row_appearance": "Utseende for nederste rad",
-    "tag_badges_note": "Konfigurer opptil 8 merker nedenfor. Hvert merke vises automatisk når et produkt har den matchende taggen (eksakt treff, store/små bokstaver har betydning). Når mer enn ett merke er tildelt samme hjørne, stables de vertikalt i rekkefølge - Merke 1 først.",
+    "tag_badges_note": "Konfigurer opptil 8 merker nedenfor. Hvert merke vises automatisk når et produkt har den matchende taggen (eksakt treff, store/små bokstaver har betydning). Når mer enn ett merke er tildelt samme hjørne, stables de vertikalt i rekkefølge - Merke 1 først. Skriftstørrelse og hjørneradius deles med Salg/Utsolgt-merkene nedenfor, i Merker-delen, slik at alle merker på et kort samsvarer.",
     "tag_badge_1": "Merke 1",
     "tag_badge_2": "Merke 2",
     "tag_badge_3": "Merke 3",

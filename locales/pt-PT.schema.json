@@ -924,7 +924,7 @@
     "arrows": "Setas",
     "body_size": "Tamanho do corpo do texto",
     "bottom_row_appearance": "Aspeto da linha inferior",
-    "tag_badges_note": "Configure até 8 selos abaixo. Cada um aparece automaticamente quando um produto tem a etiqueta correspondente (correspondência exata, diferencia maiúsculas de minúsculas). Quando mais do que um selo é atribuído ao mesmo canto, empilham-se verticalmente por ordem - Selo 1 primeiro.",
+    "tag_badges_note": "Configure até 8 selos abaixo. Cada um aparece automaticamente quando um produto tem a etiqueta correspondente (correspondência exata, diferencia maiúsculas de minúsculas). Quando mais do que um selo é atribuído ao mesmo canto, empilham-se verticalmente por ordem - Selo 1 primeiro. O tamanho do tipo de letra e o raio dos cantos são partilhados com os selos de Saldo/Esgotado abaixo, na secção Selos, para que todos os selos num cartão correspondam.",
     "tag_badge_1": "Selo 1",
     "tag_badge_2": "Selo 2",
     "tag_badge_3": "Selo 3",
