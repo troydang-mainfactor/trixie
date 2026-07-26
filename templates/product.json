@@ -413,13 +413,24 @@
     "premium_product_info_LmwBfe": {
       "type": "premium-product-info",
       "blocks": {
+        "item_eLknPD": {
+          "type": "item",
+          "settings": {
+            "heading": "",
+            "content": "",
+            "tab_label": "",
+            "icon": "none",
+            "badge_text": "",
+            "badge_style": "secondary"
+          }
+        },
         "item_JxPExr": {
           "type": "item",
           "settings": {
             "heading": "Details",
             "content": "{{ product.description }}",
             "tab_label": "",
-            "icon": "box",
+            "icon": "none",
             "badge_text": "",
             "badge_style": "secondary"
           }
@@ -430,7 +441,7 @@
             "heading": "Ingredients",
             "content": "<p>{{ product.metafields.custom.ingredients | metafield_tag }}</p>",
             "tab_label": "",
-            "icon": "droplet",
+            "icon": "none",
             "badge_text": "",
             "badge_style": "secondary"
           }
@@ -441,13 +452,14 @@
             "heading": "How To Use",
             "content": "<p>{{ product.metafields.custom.how_to_use | metafield_tag }}{{ product.metafields.custom.eu_representative | metafield_tag }}</p>",
             "tab_label": "",
-            "icon": "info",
+            "icon": "none",
             "badge_text": "",
             "badge_style": "secondary"
           }
         }
       },
       "block_order": [
+        "item_eLknPD",
         "item_JxPExr",
         "item_aqYdDc",
         "item_x6CGBd"
@@ -457,7 +469,7 @@
         "accessible_heading": "",
         "layout_style": "5",
         "section_width": "page",
-        "content_max_width": 680,
+        "content_max_width": 1000,
         "mobile_side_padding": 16,
         "content_alignment": "left",
         "tab_gap": 12,
