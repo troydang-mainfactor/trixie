@@ -140,8 +140,8 @@
             "border_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
-            "padding-inline-start": 29,
-            "padding-inline-end": 28
+            "padding-inline-start": 6,
+            "padding-inline-end": 8
           },
           "blocks": {
             "card-gallery": {
