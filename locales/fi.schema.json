@@ -922,7 +922,7 @@
     "body_size": "Leipätekstin koko",
     "mobile_size": "Mobiilikoko",
     "bottom_row_appearance": "Alarivin ulkoasu",
-    "tag_badges_note": "Määritä alla enintään 8 merkkiä. Jokainen näkyy automaattisesti, kun tuotteella on vastaava tunniste (tarkka vastaavuus, kirjainkoko merkitsee). Jos samaan kulmaan on määritetty useampi merkki, ne pinotaan pystysuunnassa järjestyksessä - Merkki 1 ensin.",
+    "tag_badges_note": "Määritä alla enintään 8 merkkiä. Jokainen näkyy automaattisesti, kun tuotteella on vastaava tunniste (tarkka vastaavuus, kirjainkoko merkitsee). Jos samaan kulmaan on määritetty useampi merkki, ne pinotaan pystysuunnassa järjestyksessä - Merkki 1 ensin. Fonttikoko ja kulmien pyöristys jaetaan alla olevien Alennus/Loppuunmyyty-merkkien kanssa Merkit-osiossa, jotta kaikki kortin merkit vastaavat toisiaan.",
     "tag_badge_1": "Merkki 1",
     "tag_badge_2": "Merkki 2",
     "tag_badge_3": "Merkki 3",

@@ -92,15 +92,17 @@
     justify-content: center;
     text-align: center;
     line-height: 1.2;
-    /* Scales down on narrow cards/containers automatically, but never
-       exceeds the size configured in theme settings. */
-    font-size: clamp(0.5rem, 3.4cqi, var(--tag-badge-font-size, 11px));
+    /* Same fixed size as the built-in Sale/Sold-out badges (shared
+       settings.badge_font_size, set on the wrapper above) - no auto-shrink
+       on narrow viewports, so the two badge systems match at every size
+       instead of tag badges reading smaller on mobile. */
+    font-size: var(--tag-badge-font-size, 12px);
     color: var(--tag-badge-color);
     background-color: var(--tag-badge-bg);
     border-style: solid;
     border-width: var(--tag-badge-border-width, 0);
     border-color: var(--tag-badge-border-color);
-    border-radius: var(--style-border-radius-badges, 4px);
+    border-radius: var(--tag-badge-radius, 4px);
     padding-block: 0.3em;
     padding-inline: 0.7em;
     /* Wrap cleanly instead of overflowing the card on long badge text. */

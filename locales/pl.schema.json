@@ -924,7 +924,7 @@
     "arrows": "Strzałki",
     "body_size": "Rozmiar tekstu podstawowego",
     "bottom_row_appearance": "Wygląd dolnego wiersza",
-    "tag_badges_note": "Skonfiguruj poniżej do 8 odznak. Każda pojawia się automatycznie, gdy produkt ma pasujący tag (dokładne dopasowanie, rozróżniana jest wielkość liter). Gdy w tym samym rogu przypisano więcej niż jedną odznakę, są one ułożone pionowo w kolejności - najpierw odznaka 1.",
+    "tag_badges_note": "Skonfiguruj poniżej do 8 odznak. Każda pojawia się automatycznie, gdy produkt ma pasujący tag (dokładne dopasowanie, rozróżniana jest wielkość liter). Gdy w tym samym rogu przypisano więcej niż jedną odznakę, są one ułożone pionowo w kolejności - najpierw odznaka 1. Rozmiar czcionki i promień narożników są współdzielone z odznakami Promocja/Wyprzedane poniżej, w sekcji Odznaki, dzięki czemu wszystkie odznaki na karcie pasują do siebie.",
     "tag_badge_1": "Odznaka 1",
     "tag_badge_2": "Odznaka 2",
     "tag_badge_3": "Odznaka 3",

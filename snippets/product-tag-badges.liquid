@@ -49,7 +49,13 @@
 %}
 
 {% if tag_badges_total > 0 %}
-  <div class="custom-tag-badges custom-tag-badges--{{ context | default: 'overlay' }}">
+  <div
+    class="custom-tag-badges custom-tag-badges--{{ context | default: 'overlay' }}"
+    style="
+      --tag-badge-font-size: {{ settings.badge_font_size | default: 12 }}px;
+      --tag-badge-radius: {{ settings.badge_corner_radius | default: 40 }}px;
+    "
+  >
     {% for corner_indexes in (1..4) %}
       {% liquid
         case corner_indexes
@@ -73,20 +79,24 @@
             {% liquid
               assign tag_key = 'tag_badge_' | append: i | append: '_tag'
               assign text_key = 'tag_badge_' | append: i | append: '_text'
-              assign font_size_key = 'tag_badge_' | append: i | append: '_font_size'
               assign bg_key = 'tag_badge_' | append: i | append: '_background_color'
               assign text_color_key = 'tag_badge_' | append: i | append: '_text_color'
               assign border_width_key = 'tag_badge_' | append: i | append: '_border_width'
               assign border_color_key = 'tag_badge_' | append: i | append: '_border_color'
 
               assign badge_text = settings[text_key] | default: settings[tag_key]
-              assign badge_font_size = settings[font_size_key] | default: 11
               assign badge_border_width = settings[border_width_key] | default: 0
             %}
+            {%- comment -%}
+              Font size and corner radius intentionally come from the shared
+              settings.badge_font_size / settings.badge_corner_radius (the
+              same ones the built-in Sale/Sold-out badges use), not a
+              per-badge setting - so every badge on a card looks like part of
+              the same system instead of a mismatched size/shape per tag.
+            {%- endcomment -%}
             <span
               class="custom-tag-badge"
               style="
-                --tag-badge-font-size: {{ badge_font_size }}px;
                 --tag-badge-bg: {{ settings[bg_key] }};
                 --tag-badge-color: {{ settings[text_color_key] }};
                 --tag-badge-border-width: {{ badge_border_width }}px;

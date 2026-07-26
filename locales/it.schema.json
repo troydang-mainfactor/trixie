@@ -924,7 +924,7 @@
     "arrows": "Frecce",
     "body_size": "Dimensioni del corpo del testo",
     "bottom_row_appearance": "Aspetto della riga inferiore",
-    "tag_badges_note": "Configura fino a 8 badge qui sotto. Ognuno viene mostrato automaticamente quando un prodotto ha il tag corrispondente (corrispondenza esatta, distingue maiuscole/minuscole). Quando più badge sono assegnati allo stesso angolo, si impilano verticalmente in ordine - Badge 1 per primo.",
+    "tag_badges_note": "Configura fino a 8 badge qui sotto. Ognuno viene mostrato automaticamente quando un prodotto ha il tag corrispondente (corrispondenza esatta, distingue maiuscole/minuscole). Quando più badge sono assegnati allo stesso angolo, si impilano verticalmente in ordine - Badge 1 per primo. La dimensione del carattere e il raggio degli angoli sono condivisi con i badge Sconto/Esaurito qui sotto, nella sezione Badge, in modo che tutti i badge su una scheda corrispondano.",
     "tag_badge_1": "Badge 1",
     "tag_badge_2": "Badge 2",
     "tag_badge_3": "Badge 3",

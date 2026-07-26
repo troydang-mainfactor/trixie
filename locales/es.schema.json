@@ -924,7 +924,7 @@
     "arrows": "Flechas",
     "body_size": "Tamaño del cuerpo de texto",
     "bottom_row_appearance": "Apariencia de la fila inferior",
-    "tag_badges_note": "Configura hasta 8 insignias a continuación. Cada una se muestra automáticamente cuando un producto tiene la etiqueta correspondiente (coincidencia exacta, distingue mayúsculas y minúsculas). Cuando hay más de una insignia asignada a la misma esquina, se apilan verticalmente en orden - la Insignia 1 primero.",
+    "tag_badges_note": "Configura hasta 8 insignias a continuación. Cada una se muestra automáticamente cuando un producto tiene la etiqueta correspondiente (coincidencia exacta, distingue mayúsculas y minúsculas). Cuando hay más de una insignia asignada a la misma esquina, se apilan verticalmente en orden - la Insignia 1 primero. El tamaño de fuente y el radio de esquina se comparten con las insignias de Oferta/Agotado más abajo, en la sección Insignias, para que todas las insignias de una tarjeta coincidan.",
     "tag_badge_1": "Insignia 1",
     "tag_badge_2": "Insignia 2",
     "tag_badge_3": "Insignia 3",

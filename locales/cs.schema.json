@@ -921,7 +921,7 @@
     "arrows": "Šipky",
     "body_size": "Velikost běžného textu",
     "bottom_row_appearance": "Vzhled spodního řádku",
-    "tag_badges_note": "Níže nastavte až 8 štítků. Každý se zobrazí automaticky, pokud má produkt odpovídající tag (přesná shoda, rozlišují se velká a malá písmena). Pokud je pro stejný roh přiřazeno více štítků, stackují se svisle v pořadí - Štítek 1 jako první.",
+    "tag_badges_note": "Níže nastavte až 8 štítků. Každý se zobrazí automaticky, pokud má produkt odpovídající tag (přesná shoda, rozlišují se velká a malá písmena). Pokud je pro stejný roh přiřazeno více štítků, stackují se svisle v pořadí - Štítek 1 jako první. Velikost písma a poloměr rohů se sdílí se štítky Sleva/Vyprodáno níže, v sekci Štítky, takže si všechny štítky na kartě odpovídají.",
     "tag_badge_1": "Štítek 1",
     "tag_badge_2": "Štítek 2",
     "tag_badge_3": "Štítek 3",
