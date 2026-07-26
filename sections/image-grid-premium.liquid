@@ -4,72 +4,246 @@
   assign total_tiles = desktop_columns | times: desktop_rows
 %}
 
-<section class="premium-image-grid">
-  <div
-    class="premium-grid"
-    style="
-      --columns: {{ desktop_columns }};
-      --rows: {{ desktop_rows }};
-    "
-  >
+<section
+  class="premium-image-grid"
+  style="
+    --columns: {{ section.settings.columns }};
+    --grid-gap: {{ section.settings.grid_gap }}px;
+    --radius-desktop: {{ section.settings.corner_radius }}px;
+    --radius-mobile: {{ section.settings.mobile_corner_radius }}px;
+    --padding-top: {{ section.settings.padding_top }}px;
+    --padding-bottom: {{ section.settings.padding_bottom }}px;
+    --content-padding-desktop: {{ section.settings.content_padding }}px;
+    --content-padding-mobile: {{ section.settings.mobile_content_padding }}px;
+    --overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+  "
+>
 
-    {% for block in section.blocks limit: total_tiles %}
+<div class="premium-grid">
 
-      <div
-        class="premium-grid__item text-{{ block.settings.vertical }}-{{ block.settings.horizontal }}"
-        {{ block.shopify_attributes }}
-      >
+{% for block in section.blocks limit: total_tiles %}
 
-        {% if block.settings.link != blank %}
-        <a href="{{ block.settings.link }}" class="premium-grid__link">
-        {% endif %}
+<div
+class="premium-grid__item text-{{ block.settings.vertical }}-{{ block.settings.horizontal }}"
+{{ block.shopify_attributes }}
+>
 
-          {% if block.settings.image %}
-            {{
-              block.settings.image
-              | image_url: width: 1800
-              | image_tag:
-                loading: 'lazy',
-                class: 'premium-grid__image'
-            }}
-          {% else %}
-            {{ 'lifestyle-1' | placeholder_svg_tag }}
-          {% endif %}
+{% if block.settings.link != blank %}
+<a href="{{ block.settings.link }}" class="premium-grid__link">
+{% endif %}
 
-          <div class="premium-grid__overlay">
+{% case section.settings.aspect_ratio %}
 
-            <div class="premium-grid__content">
+{% when 'portrait' %}
+{% assign aspect = '4 / 5' %}
 
-              {% if block.settings.heading != blank %}
-                <h2>{{ block.settings.heading }}</h2>
-              {% endif %}
+{% when 'landscape' %}
+{% assign aspect = '16 / 9' %}
 
-              {% if block.settings.text != blank %}
-                <div class="rte">
-                  {{ block.settings.text }}
-                </div>
-              {% endif %}
+{% when 'square' %}
+{% assign aspect = '1 / 1' %}
 
-              {% if block.settings.button_label != blank %}
-                <span class="premium-grid__button">
-                  {{ block.settings.button_label }}
-                </span>
-              {% endif %}
+{% else %}
+{% assign aspect = '' %}
 
-            </div>
+{% endcase %}
 
-          </div>
+<div
+class="premium-grid__media"
+{% unless aspect == '' %}
+style="aspect-ratio:{{ aspect }};"
+{% endunless %}
+>
 
-        {% if block.settings.link != blank %}
-        </a>
-        {% endif %}
+{% if block.settings.image %}
 
-      </div>
+{{
+block.settings.image
+| image_url: width: 2200
+| image_tag:
+loading:'lazy',
+sizes:'100vw',
+class:'premium-grid__image'
+}}
 
-    {% endfor %}
+{% else %}
 
-  </div>
-</section>
+{{ 'lifestyle-1' | placeholder_svg_tag }}
+
+{% endif %}
+
+<div class="premium-grid__overlay">
+
+<div class="premium-grid__content">
+
+{% if block.settings.heading != blank %}
+<h2 class="premium-grid__heading">
+{{ block.settings.heading }}
+</h2>
+{% endif %}
+
+{% if block.settings.text != blank %}
+<div class="premium-grid__text rte">
+{{ block.settings.text }}
+</div>
+{% endif %}
+
+{% if block.settings.button_label != blank %}
+
+<span class="premium-grid__button">
+{{ block.settings.button_label }}
+</span>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</div>
+
+{% if block.settings.link != blank %}
+</a>
+{% endif %}
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<style>
+
+.premium-image-grid{
+width:100%;
+padding-top:var(--padding-top);
+padding-bottom:var(--padding-bottom);
+}
+
+.premium-grid{
+
+display:grid;
+grid-template-columns:repeat(var(--columns),1fr);
+gap:var(--grid-gap);
+
+}
+
+.premium-grid__item{
+
+position:relative;
+overflow:hidden;
+border-radius:var(--radius-desktop);
+
+}
+
+.premium-grid__link{
+
+display:block;
+height:100%;
+width:100%;
+text-decoration:none;
+color:inherit;
+
+}
+
+.premium-grid__media{
+
+position:relative;
+aspect-ratio:1;
+
+}
+
+.premium-grid__image{
+
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+
+transition:
+transform .8s cubic-bezier(.22,.61,.36,1),
+filter .45s ease;
+
+}
+
+.premium-grid__overlay{
+
+position:absolute;
+inset:0;
+
+display:flex;
+
+padding:var(--content-padding-desktop);
+
+background:
+
+linear-gradient(
+180deg,
+
+rgba(0,0,0,0) 20%,
+
+rgba(0,0,0,calc(var(--overlay-opacity) * .45)) 55%,
+
+rgba(0,0,0,var(--overlay-opacity)) 100%
+
+);
+
+color:#fff;
+
+transition:background .35s ease;
+
+}
+
+.premium-grid__content{
+
+display:flex;
+flex-direction:column;
+gap:14px;
+
+max-width:420px;
+
+}
+
+.premium-grid__heading{
+
+margin:0;
+
+}
+
+.premium-grid__text{
+
+margin:0;
+
+}
+
+.premium-grid__button{
+
+display:inline-flex;
+align-items:center;
+justify-content:center;
+
+padding:14px 28px;
+
+background:white;
+color:black;
+
+border-radius:999px;
+
+font-weight:600;
+
+opacity:0;
+transform:translateY(12px);
+
+transition:
+
+opacity .35s ease,
+transform .35s ease,
+background .25s ease,
+color .25s ease;
+
+width:max-content;
+
+}
 
 <style>
 
