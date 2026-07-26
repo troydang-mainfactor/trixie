@@ -359,6 +359,10 @@
               },
               "block_order": []
             },
+            "essential_upsell_app_block_XdBbnd": {
+              "type": "shopify://apps/essential-upsell/blocks/app-block/50627fd9-24fd-4250-8614-accc12826d80",
+              "settings": {}
+            },
             "text_aEtTtq": {
               "type": "text",
               "name": "t:names.product_description",
@@ -394,6 +398,7 @@
             "divider_VJhene",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
+            "essential_upsell_app_block_XdBbnd",
             "text_aEtTtq"
           ]
         }
