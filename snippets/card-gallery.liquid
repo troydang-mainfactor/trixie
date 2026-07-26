@@ -107,7 +107,8 @@
             media: featured_media,
             sizes: featured_media_sizes,
             loading: featured_media_loading,
-            preview_image_only: true
+            preview_image_only: true,
+            selected_product: product
           %}
         </div>
       {%- else -%}
@@ -170,7 +171,7 @@
               assign class = media_class | replace: '[media_type]', media.media_type | append: media_class_suffix
 
               capture slideshow_children
-                render 'product-media', media: media, sizes: sizes, loading: loading, preview_image_only: true
+                render 'product-media', media: media, sizes: sizes, loading: loading, preview_image_only: true, selected_product: product
               endcapture
 
               render 'slideshow-slide', slide_id: media.id, index: forloop.index0, hidden: hidden, class: class, attributes: attributes, children: slideshow_children, media_fit: media_fit

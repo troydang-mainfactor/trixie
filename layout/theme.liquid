@@ -10,6 +10,25 @@
   lang="{{ request.locale.iso_code }}"
 >
   <head>
+    {%- comment -%}
+      Warm up the connections used for nearly every image/font/asset request
+      on the page (product photos, theme assets, Shopify-hosted fonts) before
+      the browser discovers them by parsing the rest of the head/body -
+      shaves the DNS+TLS+TCP handshake off the critical path for the first
+      real request to each origin. Harmless if a given origin ends up unused
+      on a particular page (the browser just ignores it).
+    {%- endcomment -%}
+    <link
+      rel="preconnect"
+      href="https://cdn.shopify.com"
+      crossorigin
+    >
+    <link
+      rel="preconnect"
+      href="https://fonts.shopifycdn.com"
+      crossorigin
+    >
+
     {%- if settings.favicon != blank -%}
       <link
         rel="icon"
