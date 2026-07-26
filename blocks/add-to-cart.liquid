@@ -56,6 +56,18 @@
       endif
       assign option_name = product.options_with_values.first.name
       assign choose_text = 'actions.choose_option' | t: option: option_name
+
+      # Same price fallback as add-to-cart-button.liquid's show_price logic - no
+      # variant is selected yet in this "Choose <option>" state, so the first
+      # available variant's price stands in as the representative price.
+      if block.settings.show_price
+        assign choose_price = product.selected_or_first_available_variant.price | default: product.price_min
+        assign choose_compare_at_price = product.selected_or_first_available_variant.compare_at_price
+        assign show_choose_compare_price = false
+        if choose_compare_at_price > choose_price
+          assign show_choose_compare_price = true
+        endif
+      endif
     %}
     {% comment %}
       Deliberately NOT using the "quick-add"/"custom-color-quick-add" classes
@@ -92,6 +104,20 @@
           </span>
         {%- endunless -%}
         {{- choose_text -}}
+        {%- if block.settings.show_price -%}
+          <span class="add-to-cart-button__price">
+            <span
+              class="add-to-cart-button__price-divider"
+              aria-hidden="true"
+            >|</span>
+            {%- if show_choose_compare_price -%}
+              <span class="visually-hidden">{{ 'content.price_regular' | t }}&nbsp;</span>
+              <span class="compare-at-price">{%- render 'format-price', price: choose_compare_at_price -%}</span>
+              <span class="visually-hidden">{{ 'content.price_sale' | t }}&nbsp;</span>
+            {%- endif -%}
+            {%- render 'format-price', price: choose_price -%}
+          </span>
+        {%- endif -%}
       </button>
     </quick-add-component>
   {% else %}

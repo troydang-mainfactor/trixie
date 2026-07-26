@@ -160,6 +160,20 @@
     opacity: 0.5;
   }
 
+  /* Overrides base.css's .compare-at-price, which colors it off
+     --color-foreground-rgb - fine on a plain-text price, but on a solid-color
+     button (a custom background/text pair, or the theme's primary button
+     color) that read as low-contrast or mismatched, because it ignored
+     whatever color the button's own label was using. currentcolor ties it to
+     the button's actual text color instead, so it stays legible on any
+     button color and is themeable the same way the button label already is
+     (Theme settings > Buttons, or this block's own Custom text color). */
+  .add-to-cart-button__price .compare-at-price {
+    color: currentcolor;
+    text-decoration-color: currentcolor;
+    opacity: var(--opacity-subdued-text);
+  }
+
   /* Keep the button label on one line on product cards - narrow mobile columns otherwise
      wrap "Add to bag" (plus the price, when shown) onto a second line. text-overflow doesn't
      apply on a flex container, so the fix is to make the content fit (smaller font/price,
