@@ -1,0 +1,31 @@
+{%- doc -%}
+  Manual placement option for the tag-matched product badges configured in
+  Theme Settings > Product tag badges. Renders the exact same badges as the
+  automatic version shown on the card image - add this block only if you want
+  explicit control over where it sits in this card's block order, and turn
+  off "Show on card image" in Theme Settings so badges don't render twice.
+
+  @example
+  {% content_for 'block', type: 'product-tag-badges', id: 'product-tag-badges' %}
+{%- enddoc -%}
+
+{% liquid
+  assign product = closest.product
+%}
+
+<div {{ block.shopify_attributes }}>
+  {% render 'product-tag-badges', product: product, context: 'card' %}
+</div>
+
+{% schema %}
+{
+  "name": "t:names.product_tag_badges",
+  "tag": null,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:content.product_tag_badges_block_info"
+    }
+  ]
+}
+{% endschema %}

@@ -1283,6 +1283,733 @@
     ]
   },
   {
+    "name": "t:names.tag_badges",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "tag_badges_enable",
+        "label": "t:settings.tag_badges_enable",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "tag_badges_show_on_card_image",
+        "label": "t:settings.tag_badges_show_on_card_image",
+        "info": "t:info.tag_badges_show_on_card_image",
+        "default": true,
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "checkbox",
+        "id": "tag_badges_show_above_cart_title",
+        "label": "t:settings.tag_badges_show_above_cart_title",
+        "default": true,
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "paragraph",
+        "content": "t:content.tag_badges_note",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "header",
+        "content": "t:content.tag_badge_1",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "text",
+        "id": "tag_badge_1_tag",
+        "label": "t:settings.tag_badge_tag",
+        "info": "t:info.tag_badge_tag",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "text",
+        "id": "tag_badge_1_text",
+        "label": "t:settings.tag_badge_text",
+        "info": "t:info.tag_badge_text",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "select",
+        "id": "tag_badge_1_position",
+        "label": "t:settings.position",
+        "options": [
+          {
+            "value": "top_left",
+            "label": "t:options.top_left"
+          },
+          {
+            "value": "top_right",
+            "label": "t:options.top_right"
+          },
+          {
+            "value": "bottom_left",
+            "label": "t:options.bottom_left"
+          },
+          {
+            "value": "bottom_right",
+            "label": "t:options.bottom_right"
+          }
+        ],
+        "default": "top_left",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "range",
+        "id": "tag_badge_1_font_size",
+        "label": "t:settings.font_size",
+        "min": 8,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "default": 11,
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "color",
+        "id": "tag_badge_1_background_color",
+        "label": "t:settings.background_color",
+        "default": "{{ settings.color_palette.foreground }}",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "color",
+        "id": "tag_badge_1_text_color",
+        "label": "t:settings.text_color",
+        "default": "{{ settings.color_palette.background }}",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "range",
+        "id": "tag_badge_1_border_width",
+        "label": "t:settings.border_width",
+        "min": 0,
+        "max": 4,
+        "step": 1,
+        "unit": "px",
+        "default": 0,
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "color",
+        "id": "tag_badge_1_border_color",
+        "label": "t:settings.border_color",
+        "alpha": true,
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "header",
+        "content": "t:content.tag_badge_2",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "text",
+        "id": "tag_badge_2_tag",
+        "label": "t:settings.tag_badge_tag",
+        "info": "t:info.tag_badge_tag",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "text",
+        "id": "tag_badge_2_text",
+        "label": "t:settings.tag_badge_text",
+        "info": "t:info.tag_badge_text",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "select",
+        "id": "tag_badge_2_position",
+        "label": "t:settings.position",
+        "options": [
+          {
+            "value": "top_left",
+            "label": "t:options.top_left"
+          },
+          {
+            "value": "top_right",
+            "label": "t:options.top_right"
+          },
+          {
+            "value": "bottom_left",
+            "label": "t:options.bottom_left"
+          },
+          {
+            "value": "bottom_right",
+            "label": "t:options.bottom_right"
+          }
+        ],
+        "default": "top_left",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "range",
+        "id": "tag_badge_2_font_size",
+        "label": "t:settings.font_size",
+        "min": 8,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "default": 11,
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "color",
+        "id": "tag_badge_2_background_color",
+        "label": "t:settings.background_color",
+        "default": "{{ settings.color_palette.foreground }}",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "color",
+        "id": "tag_badge_2_text_color",
+        "label": "t:settings.text_color",
+        "default": "{{ settings.color_palette.background }}",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "range",
+        "id": "tag_badge_2_border_width",
+        "label": "t:settings.border_width",
+        "min": 0,
+        "max": 4,
+        "step": 1,
+        "unit": "px",
+        "default": 0,
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "color",
+        "id": "tag_badge_2_border_color",
+        "label": "t:settings.border_color",
+        "alpha": true,
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "header",
+        "content": "t:content.tag_badge_3",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "text",
+        "id": "tag_badge_3_tag",
+        "label": "t:settings.tag_badge_tag",
+        "info": "t:info.tag_badge_tag",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "text",
+        "id": "tag_badge_3_text",
+        "label": "t:settings.tag_badge_text",
+        "info": "t:info.tag_badge_text",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "select",
+        "id": "tag_badge_3_position",
+        "label": "t:settings.position",
+        "options": [
+          {
+            "value": "top_left",
+            "label": "t:options.top_left"
+          },
+          {
+            "value": "top_right",
+            "label": "t:options.top_right"
+          },
+          {
+            "value": "bottom_left",
+            "label": "t:options.bottom_left"
+          },
+          {
+            "value": "bottom_right",
+            "label": "t:options.bottom_right"
+          }
+        ],
+        "default": "top_left",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "range",
+        "id": "tag_badge_3_font_size",
+        "label": "t:settings.font_size",
+        "min": 8,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "default": 11,
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "color",
+        "id": "tag_badge_3_background_color",
+        "label": "t:settings.background_color",
+        "default": "{{ settings.color_palette.foreground }}",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "color",
+        "id": "tag_badge_3_text_color",
+        "label": "t:settings.text_color",
+        "default": "{{ settings.color_palette.background }}",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "range",
+        "id": "tag_badge_3_border_width",
+        "label": "t:settings.border_width",
+        "min": 0,
+        "max": 4,
+        "step": 1,
+        "unit": "px",
+        "default": 0,
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "color",
+        "id": "tag_badge_3_border_color",
+        "label": "t:settings.border_color",
+        "alpha": true,
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "header",
+        "content": "t:content.tag_badge_4",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "text",
+        "id": "tag_badge_4_tag",
+        "label": "t:settings.tag_badge_tag",
+        "info": "t:info.tag_badge_tag",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "text",
+        "id": "tag_badge_4_text",
+        "label": "t:settings.tag_badge_text",
+        "info": "t:info.tag_badge_text",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "select",
+        "id": "tag_badge_4_position",
+        "label": "t:settings.position",
+        "options": [
+          {
+            "value": "top_left",
+            "label": "t:options.top_left"
+          },
+          {
+            "value": "top_right",
+            "label": "t:options.top_right"
+          },
+          {
+            "value": "bottom_left",
+            "label": "t:options.bottom_left"
+          },
+          {
+            "value": "bottom_right",
+            "label": "t:options.bottom_right"
+          }
+        ],
+        "default": "top_left",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "range",
+        "id": "tag_badge_4_font_size",
+        "label": "t:settings.font_size",
+        "min": 8,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "default": 11,
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "color",
+        "id": "tag_badge_4_background_color",
+        "label": "t:settings.background_color",
+        "default": "{{ settings.color_palette.foreground }}",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "color",
+        "id": "tag_badge_4_text_color",
+        "label": "t:settings.text_color",
+        "default": "{{ settings.color_palette.background }}",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "range",
+        "id": "tag_badge_4_border_width",
+        "label": "t:settings.border_width",
+        "min": 0,
+        "max": 4,
+        "step": 1,
+        "unit": "px",
+        "default": 0,
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "color",
+        "id": "tag_badge_4_border_color",
+        "label": "t:settings.border_color",
+        "alpha": true,
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "header",
+        "content": "t:content.tag_badge_5",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "text",
+        "id": "tag_badge_5_tag",
+        "label": "t:settings.tag_badge_tag",
+        "info": "t:info.tag_badge_tag",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "text",
+        "id": "tag_badge_5_text",
+        "label": "t:settings.tag_badge_text",
+        "info": "t:info.tag_badge_text",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "select",
+        "id": "tag_badge_5_position",
+        "label": "t:settings.position",
+        "options": [
+          {
+            "value": "top_left",
+            "label": "t:options.top_left"
+          },
+          {
+            "value": "top_right",
+            "label": "t:options.top_right"
+          },
+          {
+            "value": "bottom_left",
+            "label": "t:options.bottom_left"
+          },
+          {
+            "value": "bottom_right",
+            "label": "t:options.bottom_right"
+          }
+        ],
+        "default": "top_left",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "range",
+        "id": "tag_badge_5_font_size",
+        "label": "t:settings.font_size",
+        "min": 8,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "default": 11,
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "color",
+        "id": "tag_badge_5_background_color",
+        "label": "t:settings.background_color",
+        "default": "{{ settings.color_palette.foreground }}",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "color",
+        "id": "tag_badge_5_text_color",
+        "label": "t:settings.text_color",
+        "default": "{{ settings.color_palette.background }}",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "range",
+        "id": "tag_badge_5_border_width",
+        "label": "t:settings.border_width",
+        "min": 0,
+        "max": 4,
+        "step": 1,
+        "unit": "px",
+        "default": 0,
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "color",
+        "id": "tag_badge_5_border_color",
+        "label": "t:settings.border_color",
+        "alpha": true,
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "header",
+        "content": "t:content.tag_badge_6",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "text",
+        "id": "tag_badge_6_tag",
+        "label": "t:settings.tag_badge_tag",
+        "info": "t:info.tag_badge_tag",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "text",
+        "id": "tag_badge_6_text",
+        "label": "t:settings.tag_badge_text",
+        "info": "t:info.tag_badge_text",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "select",
+        "id": "tag_badge_6_position",
+        "label": "t:settings.position",
+        "options": [
+          {
+            "value": "top_left",
+            "label": "t:options.top_left"
+          },
+          {
+            "value": "top_right",
+            "label": "t:options.top_right"
+          },
+          {
+            "value": "bottom_left",
+            "label": "t:options.bottom_left"
+          },
+          {
+            "value": "bottom_right",
+            "label": "t:options.bottom_right"
+          }
+        ],
+        "default": "top_left",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "range",
+        "id": "tag_badge_6_font_size",
+        "label": "t:settings.font_size",
+        "min": 8,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "default": 11,
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "color",
+        "id": "tag_badge_6_background_color",
+        "label": "t:settings.background_color",
+        "default": "{{ settings.color_palette.foreground }}",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "color",
+        "id": "tag_badge_6_text_color",
+        "label": "t:settings.text_color",
+        "default": "{{ settings.color_palette.background }}",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "range",
+        "id": "tag_badge_6_border_width",
+        "label": "t:settings.border_width",
+        "min": 0,
+        "max": 4,
+        "step": 1,
+        "unit": "px",
+        "default": 0,
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "color",
+        "id": "tag_badge_6_border_color",
+        "label": "t:settings.border_color",
+        "alpha": true,
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "header",
+        "content": "t:content.tag_badge_7",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "text",
+        "id": "tag_badge_7_tag",
+        "label": "t:settings.tag_badge_tag",
+        "info": "t:info.tag_badge_tag",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "text",
+        "id": "tag_badge_7_text",
+        "label": "t:settings.tag_badge_text",
+        "info": "t:info.tag_badge_text",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "select",
+        "id": "tag_badge_7_position",
+        "label": "t:settings.position",
+        "options": [
+          {
+            "value": "top_left",
+            "label": "t:options.top_left"
+          },
+          {
+            "value": "top_right",
+            "label": "t:options.top_right"
+          },
+          {
+            "value": "bottom_left",
+            "label": "t:options.bottom_left"
+          },
+          {
+            "value": "bottom_right",
+            "label": "t:options.bottom_right"
+          }
+        ],
+        "default": "top_left",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "range",
+        "id": "tag_badge_7_font_size",
+        "label": "t:settings.font_size",
+        "min": 8,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "default": 11,
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "color",
+        "id": "tag_badge_7_background_color",
+        "label": "t:settings.background_color",
+        "default": "{{ settings.color_palette.foreground }}",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "color",
+        "id": "tag_badge_7_text_color",
+        "label": "t:settings.text_color",
+        "default": "{{ settings.color_palette.background }}",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "range",
+        "id": "tag_badge_7_border_width",
+        "label": "t:settings.border_width",
+        "min": 0,
+        "max": 4,
+        "step": 1,
+        "unit": "px",
+        "default": 0,
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "color",
+        "id": "tag_badge_7_border_color",
+        "label": "t:settings.border_color",
+        "alpha": true,
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "header",
+        "content": "t:content.tag_badge_8",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "text",
+        "id": "tag_badge_8_tag",
+        "label": "t:settings.tag_badge_tag",
+        "info": "t:info.tag_badge_tag",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "text",
+        "id": "tag_badge_8_text",
+        "label": "t:settings.tag_badge_text",
+        "info": "t:info.tag_badge_text",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "select",
+        "id": "tag_badge_8_position",
+        "label": "t:settings.position",
+        "options": [
+          {
+            "value": "top_left",
+            "label": "t:options.top_left"
+          },
+          {
+            "value": "top_right",
+            "label": "t:options.top_right"
+          },
+          {
+            "value": "bottom_left",
+            "label": "t:options.bottom_left"
+          },
+          {
+            "value": "bottom_right",
+            "label": "t:options.bottom_right"
+          }
+        ],
+        "default": "top_left",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "range",
+        "id": "tag_badge_8_font_size",
+        "label": "t:settings.font_size",
+        "min": 8,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "default": 11,
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "color",
+        "id": "tag_badge_8_background_color",
+        "label": "t:settings.background_color",
+        "default": "{{ settings.color_palette.foreground }}",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "color",
+        "id": "tag_badge_8_text_color",
+        "label": "t:settings.text_color",
+        "default": "{{ settings.color_palette.background }}",
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "range",
+        "id": "tag_badge_8_border_width",
+        "label": "t:settings.border_width",
+        "min": 0,
+        "max": 4,
+        "step": 1,
+        "unit": "px",
+        "default": 0,
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      },
+      {
+        "type": "color",
+        "id": "tag_badge_8_border_color",
+        "label": "t:settings.border_color",
+        "alpha": true,
+        "visible_if": "{{ settings.tag_badges_enable }}"
+      }
+    ]
+  },
+  {
     "name": "t:names.buttons",
     "settings": [
       {

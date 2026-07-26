@@ -26,6 +26,9 @@
         </div>
       </div>
     {%- endif -%}
+    {% if settings.tag_badges_enable and settings.tag_badges_show_on_card_image %}
+      {% render 'product-tag-badges', product: product, context: 'card' %}
+    {% endif %}
     {% if product.available and settings.quick_add or settings.mobile_quick_add %}
       {% render 'quick-add', product: product, section_id: section.id %}
     {% endif %}
