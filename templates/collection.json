@@ -131,7 +131,7 @@
           "type": "_product-card",
           "static": true,
           "settings": {
-            "product_card_gap": 4,
+            "product_card_gap": 10,
             "background_color": "",
             "border": "none",
             "border_width": 1,
@@ -140,8 +140,8 @@
             "border_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-inline-start": 29,
+            "padding-inline-end": 28
           },
           "blocks": {
             "card-gallery": {
@@ -188,6 +188,7 @@
             },
             "price_EzJzMm": {
               "type": "price",
+              "disabled": true,
               "settings": {
                 "show_sale_price_first": true,
                 "show_installments": false,
@@ -307,7 +308,7 @@
       },
       "settings": {
         "layout_type": "grid",
-        "columns": 4,
+        "columns": 3,
         "mobile_columns": "2",
         "enable_infinite_scroll": true,
         "products_per_page": 24,

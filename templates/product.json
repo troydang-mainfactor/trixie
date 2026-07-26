@@ -284,15 +284,11 @@
                   "static": true,
                   "settings": {
                     "show_price": true,
+                    "open_quick_add_for_variants": false,
                     "style_class": "button",
                     "custom_button_background": "{{ settings.color_palette.foreground }}",
                     "custom_button_text": "{{ settings.color_palette.background }}",
-                    "custom_button_border": "{{ settings.color_palette.background }}",
-                    "custom_border_width": 1,
-                    "custom_border_radius": 12,
-                    "custom_font": "var(--font-body--family)",
-                    "custom_font_size": 14,
-                    "custom_text_case": "none"
+                    "custom_button_border": "{{ settings.color_palette.background }}"
                   },
                   "blocks": {}
                 },
@@ -404,7 +400,7 @@
         "accessible_heading": "",
         "layout_style": "5",
         "section_width": "page",
-        "content_max_width": 1200,
+        "content_max_width": 680,
         "mobile_side_padding": 16,
         "content_alignment": "left",
         "tab_gap": 12,
