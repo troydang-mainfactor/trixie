@@ -465,7 +465,7 @@
                   "settings": {
                     "image": "shopify://shop_images/4-TRIXIE-COSMETICS-01-214253-Lovebirds-Rissa.jpg",
                     "link": "",
-                    "image_ratio": "adapt",
+                    "image_ratio": "portrait",
                     "width": "fill",
                     "custom_width": 100,
                     "width_mobile": "fill",
@@ -523,7 +523,7 @@
                   "settings": {
                     "image": "shopify://shop_images/trixie-cosmetics-01-213119-sofly-sailor.jpg",
                     "link": "",
-                    "image_ratio": "adapt",
+                    "image_ratio": "portrait",
                     "width": "fill",
                     "custom_width": 100,
                     "width_mobile": "fill",
@@ -581,7 +581,7 @@
                   "settings": {
                     "image": "shopify://shop_images/TRIXIE-COSMETICS-01-213285-GoldenHour-Rissa.jpg",
                     "link": "",
-                    "image_ratio": "adapt",
+                    "image_ratio": "portrait",
                     "width": "fill",
                     "custom_width": 100,
                     "width_mobile": "fill",
@@ -639,7 +639,7 @@
                   "settings": {
                     "image": "shopify://shop_images/lashapplicatorhand.jpg",
                     "link": "",
-                    "image_ratio": "adapt",
+                    "image_ratio": "portrait",
                     "width": "fill",
                     "custom_width": 100,
                     "width_mobile": "fill",
