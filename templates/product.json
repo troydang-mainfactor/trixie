@@ -30,7 +30,7 @@
             "thumbnail_gap": 8,
             "aspect_ratio": "adapt",
             "constrain_to_viewport": true,
-            "media_fit": "contain",
+            "media_fit": "cover",
             "media_radius": 15,
             "extend_media": false,
             "zoom": false,
