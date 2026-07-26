@@ -868,6 +868,186 @@
         "padding-block-start": 0,
         "padding-block-end": 0
       }
+    },
+    "section_qtXpfx": {
+      "type": "section",
+      "blocks": {
+        "image_aDMafL": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_0741.jpg",
+            "link": "",
+            "image_ratio": "portrait",
+            "width": "custom",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 39,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "group_YHFYqy": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "flex-start",
+            "gap": 12,
+            "show_above_media_mobile": false,
+            "width": "custom",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_RJHQxp": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h2>ABOUT TRIXIE COSMETICS</h2>",
+                "split_on_dash": false,
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h3",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_Pdp363": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Founded by drag superstar <a href=\"http://www.trixiemattel.com/\" target=\"_blank\">Trixie</a>, Trixie Cosmetics is all about providing pro-level cosmetic products in the vibrant, fun packaging of your favorite childhood toys.</p><p>When it comes to cosmetics, Trixie’s no dumb blonde. Formulated based on her experience as both a makeup artist and drag queen, these products are the real deal – don’t let the adorable packaging and wallet-friendly prices fool you. Why should your holy-grail makeup products have to come in boring black boxes to be taken seriously?</p><p>We strive to provide products that evoke nostalgia and celebrate a heightened sense of femininity, all with enough variety in shades and formulas so everyone can have their Trixie Moment, whether they’ve been doing makeup for decades or just days.</p><p>For drag queens and normals alike, Trixie Cosmetics is committed to providing makeup that will make everyone feel like a legend, icon, and star. We are also cruelty-free and donate a portion of our sales to <a href=\"https://thehoneybeeconservancy.org/\" target=\"_blank\">The Bee Conservancy</a>. Could we <em>bee</em> any more fabulous?</p><p>We hope you feel inspired to play with our products. Don’t forget to tag us <a href=\"http://www.instagram.com/trixiecosmetics\" target=\"_blank\">@TrixieCosmetics</a> and subscribe to our <a href=\"https://www.youtube.com/playlist?list=PLTuL34VKrA9ExeW7krkM23IavETPzthKa\" target=\"_blank\">YouTube Channel</a> (we drop new videos every Monday!)</p>",
+                "split_on_dash": false,
+                "width": "100%",
+                "max_width": "none",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "button_R6JdU4": {
+              "type": "button",
+              "disabled": true,
+              "settings": {
+                "label": "Shop now",
+                "link": "shopify://collections/all",
+                "open_in_new_tab": false,
+                "style_class": "button",
+                "custom_button_background": "{{ settings.color_palette.foreground }}",
+                "custom_button_text": "{{ settings.color_palette.background }}",
+                "custom_button_border": "{{ settings.color_palette.background }}",
+                "link_text_color": "",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_RJHQxp",
+            "text_Pdp363",
+            "button_R6JdU4"
+          ]
+        }
+      },
+      "block_order": [
+        "image_aDMafL",
+        "group_YHFYqy"
+      ],
+      "name": "t:names.image_with_text",
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 32,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
     }
   },
   "order": [
@@ -876,6 +1056,7 @@
     "product_list_fa6P9H",
     "hero_3rKtch",
     "product_list_rEWU6T",
-    "1785093859400218fe"
+    "1785093859400218fe",
+    "section_qtXpfx"
   ]
 }
