@@ -1387,7 +1387,9 @@
       "show_free_shipping_bar": "显示包邮进度条",
       "corner_style": "圆角样式",
       "thumbnail_size": "产品图片尺寸",
-      "item_text": "产品标题下方文字"
+      "item_text": "产品标题下方文字",
+      "item_metafield_namespace": "按产品覆盖：元字段命名空间",
+      "item_metafield_key": "按产品覆盖：元字段键"
     },
     "options": {
       "collection": "系列",
@@ -1402,7 +1404,9 @@
       "free_shipping_amount_token": "在需要显示剩余金额的位置使用 [amount]，例如“还差 [amount] 即可包邮”。",
       "cross_sell_source_scope_collection": "仅当上方的商品来源设置为系列时使用。",
       "cross_sell_source_scope_manual": "仅当上方的商品来源设置为手动列表时使用。",
-      "item_text": "显示在购物车中每个产品标题下方，例如运输说明或护理说明。"
+      "item_text": "显示在购物车中每个产品标题下方，例如运输说明或护理说明。产品可以通过下方配置的元字段用自己的文字覆盖此文字。",
+      "item_metafield_namespace": "要检查产品专属文字的产品元字段（纯文本类型）的命名空间。将命名空间或键留空以停用覆盖并始终使用上方的文字。",
+      "item_metafield_key": "上方命名空间内产品元字段的键。默认使用本店铺已设置的“custom.cart_drawer_note”元字段——可在任意产品的管理页面编辑其值。"
     },
     "text_defaults": {
       "cross_sell_heading": "您可能还喜欢"

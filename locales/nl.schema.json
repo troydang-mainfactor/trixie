@@ -1387,7 +1387,9 @@
       "show_free_shipping_bar": "Voortgangsbalk voor gratis verzending weergeven",
       "corner_style": "Hoekstijl",
       "thumbnail_size": "Productafbeeldingsgrootte",
-      "item_text": "Tekst onder producttitel"
+      "item_text": "Tekst onder producttitel",
+      "item_metafield_namespace": "Overschrijving per product: metaveld-namespace",
+      "item_metafield_key": "Overschrijving per product: metaveld-sleutel"
     },
     "options": {
       "collection": "Collectie",
@@ -1402,7 +1404,9 @@
       "free_shipping_amount_token": "Gebruik [amount] op de plek waar het resterende bedrag moet verschijnen, bijv. \"Nog [amount] voor gratis verzending\".",
       "cross_sell_source_scope_collection": "Alleen gebruikt wanneer Productbron hierboven is ingesteld op Collectie.",
       "cross_sell_source_scope_manual": "Alleen gebruikt wanneer Productbron hierboven is ingesteld op Handmatige lijst.",
-      "item_text": "Wordt onder de titel van elk product in de winkelwagenlade weergegeven, bijvoorbeeld een verzendopmerking of verzorgingsinstructie."
+      "item_text": "Wordt onder de titel van elk product in de winkelwagenlade weergegeven, bijvoorbeeld een verzendopmerking of verzorgingsinstructie. Een product kan deze tekst overschrijven met zijn eigen tekst via het hieronder geconfigureerde metaveld.",
+      "item_metafield_namespace": "De namespace van een productmetaveld (type platte tekst) waarin wordt gezocht naar producttekst. Laat namespace of sleutel leeg om de overschrijving uit te schakelen en altijd de bovenstaande tekst te gebruiken.",
+      "item_metafield_key": "De sleutel van het productmetaveld binnen de bovenstaande namespace. Standaard wordt een metaveld \"custom.cart_drawer_note\" gebruikt dat al is ingesteld in deze winkel - bewerk de waarde ervan vanaf de beheerpagina van elk product."
     },
     "text_defaults": {
       "cross_sell_heading": "Dit vind je misschien ook leuk"

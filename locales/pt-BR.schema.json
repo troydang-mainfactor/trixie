@@ -1387,7 +1387,9 @@
       "show_free_shipping_bar": "Mostrar barra de progresso de frete grátis",
       "corner_style": "Estilo dos cantos",
       "thumbnail_size": "Tamanho da imagem do produto",
-      "item_text": "Texto abaixo do título do produto"
+      "item_text": "Texto abaixo do título do produto",
+      "item_metafield_namespace": "Substituição por produto: namespace do metacampo",
+      "item_metafield_key": "Substituição por produto: chave do metacampo"
     },
     "options": {
       "collection": "Coleção",
@@ -1402,7 +1404,9 @@
       "free_shipping_amount_token": "Use [amount] onde o valor restante deve aparecer, por exemplo, \"Faltam [amount] para frete grátis\".",
       "cross_sell_source_scope_collection": "Usado apenas quando a Origem dos produtos acima estiver definida como Coleção.",
       "cross_sell_source_scope_manual": "Usado apenas quando a Origem dos produtos acima estiver definida como Lista manual.",
-      "item_text": "Exibido abaixo do título de cada produto no carrinho, por exemplo, uma nota de envio ou instruções de cuidado."
+      "item_text": "Exibido abaixo do título de cada produto no carrinho, por exemplo, uma nota de envio ou instruções de cuidado. Um produto pode substituir esse texto pelo seu próprio usando o metacampo configurado abaixo.",
+      "item_metafield_namespace": "O namespace de um metacampo de produto (tipo texto simples) a ser verificado para o texto específico do produto. Deixe o namespace ou a chave em branco para desativar a substituição e sempre usar o texto acima.",
+      "item_metafield_key": "A chave do metacampo de produto dentro do namespace acima. Por padrão, usa um metacampo \"custom.cart_drawer_note\" já configurado nesta loja - edite o valor dele na página de administração de qualquer produto."
     },
     "text_defaults": {
       "cross_sell_heading": "Você também pode gostar"

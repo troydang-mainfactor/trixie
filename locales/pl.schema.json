@@ -1387,7 +1387,9 @@
       "show_free_shipping_bar": "Pokaż pasek postępu darmowej wysyłki",
       "corner_style": "Styl narożników",
       "thumbnail_size": "Rozmiar zdjęcia produktu",
-      "item_text": "Tekst pod nazwą produktu"
+      "item_text": "Tekst pod nazwą produktu",
+      "item_metafield_namespace": "Nadpisanie per produkt: przestrzeń nazw metapola",
+      "item_metafield_key": "Nadpisanie per produkt: klucz metapola"
     },
     "options": {
       "collection": "Kolekcja",
@@ -1402,7 +1404,9 @@
       "free_shipping_amount_token": "Użyj [amount] w miejscu, w którym ma się pojawić pozostała kwota, np. „Jeszcze [amount] do darmowej wysyłki”.",
       "cross_sell_source_scope_collection": "Używane tylko wtedy, gdy powyższe Źródło produktów jest ustawione na Kolekcja.",
       "cross_sell_source_scope_manual": "Używane tylko wtedy, gdy powyższe Źródło produktów jest ustawione na Lista ręczna.",
-      "item_text": "Wyświetlany pod nazwą każdego produktu w koszyku, np. informacja o wysyłce lub instrukcja pielęgnacji."
+      "item_text": "Wyświetlany pod nazwą każdego produktu w koszyku, np. informacja o wysyłce lub instrukcja pielęgnacji. Produkt może nadpisać ten tekst własnym za pomocą metapola skonfigurowanego poniżej.",
+      "item_metafield_namespace": "Przestrzeń nazw metapola produktu (typu zwykły tekst), które ma być sprawdzane pod kątem tekstu dla danego produktu. Pozostaw przestrzeń nazw lub klucz puste, aby wyłączyć nadpisanie i zawsze używać powyższego tekstu.",
+      "item_metafield_key": "Klucz metapola produktu w ramach powyższej przestrzeni nazw. Domyślnie używane jest metapole \"custom.cart_drawer_note\" już skonfigurowane w tym sklepie - edytuj jego wartość na stronie administracyjnej dowolnego produktu."
     },
     "text_defaults": {
       "cross_sell_heading": "Może spodoba Ci się również"

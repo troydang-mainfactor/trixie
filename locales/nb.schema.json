@@ -1387,7 +1387,9 @@
       "show_free_shipping_bar": "Vis fremdriftslinje for gratis frakt",
       "corner_style": "Hjørnestil",
       "thumbnail_size": "Produktbildestørrelse",
-      "item_text": "Tekst under produkttittel"
+      "item_text": "Tekst under produkttittel",
+      "item_metafield_namespace": "Produktspesifikk overstyring: metafelt-navnerom",
+      "item_metafield_key": "Produktspesifikk overstyring: metafeltnøkkel"
     },
     "options": {
       "collection": "Kolleksjon",
@@ -1402,7 +1404,9 @@
       "free_shipping_amount_token": "Bruk [amount] der det gjenstående beløpet skal vises, f.eks. \"[amount] igjen til gratis frakt\".",
       "cross_sell_source_scope_collection": "Brukes bare når Produktkilde ovenfor er satt til Kolleksjon.",
       "cross_sell_source_scope_manual": "Brukes bare når Produktkilde ovenfor er satt til Manuell liste.",
-      "item_text": "Vises under tittelen til hvert produkt i handlekurven, f.eks. et fraktnotat eller pleieinstruksjoner."
+      "item_text": "Vises under tittelen til hvert produkt i handlekurven, f.eks. et fraktnotat eller pleieinstruksjoner. Et produkt kan overstyre denne teksten med sin egen via metafeltet konfigurert nedenfor.",
+      "item_metafield_namespace": "Navnerommet til et produktmetafelt (ren tekst-type) som skal sjekkes for produktspesifikk tekst. La navnerom eller nøkkel stå tomt for å deaktivere overstyringen og alltid bruke teksten ovenfor.",
+      "item_metafield_key": "Nøkkelen til produktmetafeltet innenfor navnerommet ovenfor. Standard bruker et \"custom.cart_drawer_note\"-metafelt som allerede er satt opp i denne butikken - rediger verdien fra et hvilket som helst produkts admin-side."
     },
     "text_defaults": {
       "cross_sell_heading": "Du vil kanskje også like"

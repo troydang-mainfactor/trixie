@@ -1387,7 +1387,9 @@
       "show_free_shipping_bar": "Näytä ilmaisen toimituksen edistymispalkki",
       "corner_style": "Kulmatyyli",
       "thumbnail_size": "Tuotekuvan koko",
-      "item_text": "Teksti tuotenimen alla"
+      "item_text": "Teksti tuotenimen alla",
+      "item_metafield_namespace": "Tuotekohtainen ohitus: metakentän nimiavaruus",
+      "item_metafield_key": "Tuotekohtainen ohitus: metakentän avain"
     },
     "options": {
       "collection": "Kokoelma",
@@ -1402,7 +1404,9 @@
       "free_shipping_amount_token": "Käytä kohtaa [amount] siellä, missä jäljellä olevan summan tulisi näkyä, esim. \"[amount] ilmaiseen toimitukseen\".",
       "cross_sell_source_scope_collection": "Käytetään vain, kun yllä oleva Tuotteiden lähde on asetettu arvoon Kokoelma.",
       "cross_sell_source_scope_manual": "Käytetään vain, kun yllä oleva Tuotteiden lähde on asetettu arvoon Manuaalinen luettelo.",
-      "item_text": "Näytetään jokaisen tuotteen nimen alla ostoskorissa, esim. toimitushuomautus tai hoito-ohje."
+      "item_text": "Näytetään jokaisen tuotteen nimen alla ostoskorissa, esim. toimitushuomautus tai hoito-ohje. Tuote voi korvata tämän tekstin omalla tekstillään alla määritetyn metakentän avulla.",
+      "item_metafield_namespace": "Tuotteen metakentän (pelkkä teksti -tyyppi) nimiavaruus, josta tarkistetaan tuotekohtainen teksti. Jätä nimiavaruus tai avain tyhjäksi poistaaksesi ohituksen käytöstä ja käyttääksesi aina yllä olevaa tekstiä.",
+      "item_metafield_key": "Tuotteen metakentän avain yllä olevan nimiavaruuden sisällä. Oletuksena käytetään kaupassa jo määritettyä \"custom.cart_drawer_note\"-metakenttää - muokkaa sen arvoa minkä tahansa tuotteen hallintasivulta."
     },
     "text_defaults": {
       "cross_sell_heading": "Saatat pitää myös näistä"

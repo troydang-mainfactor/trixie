@@ -1387,7 +1387,9 @@
       "show_free_shipping_bar": "顯示免運進度條",
       "corner_style": "圓角樣式",
       "thumbnail_size": "商品圖片尺寸",
-      "item_text": "商品標題下方文字"
+      "item_text": "商品標題下方文字",
+      "item_metafield_namespace": "依商品覆寫：中繼欄位命名空間",
+      "item_metafield_key": "依商品覆寫：中繼欄位鍵"
     },
     "options": {
       "collection": "系列",
@@ -1402,7 +1404,9 @@
       "free_shipping_amount_token": "在需要顯示剩餘金額的位置使用 [amount]，例如「還差 [amount] 即可享免運費」。",
       "cross_sell_source_scope_collection": "僅當上方的商品來源設為系列時使用。",
       "cross_sell_source_scope_manual": "僅當上方的商品來源設為手動清單時使用。",
-      "item_text": "顯示在購物車中每個商品標題下方，例如運送說明或保養說明。"
+      "item_text": "顯示在購物車中每個商品標題下方，例如運送說明或保養說明。商品可透過下方設定的中繼欄位以自己的文字覆寫此文字。",
+      "item_metafield_namespace": "要檢查商品專屬文字的商品中繼欄位（純文字類型）命名空間。將命名空間或鍵留空以停用覆寫並一律使用上方文字。",
+      "item_metafield_key": "上方命名空間內商品中繼欄位的鍵。預設使用此商店已設定的「custom.cart_drawer_note」中繼欄位——可在任一商品的管理頁面編輯其值。"
     },
     "text_defaults": {
       "cross_sell_heading": "您可能也會喜歡"

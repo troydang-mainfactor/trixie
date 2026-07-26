@@ -1387,7 +1387,9 @@
       "show_free_shipping_bar": "Fortschrittsbalken für kostenlosen Versand anzeigen",
       "corner_style": "Eckenstil",
       "thumbnail_size": "Produktbildgröße",
-      "item_text": "Text unter dem Produkttitel"
+      "item_text": "Text unter dem Produkttitel",
+      "item_metafield_namespace": "Pro Produkt überschreiben: Metafeld-Namespace",
+      "item_metafield_key": "Pro Produkt überschreiben: Metafeld-Schlüssel"
     },
     "options": {
       "collection": "Kollektion",
@@ -1402,7 +1404,9 @@
       "free_shipping_amount_token": "Verwenden Sie [amount] an der Stelle, an der der verbleibende Betrag erscheinen soll, z. B. „Noch [amount] bis zum kostenlosen Versand“.",
       "cross_sell_source_scope_collection": "Wird nur verwendet, wenn Produktquelle oben auf Kollektion eingestellt ist.",
       "cross_sell_source_scope_manual": "Wird nur verwendet, wenn Produktquelle oben auf Manuelle Liste eingestellt ist.",
-      "item_text": "Wird unter dem Titel jedes Produkts im Warenkorb angezeigt, z. B. ein Versandhinweis oder eine Pflegeanleitung."
+      "item_text": "Wird unter dem Titel jedes Produkts im Warenkorb angezeigt, z. B. ein Versandhinweis oder eine Pflegeanleitung. Ein Produkt kann diesen Text mit einem eigenen Text über das unten konfigurierte Metafeld überschreiben.",
+      "item_metafield_namespace": "Der Namespace eines Produkt-Metafelds (Typ: Nur-Text), das auf produktspezifischen Text geprüft wird. Lassen Sie Namespace oder Schlüssel leer, um die Überschreibung zu deaktivieren und immer den obigen Text zu verwenden.",
+      "item_metafield_key": "Der Schlüssel des Produkt-Metafelds innerhalb des obigen Namespace. Standardmäßig wird ein bereits in diesem Shop eingerichtetes Metafeld \"custom.cart_drawer_note\" verwendet - dessen Wert können Sie auf der Admin-Seite jedes Produkts bearbeiten."
     },
     "text_defaults": {
       "cross_sell_heading": "Das könnte Ihnen auch gefallen"

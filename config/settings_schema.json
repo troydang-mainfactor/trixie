@@ -2451,6 +2451,20 @@
         "info": "t:custom_cart_drawer.info.item_text"
       },
       {
+        "type": "text",
+        "id": "custom_drawer_item_metafield_namespace",
+        "label": "t:custom_cart_drawer.settings.item_metafield_namespace",
+        "info": "t:custom_cart_drawer.info.item_metafield_namespace",
+        "default": "custom"
+      },
+      {
+        "type": "text",
+        "id": "custom_drawer_item_metafield_key",
+        "label": "t:custom_cart_drawer.settings.item_metafield_key",
+        "info": "t:custom_cart_drawer.info.item_metafield_key",
+        "default": "cart_drawer_note"
+      },
+      {
         "type": "header",
         "content": "t:custom_cart_drawer.content.cross_sell"
       },

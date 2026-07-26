@@ -1387,7 +1387,9 @@
       "show_free_shipping_bar": "Visa förloppsindikator för fri frakt",
       "corner_style": "Hörnstil",
       "thumbnail_size": "Produktbildstorlek",
-      "item_text": "Text under produktnamn"
+      "item_text": "Text under produktnamn",
+      "item_metafield_namespace": "Åsidosättning per produkt: metafält-namnrymd",
+      "item_metafield_key": "Åsidosättning per produkt: metafältnyckel"
     },
     "options": {
       "collection": "Kollektion",
@@ -1402,7 +1404,9 @@
       "free_shipping_amount_token": "Använd [amount] där det återstående beloppet ska visas, t.ex. \"[amount] kvar till fri frakt\".",
       "cross_sell_source_scope_collection": "Används endast när Produktkälla ovan är inställd på Kollektion.",
       "cross_sell_source_scope_manual": "Används endast när Produktkälla ovan är inställd på Manuell lista.",
-      "item_text": "Visas under varje produkts namn i kundvagnen, t.ex. en fraktnotering eller skötselinstruktion."
+      "item_text": "Visas under varje produkts namn i kundvagnen, t.ex. en fraktnotering eller skötselinstruktion. En produkt kan åsidosätta den här texten med sin egen via metafältet som konfigureras nedan.",
+      "item_metafield_namespace": "Namnrymden för ett produktmetafält (typ vanlig text) som ska kontrolleras för produktspecifik text. Lämna namnrymden eller nyckeln tom för att inaktivera åsidosättningen och alltid använda texten ovan.",
+      "item_metafield_key": "Nyckeln för produktmetafältet inom namnrymden ovan. Standard använder ett \"custom.cart_drawer_note\"-metafält som redan är konfigurerat i den här butiken - redigera dess värde från valfri produkts adminsida."
     },
     "text_defaults": {
       "cross_sell_heading": "Du kanske också gillar"

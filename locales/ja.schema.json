@@ -1387,7 +1387,9 @@
       "show_free_shipping_bar": "送料無料プログレスバーを表示",
       "corner_style": "角のスタイル",
       "thumbnail_size": "商品画像のサイズ",
-      "item_text": "商品名の下に表示するテキスト"
+      "item_text": "商品名の下に表示するテキスト",
+      "item_metafield_namespace": "商品ごとの上書き: メタフィールドの名前空間",
+      "item_metafield_key": "商品ごとの上書き: メタフィールドのキー"
     },
     "options": {
       "collection": "コレクション",
@@ -1402,7 +1404,9 @@
       "free_shipping_amount_token": "残り金額を表示したい箇所に [amount] を使用してください。例：「送料無料まであと[amount]」",
       "cross_sell_source_scope_collection": "上の「商品のソース」が「コレクション」に設定されている場合のみ使用されます。",
       "cross_sell_source_scope_manual": "上の「商品のソース」が「手動リスト」に設定されている場合のみ使用されます。",
-      "item_text": "カート内の各商品名の下に表示されます（例：配送に関する注意事項やお手入れ方法など）。"
+      "item_text": "カート内の各商品名の下に表示されます（例：配送に関する注意事項やお手入れ方法など）。商品は下記で設定するメタフィールドを使って、このテキストを独自の内容で上書きできます。",
+      "item_metafield_namespace": "商品ごとのテキストを確認する商品メタフィールド（プレーンテキスト型）の名前空間です。上書きを無効にして常に上記のテキストを使用するには、名前空間またはキーを空欄のままにしてください。",
+      "item_metafield_key": "上記の名前空間内にある商品メタフィールドのキーです。デフォルトでは、このストアに既に設定されている「custom.cart_drawer_note」メタフィールドを使用します。値は各商品の管理ページから編集できます。"
     },
     "text_defaults": {
       "cross_sell_heading": "こちらもおすすめです"

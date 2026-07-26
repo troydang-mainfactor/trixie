@@ -1387,7 +1387,9 @@
       "show_free_shipping_bar": "Mostra barra di avanzamento spedizione gratuita",
       "corner_style": "Stile degli angoli",
       "thumbnail_size": "Dimensione immagine prodotto",
-      "item_text": "Testo sotto il titolo del prodotto"
+      "item_text": "Testo sotto il titolo del prodotto",
+      "item_metafield_namespace": "Override per prodotto: namespace del metacampo",
+      "item_metafield_key": "Override per prodotto: chiave del metacampo"
     },
     "options": {
       "collection": "Collezione",
@@ -1402,7 +1404,9 @@
       "free_shipping_amount_token": "Usa [amount] nel punto in cui deve comparire l'importo mancante, ad es. \"Ti mancano [amount] per la spedizione gratuita\".",
       "cross_sell_source_scope_collection": "Utilizzato solo quando l'Origine prodotti sopra è impostata su Collezione.",
       "cross_sell_source_scope_manual": "Utilizzato solo quando l'Origine prodotti sopra è impostata su Elenco manuale.",
-      "item_text": "Visualizzato sotto il titolo di ogni prodotto nel carrello, ad esempio una nota di spedizione o istruzioni di cura."
+      "item_text": "Visualizzato sotto il titolo di ogni prodotto nel carrello, ad esempio una nota di spedizione o istruzioni di cura. Un prodotto può sovrascrivere questo testo con uno proprio tramite il metacampo configurato di seguito.",
+      "item_metafield_namespace": "Il namespace di un metacampo prodotto (tipo testo semplice) da controllare per il testo specifico del prodotto. Lascia vuoto il namespace o la chiave per disabilitare l'override e usare sempre il testo sopra.",
+      "item_metafield_key": "La chiave del metacampo prodotto all'interno del namespace sopra indicato. Per impostazione predefinita utilizza un metacampo \"custom.cart_drawer_note\" già configurato in questo negozio - modificane il valore dalla pagina di amministrazione di qualsiasi prodotto."
     },
     "text_defaults": {
       "cross_sell_heading": "Potrebbe piacerti anche"

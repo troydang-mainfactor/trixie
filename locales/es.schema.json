@@ -1387,7 +1387,9 @@
       "show_free_shipping_bar": "Mostrar barra de progreso de envío gratis",
       "corner_style": "Estilo de esquinas",
       "thumbnail_size": "Tamaño de la imagen del producto",
-      "item_text": "Texto debajo del título del producto"
+      "item_text": "Texto debajo del título del producto",
+      "item_metafield_namespace": "Anulación por producto: espacio de nombres del metacampo",
+      "item_metafield_key": "Anulación por producto: clave del metacampo"
     },
     "options": {
       "collection": "Colección",
@@ -1402,7 +1404,9 @@
       "free_shipping_amount_token": "Usa [amount] donde debería aparecer el importe restante, por ejemplo, \"Te faltan [amount] para el envío gratis\".",
       "cross_sell_source_scope_collection": "Solo se usa cuando el Origen de los productos anterior está establecido en Colección.",
       "cross_sell_source_scope_manual": "Solo se usa cuando el Origen de los productos anterior está establecido en Lista manual.",
-      "item_text": "Se muestra debajo del título de cada producto en el carrito, por ejemplo, una nota de envío o instrucciones de cuidado."
+      "item_text": "Se muestra debajo del título de cada producto en el carrito, por ejemplo, una nota de envío o instrucciones de cuidado. Un producto puede anular este texto con el suyo propio mediante el metacampo configurado a continuación.",
+      "item_metafield_namespace": "El espacio de nombres de un metacampo de producto (tipo texto sin formato) que se debe comprobar para el texto específico del producto. Deja el espacio de nombres o la clave en blanco para desactivar la anulación y usar siempre el texto anterior.",
+      "item_metafield_key": "La clave del metacampo de producto dentro del espacio de nombres anterior. Por defecto usa un metacampo \"custom.cart_drawer_note\" ya configurado en esta tienda; edita su valor desde la página de administración de cualquier producto."
     },
     "text_defaults": {
       "cross_sell_heading": "También te puede gustar"

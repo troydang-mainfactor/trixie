@@ -213,11 +213,19 @@
                       %}
                     </div>
                     {%- liquid
-                      # custom.cart_drawer_note is plain text (line breaks only, no rich
+                      # Namespace/key come from theme settings rather than being hardcoded,
+                      # so merchants can point this at any existing product metafield without
+                      # editing code. Bracket notation (metafields[namespace][key]) accepts a
+                      # Liquid variable, unlike dot notation which requires a literal name.
+                      # This metafield is expected to be plain text (line breaks only, no rich
                       # formatting) - it's a per-product override of the merchant's global
-                      # "Line item text" theme setting, which is richtext and already
-                      # outputs its own HTML, so each needs different rendering below.
-                      assign item_note = item.product.metafields.custom.cart_drawer_note.value
+                      # "Line item text" theme setting, which is richtext and already outputs
+                      # its own HTML, so each needs different rendering below.
+                      assign item_note_namespace = settings.custom_drawer_item_metafield_namespace
+                      assign item_note_key = settings.custom_drawer_item_metafield_key
+                      if item_note_namespace != blank and item_note_key != blank
+                        assign item_note = item.product.metafields[item_note_namespace][item_note_key].value
+                      endif
                     -%}
                     {% if context == 'drawer' and item_note != blank %}
                       <div class="cart-items__custom-text rte">

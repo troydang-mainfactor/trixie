@@ -1387,7 +1387,9 @@
       "show_free_shipping_bar": "Zobrazit ukazatel průběhu dopravy zdarma",
       "corner_style": "Styl rohů",
       "thumbnail_size": "Velikost obrázku produktu",
-      "item_text": "Text pod názvem produktu"
+      "item_text": "Text pod názvem produktu",
+      "item_metafield_namespace": "Vlastní přepis podle produktu: metafield – namespace",
+      "item_metafield_key": "Vlastní přepis podle produktu: metafield – klíč"
     },
     "options": {
       "collection": "Kolekce",
@@ -1402,7 +1404,9 @@
       "free_shipping_amount_token": "Použijte [amount] tam, kde se má zobrazit zbývající částka, např. „Do dopravy zdarma vám zbývá [amount]“.",
       "cross_sell_source_scope_collection": "Použije se pouze pokud je Zdroj produktů nastaven na Kolekce.",
       "cross_sell_source_scope_manual": "Použije se pouze pokud je Zdroj produktů nastaven na Ruční seznam.",
-      "item_text": "Zobrazuje se pod názvem každého produktu v košíku, např. poznámka o dopravě nebo pokyny k péči."
+      "item_text": "Zobrazuje se pod názvem každého produktu v košíku, např. poznámka o dopravě nebo pokyny k péči. Produkt může tento text přepsat vlastním textem pomocí metafieldu nastaveného níže.",
+      "item_metafield_namespace": "Namespace metafieldu produktu (typu prostý text), který se má zkontrolovat kvůli textu pro konkrétní produkt. Ponechte namespace nebo klíč prázdné, chcete-li přepis vypnout a vždy použít text výše.",
+      "item_metafield_key": "Klíč metafieldu produktu v rámci výše uvedeného namespace. Výchozí hodnota odkazuje na metafield „custom.cart_drawer_note“, který je již v obchodě nastaven – jeho hodnotu upravíte na stránce libovolného produktu."
     },
     "text_defaults": {
       "cross_sell_heading": "Mohlo by se vám také líbit"

@@ -1387,7 +1387,9 @@
       "show_free_shipping_bar": "Vis fremskridtslinje for gratis fragt",
       "corner_style": "Hjørnestil",
       "thumbnail_size": "Produktbilledstørrelse",
-      "item_text": "Tekst under produkttitel"
+      "item_text": "Tekst under produkttitel",
+      "item_metafield_namespace": "Produktspecifik tilsidesættelse: metafelt-namespace",
+      "item_metafield_key": "Produktspecifik tilsidesættelse: metafelt-nøgle"
     },
     "options": {
       "collection": "Kollektion",
@@ -1402,7 +1404,9 @@
       "free_shipping_amount_token": "Brug [amount], hvor det resterende beløb skal vises, f.eks. \"[amount] til gratis fragt\".",
       "cross_sell_source_scope_collection": "Bruges kun, når Produktkilde ovenfor er sat til Kollektion.",
       "cross_sell_source_scope_manual": "Bruges kun, når Produktkilde ovenfor er sat til Manuel liste.",
-      "item_text": "Vises under hvert produkts titel i indkøbskurven, f.eks. en fragtnote eller plejevejledning."
+      "item_text": "Vises under hvert produkts titel i indkøbskurven, f.eks. en fragtnote eller plejevejledning. Et produkt kan tilsidesætte denne tekst med sin egen via metafeltet konfigureret nedenfor.",
+      "item_metafield_namespace": "Namespace for et produktmetafelt (almindelig tekst-type), der tjekkes for produktspecifik tekst. Lad namespace eller nøgle stå tomt for at deaktivere tilsidesættelsen og altid bruge teksten ovenfor.",
+      "item_metafield_key": "Nøglen for produktmetafeltet inden for namespace'et ovenfor. Standard peger på et \"custom.cart_drawer_note\"-metafelt, der allerede er sat op i denne butik - rediger dets værdi fra ethvert produkts admin-side."
     },
     "text_defaults": {
       "cross_sell_heading": "Du vil måske også kunne lide"

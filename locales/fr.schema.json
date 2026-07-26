@@ -1387,7 +1387,9 @@
       "show_free_shipping_bar": "Afficher la barre de progression de la livraison gratuite",
       "corner_style": "Style des angles",
       "thumbnail_size": "Taille de l'image du produit",
-      "item_text": "Texte sous le titre du produit"
+      "item_text": "Texte sous le titre du produit",
+      "item_metafield_namespace": "Substitution par produit : espace de noms du métachamp",
+      "item_metafield_key": "Substitution par produit : clé du métachamp"
     },
     "options": {
       "collection": "Collection",
@@ -1402,7 +1404,9 @@
       "free_shipping_amount_token": "Utilisez [amount] à l'endroit où le montant restant doit apparaître, par ex. « Encore [amount] pour la livraison gratuite ».",
       "cross_sell_source_scope_collection": "Utilisé uniquement lorsque la Source des produits ci-dessus est définie sur Collection.",
       "cross_sell_source_scope_manual": "Utilisé uniquement lorsque la Source des produits ci-dessus est définie sur Liste manuelle.",
-      "item_text": "Affiché sous le titre de chaque produit dans le panier, par exemple une note de livraison ou des instructions d'entretien."
+      "item_text": "Affiché sous le titre de chaque produit dans le panier, par exemple une note de livraison ou des instructions d'entretien. Un produit peut remplacer ce texte par le sien via le métachamp configuré ci-dessous.",
+      "item_metafield_namespace": "L'espace de noms d'un métachamp produit (type texte brut) à vérifier pour le texte spécifique au produit. Laissez l'espace de noms ou la clé vide pour désactiver la substitution et toujours utiliser le texte ci-dessus.",
+      "item_metafield_key": "La clé du métachamp produit au sein de l'espace de noms ci-dessus. Par défaut, un métachamp \"custom.cart_drawer_note\" déjà configuré sur cette boutique est utilisé - modifiez sa valeur depuis la page d'administration de n'importe quel produit."
     },
     "text_defaults": {
       "cross_sell_heading": "Vous pourriez aussi aimer"

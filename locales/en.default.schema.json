@@ -1378,6 +1378,8 @@
       "corner_style": "Corner style",
       "thumbnail_size": "Product image size",
       "item_text": "Text below product title",
+      "item_metafield_namespace": "Per-product override: metafield namespace",
+      "item_metafield_key": "Per-product override: metafield key",
       "free_shipping_remaining_text": "Progress message",
       "free_shipping_reached_text": "Message when threshold is reached",
       "show_cross_sell": "Show cross-sell carousel",
@@ -1402,7 +1404,9 @@
       "free_shipping_amount_token": "Use [amount] where the remaining amount should appear, e.g. \"Spend [amount] more for free shipping\".",
       "cross_sell_source_scope_collection": "Only used when Product source above is set to Collection.",
       "cross_sell_source_scope_manual": "Only used when Product source above is set to Manual list.",
-      "item_text": "Shown under every product's title in the cart drawer, e.g. a shipping note or care instruction. A product can override this with its own text using the \"Cart Drawer Note\" metafield on the product's admin page."
+      "item_text": "Shown under every product's title in the cart drawer, e.g. a shipping note or care instruction. A product can override this with its own text using the metafield configured below.",
+      "item_metafield_namespace": "The namespace of a product metafield (plain text type) to check for per-product text. Leave the namespace or key blank to disable the override and always use the text above.",
+      "item_metafield_key": "The key of the product metafield, within the namespace above. Defaults to a \"custom.cart_drawer_note\" metafield already set up on this store - edit its value from any product's admin page."
     },
     "text_defaults": {
       "cross_sell_heading": "You may also like"
