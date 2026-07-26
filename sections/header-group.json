@@ -145,10 +145,25 @@
         "collection_inverse_logo": false,
         "text_color_transparent_collection": ""
       }
+    },
+    "auto_add_to_cart_dMxhMc": {
+      "type": "auto-add-to-cart",
+      "name": "t:auto_add_to_cart.names.section",
+      "settings": {
+        "enabled": true,
+        "trigger_type": "subtotal",
+        "subtotal_threshold": 50,
+        "cart_contains_type": "product",
+        "cart_contains_product": "",
+        "cart_contains_collection": "",
+        "target_product": "re-ship",
+        "target_variant_id": ""
+      }
     }
   },
   "order": [
     "header_announcements_9jGBFp",
-    "header_section"
+    "header_section",
+    "auto_add_to_cart_dMxhMc"
   ]
 }
