@@ -1,0 +1,101 @@
+{%- doc -%}
+  Renders tag-matched product badges (up to 8, configured in Theme Settings >
+  Product tag badges), stacked vertically at whichever corner each one is
+  assigned to. All tag matching happens here in Liquid at render time - no
+  client-side loop, so there's no added JS cost per card.
+
+  @param {object} product - The product to match tags against
+  @param {string} [context] - Rendering context ('card' or 'cart'), only used to vary the wrapper class for spacing
+
+  @example
+  {% render 'product-tag-badges', product: product %}
+{%- enddoc -%}
+
+{% liquid
+  assign top_left = '' | split: ','
+  assign top_right = '' | split: ','
+  assign bottom_left = '' | split: ','
+  assign bottom_right = '' | split: ','
+
+  if settings.tag_badges_enable
+    for i in (1..8)
+      assign tag_key = 'tag_badge_' | append: i | append: '_tag'
+      assign tag_value = settings[tag_key]
+
+      if tag_value != blank and product.tags contains tag_value
+        assign position_key = 'tag_badge_' | append: i | append: '_position'
+        assign position_value = settings[position_key] | default: 'top_left'
+        assign single = '' | append: i | split: ','
+
+        case position_value
+          when 'top_right'
+            assign top_right = top_right | concat: single
+          when 'bottom_left'
+            assign bottom_left = bottom_left | concat: single
+          when 'bottom_right'
+            assign bottom_right = bottom_right | concat: single
+          else
+            assign top_left = top_left | concat: single
+        endcase
+      endif
+    endfor
+  endif
+
+  assign tag_badges_total = top_left.size | plus: top_right.size | plus: bottom_left.size | plus: bottom_right.size
+%}
+
+{% if tag_badges_total > 0 %}
+  <div class="custom-tag-badges custom-tag-badges--{{ context | default: 'card' }}">
+    {% for corner_indexes in (1..4) %}
+      {% liquid
+        case corner_indexes
+          when 1
+            assign indexes = top_left
+            assign corner_class = 'custom-tag-badges__corner--top-left'
+          when 2
+            assign indexes = top_right
+            assign corner_class = 'custom-tag-badges__corner--top-right'
+          when 3
+            assign indexes = bottom_left
+            assign corner_class = 'custom-tag-badges__corner--bottom-left'
+          else
+            assign indexes = bottom_right
+            assign corner_class = 'custom-tag-badges__corner--bottom-right'
+        endcase
+      %}
+      {% if indexes.size > 0 %}
+        <div class="custom-tag-badges__corner {{ corner_class }}">
+          {% for i in indexes %}
+            {% liquid
+              assign tag_key = 'tag_badge_' | append: i | append: '_tag'
+              assign text_key = 'tag_badge_' | append: i | append: '_text'
+              assign font_size_key = 'tag_badge_' | append: i | append: '_font_size'
+              assign bg_key = 'tag_badge_' | append: i | append: '_background_color'
+              assign text_color_key = 'tag_badge_' | append: i | append: '_text_color'
+              assign border_width_key = 'tag_badge_' | append: i | append: '_border_width'
+              assign border_color_key = 'tag_badge_' | append: i | append: '_border_color'
+
+              assign badge_text = settings[text_key] | default: settings[tag_key]
+              assign badge_font_size = settings[font_size_key] | default: 11
+              assign badge_border_width = settings[border_width_key] | default: 0
+            %}
+            <span
+              class="custom-tag-badge"
+              style="
+                --tag-badge-font-size: {{ badge_font_size }}px;
+                --tag-badge-bg: {{ settings[bg_key] }};
+                --tag-badge-color: {{ settings[text_color_key] }};
+                --tag-badge-border-width: {{ badge_border_width }}px;
+                --tag-badge-border-color: {{ settings[border_color_key] }};
+              "
+            >
+              {{- badge_text -}}
+            </span>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endif %}
+
+{% render 'product-tag-badges-styles' %}
