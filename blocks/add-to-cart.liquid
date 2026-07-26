@@ -56,9 +56,17 @@
       assign option_name = product.options_with_values.first.name
       assign choose_text = 'actions.choose_option' | t: option: option_name
     %}
-    {% render 'quick-add-styles' %}
+    {% comment %}
+      Deliberately NOT using the "quick-add"/"custom-color-quick-add" classes
+      here - those apply quick-add-styles.liquid's `.quick-add { position:
+      absolute; inset: 0; ... }`, built for the product-card gallery's
+      hover-over-the-image overlay button. Applied to this persistent,
+      in-flow card button instead, it pulled the button out of normal
+      document flow entirely, misaligning it (and the whole grid row) from
+      its card. This button only needs the plain button styling below,
+      matching the "Add to bag" button it replaces.
+    {% endcomment %}
     <quick-add-component
-      class="quick-add custom-color-quick-add"
       data-product-title="{{ product.title }}"
       data-product-id="{{ product.id }}"
       data-quick-add-button="choose"
