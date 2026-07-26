@@ -212,7 +212,7 @@
           "settings": {
             "product_card_gap": 4,
             "background_color": "rgba(0,0,0,0)",
-            "border": "solid",
+            "border": "none",
             "border_width": 3,
             "border_opacity": 100,
             "border_color": "{{ settings.color_palette.color5 }}",
@@ -232,7 +232,7 @@
                 "border_width": 1,
                 "border_opacity": 100,
                 "border_color": "",
-                "border_radius": 0,
+                "border_radius": 15,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
