@@ -70,10 +70,6 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "vimotia_shoppable_videos_ugc_gallery_block_NamYJc": {
-              "type": "shopify://apps/vimotia-shoppable-videos-ugc/blocks/gallery-block/280c56fc-729f-4789-a38e-96c81f569369",
-              "settings": {}
-            },
             "group_icgrde": {
               "type": "group",
               "name": "t:names.header",
@@ -115,6 +111,10 @@
                 "padding-inline-end": 0
               },
               "blocks": {
+                "judge_me_reviews_preview_badge_hJ36KL": {
+                  "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+                  "settings": {}
+                },
                 "product_tag_badges_FLieEh": {
                   "type": "product-tag-badges",
                   "name": "t:names.product_tag_badges",
@@ -221,6 +221,7 @@
                 }
               },
               "block_order": [
+                "judge_me_reviews_preview_badge_hJ36KL",
                 "product_tag_badges_FLieEh",
                 "text_xrnftG",
                 "group_gHXAzz"
@@ -517,7 +518,6 @@
             }
           },
           "block_order": [
-            "vimotia_shoppable_videos_ugc_gallery_block_NamYJc",
             "group_icgrde",
             "combined_listings_product_qg3rFy",
             "divider_VJhene",
