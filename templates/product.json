@@ -29,7 +29,7 @@
             "thumbnail_radius": 0,
             "thumbnail_gap": 8,
             "aspect_ratio": "adapt",
-            "constrain_to_viewport": true,
+            "constrain_to_viewport": false,
             "media_fit": "cover",
             "media_radius": 0,
             "extend_media": false,
