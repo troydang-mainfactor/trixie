@@ -6,37 +6,44 @@
   <div
     class="product-tag-icons"
     style="
-      --pt-icons-size: {{ block.settings.icon_size }}px;
-      --pt-icons-size-mobile: {{ block.settings.icon_size_mobile }}px;
-      --pt-icons-color: {{ block.settings.icon_color }};
-      --pt-text-color: {{ block.settings.text_color }};
+      --pt-image-size: {{ block.settings.image_size }}px;
+      --pt-image-size-mobile: {{ block.settings.image_size_mobile }}px;
       --pt-gap: {{ block.settings.gap }}px;
+      --pt-label-color: {{ block.settings.label_color }};
     "
     {{ block.shopify_attributes }}
   >
     {% for i in (1..10) %}
       {% liquid
         assign tag_key = 'tag_' | append: i
-        assign icon_key = 'icon_' | append: i
+        assign image_key = 'image_' | append: i
         assign label_key = 'label_' | append: i
 
         assign tag_value = block.settings[tag_key]
-        assign icon_value = block.settings[icon_key]
+        assign image_value = block.settings[image_key]
         assign label_value = block.settings[label_key]
       %}
 
       {% if tag_value != blank and product.tags contains tag_value %}
         <div class="product-tag-icons__item">
-          {% if icon_value != blank %}
-            <span class="product-tag-icons__icon" aria-hidden="true">
-              {{ icon_value }}
-            </span>
+          {% if image_value != blank %}
+            <div class="product-tag-icons__image">
+              {{
+                image_value
+                | image_url: width: 200
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '50, 75, 100, 150, 200',
+                  sizes: '(max-width: 749px) var(--pt-image-size-mobile), var(--pt-image-size)',
+                  alt: label_value
+              }}
+            </div>
           {% endif %}
 
           {% if label_value != blank %}
-            <span class="product-tag-icons__label">
+            <div class="product-tag-icons__label">
               {{ label_value }}
-            </span>
+            </div>
           {% endif %}
         </div>
       {% endif %}
@@ -48,45 +55,49 @@
   .product-tag-icons {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-start;
     gap: var(--pt-gap);
     width: 100%;
   }
 
   .product-tag-icons__item {
-    display: inline-flex;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    text-align: center;
     gap: 8px;
-    color: var(--pt-text-color);
   }
 
-  .product-tag-icons__icon {
-    display: inline-flex;
+  .product-tag-icons__image {
+    width: var(--pt-image-size);
+    height: var(--pt-image-size);
+    display: flex;
     align-items: center;
     justify-content: center;
-    width: var(--pt-icons-size);
-    height: var(--pt-icons-size);
-    flex: 0 0 var(--pt-icons-size);
-    color: var(--pt-icons-color);
+    flex-shrink: 0;
   }
 
-  .product-tag-icons__icon svg {
+  .product-tag-icons__image img {
     display: block;
     width: 100%;
     height: 100%;
+    object-fit: contain;
   }
 
   .product-tag-icons__label {
-    color: var(--pt-text-color);
+    color: var(--pt-label-color);
     line-height: 1.3;
   }
 
   @media screen and (max-width: 749px) {
-    .product-tag-icons__icon {
-      width: var(--pt-icons-size-mobile);
-      height: var(--pt-icons-size-mobile);
-      flex-basis: var(--pt-icons-size-mobile);
+    .product-tag-icons__image {
+      width: var(--pt-image-size-mobile);
+      height: var(--pt-image-size-mobile);
+    }
+
+    .product-tag-icons__item {
+      gap: 6px;
     }
   }
 {% endstylesheet %}
@@ -100,46 +111,40 @@
       "content": "General"
     },
     {
-      "type": "range",
-      "id": "icon_size",
-      "label": "Desktop icon size",
-      "min": 12,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 32
-    },
-    {
-      "type": "range",
-      "id": "icon_size_mobile",
-      "label": "Mobile icon size",
-      "min": 12,
-      "max": 80,
-      "step": 1,
-      "unit": "px",
-      "default": 28
-    },
-    {
-      "type": "color",
-      "id": "icon_color",
-      "label": "Icon color",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Text color",
-      "default": "#000000"
-    },
+  "type": "range",
+  "id": "image_size",
+  "label": "Desktop image size",
+  "min": 20,
+  "max": 150,
+  "step": 2,
+  "unit": "px",
+  "default": 48
+},
+{
+  "type": "range",
+  "id": "image_size_mobile",
+  "label": "Mobile image size",
+  "min": 20,
+  "max": 120,
+  "step": 2,
+  "unit": "px",
+  "default": 40
+},
     {
       "type": "range",
       "id": "gap",
-      "label": "Spacing",
+      "label": "Spacing between icons",
       "min": 0,
-      "max": 50,
+      "max": 60,
       "step": 1,
       "unit": "px",
-      "default": 16
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Label color",
+      "default": "#000000"
     },
 
     {
@@ -149,12 +154,13 @@
     {
       "type": "text",
       "id": "tag_1",
-      "label": "Product tag"
+      "label": "Product tag",
+      "info": "The icon displays when this exact tag exists on the product."
     },
     {
-      "type": "html",
-      "id": "icon_1",
-      "label": "Icon SVG"
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image"
     },
     {
       "type": "text",
@@ -172,9 +178,9 @@
       "label": "Product tag"
     },
     {
-      "type": "html",
-      "id": "icon_2",
-      "label": "Icon SVG"
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image"
     },
     {
       "type": "text",
@@ -192,9 +198,9 @@
       "label": "Product tag"
     },
     {
-      "type": "html",
-      "id": "icon_3",
-      "label": "Icon SVG"
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image"
     },
     {
       "type": "text",
@@ -212,9 +218,9 @@
       "label": "Product tag"
     },
     {
-      "type": "html",
-      "id": "icon_4",
-      "label": "Icon SVG"
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image"
     },
     {
       "type": "text",
@@ -232,9 +238,9 @@
       "label": "Product tag"
     },
     {
-      "type": "html",
-      "id": "icon_5",
-      "label": "Icon SVG"
+      "type": "image_picker",
+      "id": "image_5",
+      "label": "Image"
     },
     {
       "type": "text",
@@ -252,9 +258,9 @@
       "label": "Product tag"
     },
     {
-      "type": "html",
-      "id": "icon_6",
-      "label": "Icon SVG"
+      "type": "image_picker",
+      "id": "image_6",
+      "label": "Image"
     },
     {
       "type": "text",
@@ -272,9 +278,9 @@
       "label": "Product tag"
     },
     {
-      "type": "html",
-      "id": "icon_7",
-      "label": "Icon SVG"
+      "type": "image_picker",
+      "id": "image_7",
+      "label": "Image"
     },
     {
       "type": "text",
@@ -292,9 +298,9 @@
       "label": "Product tag"
     },
     {
-      "type": "html",
-      "id": "icon_8",
-      "label": "Icon SVG"
+      "type": "image_picker",
+      "id": "image_8",
+      "label": "Image"
     },
     {
       "type": "text",
@@ -312,9 +318,9 @@
       "label": "Product tag"
     },
     {
-      "type": "html",
-      "id": "icon_9",
-      "label": "Icon SVG"
+      "type": "image_picker",
+      "id": "image_9",
+      "label": "Image"
     },
     {
       "type": "text",
@@ -332,9 +338,9 @@
       "label": "Product tag"
     },
     {
-      "type": "html",
-      "id": "icon_10",
-      "label": "Icon SVG"
+      "type": "image_picker",
+      "id": "image_10",
+      "label": "Image"
     },
     {
       "type": "text",
