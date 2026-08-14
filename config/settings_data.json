@@ -10,6 +10,7 @@
 {
   "current": {
     "logo": "{{ shop.brand.logo }}",
+    "logo_inverse": "shopify://shop_images/white_logo.png",
     "logo_height": 93,
     "logo_height_mobile": 57,
     "favicon": "{{ shop.brand.square_logo }}",

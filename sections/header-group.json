@@ -136,7 +136,7 @@
         "bubble_background_color": "{{ settings.color_palette.color3 }}",
         "bubble_text_color": "",
         "enable_transparent_header_home": true,
-        "home_inverse_logo": false,
+        "home_inverse_logo": true,
         "text_color_transparent_home": "#ffffff",
         "enable_transparent_header_product": false,
         "product_inverse_logo": false,
