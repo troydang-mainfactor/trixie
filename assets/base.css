@@ -305,7 +305,7 @@ p:empty {
   .page-width-normal,
   .page-width-narrow,
   .page-width-content {
-    --page-margin: 10px;
+    --page-margin: 0px;
   }
 }
 
