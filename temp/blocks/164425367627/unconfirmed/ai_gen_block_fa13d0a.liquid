@@ -1,6 +1,255 @@
+{% doc %}
+  @prompt
+    I want to display multiple icons that i upload and each one displays based on product tags. it should be desktop and mobile friendly fully customizable sizing.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-tag-icons-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+  }
+
+  .ai-tag-icons-container-{{ ai_gen_id }} {
+    display: flex;
+    flex-wrap: wrap;
+    gap: {{ block.settings.icon_spacing }}px;
+    align-items: center;
+    justify-content: {{ block.settings.alignment }};
+  }
+
+  .ai-tag-icon-item-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-tag-icon-item-{{ ai_gen_id }} img {
+    width: {{ block.settings.icon_size_desktop }}px;
+    height: {{ block.settings.icon_size_desktop }}px;
+    object-fit: contain;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-tag-icons-{{ ai_gen_id }} {
+      width: 100%;
+    }
+
+    .ai-tag-icon-item-{{ ai_gen_id }} img {
+      width: {{ block.settings.icon_size_mobile }}px;
+      height: {{ block.settings.icon_size_mobile }}px;
+    }
+  }
+{% endstyle %}
+
+<tag-based-icons-{{ ai_gen_id }} class="ai-tag-icons-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-tag-icons-container-{{ ai_gen_id }}">
+    {% for i in (1..6) %}
+      {% liquid
+        assign icon_key = 'icon_' | append: i
+        assign tag_key = 'tag_' | append: i
+        assign icon = block.settings[icon_key]
+        assign tag = block.settings[tag_key]
+      %}
+
+      {% if icon != blank and tag != blank %}
+        {% if product.tags contains tag %}
+          <div class="ai-tag-icon-item-{{ ai_gen_id }}">
+            <img
+              src="{{ icon | image_url: width: 200 }}"
+              alt="{{ tag }}"
+              loading="lazy"
+              width="{{ block.settings.icon_size_desktop }}"
+              height="{{ block.settings.icon_size_desktop }}"
+            >
+          </div>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </div>
+</tag-based-icons-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class TagBasedIcons{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        const container = this.querySelector('.ai-tag-icons-container-{{ ai_gen_id }}');
+        if (container && container.children.length === 0) {
+          container.style.display = 'none';
+        }
+      }
+    }
+
+    customElements.define('tag-based-icons-{{ ai_gen_id }}', TagBasedIcons{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Tag-based icons",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Right"
+        }
+      ],
+      "default": "flex-start"
+    },
+    {
+      "type": "range",
+      "id": "icon_spacing",
+      "label": "Icon spacing",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Icon size"
+    },
+    {
+      "type": "range",
+      "id": "icon_size_desktop",
+      "label": "Desktop size",
+      "min": 20,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "icon_size_mobile",
+      "label": "Mobile size",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Icon 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_1",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "tag_1",
+      "label": "Product tag"
+    },
+    {
+      "type": "header",
+      "content": "Icon 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_2",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "tag_2",
+      "label": "Product tag"
+    },
+    {
+      "type": "header",
+      "content": "Icon 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_3",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "tag_3",
+      "label": "Product tag"
+    },
+    {
+      "type": "header",
+      "content": "Icon 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_4",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "tag_4",
+      "label": "Product tag"
+    },
+    {
+      "type": "header",
+      "content": "Icon 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_5",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "tag_5",
+      "label": "Product tag"
+    },
+    {
+      "type": "header",
+      "content": "Icon 6"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_6",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "tag_6",
+      "label": "Product tag"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tag-based icons"
+    }
+  ]
+}
 {% endschema %}
