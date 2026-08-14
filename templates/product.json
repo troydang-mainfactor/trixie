@@ -70,10 +70,6 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "vimotia_shoppable_videos_ugc_gallery_block_4N8BbY": {
-              "type": "shopify://apps/vimotia-shoppable-videos-ugc/blocks/gallery-block/280c56fc-729f-4789-a38e-96c81f569369",
-              "settings": {}
-            },
             "group_icgrde": {
               "type": "group",
               "name": "t:names.header",
@@ -609,7 +605,6 @@
             }
           },
           "block_order": [
-            "vimotia_shoppable_videos_ugc_gallery_block_4N8BbY",
             "group_icgrde",
             "group_WycydB",
             "combined_listings_product_qg3rFy",
