@@ -474,7 +474,7 @@
         "accessible_heading": "",
         "layout_style": "5",
         "section_width": "page",
-        "content_max_width": 1000,
+        "content_max_width": 900,
         "mobile_side_padding": 16,
         "content_alignment": "left",
         "tab_gap": 12,
