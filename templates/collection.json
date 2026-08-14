@@ -160,6 +160,10 @@
               },
               "blocks": {}
             },
+            "judge_me_reviews_preview_badge_wKQiAr": {
+              "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+              "settings": {}
+            },
             "product_title_4nY4eT": {
               "type": "product-title",
               "name": "t:names.product_title",
@@ -299,6 +303,7 @@
           },
           "block_order": [
             "card-gallery",
+            "judge_me_reviews_preview_badge_wKQiAr",
             "product_title_4nY4eT",
             "price_EzJzMm",
             "combined_listings_card_ayqrHF",
