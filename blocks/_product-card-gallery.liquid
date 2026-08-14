@@ -9,7 +9,7 @@
         class="product-badges product-badges--{{ settings.badge_position }}"
         style="
             --badge-border-radius: {{ settings.badge_corner_radius }}px;
-            --badge-font-size: {{ settings.badge_font_size | default: 12 }}px;
+            --font-size: var(--tag-badge-font-size, 12px);
             --badge-border-width: {{ settings.badge_border_width | default: 0 }}px;
             --badge-font-family: var(--font-{{ settings.badge_font_family }}--family); --badge-font-weight: var(--font-{{ settings.badge_font_family }}--weight); --badge-text-transform: {{ settings.badge_text_transform }};
         "
