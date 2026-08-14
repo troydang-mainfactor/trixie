@@ -140,6 +140,11 @@
         "type": "shopify://apps/essential-upsell/blocks/app-embed/50627fd9-24fd-4250-8614-accc12826d80",
         "disabled": false,
         "settings": {}
+      },
+      "14739163758312353500": {
+        "type": "shopify://apps/vimotia-shoppable-videos-ugc/blocks/vimotia-embeded-block/280c56fc-729f-4789-a38e-96c81f569369",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_palette": {
