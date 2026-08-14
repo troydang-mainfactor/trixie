@@ -56,7 +56,7 @@
         "marquee_direction": "normal",
         "marquee_gap": 24,
         "section_width": "page-width",
-        "background_color": "{{ settings.color_palette.background }}",
+        "background_color": "{{ settings.color_palette.color3 }}",
         "divider_width": 1,
         "divider_color": "{{ settings.color_palette.color5 }}",
         "padding-block-start": 15,
