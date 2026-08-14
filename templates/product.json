@@ -369,10 +369,10 @@
               "settings": {
                 "icon": "plus",
                 "dividers": true,
-                "divider_color": "",
+                "divider_color": "{{ settings.color_palette.color5 }}",
                 "type_preset": "h6",
                 "background_color": "{{ settings.color_palette.background }}",
-                "text_color": "",
+                "text_color": "{{ settings.color_palette.foreground }}",
                 "border": "solid",
                 "border_width": 2,
                 "border_opacity": 100,
