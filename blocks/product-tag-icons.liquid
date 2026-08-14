@@ -1,72 +1,41 @@
 {% liquid
   assign product = closest.product
-  assign has_visible_icons = false
-
-  if product != blank
-    for i in (1..10)
-      assign tag_setting_id = 'tag_' | append: i
-      assign icon_setting_id = 'icon_' | append: i
-      assign label_setting_id = 'label_' | append: i
-
-      assign tag = block.settings[tag_setting_id]
-      assign icon = block.settings[icon_setting_id]
-      assign label = block.settings[label_setting_id]
-
-      if tag != blank and product.tags contains tag
-        if icon != blank or label != blank
-          assign has_visible_icons = true
-          break
-        endif
-      endif
-    endfor
-  endif
 %}
 
-{% if has_visible_icons %}
+{% if product != blank %}
   <div
-    class="
-      product-tag-icons
-      product-tag-icons--{{ block.settings.layout }}
-      product-tag-icons--{{ block.settings.alignment }}
-    "
+    class="product-tag-icons"
     style="
-      --tag-icons-size-desktop: {{ block.settings.icon_size }}px;
-      --tag-icons-size-mobile: {{ block.settings.icon_size_mobile }}px;
-      --tag-icons-color: {{ block.settings.icon_color }};
-      --tag-icons-text-color: {{ block.settings.text_color }};
-      --tag-icons-gap: {{ block.settings.gap }}px;
-      --tag-icons-row-gap: {{ block.settings.row_gap }}px;
+      --pt-icons-size: {{ block.settings.icon_size }}px;
+      --pt-icons-size-mobile: {{ block.settings.icon_size_mobile }}px;
+      --pt-icons-color: {{ block.settings.icon_color }};
+      --pt-text-color: {{ block.settings.text_color }};
+      --pt-gap: {{ block.settings.gap }}px;
     "
     {{ block.shopify_attributes }}
   >
     {% for i in (1..10) %}
       {% liquid
-        assign tag_setting_id = 'tag_' | append: i
-        assign icon_setting_id = 'icon_' | append: i
-        assign label_setting_id = 'label_' | append: i
+        assign tag_key = 'tag_' | append: i
+        assign icon_key = 'icon_' | append: i
+        assign label_key = 'label_' | append: i
 
-        assign tag = block.settings[tag_setting_id]
-        assign icon = block.settings[icon_setting_id]
-        assign label = block.settings[label_setting_id]
-
-        assign tag_matches = false
-
-        if tag != blank and product.tags contains tag
-          assign tag_matches = true
-        endif
+        assign tag_value = block.settings[tag_key]
+        assign icon_value = block.settings[icon_key]
+        assign label_value = block.settings[label_key]
       %}
 
-      {% if tag_matches and icon != blank or tag_matches and label != blank %}
+      {% if tag_value != blank and product.tags contains tag_value %}
         <div class="product-tag-icons__item">
-          {% if icon != blank %}
+          {% if icon_value != blank %}
             <span class="product-tag-icons__icon" aria-hidden="true">
-              {{ icon }}
+              {{ icon_value }}
             </span>
           {% endif %}
 
-          {% if label != blank %}
+          {% if label_value != blank %}
             <span class="product-tag-icons__label">
-              {{ label }}
+              {{ label_value }}
             </span>
           {% endif %}
         </div>
@@ -80,72 +49,44 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: var(--tag-icons-row-gap) var(--tag-icons-gap);
-    width: 100%;
-    color: var(--tag-icons-text-color);
-  }
-
-  .product-tag-icons--horizontal .product-tag-icons__item {
-    display: inline-flex;
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .product-tag-icons--vertical .product-tag-icons__item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .product-tag-icons--left {
     justify-content: flex-start;
-  }
-
-  .product-tag-icons--center {
-    justify-content: center;
-  }
-
-  .product-tag-icons--right {
-    justify-content: flex-end;
+    gap: var(--pt-gap);
+    width: 100%;
   }
 
   .product-tag-icons__item {
+    display: inline-flex;
+    align-items: center;
     gap: 8px;
-    min-width: 0;
+    color: var(--pt-text-color);
   }
 
   .product-tag-icons__icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    flex: 0 0 auto;
-    width: var(--tag-icons-size-desktop);
-    height: var(--tag-icons-size-desktop);
-    color: var(--tag-icons-color);
+    width: var(--pt-icons-size);
+    height: var(--pt-icons-size);
+    flex: 0 0 var(--pt-icons-size);
+    color: var(--pt-icons-color);
   }
 
   .product-tag-icons__icon svg {
     display: block;
     width: 100%;
     height: 100%;
-    fill: currentColor;
-    stroke: currentColor;
   }
 
   .product-tag-icons__label {
-    color: var(--tag-icons-text-color);
+    color: var(--pt-text-color);
     line-height: 1.3;
   }
 
   @media screen and (max-width: 749px) {
     .product-tag-icons__icon {
-      width: var(--tag-icons-size-mobile);
-      height: var(--tag-icons-size-mobile);
-    }
-
-    .product-tag-icons__item {
-      gap: 6px;
+      width: var(--pt-icons-size-mobile);
+      height: var(--pt-icons-size-mobile);
+      flex-basis: var(--pt-icons-size-mobile);
     }
   }
 {% endstylesheet %}
@@ -156,68 +97,7 @@
   "settings": [
     {
       "type": "header",
-      "content": "Layout"
-    },
-    {
-      "type": "select",
-      "id": "layout",
-      "label": "Icon layout",
-      "options": [
-        {
-          "value": "horizontal",
-          "label": "Icon and text horizontal"
-        },
-        {
-          "value": "vertical",
-          "label": "Icon above text"
-        }
-      ],
-      "default": "vertical"
-    },
-    {
-      "type": "select",
-      "id": "alignment",
-      "label": "Alignment",
-      "options": [
-        {
-          "value": "left",
-          "label": "Left"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "right",
-          "label": "Right"
-        }
-      ],
-      "default": "left"
-    },
-    {
-      "type": "range",
-      "id": "gap",
-      "label": "Horizontal gap",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "row_gap",
-      "label": "Vertical gap",
-      "min": 0,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "default": 16
-    },
-
-    {
-      "type": "header",
-      "content": "Icon styling"
+      "content": "General"
     },
     {
       "type": "range",
@@ -251,6 +131,16 @@
       "label": "Text color",
       "default": "#000000"
     },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Spacing",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
 
     {
       "type": "header",
@@ -259,14 +149,12 @@
     {
       "type": "text",
       "id": "tag_1",
-      "label": "Product tag",
-      "info": "Example: waterproof"
+      "label": "Product tag"
     },
     {
       "type": "html",
       "id": "icon_1",
-      "label": "Icon SVG",
-      "info": "Paste an SVG icon."
+      "label": "Icon SVG"
     },
     {
       "type": "text",
