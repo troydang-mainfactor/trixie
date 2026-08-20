@@ -105,11 +105,6 @@
   border-bottom: var(--piw-accordion-border-width, 1px) solid var(--piw-accordion-border-color, rgb(220 220 220));
 }
 
-.product-info-highlights__accordion:first-of-type {
-  border-top: var(--piw-accordion-border-width, 1px) solid var(--piw-accordion-border-color, rgb(220 220 220));
-  margin-top: 1rem;
-}
-
 .product-info-highlights__accordion-summary {
   list-style: none;
   cursor: pointer;
