@@ -1,0 +1,548 @@
+{{ 'component-product-info-highlights.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #product-info-highlights-{{ section.id }} {
+    --piw-bg: {{ section.settings.section_background_color }};
+    --piw-section-pt: {{ section.settings.section_padding_top }}px;
+    --piw-section-pb: {{ section.settings.section_padding_bottom }}px;
+    --piw-column-gap: {{ section.settings.column_gap }}px;
+    --piw-image-radius: {{ section.settings.image_border_radius }}px;
+
+    --piw-content-pt: {{ section.settings.content_padding_top }}px;
+    --piw-content-pb: {{ section.settings.content_padding_bottom }}px;
+    --piw-content-px: {{ section.settings.content_padding_inline }}px;
+
+    --piw-heading-color: {{ section.settings.heading_color }};
+    --piw-heading-size: {{ section.settings.heading_size }}px;
+
+    --piw-stat-number-color: {{ section.settings.stat_number_color }};
+    --piw-stat-number-size: {{ section.settings.stat_number_size }}px;
+    --piw-stat-text-color: {{ section.settings.stat_text_color }};
+    --piw-stat-padding: {{ section.settings.stat_spacing }}px;
+
+    --piw-divider-color: {{ section.settings.divider_color }};
+    --piw-divider-thickness: {{ section.settings.divider_thickness }}px;
+
+    --piw-accordion-title-color: {{ section.settings.accordion_title_color }};
+    --piw-accordion-text-color: {{ section.settings.accordion_text_color }};
+    --piw-accordion-icon-color: {{ section.settings.accordion_icon_color }};
+    --piw-accordion-border-color: {{ section.settings.accordion_border_color }};
+    --piw-accordion-border-width: {{ section.settings.accordion_border_width }}px;
+    --piw-accordion-padding: {{ section.settings.accordion_padding }}px;
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign section_id = section.id
+
+  # ---------------------------------------------------------------
+  # IMAGE RESOLUTION
+  # source: custom / featured / metafield -> fallback chain
+  # ---------------------------------------------------------------
+  assign final_image = blank
+
+  if section.settings.image_source == 'metafield' and section.settings.image_metafield != blank
+    assign mf_parts = section.settings.image_metafield | split: '.'
+    if mf_parts.size == 2
+      assign mf_ns = mf_parts[0]
+      assign mf_key = mf_parts[1]
+      assign mf_obj = product.metafields[mf_ns][mf_key]
+      if mf_obj != blank and mf_obj.value != blank
+        assign final_image = mf_obj.value
+      endif
+    endif
+  endif
+
+  if final_image == blank and section.settings.image_source == 'custom' and section.settings.custom_image != blank
+    assign final_image = section.settings.custom_image
+  endif
+
+  if final_image == blank and section.settings.custom_image != blank
+    assign final_image = section.settings.custom_image
+  endif
+
+  if final_image == blank and product.featured_image != blank
+    assign final_image = product.featured_image
+  endif
+-%}
+
+<section class="product-info-highlights product-info-highlights--image-{{ section.settings.image_position }}" id="product-info-highlights-{{ section_id }}">
+  <div class="product-info-highlights__media">
+    {%- if final_image != blank -%}
+      {{ final_image | image_url: width: 1600 | image_tag:
+        loading: 'lazy',
+        widths: '400,600,800,1000,1200,1600',
+        sizes: '(min-width: 750px) 50vw, 100vw',
+        alt: final_image.alt | default: product.title,
+        class: 'product-info-highlights__image'
+      }}
+    {%- else -%}
+      <div class="product-info-highlights__image product-info-highlights__image--placeholder">
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="product-info-highlights__content">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="product-info-highlights__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    {%- comment -%} ---------------- STAT BLOCKS ---------------- {%- endcomment -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'stat' -%}
+        {%- liquid
+          assign stat_number = blank
+          assign stat_text = blank
+
+          if block.settings.source == 'metafield'
+            if block.settings.number_metafield != blank
+              assign np = block.settings.number_metafield | split: '.'
+              if np.size == 2
+                assign n_obj = product.metafields[np[0]][np[1]]
+                if n_obj != blank and n_obj.value != blank
+                  assign stat_number = n_obj.value
+                endif
+              endif
+            endif
+            if block.settings.description_metafield != blank
+              assign dp = block.settings.description_metafield | split: '.'
+              if dp.size == 2
+                assign d_obj = product.metafields[dp[0]][dp[1]]
+                if d_obj != blank and d_obj.value != blank
+                  assign stat_text = d_obj.value
+                endif
+              endif
+            endif
+          else
+            assign stat_number = block.settings.number
+            assign stat_text = block.settings.description
+          endif
+        -%}
+
+        {%- if stat_number != blank or stat_text != blank -%}
+          <div class="product-info-highlights__stat" {{ block.shopify_attributes }}>
+            <div class="product-info-highlights__stat-inner">
+              {%- if stat_number != blank -%}
+                <div class="product-info-highlights__stat-number">{{ stat_number }}</div>
+              {%- endif -%}
+              {%- if stat_text != blank -%}
+                <div class="product-info-highlights__stat-text">{{ stat_text }}</div>
+              {%- endif -%}
+            </div>
+            {%- if block.settings.show_divider -%}
+              <div class="product-info-highlights__divider"></div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- comment -%} ---------------- ACCORDION BLOCKS ---------------- {%- endcomment -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'accordion' -%}
+        {%- liquid
+          assign accordion_content = blank
+
+          if block.settings.source == 'metafield'
+            if block.settings.content_metafield != blank
+              assign cp = block.settings.content_metafield | split: '.'
+              if cp.size == 2
+                assign c_obj = product.metafields[cp[0]][cp[1]]
+                if c_obj != blank and c_obj.value != blank
+                  assign accordion_content = c_obj.value | metafield_tag
+                endif
+              endif
+            endif
+          else
+            if block.settings.content != blank
+              assign accordion_content = block.settings.content
+            endif
+          endif
+        -%}
+
+        {%- if accordion_content != blank -%}
+          <details class="product-info-highlights__accordion" {% if block.settings.open_by_default %}open{% endif %} {{ block.shopify_attributes }}>
+            <summary class="product-info-highlights__accordion-summary">
+              <span class="product-info-highlights__accordion-title">{{ block.settings.title }}</span>
+              <span class="product-info-highlights__accordion-icon" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 4L6 9L11 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </summary>
+            <div class="product-info-highlights__accordion-content rte">
+              {{ accordion_content }}
+              {%- if block.settings.link != blank and block.settings.link_text != blank -%}
+                <a href="{{ block.settings.link }}" class="product-info-highlights__accordion-link">{{ block.settings.link_text }}</a>
+              {%- endif -%}
+            </div>
+          </details>
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product info highlights",
+  "tag": "section",
+  "class": "section product-info-highlights-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "select",
+      "id": "image_source",
+      "label": "Image source",
+      "options": [
+        { "value": "featured", "label": "Product featured image" },
+        { "value": "custom", "label": "Custom image" },
+        { "value": "metafield", "label": "Product metafield" }
+      ],
+      "default": "featured"
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_image",
+      "label": "Custom / fallback image",
+      "info": "Used when image source is Custom, or as a fallback if the selected source has no image."
+    },
+    {
+      "type": "text",
+      "id": "image_metafield",
+      "label": "Image metafield key",
+      "info": "Format: namespace.key (e.g. custom.lifestyle_image). Metafield must be a File reference (image) type."
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position (desktop)",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What the results show"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 14,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Section layout & spacing"
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Section padding top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Section padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Gap between image and content",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image corner radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "content_padding_top",
+      "label": "Content column padding top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "content_padding_bottom",
+      "label": "Content column padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "content_padding_inline",
+      "label": "Content column padding left/right",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "header",
+      "content": "Stats: colors & spacing"
+    },
+    {
+      "type": "color",
+      "id": "stat_number_color",
+      "label": "Stat number color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "range",
+      "id": "stat_number_size",
+      "label": "Stat number size",
+      "min": 24,
+      "max": 96,
+      "step": 2,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "color",
+      "id": "stat_text_color",
+      "label": "Stat description color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "range",
+      "id": "stat_spacing",
+      "label": "Padding above/below each stat",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider line color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "range",
+      "id": "divider_thickness",
+      "label": "Divider line thickness",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "Accordion: colors, borders & spacing"
+    },
+    {
+      "type": "color",
+      "id": "accordion_title_color",
+      "label": "Accordion title color",
+      "default": "#c0392b"
+    },
+    {
+      "type": "color",
+      "id": "accordion_text_color",
+      "label": "Accordion content color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "accordion_icon_color",
+      "label": "Accordion icon color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "accordion_border_color",
+      "label": "Accordion border color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "range",
+      "id": "accordion_border_width",
+      "label": "Accordion border thickness",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "accordion_padding",
+      "label": "Accordion vertical padding",
+      "min": 8,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        {
+          "type": "select",
+          "id": "source",
+          "label": "Content source",
+          "options": [
+            { "value": "custom", "label": "Custom text" },
+            { "value": "metafield", "label": "Product metafield" }
+          ],
+          "default": "custom"
+        },
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Stat (custom)",
+          "default": "100%"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description (custom)",
+          "default": "<p>Description of what this stat means.</p>"
+        },
+        {
+          "type": "text",
+          "id": "number_metafield",
+          "label": "Stat metafield key",
+          "info": "Format: namespace.key. If empty on this product, the stat is hidden."
+        },
+        {
+          "type": "text",
+          "id": "description_metafield",
+          "label": "Description metafield key",
+          "info": "Format: namespace.key"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_divider",
+          "label": "Show divider line below this stat",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "accordion",
+      "name": "Accordion",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Details"
+        },
+        {
+          "type": "select",
+          "id": "source",
+          "label": "Content source",
+          "options": [
+            { "value": "custom", "label": "Custom content" },
+            { "value": "metafield", "label": "Product metafield" }
+          ],
+          "default": "custom"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content (custom)"
+        },
+        {
+          "type": "text",
+          "id": "content_metafield",
+          "label": "Content metafield key",
+          "info": "Format: namespace.key (e.g. custom.ingredients). If empty on this product, this accordion is hidden entirely."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Optional link"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Optional link text",
+          "default": "Learn more"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_by_default",
+          "label": "Open by default",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product info highlights",
+      "blocks": [
+        { "type": "stat" },
+        { "type": "stat" },
+        { "type": "stat" },
+        { "type": "accordion" },
+        { "type": "accordion" }
+      ]
+    }
+  ]
+}
+{% endschema %}
