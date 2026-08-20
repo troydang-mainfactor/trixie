@@ -2,12 +2,11 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: stretch;
-  gap: 0;
+  gap: var(--piw-column-gap, 0);
   width: 100%;
-}
-
-.product-info-highlights--image-right {
-  grid-template-columns: 1fr 1fr;
+  background: var(--piw-bg, transparent);
+  padding-top: var(--piw-section-pt, 0);
+  padding-bottom: var(--piw-section-pb, 0);
 }
 
 .product-info-highlights--image-right .product-info-highlights__media {
@@ -23,6 +22,7 @@
   overflow: hidden;
   order: 1;
   min-height: 320px;
+  border-radius: var(--piw-image-radius, 0);
 }
 
 .product-info-highlights__image {
@@ -30,6 +30,7 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  border-radius: var(--piw-image-radius, 0);
 }
 
 .product-info-highlights__image--placeholder {
@@ -40,6 +41,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: var(--piw-image-radius, 0);
 }
 
 .product-info-highlights__image--placeholder svg {
@@ -50,14 +52,15 @@
 
 .product-info-highlights__content {
   order: 2;
-  padding: 4rem 4rem 3rem;
+  padding: var(--piw-content-pt, 4rem) var(--piw-content-px, 4rem) var(--piw-content-pb, 3rem);
   display: flex;
   flex-direction: column;
 }
 
 .product-info-highlights__heading {
-  font-size: 1.8rem;
+  font-size: var(--piw-heading-size, 1.8rem);
   font-weight: 700;
+  color: var(--piw-heading-color, inherit);
   margin: 0 0 2.5rem;
 }
 
@@ -71,19 +74,21 @@
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   column-gap: 2rem;
   align-items: center;
-  padding: 1.75rem 0;
+  padding: var(--piw-stat-padding, 1.75rem) 0;
 }
 
 .product-info-highlights__stat-number {
-  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-size: var(--piw-stat-number-size, clamp(3rem, 6vw, 4.5rem));
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.02em;
+  color: var(--piw-stat-number-color, inherit);
 }
 
 .product-info-highlights__stat-text {
   font-size: 1.4rem;
   line-height: 1.4;
+  color: var(--piw-stat-text-color, inherit);
 }
 
 .product-info-highlights__stat-text p {
@@ -91,17 +96,17 @@
 }
 
 .product-info-highlights__divider {
-  height: 1px;
+  height: var(--piw-divider-thickness, 1px);
   width: 100%;
-  background: rgb(var(--color-border, 220 220 220));
+  background: var(--piw-divider-color, rgb(220 220 220));
 }
 
 .product-info-highlights__accordion {
-  border-bottom: 1px solid rgb(var(--color-border, 220 220 220));
+  border-bottom: var(--piw-accordion-border-width, 1px) solid var(--piw-accordion-border-color, rgb(220 220 220));
 }
 
 .product-info-highlights__accordion:first-of-type {
-  border-top: 1px solid rgb(var(--color-border, 220 220 220));
+  border-top: var(--piw-accordion-border-width, 1px) solid var(--piw-accordion-border-color, rgb(220 220 220));
   margin-top: 1rem;
 }
 
@@ -111,7 +116,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.6rem 0;
+  padding: var(--piw-accordion-padding, 1.6rem) 0;
   font-size: 1.6rem;
   font-weight: 700;
 }
@@ -121,7 +126,7 @@
 }
 
 .product-info-highlights__accordion-title {
-  color: rgb(var(--color-accent, 200 60 40));
+  color: var(--piw-accordion-title-color, inherit);
 }
 
 .product-info-highlights__accordion-icon {
@@ -130,6 +135,7 @@
   justify-content: center;
   transition: transform 0.2s ease;
   flex-shrink: 0;
+  color: var(--piw-accordion-icon-color, inherit);
 }
 
 .product-info-highlights__accordion[open] .product-info-highlights__accordion-icon {
@@ -137,9 +143,10 @@
 }
 
 .product-info-highlights__accordion-content {
-  padding: 0 0 2rem;
+  padding: 0 0 var(--piw-accordion-padding, 2rem);
   font-size: 1.4rem;
   line-height: 1.5;
+  color: var(--piw-accordion-text-color, inherit);
 }
 
 .product-info-highlights__accordion-content p {
@@ -157,6 +164,7 @@
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 3px;
+  color: inherit;
 }
 
 /* ------------------------------------------------------------
@@ -179,21 +187,17 @@
   .product-info-highlights__content,
   .product-info-highlights--image-right .product-info-highlights__content {
     order: 2;
-    padding: 2.5rem 2rem 2rem;
+    padding-top: 2.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
   .product-info-highlights__stat-inner {
     grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
     column-gap: 1.25rem;
-    padding: 1.25rem 0;
-  }
-
-  .product-info-highlights__stat-number {
-    font-size: clamp(2.4rem, 12vw, 3.2rem);
   }
 
   .product-info-highlights__heading {
-    font-size: 1.5rem;
     margin-bottom: 1.5rem;
   }
 }
