@@ -657,6 +657,113 @@
         "padding-block-end": 0
       }
     },
+    "marquee_wqkJcg": {
+      "type": "marquee",
+      "blocks": {
+        "text_MxFkLT": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We make things that work better and last longer.</p>",
+            "split_on_dash": false,
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h3",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "none",
+            "wrap": "nowrap",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_MxFkLT"
+      ],
+      "name": "t:names.marquee_section",
+      "settings": {
+        "movement_direction": "normal",
+        "background_color": "",
+        "padding-block-start": 24,
+        "padding-block-end": 24,
+        "gap_between_elements": 24
+      }
+    },
+    "pdp_description_3gHf3A": {
+      "type": "pdp-description",
+      "blocks": {
+        "stat_fgHTpB": {
+          "type": "stat",
+          "settings": {
+            "source": "custom",
+            "number": "100%",
+            "description": "<p>CUSTOMER SATISFACTION</p>",
+            "number_metafield": "",
+            "description_metafield": "",
+            "show_divider": true
+          }
+        },
+        "stat_zLX4Ub": {
+          "type": "stat",
+          "settings": {
+            "source": "custom",
+            "number": "100%",
+            "description": "<p>CRUELTY FREE</p>",
+            "number_metafield": "",
+            "description_metafield": "",
+            "show_divider": true
+          }
+        },
+        "accordion_tD4CbX": {
+          "type": "accordion",
+          "settings": {
+            "title": "DESCRIPTION",
+            "source": "custom",
+            "content": "{{ product.description }}",
+            "content_metafield": "",
+            "link": "",
+            "link_text": "Learn more",
+            "open_by_default": false
+          }
+        },
+        "accordion_HfnxcM": {
+          "type": "accordion",
+          "settings": {
+            "title": "INGREDIENTS",
+            "source": "custom",
+            "content": "<p>something something</p>",
+            "content_metafield": "",
+            "link": "",
+            "link_text": "Learn more",
+            "open_by_default": false
+          }
+        }
+      },
+      "block_order": [
+        "stat_fgHTpB",
+        "stat_zLX4Ub",
+        "accordion_tD4CbX",
+        "accordion_HfnxcM"
+      ],
+      "name": "Product info highlights",
+      "settings": {
+        "image_source": "featured",
+        "custom_image": "shopify://shop_images/cold-shoulder-amirah_2349a875-ae18-4143-9220-45fb3c1f5144.jpg",
+        "image_metafield": "",
+        "image_position": "left",
+        "heading": "What the results show"
+      }
+    },
     "17866905740a8ad8f4": {
       "type": "_blocks",
       "blocks": {
@@ -954,6 +1061,8 @@
   },
   "order": [
     "main",
+    "marquee_wqkJcg",
+    "pdp_description_3gHf3A",
     "17866905740a8ad8f4",
     "premium_product_info_LmwBfe",
     "product_recommendations_qggXJq"
