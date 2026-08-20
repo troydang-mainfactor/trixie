@@ -1,0 +1,199 @@
+.product-info-highlights {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+  gap: 0;
+  width: 100%;
+}
+
+.product-info-highlights--image-right {
+  grid-template-columns: 1fr 1fr;
+}
+
+.product-info-highlights--image-right .product-info-highlights__media {
+  order: 2;
+}
+
+.product-info-highlights--image-right .product-info-highlights__content {
+  order: 1;
+}
+
+.product-info-highlights__media {
+  position: relative;
+  overflow: hidden;
+  order: 1;
+  min-height: 320px;
+}
+
+.product-info-highlights__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.product-info-highlights__image--placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  background: rgb(var(--color-background-alt, 245 245 245));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-info-highlights__image--placeholder svg {
+  width: 60%;
+  height: 60%;
+  opacity: 0.5;
+}
+
+.product-info-highlights__content {
+  order: 2;
+  padding: 4rem 4rem 3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-info-highlights__heading {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0 0 2.5rem;
+}
+
+.product-info-highlights__stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-info-highlights__stat-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  column-gap: 2rem;
+  align-items: center;
+  padding: 1.75rem 0;
+}
+
+.product-info-highlights__stat-number {
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.product-info-highlights__stat-text {
+  font-size: 1.4rem;
+  line-height: 1.4;
+}
+
+.product-info-highlights__stat-text p {
+  margin: 0;
+}
+
+.product-info-highlights__divider {
+  height: 1px;
+  width: 100%;
+  background: rgb(var(--color-border, 220 220 220));
+}
+
+.product-info-highlights__accordion {
+  border-bottom: 1px solid rgb(var(--color-border, 220 220 220));
+}
+
+.product-info-highlights__accordion:first-of-type {
+  border-top: 1px solid rgb(var(--color-border, 220 220 220));
+  margin-top: 1rem;
+}
+
+.product-info-highlights__accordion-summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.6rem 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.product-info-highlights__accordion-summary::-webkit-details-marker {
+  display: none;
+}
+
+.product-info-highlights__accordion-title {
+  color: rgb(var(--color-accent, 200 60 40));
+}
+
+.product-info-highlights__accordion-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.product-info-highlights__accordion[open] .product-info-highlights__accordion-icon {
+  transform: rotate(180deg);
+}
+
+.product-info-highlights__accordion-content {
+  padding: 0 0 2rem;
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
+
+.product-info-highlights__accordion-content p {
+  margin: 0 0 0.5em;
+}
+
+.product-info-highlights__accordion-content strong {
+  font-weight: 700;
+}
+
+.product-info-highlights__accordion-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ------------------------------------------------------------
+   MOBILE: image always stacks above the content column,
+   regardless of the desktop image_position setting.
+------------------------------------------------------------ */
+@media screen and (max-width: 749px) {
+  .product-info-highlights,
+  .product-info-highlights--image-right {
+    grid-template-columns: 1fr;
+  }
+
+  .product-info-highlights__media,
+  .product-info-highlights--image-right .product-info-highlights__media {
+    order: 1;
+    min-height: 0;
+    aspect-ratio: 1 / 1;
+  }
+
+  .product-info-highlights__content,
+  .product-info-highlights--image-right .product-info-highlights__content {
+    order: 2;
+    padding: 2.5rem 2rem 2rem;
+  }
+
+  .product-info-highlights__stat-inner {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    column-gap: 1.25rem;
+    padding: 1.25rem 0;
+  }
+
+  .product-info-highlights__stat-number {
+    font-size: clamp(2.4rem, 12vw, 3.2rem);
+  }
+
+  .product-info-highlights__heading {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
