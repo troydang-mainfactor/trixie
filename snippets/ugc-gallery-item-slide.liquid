@@ -1,0 +1,147 @@
+{% doc %}
+  Renders the fullscreen modal slide for one UGC Video Gallery block item.
+  Rendered into a hidden holder that ugc-gallery.js moves into the modal
+  track at runtime. Used only by blocks/_ugc-gallery-item.liquid.
+  @param {block} block - the _ugc-gallery-item block
+  @example
+  {% render 'ugc-gallery-item-slide', block: block %}
+{% enddoc %}
+
+{%- liquid
+  assign bs = block.settings
+  assign has_video = false
+  if bs.video != blank
+    assign has_video = true
+  endif
+
+  assign poster = blank
+  if has_video
+    assign poster = bs.video.preview_image
+  elsif bs.image != blank
+    assign poster = bs.image
+  endif
+
+  assign plist = bs.products
+  assign cta_url = blank
+  if plist.count == 0 and bs.custom_url != blank
+    assign cta_url = bs.custom_url
+  endif
+  assign cta_label = bs.cta_label | default: 'Shop now'
+-%}
+
+<div class="ugcg-slide" role="group" aria-roledescription="slide">
+  <div class="ugcg-slide__stage">
+    {%- if has_video -%}
+      <video
+        class="ugcg-slide__video"
+        playsinline
+        loop
+        muted
+        preload="none"
+        {% if poster != blank %}poster="{{ poster | image_url: width: 900 }}"{% endif %}
+      >
+        {%- for source in bs.video.sources -%}
+          {%- if source.format == 'mp4' -%}
+            <source data-src="{{ source.url }}" type="{{ source.mime_type }}">
+          {%- endif -%}
+        {%- endfor -%}
+      </video>
+      <button type="button" class="ugcg-slide__playpause" data-ugcg-playpause aria-label="Pause video">
+        {% render 'ugc-gallery-icons', icon: 'play', size: 30 %}
+      </button>
+    {%- elsif poster != blank -%}
+      <img
+        class="ugcg-slide__image"
+        src="{{ poster | image_url: width: 1080 }}"
+        srcset="{{ poster | image_url: width: 720 }} 720w, {{ poster | image_url: width: 1080 }} 1080w"
+        sizes="100vw"
+        width="{{ poster.width }}"
+        height="{{ poster.height }}"
+        loading="lazy"
+        alt="{{ bs.caption | default: bs.username | escape }}"
+      >
+    {%- endif -%}
+
+    <div class="ugcg-slide__overlay">
+      <div class="ugcg-slide__body">
+        <div class="ugcg-slide__info">
+          {%- if bs.username != blank -%}
+          <div class="ugcg-slide__creator">
+            {%- if bs.avatar != blank -%}
+              <img
+                class="ugcg-avatar ugcg-avatar--lg"
+                src="{{ bs.avatar | image_url: width: 96 }}"
+                width="96"
+                height="96"
+                loading="lazy"
+                alt=""
+              >
+            {%- endif -%}
+            <span class="ugcg-slide__handle">{{ bs.username | escape }}</span>
+            {%- if bs.verified -%}
+              <span class="ugcg-verified">{% render 'ugc-gallery-icons', icon: 'verified', size: 15 %}</span>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+          {%- if bs.caption != blank -%}
+            <p class="ugcg-slide__caption">{{ bs.caption | escape }}</p>
+          {%- endif -%}
+        </div>
+
+        <div class="ugcg-slide__rail">
+          {%- if bs.likes != blank -%}
+            <span class="ugcg-slide__likes">
+              {% render 'ugc-gallery-icons', icon: 'heart', size: 24 %}
+              <span>{{ bs.likes | escape }}</span>
+            </span>
+          {%- endif -%}
+        </div>
+      </div>
+
+      {%- if plist.count > 0 -%}
+        <div class="ugcg-pcarousel" data-ugcg-pcarousel>
+          {%- if plist.count > 1 -%}
+            <button type="button" class="ugcg-pcarousel__nav" data-ugcg-pnav="prev" aria-label="Previous product">
+              {% render 'ugc-gallery-icons', icon: 'chevron-left', size: 14 %}
+            </button>
+          {%- endif -%}
+          <div class="ugcg-pcarousel__track" data-ugcg-ptrack>
+            {%- for p in plist -%}
+              <a class="ugcg-product" href="{{ p.url }}">
+                {%- if p.featured_image != blank -%}
+                  <img
+                    class="ugcg-product__img"
+                    src="{{ p.featured_image | image_url: width: 128 }}"
+                    width="128"
+                    height="128"
+                    loading="lazy"
+                    alt="{{ p.featured_image.alt | default: p.title | escape }}"
+                  >
+                {%- endif -%}
+                <span class="ugcg-product__text">
+                  <span class="ugcg-product__title">{{ p.title | escape }}</span>
+                  <span class="ugcg-product__price">
+                    {{ p.price | money }}
+                    {%- if p.compare_at_price > p.price -%}
+                      <s class="ugcg-product__compare">{{ p.compare_at_price | money }}</s>
+                    {%- endif -%}
+                  </span>
+                </span>
+                <span class="ugcg-product__divider" aria-hidden="true"></span>
+                <span class="ugcg-product__cta">{{ cta_label | escape }}</span>
+              </a>
+            {%- endfor -%}
+          </div>
+          {%- if plist.count > 1 -%}
+            <button type="button" class="ugcg-pcarousel__nav" data-ugcg-pnav="next" aria-label="Next product">
+              {% render 'ugc-gallery-icons', icon: 'chevron-right', size: 14 %}
+            </button>
+          {%- endif -%}
+        </div>
+      {%- elsif cta_url != blank -%}
+        <a class="ugcg-slide__cta" href="{{ cta_url }}">{{ cta_label | escape }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
