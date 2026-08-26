@@ -1,0 +1,917 @@
+/* ============================================================================
+   UGC VIDEO GALLERY — styles
+   ----------------------------------------------------------------------------
+   Mobile-first. No dependencies. Everything is scoped under .ugcg to avoid
+   collisions with theme styles. Custom properties are set inline by the
+   section from Theme Editor settings:
+
+     --ugcg-accent      accent color (ring, badges, buttons)
+     --ugcg-accent-2    second gradient stop
+     --ugcg-radius      card corner radius
+     --ugcg-gap         gap between cards
+     --ugcg-card-w      carousel card width / grid minimum width
+     --ugcg-pad-top / --ugcg-pad-bottom  section padding
+   ========================================================================== */
+
+.ugcg {
+  display: block;
+  padding-top: var(--ugcg-pad-top, 36px);
+  padding-bottom: var(--ugcg-pad-bottom, 36px);
+  --ugcg-text: currentColor;
+  --ugcg-ring: linear-gradient(45deg, var(--ugcg-accent, #f43f5e), var(--ugcg-accent-2, #f59e0b));
+}
+.ugcg.color-light { color: #fff; }
+.ugcg.color-dark { color: #111; }
+.ugcg--floating { padding: 0; }
+
+/* Self-sufficient container: uses the theme's page-width variables when
+   present (Horizon: --normal-page-width/--page-margin; Dawn themes get the
+   same result from their own .page-width class), with sane fallbacks. */
+.ugcg__inner {
+  max-width: var(--normal-page-width, var(--page-width, 1300px));
+  margin: 0 auto;
+  padding-inline: var(--page-margin, 16px);
+}
+@media (min-width: 750px) {
+  .ugcg__inner { padding-inline: var(--page-margin, 40px); }
+}
+
+/* ----- Header ------------------------------------------------------------ */
+.ugcg__header { margin-bottom: 1.25rem; }
+.ugcg__header--center { text-align: center; }
+.ugcg__heading {
+  margin: 0 0 0.25em;
+  font-size: clamp(1.35rem, 3.5vw, 1.9rem);
+  line-height: 1.2;
+}
+.ugcg__subheading {
+  margin: 0;
+  opacity: 0.7;
+  font-size: 0.95rem;
+}
+
+/* ----- Shared bits -------------------------------------------------------- */
+.ugcg-icon { display: inline-block; vertical-align: middle; flex: none; }
+.ugcg-verified { color: #3897f0; display: inline-flex; }
+.ugcg-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  flex: none;
+}
+.ugcg-avatar--lg { width: 38px; height: 38px; }
+
+/* ============================================================================
+   BLOCK VERSION: item wrapper
+   ----------------------------------------------------------------------------
+   blocks/_ugc-gallery-item.liquid wraps its card in a .ugcg-item element
+   (needed so ugc-gallery.js can find + relocate its hidden slide). display:
+   contents removes that wrapper's own box so .ugcg-card becomes the direct
+   flex child of .ugcg-carousel__track — same sizing/scroll-snap rules as
+   the section version, no duplicated CSS needed.
+   ========================================================================== */
+.ugcg-item { display: contents; }
+
+/* The nested-block layout column (.layout-panel-flex--column, see
+   blocks/group.liquid) aligns children with the group's own
+   horizontal-alignment setting instead of stretching them — so without an
+   explicit width, the whole gallery (and every percentage-based card width
+   inside it) shrink-wraps down to a sliver. Force it to fill the column. */
+ugc-gallery:not([data-section-id]) {
+  width: 100%;
+}
+
+/* Per-product filtering (blocks/_ugc-gallery-item.liquid): when every item
+   is filtered out for the current product, nothing renders inside the
+   carousel track — collapse the whole gallery (heading, arrows, modal
+   shell included) rather than showing an empty husk. Harmless for the
+   section too: it always has at least one card/bubble when it has blocks. */
+ugc-gallery:not(:has(.ugcg-card, .ugcg-bubble)) { display: none; }
+
+/* ============================================================================
+   CARD (grid / masonry / carousel / spotlight)
+   ========================================================================== */
+.ugcg-card {
+  position: relative;
+  border-radius: var(--ugcg-radius, 16px);
+  overflow: hidden;
+}
+.ugcg-card__trigger {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+.ugcg-card__trigger:focus-visible {
+  outline: 2px solid var(--ugcg-accent, #f43f5e);
+  outline-offset: 2px;
+  border-radius: var(--ugcg-radius, 16px);
+}
+.ugcg-card__media {
+  position: relative;
+  display: block;
+  aspect-ratio: 9 / 16;
+  border-radius: var(--ugcg-radius, 16px);
+  overflow: hidden;
+  background: #16161a;
+  transform: translateZ(0);
+}
+.ugcg-masonry .ugcg-card__media { aspect-ratio: auto; min-height: 220px; }
+.ugcg-card__poster,
+.ugcg-card__preview {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.ugcg-masonry .ugcg-card__poster { position: static; height: auto; }
+.ugcg-card__preview { opacity: 0; transition: opacity 0.35s ease; }
+.ugcg-card__preview.is-playing { opacity: 1; }
+.ugcg-card__placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.4);
+}
+.ugcg-card__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.12) 45%, rgba(0, 0, 0, 0) 65%);
+  pointer-events: none;
+}
+@media (hover: hover) {
+  .ugcg-card__media img { transition: transform 0.45s ease; }
+  .ugcg-card__trigger:hover .ugcg-card__poster { transform: scale(1.045); }
+}
+
+/* Badges + overlays */
+.ugcg-card__flag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--ugcg-ring);
+  padding: 4px 9px;
+  border-radius: 999px;
+}
+.ugcg-card__platform {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+}
+.ugcg-card__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  width: var(--ugcg-play-size, 46px);
+  height: var(--ugcg-play-size, 46px);
+  display: grid;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.42);
+  backdrop-filter: blur(4px);
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+}
+.ugcg-card__play .ugcg-icon { margin-left: 2px; }
+/* Outlined variant: transparent circle with a crisp ring + stroked triangle */
+.ugcg--play-outline .ugcg-card__play {
+  background: rgba(0, 0, 0, 0.12);
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(2px);
+}
+@media (hover: hover) {
+  .ugcg-card__trigger:hover .ugcg-card__play {
+    transform: translate(-50%, -50%) scale(1.1);
+    background: var(--ugcg-accent, #f43f5e);
+  }
+  .ugcg--play-outline .ugcg-card__trigger:hover .ugcg-card__play {
+    background: rgba(0, 0, 0, 0.12);
+    border-color: var(--ugcg-accent, #f43f5e);
+    color: var(--ugcg-accent, #f43f5e);
+  }
+}
+.ugcg-card__meta {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: #fff;
+}
+.ugcg-card__creator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+.ugcg-card__handle {
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ugcg-card__caption {
+  font-size: 0.78rem;
+  line-height: 1.35;
+  opacity: 0.92;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.ugcg-card__likes {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  opacity: 0.95;
+}
+
+/* ============================================================================
+   LAYOUT: grid
+   ========================================================================== */
+.ugcg-grid {
+  display: grid;
+  gap: var(--ugcg-gap, 14px);
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 600px) {
+  .ugcg-grid { grid-template-columns: repeat(auto-fill, minmax(min(var(--ugcg-card-w, 260px), 100%), 1fr)); }
+  .ugcg-grid .ugcg-card.is-featured { grid-column: span 2; grid-row: span 2; }
+}
+
+/* ============================================================================
+   LAYOUT: masonry (CSS columns — no JS, no deps)
+   ========================================================================== */
+.ugcg-masonry {
+  columns: 2;
+  column-gap: var(--ugcg-gap, 14px);
+}
+.ugcg-masonry .ugcg-card {
+  break-inside: avoid;
+  margin-bottom: var(--ugcg-gap, 14px);
+}
+@media (min-width: 600px) { .ugcg-masonry { columns: 3; } }
+@media (min-width: 990px) { .ugcg-masonry { columns: 4; } }
+
+/* ============================================================================
+   LAYOUT: carousel + spotlight (scroll-snap)
+   ========================================================================== */
+.ugcg-carousel { position: relative; }
+.ugcg-carousel__track {
+  display: flex;
+  justify-content: flex-start;
+  gap: var(--ugcg-gap, 14px);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 4px 2px 8px;
+}
+.ugcg-carousel__track::-webkit-scrollbar { display: none; }
+.ugcg-carousel__track:focus-visible {
+  outline: 2px solid var(--ugcg-accent, #f43f5e);
+  outline-offset: 2px;
+}
+.ugcg-carousel__track .ugcg-card {
+  flex: 0 0 min(var(--ugcg-card-w, 260px), 68vw);
+  scroll-snap-align: start;
+}
+/* Exact number of cards per view (Theme Editor settings, mobile + desktop) */
+.ugcg-carousel:not(.ugcg-carousel--spotlight) .ugcg-carousel__track .ugcg-card {
+  flex-basis: calc((100% - (var(--ugcg-per-view-m, 1.5) - 1) * var(--ugcg-gap, 14px)) / var(--ugcg-per-view-m, 1.5));
+}
+@media (min-width: 750px) {
+  .ugcg-carousel:not(.ugcg-carousel--spotlight) .ugcg-carousel__track .ugcg-card {
+    flex-basis: calc((100% - (var(--ugcg-per-view, 4) - 1) * var(--ugcg-gap, 14px)) / var(--ugcg-per-view, 4));
+  }
+}
+
+/* Spotlight: one large centered card per view */
+.ugcg-carousel--spotlight .ugcg-carousel__track {
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 50%;
+}
+.ugcg-carousel--spotlight .ugcg-carousel__track .ugcg-card {
+  flex: 0 0 min(420px, 86vw);
+  scroll-snap-align: center;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.ugcg-carousel--spotlight .ugcg-carousel__track .ugcg-card:not(.is-active) {
+  opacity: 0.45;
+  transform: scale(0.94);
+}
+.ugcg-carousel--spotlight .ugcg-carousel__track::before,
+.ugcg-carousel--spotlight .ugcg-carousel__track::after {
+  content: "";
+  flex: 0 0 calc(50% - min(210px, 43vw));
+}
+
+/* Arrows */
+.ugcg-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  display: none;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #111;
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(3px);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
+  opacity: 0.85;
+  transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+}
+@media (hover: hover) {
+  .ugcg-arrow:hover { transform: translateY(-50%) scale(1.06); opacity: 1; background: #fff; }
+}
+.ugcg-arrow[disabled] {
+  /* Hides the arrow once there's no more room to scroll in that
+     direction — including when every card already fits on screen and
+     there's nothing to scroll at all (both arrows start disabled then). */
+  display: none;
+}
+.ugcg-arrow--prev { left: -6px; }
+.ugcg-arrow--next { right: -6px; }
+@media (min-width: 750px) { .ugcg-arrow { display: grid; } }
+
+/* Block only (data-section-id is only set by sections/ugc-gallery.liquid,
+   not the block version): the block sits in a narrower column (e.g.
+   nested in product details), so the negative-offset arrow positioning
+   that works in the full-width section overlaps the first/last card
+   here. Reserve a dedicated gutter in the track instead. */
+@media (min-width: 750px) {
+  ugc-gallery:not([data-section-id]) .ugcg-carousel__track {
+    padding-inline: 38px;
+  }
+  ugc-gallery:not([data-section-id]) .ugcg-arrow--prev { left: 0; }
+  ugc-gallery:not([data-section-id]) .ugcg-arrow--next { right: 0; }
+}
+
+/* ============================================================================
+   LAYOUT: stories (inline bubble row)
+   ========================================================================== */
+.ugcg-stories {
+  display: flex;
+  gap: calc(var(--ugcg-gap, 14px) + 4px);
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 6px 2px 10px;
+}
+.ugcg-stories::-webkit-scrollbar { display: none; }
+
+.ugcg-bubble {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  flex: none;
+  width: 84px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  color: inherit;
+  scroll-snap-align: start;
+  -webkit-tap-highlight-color: transparent;
+}
+.ugcg-bubble:focus-visible { outline: 2px solid var(--ugcg-accent, #f43f5e); outline-offset: 3px; border-radius: 12px; }
+.ugcg-bubble__ring {
+  display: block;
+  padding: 3px;
+  border-radius: 50%;
+  background: var(--ugcg-ring);
+}
+.ugcg-bubble__media {
+  position: relative;
+  display: block;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2.5px solid #fff;
+  background: #16161a;
+}
+.ugcg-bubble__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.ugcg-bubble__placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.5);
+}
+.ugcg-bubble__play {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--ugcg-accent, #f43f5e);
+  border: 1.5px solid #fff;
+}
+.ugcg-bubble__play .ugcg-icon { margin-left: 1px; }
+.ugcg-bubble__name {
+  max-width: 84px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+@media (hover: hover) {
+  .ugcg-bubble__ring { transition: transform 0.2s ease; }
+  .ugcg-bubble:hover .ugcg-bubble__ring { transform: scale(1.06); }
+}
+
+/* ============================================================================
+   LAYOUT: floating stories row (fixed, dismissible)
+   ========================================================================== */
+.ugcg-floating {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 40;
+  padding: 10px 12px 6px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.16);
+  color: #111;
+}
+.ugcg-floating.is-dismissed { display: none; }
+.ugcg-floating__row {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.ugcg-floating__row::-webkit-scrollbar { display: none; }
+.ugcg-floating .ugcg-bubble { width: 64px; }
+.ugcg-floating .ugcg-bubble__media { width: 54px; height: 54px; }
+.ugcg-floating .ugcg-bubble__name { max-width: 64px; font-size: 0.65rem; }
+.ugcg-floating__dismiss {
+  position: absolute;
+  top: -8px;
+  right: -4px;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.65);
+}
+@media (min-width: 750px) {
+  .ugcg-floating { left: 20px; right: auto; max-width: 420px; }
+}
+
+/* ============================================================================
+   FULLSCREEN MODAL — TikTok-style vertical feed
+   ========================================================================== */
+.ugcg-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  /* Color + opacity come from the "Background color/opacity" settings */
+  background: var(--ugcg-modal-bg, #000);
+  color: #fff;
+}
+.ugcg-modal[hidden] { display: none; }
+
+.ugcg-modal__close {
+  position: absolute;
+  top: max(14px, env(safe-area-inset-top));
+  right: 14px;
+  z-index: 20;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(6px);
+}
+.ugcg-modal__close:hover { background: rgba(255, 255, 255, 0.28); }
+
+/* Global mute toggle — top-right, beside the close button */
+.ugcg-modal__mute {
+  position: absolute;
+  top: max(14px, env(safe-area-inset-top));
+  right: 66px;
+  z-index: 20;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(6px);
+}
+.ugcg-modal__mute:hover { background: rgba(255, 255, 255, 0.28); }
+.ugcg-modal__mute .ugcg-mute-on { display: none; }
+.ugcg-modal__mute[aria-pressed="true"] .ugcg-mute-on { display: block; }
+.ugcg-modal__mute[aria-pressed="true"] .ugcg-mute-off { display: none; }
+
+.ugcg-modal__nav {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  z-index: 20;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  transform: translateY(-50%);
+}
+@media (min-width: 750px) { .ugcg-modal__nav { display: flex; } }
+.ugcg-modal__navbtn {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+}
+.ugcg-modal__navbtn:hover { background: rgba(255, 255, 255, 0.28); }
+.ugcg-modal__navbtn .ugcg-icon { transform: rotate(90deg); }
+
+.ugcg-modal__track {
+  height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.ugcg-modal__track::-webkit-scrollbar { display: none; }
+.ugcg-modal__track:focus { outline: none; }
+
+.ugcg-slide {
+  height: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+.ugcg-slide__stage {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  max-width: min(calc(100dvh * 9 / 16), 100vw);
+  margin: 0 auto;
+  overflow: hidden;
+  background: #0a0a0a;
+  border-radius: var(--ugcg-modal-radius, 16px);
+}
+@media (min-width: 750px) {
+  .ugcg-slide__stage { height: calc(100% - 48px); }
+}
+.ugcg-slide__video,
+.ugcg-slide__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* "Show full video" fit: the video gets breathing room (inset) instead of
+   filling the stage edge-to-edge with a hard-edged black letterbox — it
+   stays rounded and the gap around it is transparent, so the modal's own
+   background color/opacity shows through instead of solid black bars.
+   (Padding on the stage itself has no effect here since these children are
+   absolutely positioned — the gap has to come from the inset value.) */
+.ugcg-modal--contain .ugcg-slide__stage {
+  background: transparent;
+}
+.ugcg-modal--contain .ugcg-slide__video,
+.ugcg-modal--contain .ugcg-slide__image,
+.ugcg-modal--contain .ugcg-slide__playpause {
+  top: 12px;
+  right: 12px;
+  bottom: 12px;
+  left: 12px;
+  width: calc(100% - 24px);
+  height: calc(100% - 24px);
+}
+@media (min-width: 750px) {
+  .ugcg-modal--contain .ugcg-slide__video,
+  .ugcg-modal--contain .ugcg-slide__image,
+  .ugcg-modal--contain .ugcg-slide__playpause {
+    top: 24px;
+    right: 24px;
+    bottom: 24px;
+    left: 24px;
+    width: calc(100% - 48px);
+    height: calc(100% - 48px);
+  }
+}
+.ugcg-modal--contain .ugcg-slide__video,
+.ugcg-modal--contain .ugcg-slide__image {
+  object-fit: contain;
+  border-radius: var(--ugcg-modal-radius, 16px);
+  background: transparent;
+}
+.ugcg-slide__playpause {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: #fff;
+  -webkit-tap-highlight-color: transparent;
+}
+.ugcg-slide__playpause .ugcg-icon {
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.5));
+}
+.ugcg-slide.is-paused .ugcg-slide__playpause .ugcg-icon { opacity: 1; transform: scale(1); }
+
+.ugcg-slide__overlay {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  padding: 16px 14px max(16px, env(safe-area-inset-bottom));
+  /* Gradient darkness driven by the "Overlay darkness" setting */
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, var(--ugcg-overlay-a, 0.5)),
+    rgba(0, 0, 0, calc(var(--ugcg-overlay-a, 0.5) * 0.35)) 65%,
+    transparent
+  );
+  pointer-events: none;
+}
+.ugcg-slide__overlay a,
+.ugcg-slide__overlay button { pointer-events: auto; }
+
+/* "Show full video" fit: the video itself is inset from the stage edges
+   (see .ugcg-modal--contain rules above) — the creator name/caption and
+   product carousel need to sit on the same inset so they read as part of
+   the video (TikTok-style, bottom-left) instead of overhanging into the
+   transparent gap around it. */
+.ugcg-modal--contain .ugcg-slide__overlay {
+  right: 12px;
+  bottom: 12px;
+  left: 12px;
+  border-radius: 0 0 var(--ugcg-modal-radius, 16px) var(--ugcg-modal-radius, 16px);
+}
+@media (min-width: 750px) {
+  .ugcg-modal--contain .ugcg-slide__overlay { right: 24px; bottom: 24px; left: 24px; }
+}
+
+/* Top row of the overlay: creator/caption on the left, likes on the right.
+   The product card carousel sits below, spanning the full width. */
+.ugcg-slide__body {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.ugcg-slide__info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.ugcg-slide__creator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.ugcg-slide__handle {
+  font-weight: 700;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ugcg-slide__platform { display: inline-flex; opacity: 0.85; }
+.ugcg-slide__caption {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.4;
+  opacity: 0.94;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   Product pill carousel inside the modal (LyveCom-style).
+   One pill per view; scroll-snap swipe + small arrows between products.
+   Background/opacity/text colors come from Theme Editor settings via
+   --ugcg-pc-bg / --ugcg-pc-text.
+   -------------------------------------------------------------------------- */
+.ugcg-pcarousel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.ugcg-pcarousel__track {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  border-radius: 16px;
+}
+.ugcg-pcarousel__track::-webkit-scrollbar { display: none; }
+.ugcg-pcarousel__nav {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(4px);
+}
+.ugcg-pcarousel__nav:hover { background: rgba(255, 255, 255, 0.3); }
+
+.ugcg-product {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: var(--ugcg-pc-bg, rgba(28, 28, 30, 0.85));
+  color: var(--ugcg-pc-text, #fff);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+.ugcg-product__img {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  object-fit: contain;
+  background: #fff;
+  padding: 3px;
+  flex: none;
+}
+.ugcg-product__text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.ugcg-product__title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.ugcg-product__price { font-size: 0.8rem; opacity: 0.8; display: flex; gap: 6px; align-items: baseline; }
+.ugcg-product__compare { opacity: 0.55; }
+.ugcg-product__divider {
+  flex: none;
+  width: 1px;
+  height: 26px;
+  background: currentColor;
+  opacity: 0.25;
+}
+.ugcg-product__cta {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--ugcg-accent, #f43f5e);
+  padding: 9px 15px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+.ugcg-slide__cta {
+  align-self: flex-start;
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--ugcg-accent, #f43f5e);
+  padding: 11px 20px;
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+/* Right rail: likes */
+.ugcg-slide__rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 4px;
+}
+.ugcg-slide__likes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+/* Body lock while the modal is open */
+body.ugcg-modal-open { overflow: hidden; }
+
+/* ----- Reduced motion ----------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .ugcg *,
+  .ugcg *::before,
+  .ugcg *::after { transition: none !important; animation: none !important; }
+  .ugcg-carousel__track,
+  .ugcg-modal__track { scroll-behavior: auto !important; }
+}
