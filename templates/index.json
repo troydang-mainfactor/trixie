@@ -56,7 +56,7 @@
             "text": "",
             "button_label": "Shop Now",
             "link": "",
-            "vertical": "center",
+            "vertical": "bottom",
             "horizontal": "left"
           }
         },
@@ -68,7 +68,7 @@
             "text": "",
             "button_label": "Shop Now",
             "link": "",
-            "vertical": "center",
+            "vertical": "bottom",
             "horizontal": "left"
           }
         },
@@ -80,7 +80,7 @@
             "text": "",
             "button_label": "Shop Now",
             "link": "",
-            "vertical": "center",
+            "vertical": "bottom",
             "horizontal": "left"
           }
         },
