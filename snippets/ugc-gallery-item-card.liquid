@@ -1,0 +1,101 @@
+{% doc %}
+  Renders the inline card for one UGC Video Gallery block item. Used only
+  by blocks/_ugc-gallery-item.liquid.
+  @param {block} block - the _ugc-gallery-item block
+  @example
+  {% render 'ugc-gallery-item-card', block: block %}
+{% enddoc %}
+
+{%- liquid
+  assign bs = block.settings
+  assign has_video = false
+  if bs.video != blank
+    assign has_video = true
+  endif
+
+  assign poster = blank
+  if has_video
+    assign poster = bs.video.preview_image
+  elsif bs.image != blank
+    assign poster = bs.image
+  endif
+
+  assign creator = bs.username | default: 'creator'
+  assign aria_label = 'Open video by ' | append: creator
+  if has_video == false
+    assign aria_label = 'Open post by ' | append: creator
+  endif
+-%}
+
+<div class="ugcg-card{% if bs.featured %} is-featured{% endif %}" {{ block.shopify_attributes }}>
+  <button type="button" class="ugcg-card__trigger" data-ugcg-open aria-label="{{ aria_label | escape }}">
+    <span class="ugcg-card__media">
+      {%- if poster != blank -%}
+        <img
+          class="ugcg-card__poster"
+          src="{{ poster | image_url: width: 480 }}"
+          srcset="{{ poster | image_url: width: 320 }} 320w, {{ poster | image_url: width: 480 }} 480w, {{ poster | image_url: width: 720 }} 720w"
+          sizes="(min-width: 750px) 220px, 60vw"
+          width="{{ poster.width }}"
+          height="{{ poster.height }}"
+          loading="lazy"
+          alt="{{ bs.caption | default: creator | escape }}"
+        >
+      {%- else -%}
+        <span class="ugcg-card__placeholder">{% render 'ugc-gallery-icons', icon: 'play', size: 36 %}</span>
+      {%- endif -%}
+
+      {%- if has_video -%}
+        <video
+          class="ugcg-card__preview"
+          muted
+          playsinline
+          loop
+          preload="none"
+          tabindex="-1"
+          aria-hidden="true"
+          {%- for source in bs.video.sources -%}
+            {%- if source.format == 'mp4' %} data-preview-src="{{ source.url }}"{% break %}{% endif -%}
+          {%- endfor -%}
+        ></video>
+      {%- endif -%}
+
+      <span class="ugcg-card__scrim" aria-hidden="true"></span>
+
+      {%- if bs.featured -%}
+        <span class="ugcg-card__flag">Featured</span>
+      {%- endif -%}
+
+      {%- if has_video -%}
+        <span class="ugcg-card__play" aria-hidden="true">{% render 'ugc-gallery-icons', icon: 'play', size: 18 %}</span>
+      {%- endif -%}
+
+      <span class="ugcg-card__meta">
+        {%- if bs.username != blank -%}
+          <span class="ugcg-card__creator">
+            {%- if bs.avatar != blank -%}
+              <img
+                class="ugcg-avatar"
+                src="{{ bs.avatar | image_url: width: 64 }}"
+                width="64"
+                height="64"
+                loading="lazy"
+                alt=""
+              >
+            {%- endif -%}
+            <span class="ugcg-card__handle">{{ bs.username | escape }}</span>
+            {%- if bs.verified -%}
+              <span class="ugcg-verified">{% render 'ugc-gallery-icons', icon: 'verified', size: 13 %}</span>
+            {%- endif -%}
+          </span>
+        {%- endif -%}
+        {%- if bs.caption != blank -%}
+          <span class="ugcg-card__caption">{{ bs.caption | escape }}</span>
+        {%- endif -%}
+        {%- if bs.likes != blank -%}
+          <span class="ugcg-card__likes">{% render 'ugc-gallery-icons', icon: 'heart', size: 13 %} {{ bs.likes | escape }}</span>
+        {%- endif -%}
+      </span>
+    </span>
+  </button>
+</div>
