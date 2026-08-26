@@ -119,14 +119,9 @@
                   },
                   "blocks": {}
                 },
-                "judge_me_reviews_preview_badge_hJ36KL": {
-                  "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-                  "settings": {}
-                },
                 "text_xrnftG": {
                   "type": "text",
                   "name": "t:names.product_title",
-                  "disabled": true,
                   "settings": {
                     "text": "<h1>{{ closest.product.title }}</h1>",
                     "split_on_dash": true,
@@ -151,109 +146,39 @@
                   },
                   "blocks": {}
                 },
-                "group_gHXAzz": {
-                  "type": "group",
-                  "name": "t:names.group",
+                "judge_me_reviews_preview_badge_hJ36KL": {
+                  "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+                  "settings": {}
+                },
+                "price_x8AeA7": {
+                  "type": "price",
+                  "name": "t:names.product_price",
                   "settings": {
-                    "content_direction": "row",
-                    "vertical_on_mobile": true,
-                    "horizontal_alignment": "space-between",
-                    "vertical_alignment": "flex-start",
-                    "align_baseline": false,
-                    "horizontal_alignment_flex_direction_column": "flex-start",
-                    "vertical_alignment_flex_direction_column": "center",
-                    "gap": 12,
-                    "show_above_media_mobile": false,
-                    "width": "fill",
-                    "custom_width": 100,
-                    "width_mobile": "fill",
-                    "custom_width_mobile": 100,
-                    "height": "fit",
-                    "custom_height": 100,
-                    "background_media": "none",
-                    "background_color": "",
-                    "video_position": "cover",
-                    "background_image_position": "cover",
-                    "toggle_overlay": false,
-                    "overlay_color": "#00000026",
-                    "overlay_style": "solid",
-                    "gradient_direction": "to top",
-                    "border": "none",
-                    "border_width": 1,
-                    "border_opacity": 100,
-                    "border_color": "",
-                    "border_radius": 0,
-                    "link": "",
-                    "open_in_new_tab": false,
-                    "placeholder": "",
+                    "show_sale_price_first": true,
+                    "show_installments": false,
+                    "show_tax_info": false,
+                    "type_preset": "custom",
+                    "width": "fit-content",
+                    "alignment": "right",
+                    "font": "var(--font-heading--family)",
+                    "font_size": "0.875rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "text_color": "",
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
                     "padding-inline-end": 0
                   },
-                  "blocks": {
-                    "text_priaQM": {
-                      "type": "text",
-                      "name": "t:names.product_title",
-                      "settings": {
-                        "text": "<h1>{{ closest.product.title }}</h1>",
-                        "split_on_dash": true,
-                        "width": "100%",
-                        "max_width": "none",
-                        "alignment": "left",
-                        "type_preset": "custom",
-                        "font": "var(--font-heading--family)",
-                        "font_size": "2rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "uppercase",
-                        "wrap": "pretty",
-                        "text_color": "",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    },
-                    "price_BQfpjY": {
-                      "type": "price",
-                      "name": "t:names.product_price",
-                      "settings": {
-                        "show_sale_price_first": true,
-                        "show_installments": false,
-                        "show_tax_info": false,
-                        "type_preset": "custom",
-                        "width": "fit-content",
-                        "alignment": "right",
-                        "font": "var(--font-heading--family)",
-                        "font_size": "0.875rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "text_color": "",
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "text_priaQM",
-                    "price_BQfpjY"
-                  ]
+                  "blocks": {}
                 }
               },
               "block_order": [
                 "product_tag_badges_FLieEh",
-                "judge_me_reviews_preview_badge_hJ36KL",
                 "text_xrnftG",
-                "group_gHXAzz"
+                "judge_me_reviews_preview_badge_hJ36KL",
+                "price_x8AeA7"
               ]
             },
             "group_WycydB": {
