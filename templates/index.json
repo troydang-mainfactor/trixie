@@ -105,9 +105,9 @@
       ],
       "name": "Premium Image Grid",
       "settings": {
-        "columns": 3,
+        "columns": 4,
         "rows": 1,
-        "mobile_columns": "1",
+        "mobile_columns": "2",
         "aspect_ratio": "portrait",
         "grid_gap": 0,
         "corner_radius": 0,
@@ -306,6 +306,33 @@
                   },
                   "blocks": {}
                 },
+                "text_yJtPyy": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>{{ closest.product.metafields.custom.subtitle.value }}</p>",
+                    "split_on_dash": false,
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "text_color": "",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
                 "judge_me_reviews_preview_badge_fFdT7z": {
                   "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
                   "settings": {}
@@ -313,6 +340,7 @@
               },
               "block_order": [
                 "product_title_RT4Etr",
+                "text_yJtPyy",
                 "judge_me_reviews_preview_badge_fFdT7z"
               ]
             },
@@ -588,11 +616,11 @@
         "overlay_opacity": 50,
         "show_product_card": true,
         "cta_label": "Buy now",
-        "product_card_bg": "#1C1C1E",
+        "product_card_bg": "#1c1c1e",
         "product_card_opacity": 85,
-        "product_card_text": "#FFFFFF",
-        "accent_color": "#F43F5E",
-        "accent_color_2": "#F59E0B",
+        "product_card_text": "#ffffff",
+        "accent_color": "#f43f5e",
+        "accent_color_2": "#f59e0b",
         "color_scheme": "auto",
         "padding_top": 36,
         "padding_bottom": 36,
