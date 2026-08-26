@@ -170,7 +170,7 @@
       },
       "14739163758312353500": {
         "type": "shopify://apps/vimotia-shoppable-videos-ugc/blocks/vimotia-embeded-block/280c56fc-729f-4789-a38e-96c81f569369",
-        "disabled": true,
+        "disabled": false,
         "settings": {}
       }
     },
