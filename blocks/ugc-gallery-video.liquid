@@ -1,0 +1,372 @@
+{% doc %}
+  UGC Video Gallery — theme block version of sections/ugc-gallery.liquid,
+  for nesting inside another block's "blocks" list (e.g. product details).
+
+  A horizontal carousel only — the section's grid/masonry/stories/floating
+  layouts rely on section.blocks array access (reorder, render each block
+  twice — once as a card, once as a modal slide) that nested theme blocks
+  don't support. Add "UGC item" blocks inside this one from the theme
+  editor to add videos.
+{% enddoc %}
+
+{{ 'ugc-gallery.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'ugc-gallery.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign pc_alpha = block.settings.product_card_opacity | default: 85 | divided_by: 100.0
+  assign overlay_alpha = block.settings.overlay_opacity | default: 50 | divided_by: 100.0
+  assign modal_alpha = block.settings.modal_bg_opacity | default: 100 | divided_by: 100.0
+-%}
+
+<ugc-gallery
+  class="ugcg ugcg--carousel ugcg--play-{{ block.settings.play_style }} color-{{ block.settings.color_scheme }}"
+  {% if block.settings.preview_autoplay %}data-preview-autoplay{% endif %}
+  style="
+    --ugcg-accent: {{ block.settings.accent_color }};
+    --ugcg-accent-2: {{ block.settings.accent_color_2 }};
+    --ugcg-radius: {{ block.settings.card_radius }}px;
+    --ugcg-gap: {{ block.settings.gap }}px;
+    --ugcg-card-w: {{ block.settings.card_width }}px;
+    --ugcg-per-view: {{ block.settings.cards_per_view | default: 4 }};
+    --ugcg-per-view-m: {{ block.settings.cards_per_view_mobile | default: 1.5 }};
+    --ugcg-modal-bg: {{ block.settings.modal_bg | default: '#000000' | color_modify: 'alpha', modal_alpha }};
+    --ugcg-modal-radius: {{ block.settings.modal_radius | default: 16 }}px;
+    --ugcg-play-size: {{ block.settings.play_size | default: 40 }}px;
+    --ugcg-overlay-a: {{ overlay_alpha }};
+    --ugcg-pc-bg: {{ block.settings.product_card_bg | default: '#1C1C1E' | color_modify: 'alpha', pc_alpha }};
+    --ugcg-pc-text: {{ block.settings.product_card_text | default: '#FFFFFF' }};
+    --ugcg-pad-top: {{ block.settings['padding-block-start'] | default: 0 }}px;
+    --ugcg-pad-bottom: {{ block.settings['padding-block-end'] | default: 0 }}px;
+  "
+  {{ block.shopify_attributes }}
+>
+  <div class="ugcg__inner">
+    {%- if block.settings.heading != blank or block.settings.subheading != blank -%}
+      <header class="ugcg__header ugcg__header--{{ block.settings.heading_alignment }}">
+        {%- if block.settings.heading != blank -%}
+          <h2 class="ugcg__heading">{{ block.settings.heading | escape }}</h2>
+        {%- endif -%}
+        {%- if block.settings.subheading != blank -%}
+          <p class="ugcg__subheading">{{ block.settings.subheading | escape }}</p>
+        {%- endif -%}
+      </header>
+    {%- endif -%}
+
+    <div class="ugcg-carousel">
+      <button type="button" class="ugcg-arrow ugcg-arrow--prev" data-ugcg-arrow="prev" aria-label="Previous videos">
+        {% render 'ugc-gallery-icons', icon: 'chevron-left', size: 16 %}
+      </button>
+      <div
+        class="ugcg-carousel__track"
+        data-ugcg-scroller
+        tabindex="0"
+        role="list"
+        aria-label="{{ block.settings.heading | default: 'Social videos' | escape }}"
+      >
+        {% content_for 'blocks' %}
+      </div>
+      <button type="button" class="ugcg-arrow ugcg-arrow--next" data-ugcg-arrow="next" aria-label="Next videos">
+        {% render 'ugc-gallery-icons', icon: 'chevron-right', size: 16 %}
+      </button>
+    </div>
+  </div>
+
+  <div
+    class="ugcg-modal ugcg-modal--{{ block.settings.modal_video_fit | default: 'contain' }}"
+    data-ugcg-modal
+    hidden
+    role="dialog"
+    aria-modal="true"
+    aria-label="{{ block.settings.heading | default: 'Social videos' | escape }}"
+  >
+    <button type="button" class="ugcg-modal__close" data-ugcg-close aria-label="Close">
+      {% render 'ugc-gallery-icons', icon: 'close', size: 20 %}
+    </button>
+    <button type="button" class="ugcg-modal__mute" data-ugcg-mute aria-label="Unmute video" aria-pressed="false">
+      <span class="ugcg-mute-off">{% render 'ugc-gallery-icons', icon: 'volume-off', size: 20 %}</span>
+      <span class="ugcg-mute-on">{% render 'ugc-gallery-icons', icon: 'volume-on', size: 20 %}</span>
+    </button>
+    <div class="ugcg-modal__nav" aria-hidden="true">
+      <button type="button" class="ugcg-modal__navbtn" data-ugcg-nav="prev" tabindex="-1" aria-label="Previous">
+        {% render 'ugc-gallery-icons', icon: 'chevron-left', size: 18 %}
+      </button>
+      <button type="button" class="ugcg-modal__navbtn" data-ugcg-nav="next" tabindex="-1" aria-label="Next">
+        {% render 'ugc-gallery-icons', icon: 'chevron-right', size: 18 %}
+      </button>
+    </div>
+    <div class="ugcg-modal__track" data-ugcg-track tabindex="0"></div>
+  </div>
+</ugc-gallery>
+
+{% schema %}
+{
+  "name": "UGC Video Gallery",
+  "tag": null,
+  "blocks": [
+    {
+      "type": "_ugc-gallery-item"
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "As seen on social"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Tap any video to shop the look."
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "cards_per_view",
+      "label": "Videos per view (desktop)",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "cards_per_view_mobile",
+      "label": "Videos per view (mobile)",
+      "info": "Half steps leave a peek of the next video.",
+      "min": 1,
+      "max": 4,
+      "step": 0.5,
+      "default": 1.5
+    },
+    {
+      "type": "range",
+      "id": "card_width",
+      "label": "Card width",
+      "min": 140,
+      "max": 320,
+      "step": 10,
+      "unit": "px",
+      "default": 200
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Spacing between cards",
+      "min": 4,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card corner radius",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Play button"
+    },
+    {
+      "type": "select",
+      "id": "play_style",
+      "label": "Play button style",
+      "options": [
+        { "value": "outline", "label": "Outlined" },
+        { "value": "solid", "label": "Solid" }
+      ],
+      "default": "outline"
+    },
+    {
+      "type": "range",
+      "id": "play_size",
+      "label": "Play button size",
+      "min": 32,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "checkbox",
+      "id": "preview_autoplay",
+      "label": "Inline video previews",
+      "info": "Plays one muted preview at a time while on screen. Uses more bandwidth — leave off for best performance.",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Fullscreen view"
+    },
+    {
+      "type": "color",
+      "id": "modal_bg",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "modal_bg_opacity",
+      "label": "Background opacity",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "modal_radius",
+      "label": "Video corner radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "modal_video_fit",
+      "label": "Video fit",
+      "options": [
+        { "value": "contain", "label": "Show full video (no cropping)" },
+        { "value": "cover", "label": "Fill screen (may crop)" }
+      ],
+      "default": "contain"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay darkness",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Shopping"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_card",
+      "label": "Show product cards in fullscreen view",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Default button label",
+      "default": "Shop now"
+    },
+    {
+      "type": "color",
+      "id": "product_card_bg",
+      "label": "Product card background",
+      "default": "#1C1C1E"
+    },
+    {
+      "type": "range",
+      "id": "product_card_opacity",
+      "label": "Product card opacity",
+      "min": 30,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 85
+    },
+    {
+      "type": "color",
+      "id": "product_card_text",
+      "label": "Product card text",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#F43F5E"
+    },
+    {
+      "type": "color",
+      "id": "accent_color_2",
+      "label": "Accent gradient color",
+      "default": "#F59E0B"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Text color",
+      "options": [
+        { "value": "auto", "label": "Inherit from theme" },
+        { "value": "light", "label": "Light (for dark backgrounds)" },
+        { "value": "dark", "label": "Dark (for light backgrounds)" }
+      ],
+      "default": "auto"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    }
+  ],
+  "presets": [
+    {
+      "name": "UGC Video Gallery",
+      "blocks": [
+        { "type": "_ugc-gallery-item" },
+        { "type": "_ugc-gallery-item" },
+        { "type": "_ugc-gallery-item" }
+      ]
+    }
+  ]
+}
+{% endschema %}
