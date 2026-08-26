@@ -1,0 +1,197 @@
+{%- comment -%}
+  ------------------------------------------------------------------------------
+  UGC Gallery — card / story bubble
+  ------------------------------------------------------------------------------
+  Renders one gallery item in the inline layout. Two visual variants:
+
+    - "bubble" : circular story avatar with gradient ring
+                 (used by "stories" and "floating" layouts)
+    - "card"   : 9:16 media tile with creator/caption/likes overlays
+                 (used by grid, masonry, carousel, spotlight)
+
+  Clicking either variant opens the fullscreen modal at this item's index.
+  Media in the card is a lazy-loaded poster image only — the <video> element
+  lives in the modal slide (see ugc-gallery-slide.liquid) so the inline page
+  never downloads video data unless "Inline video previews" is enabled.
+
+  Accepts:
+    - block   {Block}   the section block
+    - index   {Number}  display index (after "featured first" ordering)
+    - layout  {String}  grid | masonry | carousel | spotlight | stories | floating
+    - sset {Object} section.settings
+  ------------------------------------------------------------------------------
+{%- endcomment -%}
+
+{%- liquid
+  assign bs = block.settings
+  assign has_video = false
+  if bs.video != blank
+    assign has_video = true
+  endif
+
+  comment
+    Poster image: video preview image, or the fallback image.
+  endcomment
+  assign poster = blank
+  if has_video
+    assign poster = bs.video.preview_image
+  elsif bs.image != blank
+    assign poster = bs.image
+  endif
+
+  comment
+    Play button icon follows the section's "Play button style" setting.
+  endcomment
+  assign play_icon = 'play'
+  if sset.play_style == 'outline'
+    assign play_icon = 'play-outline'
+  endif
+  assign play_icon_size = sset.play_size | default: 46 | times: 0.42 | round
+
+  assign creator = bs.username | default: 'creator'
+  assign aria_label = 'Open video by ' | append: creator
+  if has_video == false
+    assign aria_label = 'Open post by ' | append: creator
+  endif
+-%}
+
+{%- if layout == 'stories' or layout == 'floating' -%}
+
+  {%- comment -%} ---------- Story bubble variant ---------- {%- endcomment -%}
+  <button
+    type="button"
+    class="ugcg-bubble{% if bs.featured %} is-featured{% endif %}"
+    data-ugcg-open
+    data-index="{{ index }}"
+    aria-label="{{ aria_label | escape }}"
+    {{ block.shopify_attributes }}
+  >
+    <span class="ugcg-bubble__ring">
+      <span class="ugcg-bubble__media">
+        {%- if poster != blank -%}
+          <img
+            src="{{ poster | image_url: width: 180 }}"
+            srcset="{{ poster | image_url: width: 90 }} 90w, {{ poster | image_url: width: 180 }} 180w"
+            sizes="72px"
+            width="180"
+            height="180"
+            loading="lazy"
+            alt="{{ bs.caption | default: creator | escape }}"
+          >
+        {%- else -%}
+          <span class="ugcg-bubble__placeholder">{% render 'ugc-gallery-icons', icon: 'play', size: 22 %}</span>
+        {%- endif -%}
+        {%- if has_video -%}
+          <span class="ugcg-bubble__play">{% render 'ugc-gallery-icons', icon: 'play', size: 12 %}</span>
+        {%- endif -%}
+      </span>
+    </span>
+    {%- if sset.show_creator and bs.username != blank -%}
+      <span class="ugcg-bubble__name">
+        {{ bs.username | escape }}
+        {%- if bs.verified %} <span class="ugcg-verified">{% render 'ugc-gallery-icons', icon: 'verified', size: 12 %}</span>{% endif -%}
+      </span>
+    {%- endif -%}
+  </button>
+
+{%- else -%}
+
+  {%- comment -%} ---------- Card variant ---------- {%- endcomment -%}
+  <div
+    class="ugcg-card{% if bs.featured %} is-featured{% endif %}"
+    {{ block.shopify_attributes }}
+  >
+    <button
+      type="button"
+      class="ugcg-card__trigger"
+      data-ugcg-open
+      data-index="{{ index }}"
+      aria-label="{{ aria_label | escape }}"
+    >
+      <span class="ugcg-card__media">
+        {%- if poster != blank -%}
+          <img
+            class="ugcg-card__poster"
+            src="{{ poster | image_url: width: 480 }}"
+            srcset="{{ poster | image_url: width: 320 }} 320w, {{ poster | image_url: width: 480 }} 480w, {{ poster | image_url: width: 720 }} 720w"
+            sizes="(min-width: 750px) {{ sset.card_width }}px, 60vw"
+            width="{{ poster.width }}"
+            height="{{ poster.height }}"
+            loading="lazy"
+            alt="{{ bs.caption | default: creator | escape }}"
+          >
+        {%- else -%}
+          <span class="ugcg-card__placeholder">{% render 'ugc-gallery-icons', icon: 'play', size: 36 %}</span>
+        {%- endif -%}
+
+        {%- if sset.preview_autoplay and has_video -%}
+          {%- comment -%}
+            Optional muted inline preview. src is attached by JS via
+            IntersectionObserver only while the card is on screen.
+          {%- endcomment -%}
+          <video
+            class="ugcg-card__preview"
+            muted
+            playsinline
+            loop
+            preload="none"
+            tabindex="-1"
+            aria-hidden="true"
+            {%- for source in bs.video.sources -%}
+              {%- if source.format == 'mp4' %} data-preview-src="{{ source.url }}"{% break %}{% endif -%}
+            {%- endfor -%}
+          ></video>
+        {%- endif -%}
+
+        <span class="ugcg-card__scrim" aria-hidden="true"></span>
+
+        {%- if bs.featured -%}
+          <span class="ugcg-card__flag">Featured</span>
+        {%- endif -%}
+
+        {%- if sset.show_platform -%}
+          <span class="ugcg-card__platform ugcg-platform--{{ bs.platform }}">
+            {%- case bs.platform -%}
+              {%- when 'tiktok' -%}{% render 'ugc-gallery-icons', icon: 'tiktok', size: 14 %}
+              {%- when 'instagram' -%}{% render 'ugc-gallery-icons', icon: 'instagram', size: 14 %}
+              {%- when 'youtube' -%}{% render 'ugc-gallery-icons', icon: 'youtube', size: 14 %}
+              {%- else -%}{% render 'ugc-gallery-icons', icon: 'link', size: 14 %}
+            {%- endcase -%}
+          </span>
+        {%- endif -%}
+
+        {%- if has_video -%}
+          <span class="ugcg-card__play" aria-hidden="true">{% render 'ugc-gallery-icons', icon: play_icon, size: play_icon_size %}</span>
+        {%- endif -%}
+
+        <span class="ugcg-card__meta">
+          {%- if sset.show_creator and bs.username != blank -%}
+            <span class="ugcg-card__creator">
+              {%- if bs.avatar != blank -%}
+                <img
+                  class="ugcg-avatar"
+                  src="{{ bs.avatar | image_url: width: 64 }}"
+                  width="64"
+                  height="64"
+                  loading="lazy"
+                  alt=""
+                >
+              {%- endif -%}
+              <span class="ugcg-card__handle">{{ bs.username | escape }}</span>
+              {%- if bs.verified -%}
+                <span class="ugcg-verified">{% render 'ugc-gallery-icons', icon: 'verified', size: 13 %}</span>
+              {%- endif -%}
+            </span>
+          {%- endif -%}
+          {%- if sset.show_captions and bs.caption != blank -%}
+            <span class="ugcg-card__caption">{{ bs.caption | escape }}</span>
+          {%- endif -%}
+          {%- if sset.show_likes and bs.likes != blank -%}
+            <span class="ugcg-card__likes">{% render 'ugc-gallery-icons', icon: 'heart', size: 13 %} {{ bs.likes | escape }}</span>
+          {%- endif -%}
+        </span>
+      </span>
+    </button>
+  </div>
+
+{%- endif -%}
