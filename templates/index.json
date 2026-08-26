@@ -492,6 +492,116 @@
         "padding-block-end": 48
       }
     },
+    "ugc_video_gallery_t3FHPG": {
+      "type": "ugc-video-gallery",
+      "blocks": {
+        "item_GWNcGn": {
+          "type": "item",
+          "settings": {
+            "video": "shopify://files/videos/e93223f4-ec6f-449e-af50-8db146af5de3.mp4",
+            "username": "@creator",
+            "verified": false,
+            "platform": "tiktok",
+            "caption": "",
+            "likes": "",
+            "featured": false,
+            "products": [],
+            "custom_url": "",
+            "cta_label": ""
+          }
+        },
+        "item_wUE33q": {
+          "type": "item",
+          "settings": {
+            "video": "shopify://files/videos/41082d08-253e-4b3f-9cb5-bc46efc5450e.mp4",
+            "username": "@creator",
+            "verified": false,
+            "platform": "tiktok",
+            "caption": "",
+            "likes": "",
+            "featured": false,
+            "products": [],
+            "custom_url": "",
+            "cta_label": ""
+          }
+        },
+        "item_qgRMPR": {
+          "type": "item",
+          "settings": {
+            "video": "shopify://files/videos/25dca73e-00ee-4231-910b-04530c11639b.mp4",
+            "username": "@creator",
+            "verified": false,
+            "platform": "tiktok",
+            "caption": "",
+            "likes": "",
+            "featured": false,
+            "products": [],
+            "custom_url": "",
+            "cta_label": ""
+          }
+        },
+        "item_bcGDAd": {
+          "type": "item",
+          "settings": {
+            "video": "shopify://files/videos/ac73d350-e07a-475d-a414-607b51b60301.mp4",
+            "username": "@creator",
+            "verified": false,
+            "platform": "tiktok",
+            "caption": "",
+            "likes": "",
+            "featured": false,
+            "products": [],
+            "custom_url": "",
+            "cta_label": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_GWNcGn",
+        "item_wUE33q",
+        "item_qgRMPR",
+        "item_bcGDAd"
+      ],
+      "name": "UGC Video Gallery",
+      "settings": {
+        "heading": "As seen on social",
+        "subheading": "",
+        "heading_alignment": "left",
+        "layout": "carousel",
+        "max_items": 50,
+        "cards_per_view": 4,
+        "cards_per_view_mobile": 1.5,
+        "card_width": 260,
+        "gap": 14,
+        "card_radius": 16,
+        "show_creator": true,
+        "show_captions": true,
+        "show_likes": true,
+        "show_platform": true,
+        "preview_autoplay": true,
+        "play_style": "solid",
+        "play_size": 46,
+        "modal_bg": "#000000",
+        "modal_bg_opacity": 100,
+        "modal_radius": 16,
+        "modal_video_fit": "contain",
+        "overlay_opacity": 50,
+        "show_product_card": true,
+        "cta_label": "Buy now",
+        "product_card_bg": "#1C1C1E",
+        "product_card_opacity": 85,
+        "product_card_text": "#FFFFFF",
+        "accent_color": "#F43F5E",
+        "accent_color_2": "#F59E0B",
+        "color_scheme": "auto",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "show_on_home": true,
+        "show_on_product": true,
+        "show_on_collection": true,
+        "show_elsewhere": true
+      }
+    },
     "hero_3rKtch": {
       "type": "hero",
       "blocks": {
@@ -1163,6 +1273,7 @@
     "hero_jVaWmY",
     "image_grid_premium_pB9PmF",
     "product_list_fa6P9H",
+    "ugc_video_gallery_t3FHPG",
     "hero_3rKtch",
     "product_list_rEWU6T",
     "1785093859400218fe",
