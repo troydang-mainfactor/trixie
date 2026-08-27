@@ -18,12 +18,12 @@
           "type": "_announcement",
           "name": "t:names.announcement",
           "settings": {
-            "text": "Shop our latest arrivals!",
+            "text": "FREE SHIPPING ON US $70+ orders",
             "link": "shopify://collections/12-under-gifts",
-            "font": "var(--font-subheading--family)",
+            "font": "var(--font-accent--family)",
             "font_size": "0.875rem",
             "weight": "",
-            "letter_spacing": "normal",
+            "letter_spacing": "loose",
             "case": "uppercase",
             "text_color": ""
           },
