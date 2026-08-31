@@ -14,14 +14,14 @@
       "name": "t:names.hero",
       "settings": {
         "media_type_1": "image",
-        "image_1": "shopify://shop_images/Homepage-LOVEBIRDS-desktop-banner.jpg",
+        "image_1": "shopify://shop_images/Desktop-homepage-Lovebirds_01.jpg",
         "media_type_2": "image",
         "stack_media_on_mobile": false,
         "custom_mobile_media": true,
         "media_type_1_mobile": "image",
-        "image_1_mobile": "shopify://shop_images/Mobile-homepage-LOVEBIRDS.jpg",
+        "image_1_mobile": "shopify://shop_images/Mobile-homepage-Jinkx-lores.jpg",
         "media_type_2_mobile": "image",
-        "link": "",
+        "link": "shopify://collections/jinkx-monsoon-palette",
         "open_in_new_tab": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -48,59 +48,59 @@
     "image_grid_premium_pB9PmF": {
       "type": "image-grid-premium",
       "blocks": {
+        "image_RzL9hj": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Desktop-homepage-Jinkx-Shopby-Eyes.jpg",
+            "heading": "EYES",
+            "text": "",
+            "button_label": "Shop Now",
+            "link": "shopify://collections/eyes",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        },
         "image_UTteWC": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/trixie-cosmetics-01-213119-sofly-sailor.jpg",
+            "image": "shopify://shop_images/Desktop-homepage-Jinkx-Shopby-Lips.jpg",
             "heading": "LIPS",
             "text": "",
             "button_label": "Shop Now",
-            "link": "",
+            "link": "shopify://collections/lips",
             "vertical": "bottom",
-            "horizontal": "left"
+            "horizontal": "center"
           }
         },
         "image_LnNBpQ": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/TRIXIE-COSMETICS-01-213142-GoldenHour-Sailor.jpg",
+            "image": "shopify://shop_images/Desktop-homepage-Lovebirds-Shopby-Face.jpg",
             "heading": "FACE",
             "text": "",
             "button_label": "Shop Now",
-            "link": "",
+            "link": "shopify://collections/face",
             "vertical": "bottom",
-            "horizontal": "left"
-          }
-        },
-        "image_RzL9hj": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/5-TRIXIE-COSMETICS-01-214388-Lovebirds-Aseemah.jpg",
-            "heading": "EYES",
-            "text": "",
-            "button_label": "Shop Now",
-            "link": "",
-            "vertical": "bottom",
-            "horizontal": "left"
+            "horizontal": "center"
           }
         },
         "image_rL4H6N": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/priming_spray_hero_deja.jpg",
+            "image": "shopify://shop_images/Desktop-homepage-Jinkx-Shopby-Accessories.jpg",
             "heading": "TOOLS",
             "text": "",
             "button_label": "Shop Now",
-            "link": "",
+            "link": "shopify://collections/tools",
             "vertical": "bottom",
-            "horizontal": "left"
+            "horizontal": "center"
           }
         }
       },
       "block_order": [
+        "image_RzL9hj",
         "image_UTteWC",
         "image_LnNBpQ",
-        "image_RzL9hj",
         "image_rL4H6N"
       ],
       "name": "Premium Image Grid",
@@ -109,12 +109,12 @@
         "rows": 1,
         "mobile_columns": "2",
         "aspect_ratio": "portrait",
-        "grid_gap": 0,
+        "grid_gap": 12,
         "corner_radius": 0,
         "mobile_corner_radius": 0,
-        "content_padding": 32,
-        "mobile_content_padding": 18,
-        "overlay_opacity": 55,
+        "content_padding": 12,
+        "mobile_content_padding": 8,
+        "overlay_opacity": 50,
         "padding_top": 12,
         "padding_bottom": 0
       }
@@ -292,8 +292,8 @@
                     "font": "var(--font-heading--family)",
                     "font_size": "1rem",
                     "line_height": "normal",
-                    "letter_spacing": "loose",
-                    "case": "uppercase",
+                    "letter_spacing": "normal",
+                    "case": "none",
                     "wrap": "pretty",
                     "text_color": "",
                     "background": false,
