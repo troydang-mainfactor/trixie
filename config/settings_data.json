@@ -22,7 +22,7 @@
     "type_size_paragraph": "14",
     "type_line_height_paragraph": "body-normal",
     "type_font_h1": "heading",
-    "type_size_h1": "56",
+    "type_size_h1": "32",
     "type_line_height_h1": "display-loose",
     "type_letter_spacing_h1": "heading-normal",
     "type_case_h1": "none",
@@ -149,13 +149,6 @@
         "disabled": false,
         "settings": {}
       },
-      "12120936241911852800": {
-        "type": "shopify://apps/judge-me-reviews/blocks/reviews_tab/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-        "disabled": false,
-        "settings": {
-          "position": "right"
-        }
-      },
       "14060646107696862457": {
         "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
         "disabled": false,
@@ -168,25 +161,32 @@
           "widget_type": "review-widget"
         }
       },
-      "15181020662106344915": {
-        "type": "shopify://apps/judge-me-reviews/blocks/popup_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-        "disabled": false,
-        "settings": {}
-      },
       "14739163758312353500": {
         "type": "shopify://apps/vimotia-shoppable-videos-ugc/blocks/vimotia-embeded-block/280c56fc-729f-4789-a38e-96c81f569369",
         "disabled": false,
         "settings": {}
+      },
+      "15181020662106344915": {
+        "type": "shopify://apps/judge-me-reviews/blocks/popup_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": true,
+        "settings": {}
+      },
+      "12120936241911852800": {
+        "type": "shopify://apps/judge-me-reviews/blocks/reviews_tab/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": true,
+        "settings": {
+          "position": "right"
+        }
       }
     },
     "color_palette": {
-      "background": "#FFFFFF",
+      "background": "#ffffff",
       "foreground": "#000000",
       "color1": "#333333",
       "color2": "#dfdfdf",
       "color3": "#eb008b",
       "color4": "#fffdfb",
-      "color5": "#f3d9e3",
+      "color5": "#F8C0D9",
       "color6": "#fff7f8"
     }
   },

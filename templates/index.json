@@ -52,7 +52,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Desktop-homepage-Jinkx-Shopby-Eyes.jpg",
-            "heading": "EYES",
+            "heading": "Eyes",
             "text": "",
             "button_label": "Shop Now",
             "link": "shopify://collections/eyes",
@@ -64,7 +64,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Desktop-homepage-Jinkx-Shopby-Lips.jpg",
-            "heading": "LIPS",
+            "heading": "Lips",
             "text": "",
             "button_label": "Shop Now",
             "link": "shopify://collections/lips",
@@ -76,7 +76,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Desktop-homepage-Lovebirds-Shopby-Face.jpg",
-            "heading": "FACE",
+            "heading": "Face",
             "text": "",
             "button_label": "Shop Now",
             "link": "shopify://collections/face",
@@ -88,7 +88,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Desktop-homepage-Jinkx-Shopby-Accessories.jpg",
-            "heading": "TOOLS",
+            "heading": "Tools",
             "text": "",
             "button_label": "Shop Now",
             "link": "shopify://collections/tools",
