@@ -212,7 +212,7 @@
                     "font_size": "1rem",
                     "line_height": "normal",
                     "letter_spacing": "normal",
-                    "case": "uppercase",
+                    "case": "none",
                     "wrap": "pretty",
                     "text_color": "",
                     "background": false,
@@ -225,38 +225,38 @@
                   },
                   "blocks": {}
                 },
-                "judge_me_reviews_preview_badge_6kzQix": {
+                "price_Xakh6p": {
+                  "type": "price",
+                  "settings": {
+                    "show_sale_price_first": true,
+                    "show_installments": false,
+                    "show_tax_info": false,
+                    "type_preset": "h6",
+                    "width": "100%",
+                    "alignment": "center",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "text_color": "",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "judge_me_reviews_preview_badge_XMmYEm": {
                   "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
                   "settings": {}
                 }
               },
               "block_order": [
                 "product_title_PzQzPN",
-                "judge_me_reviews_preview_badge_6kzQix"
+                "price_Xakh6p",
+                "judge_me_reviews_preview_badge_XMmYEm"
               ]
-            },
-            "price_EzJzMm": {
-              "type": "price",
-              "disabled": true,
-              "settings": {
-                "show_sale_price_first": true,
-                "show_installments": false,
-                "show_tax_info": false,
-                "type_preset": "h6",
-                "width": "100%",
-                "alignment": "left",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "text_color": "",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
             },
             "combined_listings_card_ayqrHF": {
               "type": "combined-listings-card",
@@ -349,7 +349,6 @@
           "block_order": [
             "card-gallery",
             "product_card_group_trKah9",
-            "price_EzJzMm",
             "combined_listings_card_ayqrHF",
             "buy_buttons_LD7cMi"
           ]
