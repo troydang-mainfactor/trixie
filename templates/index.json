@@ -533,7 +533,9 @@
             "caption": "",
             "likes": "",
             "featured": false,
-            "products": [],
+            "products": [
+              "trixie-stix-cream-blush"
+            ],
             "custom_url": "",
             "cta_label": ""
           }
@@ -618,9 +620,9 @@
         "cta_label": "Buy now",
         "product_card_bg": "#1c1c1e",
         "product_card_opacity": 85,
-        "product_card_text": "#ffffff",
-        "accent_color": "#f43f5e",
-        "accent_color_2": "#f59e0b",
+        "product_card_text": "{{ settings.color_palette.foreground }}",
+        "accent_color": "{{ settings.color_palette.color5 }}",
+        "accent_color_2": "{{ settings.color_palette.color1 }}",
         "color_scheme": "auto",
         "padding_top": 36,
         "padding_bottom": 36,
