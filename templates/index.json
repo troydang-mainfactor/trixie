@@ -379,14 +379,13 @@
             "price_JQzVV4": {
               "type": "price",
               "name": "t:names.product_price",
-              "disabled": true,
               "settings": {
                 "show_sale_price_first": true,
                 "show_installments": false,
                 "show_tax_info": false,
-                "type_preset": "h6",
+                "type_preset": "h5",
                 "width": "100%",
-                "alignment": "left",
+                "alignment": "center",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
                 "line_height": "normal",
@@ -444,7 +443,7 @@
                 "input_border_color": "{{ settings.color_palette.foreground }}",
                 "border_width": 1,
                 "border_radius": 0,
-                "padding-block-start": 0,
+                "padding-block-start": 7,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
@@ -468,8 +467,8 @@
                   "type": "add-to-cart",
                   "static": true,
                   "settings": {
-                    "show_price": true,
-                    "open_quick_add_for_variants": false,
+                    "show_price": false,
+                    "open_quick_add_for_variants": true,
                     "style_class": "button",
                     "custom_button_background": "{{ settings.color_palette.foreground }}",
                     "custom_button_text": "{{ settings.color_palette.background }}",
