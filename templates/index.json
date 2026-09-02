@@ -503,7 +503,7 @@
       "settings": {
         "collection": "new-arrivals-and-restocks",
         "layout_type": "grid",
-        "carousel_on_mobile": false,
+        "carousel_on_mobile": true,
         "max_products": 4,
         "columns": 4,
         "mobile_columns": "2",
@@ -1022,7 +1022,7 @@
       "settings": {
         "collection": "trixie-air",
         "layout_type": "grid",
-        "carousel_on_mobile": false,
+        "carousel_on_mobile": true,
         "max_products": 4,
         "columns": 4,
         "mobile_columns": "2",
@@ -1050,7 +1050,7 @@
             "title_size_v2": 0,
             "alignment": "center",
             "instafeed_margin_top": 0,
-            "instafeed_margin_bottom": 0,
+            "instafeed_margin_bottom": 8,
             "instafeed_margin_sides": 0,
             "show_instagram_link": false,
             "link_alignment": "left",
@@ -1114,7 +1114,7 @@
             "border_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
-            "padding-inline-start": 0,
+            "padding-inline-start": 22,
             "padding-inline-end": 0
           },
           "blocks": {}
@@ -1220,9 +1220,9 @@
                 "link": "",
                 "image_ratio": "adapt",
                 "width": "custom",
-                "custom_width": 22,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
+                "custom_width": 25,
+                "width_mobile": "custom",
+                "custom_width_mobile": 51,
                 "height": "fit",
                 "border": "none",
                 "border_width": 1,
@@ -1282,7 +1282,7 @@
         "section_height": "",
         "section_height_custom": 50,
         "background_media": "none",
-        "background_color": "",
+        "background_color": "{{ settings.color_palette.color5 }}",
         "video_position": "cover",
         "background_image_position": "cover",
         "toggle_overlay": false,
@@ -1294,7 +1294,7 @@
         "border_opacity": 100,
         "border_color": "",
         "border_radius": 0,
-        "padding-block-start": 40,
+        "padding-block-start": 20,
         "padding-block-end": 40
       }
     }
