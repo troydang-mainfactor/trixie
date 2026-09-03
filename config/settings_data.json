@@ -23,12 +23,12 @@
     "type_line_height_paragraph": "body-normal",
     "type_font_h1": "heading",
     "type_size_h1": "24",
-    "type_line_height_h1": "display-loose",
+    "type_line_height_h1": "display-normal",
     "type_letter_spacing_h1": "heading-normal",
     "type_case_h1": "none",
     "type_font_h2": "heading",
     "type_size_h2": "40",
-    "type_line_height_h2": "display-loose",
+    "type_line_height_h2": "display-normal",
     "type_letter_spacing_h2": "heading-normal",
     "type_case_h2": "none",
     "type_font_h3": "heading",
@@ -188,7 +188,7 @@
       "color3": "#eb008b",
       "color4": "#fffdfb",
       "color5": "#F8C0D9",
-      "color6": "#fff7f8"
+      "color6": "#F392BD"
     }
   },
   "presets": {
