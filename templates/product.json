@@ -133,7 +133,7 @@
                     "font_size": "2rem",
                     "line_height": "normal",
                     "letter_spacing": "normal",
-                    "case": "uppercase",
+                    "case": "none",
                     "wrap": "pretty",
                     "text_color": "",
                     "background": false,
@@ -589,7 +589,7 @@
         "text_MxFkLT": {
           "type": "text",
           "settings": {
-            "text": "<p>We make things that work better and last longer.</p>",
+            "text": "<p>Tested on drag queens, not animals</p>",
             "split_on_dash": false,
             "width": "fit-content",
             "max_width": "normal",
@@ -628,26 +628,28 @@
     "pdp_description_3gHf3A": {
       "type": "pdp-description",
       "blocks": {
-        "stat_fgHTpB": {
-          "type": "stat",
+        "accordion_cbQtPE": {
+          "type": "accordion",
           "settings": {
+            "title": "The Tea",
             "source": "custom",
-            "number": "100%",
-            "description": "<p>CUSTOMER SATISFACTION</p>",
-            "number_metafield": "",
-            "description_metafield": "",
-            "show_divider": true
+            "content": "<p>Up to 8 Hours of Hydration<br/>Up to 8 Hour Longwear<br/>Sweetened with stevia</p>",
+            "content_metafield": "",
+            "link": "",
+            "link_text": "Learn more",
+            "open_by_default": true
           }
         },
-        "stat_zLX4Ub": {
-          "type": "stat",
+        "accordion_QecCxx": {
+          "type": "accordion",
           "settings": {
+            "title": "All-Star Ingredients",
             "source": "custom",
-            "number": "100%",
-            "description": "<p>CRUELTY FREE</p>",
-            "number_metafield": "",
-            "description_metafield": "",
-            "show_divider": true
+            "content": "<p><strong>Glycerin</strong>, <strong>Triple Hyaluronic Acid Serum</strong>, and <strong>Peptides</strong> for up to 8 hours of hydration<br/><br/>Sweetened with <strong>Stevia</strong><br/></p>",
+            "content_metafield": "",
+            "link": "",
+            "link_text": "Learn more",
+            "open_by_default": true
           }
         },
         "accordion_tD4CbX": {
@@ -676,20 +678,21 @@
         }
       },
       "block_order": [
-        "stat_fgHTpB",
-        "stat_zLX4Ub",
+        "accordion_cbQtPE",
+        "accordion_QecCxx",
         "accordion_tD4CbX",
         "accordion_HfnxcM"
       ],
+      "custom_css": [],
       "name": "Product info highlights",
       "settings": {
         "image_source": "featured",
-        "custom_image": "shopify://shop_images/cold-shoulder-amirah_2349a875-ae18-4143-9220-45fb3c1f5144.jpg",
+        "custom_image": "shopify://shop_images/Shot-1-Soft-Serve.jpg",
         "image_metafield": "",
-        "image_position": "left",
-        "heading": "What the results show",
+        "image_position": "right",
+        "heading": "",
         "heading_color": "#1a1a1a",
-        "heading_size": 24,
+        "heading_size": 20,
         "section_background_color": "rgba(0,0,0,0)",
         "section_padding_top": 0,
         "section_padding_bottom": 0,
@@ -707,7 +710,7 @@
         "accordion_title_color": "{{ settings.color_palette.foreground }}",
         "accordion_text_color": "#1a1a1a",
         "accordion_icon_color": "#1a1a1a",
-        "accordion_border_color": "#e0e0e0",
+        "accordion_border_color": "{{ settings.color_palette.color2 }}",
         "accordion_border_width": 1,
         "accordion_padding": 16
       }
