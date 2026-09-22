@@ -6,7 +6,7 @@
 %}
 
 <section
-  class="premium-image-grid"
+  class="premium-image-grid premium-image-grid--mobile-{{ section.settings.mobile_layout }}"
   style="
     --columns: {{ section.settings.columns }};
     --grid-gap: {{ section.settings.grid_gap }}px;
@@ -277,6 +277,25 @@
       opacity: 1;
       transform: none;
     }
+
+    /* Horizontal scroll mode */
+    .premium-image-grid--mobile-scroll .premium-grid {
+      grid-template-columns: none;
+      grid-auto-flow: column;
+      grid-auto-columns: 82%;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .premium-image-grid--mobile-scroll .premium-grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    .premium-image-grid--mobile-scroll .premium-grid__item {
+      scroll-snap-align: start;
+    }
   }
 </style>
 
@@ -308,10 +327,21 @@
       "type": "select",
       "id": "mobile_columns",
       "label": "Mobile layout",
+      "info": "Applies to stacked display only.",
       "default": "1",
       "options": [
         { "value": "1", "label": "1 column" },
         { "value": "2", "label": "2 columns" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "mobile_layout",
+      "label": "Mobile display",
+      "default": "stack",
+      "options": [
+        { "value": "stack", "label": "Stacked" },
+        { "value": "scroll", "label": "Horizontal scroll" }
       ]
     },
     {
