@@ -435,6 +435,7 @@
             },
             "essential_upsell_app_block_XdBbnd": {
               "type": "shopify://apps/essential-upsell/blocks/app-block/50627fd9-24fd-4250-8614-accc12826d80",
+              "disabled": true,
               "settings": {}
             },
             "accordion_L8nGaw": {
