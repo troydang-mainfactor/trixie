@@ -618,7 +618,7 @@
         "text_MxFkLT": {
           "type": "text",
           "settings": {
-            "text": "<p>Tested on drag queens, not animals</p>",
+            "text": "<p>Tested On Drag Queens, Not Animals</p>",
             "split_on_dash": false,
             "width": "fit-content",
             "max_width": "normal",
