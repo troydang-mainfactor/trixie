@@ -81,9 +81,7 @@
               "blocks": {}
             }
           },
-          "block_order": [
-            "text_kAqTWM"
-          ]
+          "block_order": ["text_kAqTWM"]
         },
         "static-collection-card": {
           "type": "_collection-card",
@@ -146,17 +144,28 @@
               "blocks": {}
             }
           },
-          "block_order": [
-            "collection_title_pXRjk9"
-          ]
+          "block_order": ["collection_title_pXRjk9"]
         }
       },
-      "block_order": [
-        "group_94QjaX"
-      ],
+      "block_order": ["group_94QjaX"],
       "name": "t:names.collections_grid",
       "settings": {
-        "collection_list": [],
+        "collection_list": [
+          "lovebirds",
+          "trixie-air",
+          "trixie-slix",
+          "from-trixie-x-katya",
+          "queen-pin",
+          "soft-serve",
+          "snow-bunny",
+          "9-to-5",
+          "fun-haus",
+          "gay-mer",
+          "hotline",
+          "horse-girl",
+          "game-face",
+          "camp-trixie"
+        ],
         "layout_type": "grid",
         "carousel_on_mobile": false,
         "columns": 3,
@@ -247,9 +256,7 @@
               "blocks": {}
             }
           },
-          "block_order": [
-            "text_fRMQMR"
-          ]
+          "block_order": ["text_fRMQMR"]
         },
         "static-collection-card": {
           "type": "_collection-card",
@@ -312,14 +319,10 @@
               "blocks": {}
             }
           },
-          "block_order": [
-            "collection_title_7YgBPU"
-          ]
+          "block_order": ["collection_title_7YgBPU"]
         }
       },
-      "block_order": [
-        "group_4FtiAg"
-      ],
+      "block_order": ["group_4FtiAg"],
       "name": "t:names.collection_list",
       "settings": {
         "layout_type": "grid",
@@ -340,8 +343,5 @@
       }
     }
   },
-  "order": [
-    "collection_list_Bn6FDp",
-    "collection_list_Wfgh3m"
-  ]
+  "order": ["collection_list_Bn6FDp", "collection_list_Wfgh3m"]
 }
