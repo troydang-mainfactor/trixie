@@ -17,6 +17,10 @@
     --content-padding-desktop: {{ section.settings.content_padding }}px;
     --content-padding-mobile: {{ section.settings.mobile_content_padding }}px;
     --overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+    --heading-size-desktop: {{ section.settings.heading_size }}px;
+    --heading-size-mobile: {{ section.settings.mobile_heading_size }}px;
+    --button-size-desktop: {{ section.settings.button_size }}px;
+    --button-size-mobile: {{ section.settings.mobile_button_size }}px;
   "
 >
   <div class="premium-grid">
@@ -183,6 +187,7 @@
   .premium-grid__heading {
     margin: 0;
     line-height: 1.05;
+    font-size: var(--heading-size-desktop);
   }
 
   .premium-grid__text {
@@ -201,7 +206,9 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 14px 28px;
+    align-self: center;
+    font-size: var(--button-size-desktop);
+    padding: .875em 1.75em;
     background: white;
     color: black;
     border-radius: 999px;
@@ -273,7 +280,12 @@
       padding: var(--content-padding-mobile);
     }
 
+    .premium-grid__heading {
+      font-size: var(--heading-size-mobile);
+    }
+
     .premium-grid__button {
+      font-size: var(--button-size-mobile);
       opacity: 1;
       transform: none;
     }
@@ -355,6 +367,54 @@
         { "value": "landscape", "label": "Landscape (16:9)" },
         { "value": "auto", "label": "Original image" }
       ]
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Desktop title size",
+      "min": 12,
+      "max": 72,
+      "step": 2,
+      "default": 32,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_size",
+      "label": "Mobile title size",
+      "min": 12,
+      "max": 48,
+      "step": 2,
+      "default": 24,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "button_size",
+      "label": "Desktop button size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_button_size",
+      "label": "Mobile button size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "default": 14,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Spacing & style"
     },
     {
       "type": "range",
