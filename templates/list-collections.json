@@ -385,7 +385,7 @@
         "rows": 4,
         "mobile_columns": "2",
         "aspect_ratio": "portrait",
-        "grid_gap": 0,
+        "grid_gap": 6,
         "corner_radius": 0,
         "mobile_corner_radius": 0,
         "content_padding": 12,
