@@ -101,6 +101,32 @@
         "padding-block-end": 48
       }
     },
+    "collection_pills": {
+      "type": "collection-pills",
+      "name": "Collection Pills",
+      "settings": {
+        "menu": "main-menu-2",
+        "show_parent_pill": true,
+        "show_icons": true,
+        "icon_metafield": "custom.pill_icon",
+        "image_fallback": true,
+        "icon_size": 44,
+        "alignment": "left",
+        "scroll_on_mobile": true,
+        "pill_gap": 16,
+        "pill_radius": 100,
+        "border_width": 1,
+        "section_width": "page-width",
+        "pill_background": "",
+        "text_color": "",
+        "border_color": "",
+        "active_border_color": "",
+        "icon_background": "",
+        "active_icon_background": "",
+        "padding-block-start": 0,
+        "padding-block-end": 24
+      }
+    },
     "main": {
       "type": "main-collection",
       "blocks": {
@@ -374,6 +400,7 @@
   },
   "order": [
     "section",
+    "collection_pills",
     "main"
   ]
 }
