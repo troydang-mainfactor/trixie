@@ -154,7 +154,6 @@
       "block_order": [
         "group_94QjaX"
       ],
-      "disabled": true,
       "name": "t:names.collections_grid",
       "settings": {
         "collection_list": [
@@ -189,70 +188,201 @@
         "background_color": "",
         "padding-block-start": 48,
         "padding-block-end": 48
-      }
+      },
+      "disabled": true
     },
     "image_grid_premium_CwmQdm": {
       "type": "image-grid-premium",
       "blocks": {
-        "image_rqH3rP": {
+        "image_lovebirds": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Desktop-homepage-Jinkx-Shopby-Eyes.jpg",
-            "heading": "Eyes",
+            "collection": "lovebirds",
+            "heading": "",
             "text": "",
             "button_label": "Shop Now",
-            "link": "shopify://collections/eyes",
+            "link": "",
             "vertical": "bottom",
             "horizontal": "center"
           }
         },
-        "image_ePx4KC": {
+        "image_trixie_air": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Desktop-homepage-Jinkx-Shopby-Lips.jpg",
-            "heading": "Lips",
+            "collection": "trixie-air",
+            "heading": "",
             "text": "",
             "button_label": "Shop Now",
-            "link": "shopify://collections/lips",
+            "link": "",
             "vertical": "bottom",
             "horizontal": "center"
           }
         },
-        "image_HBU9jm": {
+        "image_trixie_slix": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Desktop-homepage-Lovebirds-Shopby-Face.jpg",
-            "heading": "Face",
+            "collection": "trixie-slix",
+            "heading": "",
             "text": "",
             "button_label": "Shop Now",
-            "link": "shopify://collections/face",
+            "link": "",
             "vertical": "bottom",
             "horizontal": "center"
           }
         },
-        "image_xJ8jyJ": {
+        "image_from_trixie_x_katya": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Desktop-homepage-Jinkx-Shopby-Accessories.jpg",
-            "heading": "Tools",
+            "collection": "from-trixie-x-katya",
+            "heading": "",
             "text": "",
             "button_label": "Shop Now",
-            "link": "shopify://collections/tools",
+            "link": "",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        },
+        "image_queen_pin": {
+          "type": "image",
+          "settings": {
+            "collection": "queen-pin",
+            "heading": "",
+            "text": "",
+            "button_label": "Shop Now",
+            "link": "",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        },
+        "image_soft_serve": {
+          "type": "image",
+          "settings": {
+            "collection": "soft-serve",
+            "heading": "",
+            "text": "",
+            "button_label": "Shop Now",
+            "link": "",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        },
+        "image_snow_bunny": {
+          "type": "image",
+          "settings": {
+            "collection": "snow-bunny",
+            "heading": "",
+            "text": "",
+            "button_label": "Shop Now",
+            "link": "",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        },
+        "image_9_to_5": {
+          "type": "image",
+          "settings": {
+            "collection": "9-to-5",
+            "heading": "",
+            "text": "",
+            "button_label": "Shop Now",
+            "link": "",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        },
+        "image_fun_haus": {
+          "type": "image",
+          "settings": {
+            "collection": "fun-haus",
+            "heading": "",
+            "text": "",
+            "button_label": "Shop Now",
+            "link": "",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        },
+        "image_gay_mer": {
+          "type": "image",
+          "settings": {
+            "collection": "gay-mer",
+            "heading": "",
+            "text": "",
+            "button_label": "Shop Now",
+            "link": "",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        },
+        "image_hotline": {
+          "type": "image",
+          "settings": {
+            "collection": "hotline",
+            "heading": "",
+            "text": "",
+            "button_label": "Shop Now",
+            "link": "",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        },
+        "image_horse_girl": {
+          "type": "image",
+          "settings": {
+            "collection": "horse-girl",
+            "heading": "",
+            "text": "",
+            "button_label": "Shop Now",
+            "link": "",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        },
+        "image_game_face": {
+          "type": "image",
+          "settings": {
+            "collection": "game-face",
+            "heading": "",
+            "text": "",
+            "button_label": "Shop Now",
+            "link": "",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        },
+        "image_camp_trixie": {
+          "type": "image",
+          "settings": {
+            "collection": "camp-trixie",
+            "heading": "",
+            "text": "",
+            "button_label": "Shop Now",
+            "link": "",
             "vertical": "bottom",
             "horizontal": "center"
           }
         }
       },
       "block_order": [
-        "image_rqH3rP",
-        "image_ePx4KC",
-        "image_HBU9jm",
-        "image_xJ8jyJ"
+        "image_lovebirds",
+        "image_trixie_air",
+        "image_trixie_slix",
+        "image_from_trixie_x_katya",
+        "image_queen_pin",
+        "image_soft_serve",
+        "image_snow_bunny",
+        "image_9_to_5",
+        "image_fun_haus",
+        "image_gay_mer",
+        "image_hotline",
+        "image_horse_girl",
+        "image_game_face",
+        "image_camp_trixie"
       ],
       "name": "Premium Image Grid",
       "settings": {
         "columns": 4,
-        "rows": 1,
+        "rows": 4,
         "mobile_columns": "2",
         "aspect_ratio": "portrait",
         "grid_gap": 12,
@@ -410,7 +540,6 @@
       "block_order": [
         "group_4FtiAg"
       ],
-      "disabled": true,
       "name": "t:names.collection_list",
       "settings": {
         "layout_type": "grid",
@@ -428,7 +557,8 @@
         "background_color": "{{ settings.color_palette.background }}",
         "padding-block-start": 48,
         "padding-block-end": 48
-      }
+      },
+      "disabled": true
     }
   },
   "order": [
