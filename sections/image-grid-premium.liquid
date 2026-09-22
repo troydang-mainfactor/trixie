@@ -1,3 +1,4 @@
+{%- comment -%} Schema name: Premium Image Grid {%- endcomment -%}
 {% liquid
   assign desktop_columns = section.settings.columns
   assign desktop_rows = section.settings.rows
@@ -21,13 +22,30 @@
   <div class="premium-grid">
 
     {% for block in section.blocks limit: total_tiles %}
+      {% liquid
+        assign tile_collection = block.settings.collection
+        assign tile_image = block.settings.image
+        assign tile_heading = block.settings.heading
+        assign tile_link = block.settings.link
+        if tile_collection != blank
+          if tile_image == blank
+            assign tile_image = tile_collection.featured_image
+          endif
+          if tile_heading == blank
+            assign tile_heading = tile_collection.title
+          endif
+          if tile_link == blank
+            assign tile_link = tile_collection.url
+          endif
+        endif
+      %}
       <div
         class="premium-grid__item text-{{ block.settings.vertical }}-{{ block.settings.horizontal }}"
         {{ block.shopify_attributes }}
       >
 
-        {% if block.settings.link != blank %}
-          <a href="{{ block.settings.link }}" class="premium-grid__link">
+        {% if tile_link != blank %}
+          <a href="{{ tile_link }}" class="premium-grid__link">
         {% endif %}
 
           {% case section.settings.aspect_ratio %}
@@ -48,9 +66,9 @@
             {% endunless %}
           >
 
-            {% if block.settings.image %}
+            {% if tile_image != blank %}
               {{
-                block.settings.image
+                tile_image
                 | image_url: width: 2200
                 | image_tag:
                   loading: 'lazy',
@@ -64,9 +82,9 @@
             <div class="premium-grid__overlay">
               <div class="premium-grid__content">
 
-                {% if block.settings.heading != blank %}
+                {% if tile_heading != blank %}
                   <h2 class="premium-grid__heading">
-                    {{ block.settings.heading }}
+                    {{ tile_heading }}
                   </h2>
                 {% endif %}
 
@@ -87,7 +105,7 @@
 
           </div>
 
-        {% if block.settings.link != blank %}
+        {% if tile_link != blank %}
           </a>
         {% endif %}
 
@@ -394,6 +412,12 @@
       "type": "image",
       "name": "Grid Item",
       "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection",
+          "info": "Optional. Fills in the image, heading, and link from this collection when those fields are left blank."
+        },
         {
           "type": "image_picker",
           "id": "image",
