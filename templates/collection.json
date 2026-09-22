@@ -110,7 +110,7 @@
         "show_icons": true,
         "icon_metafield": "custom.pill_icon",
         "image_fallback": true,
-        "icon_size": 44,
+        "icon_size": 40,
         "alignment": "left",
         "scroll_on_mobile": true,
         "pill_gap": 16,
