@@ -1,0 +1,390 @@
+{%- comment -%} Schema name: Collection Pills {%- endcomment -%}
+{%- comment -%}
+  Renders the sub-collections of the current collection as pill links, driven by a menu.
+  - On a parent collection: shows the parent's child links.
+  - On a child collection: shows its siblings, with the current one marked active.
+  Icons come from the collection metafield set in "Icon metafield", falling back to the collection image.
+{%- endcomment -%}
+
+{%- liquid
+  assign menu = section.settings.menu
+  assign parent_link = nil
+
+  if menu != blank and collection != blank
+    for top_link in menu.links
+      if top_link.type == 'collection_link' and top_link.object.id == collection.id
+        assign parent_link = top_link
+        break
+      endif
+      for child_link in top_link.links
+        if child_link.type == 'collection_link' and child_link.object.id == collection.id
+          assign parent_link = top_link
+          break
+        endif
+      endfor
+      if parent_link != nil
+        break
+      endif
+    endfor
+  endif
+
+  assign icon_namespace = section.settings.icon_metafield | split: '.' | first | strip
+  assign icon_key = section.settings.icon_metafield | split: '.' | last | strip
+-%}
+
+{%- if parent_link != nil and parent_link.links.size > 0 -%}
+  <div
+    class="collection-pills section section--{{ section.settings.section_width }} spacing-style"
+    style="
+      {% render 'spacing-style', settings: section.settings %}
+      --pill-gap: {{ section.settings.pill_gap }}px;
+      --pill-icon-size: {{ section.settings.icon_size }}px;
+      --pill-radius: {{ section.settings.pill_radius }}px;
+      --pill-border-width: {{ section.settings.border_width }}px;
+      {% if section.settings.pill_background != blank %}--pill-bg: {{ section.settings.pill_background }};{% endif %}
+      {% if section.settings.text_color != blank %}--pill-text: {{ section.settings.text_color }};{% endif %}
+      {% if section.settings.border_color != blank %}--pill-border: {{ section.settings.border_color }};{% endif %}
+      {% if section.settings.icon_background != blank %}--pill-icon-bg: {{ section.settings.icon_background }};{% endif %}
+      {% if section.settings.active_icon_background != blank %}--pill-icon-bg-active: {{ section.settings.active_icon_background }};{% endif %}
+      {% if section.settings.active_border_color != blank %}--pill-border-active: {{ section.settings.active_border_color }};{% endif %}
+    "
+  >
+    <nav class="collection-pills__nav" aria-label="{{ parent_link.title | escape }}">
+      <ul
+        class="collection-pills__list collection-pills__list--{{ section.settings.alignment }}{% if section.settings.scroll_on_mobile %} collection-pills__list--scroll{% endif %}"
+        role="list"
+      >
+        {%- if section.settings.show_parent_pill -%}
+          {%- liquid
+            assign pill_link = parent_link
+            assign pill_active = false
+            if parent_link.object.id == collection.id
+              assign pill_active = true
+            endif
+          -%}
+          {%- render 'collection-pill',
+            link: pill_link,
+            active: pill_active,
+            icon_namespace: icon_namespace,
+            icon_key: icon_key,
+            image_fallback: section.settings.image_fallback,
+            show_icons: section.settings.show_icons
+          -%}
+        {%- endif -%}
+
+        {%- for child_link in parent_link.links -%}
+          {%- liquid
+            assign pill_active = false
+            if child_link.type == 'collection_link' and child_link.object.id == collection.id
+              assign pill_active = true
+            endif
+          -%}
+          {%- render 'collection-pill',
+            link: child_link,
+            active: pill_active,
+            icon_namespace: icon_namespace,
+            icon_key: icon_key,
+            image_fallback: section.settings.image_fallback,
+            show_icons: section.settings.show_icons
+          -%}
+        {%- endfor -%}
+      </ul>
+    </nav>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .collection-pills {
+    --pill-bg: transparent;
+    --pill-text: currentColor;
+    --pill-border: color-mix(in srgb, currentColor 20%, transparent);
+    --pill-border-active: color-mix(in srgb, currentColor 45%, transparent);
+    --pill-icon-bg: color-mix(in srgb, currentColor 8%, transparent);
+    --pill-icon-bg-active: color-mix(in srgb, currentColor 16%, transparent);
+  }
+
+  .collection-pills__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--pill-gap);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .collection-pills__list--center {
+    justify-content: center;
+  }
+
+  .collection-pills__list--right {
+    justify-content: flex-end;
+  }
+
+  .collection-pills__item {
+    flex: 0 0 auto;
+  }
+
+  .collection-pills__pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 44px;
+    padding: 6px 24px 6px 6px;
+    border: var(--pill-border-width) solid var(--pill-border);
+    border-radius: var(--pill-radius);
+    background: var(--pill-bg);
+    color: var(--pill-text);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .collection-pills__pill--text-only {
+    padding-inline-start: 24px;
+  }
+
+  .collection-pills__pill:hover,
+  .collection-pills__pill[aria-current='page'] {
+    border-color: var(--pill-border-active);
+  }
+
+  .collection-pills__pill:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  .collection-pills__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: var(--pill-icon-size);
+    height: var(--pill-icon-size);
+    border-radius: 50%;
+    background: var(--pill-icon-bg);
+    overflow: hidden;
+  }
+
+  .collection-pills__pill[aria-current='page'] .collection-pills__icon {
+    background: var(--pill-icon-bg-active);
+  }
+
+  .collection-pills__icon img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+  }
+
+  .collection-pills__icon--photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media screen and (max-width: 749px) {
+    .collection-pills__list--scroll {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scroll-snap-type: x proximity;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      margin-inline: calc(var(--page-margin, 16px) * -1);
+      padding-inline: var(--page-margin, 16px);
+    }
+
+    .collection-pills__list--scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .collection-pills__list--scroll .collection-pills__item {
+      scroll-snap-align: start;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .collection-pills__pill {
+      transition: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Collection Pills",
+  "tag": "section",
+  "enabled_on": {
+    "templates": ["collection"]
+  },
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "info": "Pills show the sub-items of the menu item that links to the current collection. On a sub-collection, its siblings are shown."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_parent_pill",
+      "label": "Show parent collection pill first",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Icons"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_icons",
+      "label": "Show icons",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "icon_metafield",
+      "label": "Icon metafield",
+      "info": "Collection metafield (namespace.key) that holds the pill icon image.",
+      "default": "custom.pill_icon"
+    },
+    {
+      "type": "checkbox",
+      "id": "image_fallback",
+      "label": "Use collection image when no icon is set",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size",
+      "min": 24,
+      "max": 80,
+      "step": 2,
+      "default": 44,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Alignment",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "scroll_on_mobile",
+      "label": "Scroll horizontally on mobile",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "pill_gap",
+      "label": "Gap between pills",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "pill_radius",
+      "label": "Pill corner radius",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "default": 100,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Border thickness",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "default": 1,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Width",
+      "default": "page-width",
+      "options": [
+        { "value": "page-width", "label": "Page" },
+        { "value": "full-width", "label": "Full" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "pill_background",
+      "label": "Pill background"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border"
+    },
+    {
+      "type": "color",
+      "id": "active_border_color",
+      "label": "Active and hover border"
+    },
+    {
+      "type": "color",
+      "id": "icon_background",
+      "label": "Icon circle"
+    },
+    {
+      "type": "color",
+      "id": "active_icon_background",
+      "label": "Active icon circle"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 24,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Pills"
+    }
+  ]
+}
+{% endschema %}

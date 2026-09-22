@@ -1,0 +1,50 @@
+{%- comment -%}
+  Renders one pill for the Collection Pills section.
+
+  Accepts:
+  - link {Object}: menu link to render
+  - active {Boolean}: whether this pill is the current page
+  - icon_namespace {String}: metafield namespace holding the icon image
+  - icon_key {String}: metafield key holding the icon image
+  - image_fallback {Boolean}: use the collection image when no icon is set
+  - show_icons {Boolean}: render icons at all
+{%- endcomment -%}
+{%- liquid
+  assign pill_collection = nil
+  if link.type == 'collection_link'
+    assign pill_collection = link.object
+  endif
+
+  assign pill_icon = nil
+  assign icon_is_photo = false
+  if show_icons and pill_collection != nil
+    if icon_namespace != blank and icon_key != blank
+      assign pill_icon = pill_collection.metafields[icon_namespace][icon_key].value
+    endif
+    if pill_icon == blank and image_fallback
+      assign pill_icon = pill_collection.featured_image
+      if pill_icon != blank
+        assign icon_is_photo = true
+      endif
+    endif
+  endif
+-%}
+<li class="collection-pills__item">
+  <a
+    href="{{ link.url }}"
+    class="collection-pills__pill{% if pill_icon == blank %} collection-pills__pill--text-only{% endif %}"
+    {% if active %}
+      aria-current="page"
+    {% endif %}
+  >
+    {%- if pill_icon != blank -%}
+      <span
+        class="collection-pills__icon{% if icon_is_photo %} collection-pills__icon--photo{% endif %}"
+        aria-hidden="true"
+      >
+        {{- pill_icon | image_url: width: 160 | image_tag: alt: '', loading: 'lazy' -}}
+      </span>
+    {%- endif -%}
+    <span class="collection-pills__label">{{ link.title | escape }}</span>
+  </a>
+</li>
