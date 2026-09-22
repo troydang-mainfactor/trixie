@@ -123,7 +123,7 @@
                   "type": "text",
                   "name": "t:names.product_title",
                   "settings": {
-                    "text": "<h1>{{ closest.product.title }}</h1>",
+                    "text": "<h1>{{ closest.product.title }}</h1><p><strong>Nice Aspen</strong> is a purple base with a blue opalescent shift. </p>",
                     "split_on_dash": true,
                     "width": "100%",
                     "max_width": "normal",
