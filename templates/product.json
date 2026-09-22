@@ -167,7 +167,7 @@
                         "text": "<h1>{{ closest.product.title }}</h1>",
                         "split_on_dash": true,
                         "width": "100%",
-                        "max_width": "normal",
+                        "max_width": "none",
                         "alignment": "left",
                         "type_preset": "custom",
                         "font": "var(--font-heading--family)",
@@ -200,6 +200,7 @@
                 "text_xrnftG": {
                   "type": "text",
                   "name": "t:names.product_title",
+                  "disabled": true,
                   "settings": {
                     "text": "<h1>{{ closest.product.title }}</h1>",
                     "split_on_dash": true,
@@ -226,6 +227,7 @@
                 },
                 "judge_me_reviews_preview_badge_hJ36KL": {
                   "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+                  "disabled": true,
                   "settings": {}
                 },
                 "price_x8AeA7": {
