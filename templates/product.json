@@ -172,42 +172,41 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {}
-                },
-                "text_YXDd9c": {
-                  "type": "text",
-                  "name": "t:names.text",
-                  "settings": {
-                    "text": "<p><strong>Nice Aspen<br/></strong>purple base with a blue opalescent shift. </p>",
-                    "split_on_dash": false,
-                    "width": "100%",
-                    "max_width": "none",
-                    "alignment": "left",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "text_color": "",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
                 }
               },
               "block_order": [
                 "product_tag_badges_FLieEh",
                 "text_xrnftG",
                 "judge_me_reviews_preview_badge_hJ36KL",
-                "price_x8AeA7",
-                "text_YXDd9c"
+                "price_x8AeA7"
               ]
+            },
+            "text_g7NYyH": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p><strong>Nice Aspen<br/></strong>purple base with a blue opalescent shift. </p>",
+                "split_on_dash": false,
+                "width": "100%",
+                "max_width": "none",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
             },
             "group_WycydB": {
               "type": "group",
@@ -590,6 +589,7 @@
           },
           "block_order": [
             "group_icgrde",
+            "text_g7NYyH",
             "group_WycydB",
             "combined_listings_product_qg3rFy",
             "divider_VJhene",
