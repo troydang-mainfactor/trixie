@@ -123,7 +123,7 @@
                   "type": "text",
                   "name": "t:names.product_title",
                   "settings": {
-                    "text": "<h1>{{ closest.product.title }}</h1><p><strong>Nice Aspen</strong> is a purple base with a blue opalescent shift. </p>",
+                    "text": "<h1>{{ closest.product.title }}</h1>",
                     "split_on_dash": true,
                     "width": "100%",
                     "max_width": "normal",
@@ -172,13 +172,41 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {}
+                },
+                "text_YXDd9c": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p><strong>Nice Aspen</strong> is a purple base with a blue opalescent shift. </p>",
+                    "split_on_dash": false,
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "h4",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "text_color": "",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 }
               },
               "block_order": [
                 "product_tag_badges_FLieEh",
                 "text_xrnftG",
                 "judge_me_reviews_preview_badge_hJ36KL",
-                "price_x8AeA7"
+                "price_x8AeA7",
+                "text_YXDd9c"
               ]
             },
             "group_WycydB": {
