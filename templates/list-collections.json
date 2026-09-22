@@ -335,6 +335,7 @@
       "block_order": [
         "group_4FtiAg"
       ],
+      "disabled": true,
       "name": "t:names.collection_list",
       "settings": {
         "layout_type": "grid",
