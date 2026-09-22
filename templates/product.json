@@ -177,8 +177,8 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p><strong>Nice Aspen</strong> is a purple base with a blue opalescent shift. </p>",
-                    "split_on_dash": false,
+                    "text": "<p><strong>Nice Aspen<br/></strong>purple base with a blue opalescent shift. </p>",
+                    "split_on_dash": true,
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
