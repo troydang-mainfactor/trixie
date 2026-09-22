@@ -154,6 +154,7 @@
       "block_order": [
         "group_94QjaX"
       ],
+      "disabled": true,
       "name": "t:names.collections_grid",
       "settings": {
         "collection_list": [
@@ -188,8 +189,7 @@
         "background_color": "",
         "padding-block-start": 48,
         "padding-block-end": 48
-      },
-      "disabled": true
+      }
     },
     "image_grid_premium_CwmQdm": {
       "type": "image-grid-premium",
@@ -201,7 +201,7 @@
             "heading": "",
             "text": "",
             "button_label": "Shop Now",
-            "link": "",
+            "link": "shopify://collections/lovebirds",
             "vertical": "bottom",
             "horizontal": "center"
           }
@@ -540,6 +540,7 @@
       "block_order": [
         "group_4FtiAg"
       ],
+      "disabled": true,
       "name": "t:names.collection_list",
       "settings": {
         "layout_type": "grid",
@@ -557,8 +558,7 @@
         "background_color": "{{ settings.color_palette.background }}",
         "padding-block-start": 48,
         "padding-block-end": 48
-      },
-      "disabled": true
+      }
     }
   },
   "order": [
