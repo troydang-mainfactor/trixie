@@ -684,7 +684,7 @@
         "accordion_tD4CbX": {
           "type": "accordion",
           "settings": {
-            "title": "DESCRIPTION",
+            "title": "Description",
             "source": "custom",
             "content": "{{ product.description }}",
             "content_metafield": "",
@@ -696,9 +696,9 @@
         "accordion_HfnxcM": {
           "type": "accordion",
           "settings": {
-            "title": "INGREDIENTS",
+            "title": "Ingredients",
             "source": "custom",
-            "content": "<p>something something</p>",
+            "content": "<p>{{ product.metafields.custom.ingredients | metafield_tag }}</p>",
             "content_metafield": "",
             "link": "",
             "link_text": "Learn more",
