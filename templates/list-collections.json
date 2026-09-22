@@ -385,13 +385,13 @@
         "rows": 4,
         "mobile_columns": "2",
         "aspect_ratio": "portrait",
-        "grid_gap": 12,
+        "grid_gap": 0,
         "corner_radius": 0,
         "mobile_corner_radius": 0,
         "content_padding": 12,
         "mobile_content_padding": 8,
         "overlay_opacity": 50,
-        "padding_top": 12,
+        "padding_top": 0,
         "padding_bottom": 0
       }
     },
