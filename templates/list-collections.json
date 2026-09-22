@@ -134,7 +134,7 @@
               "settings": {
                 "image_ratio": "portrait",
                 "toggle_overlay": true,
-                "overlay_color": "#000000B5",
+                "overlay_color": "#000000b5",
                 "overlay_style": "gradient",
                 "gradient_direction": "to top",
                 "border": "none",
@@ -154,6 +154,7 @@
       "block_order": [
         "group_94QjaX"
       ],
+      "disabled": true,
       "name": "t:names.collections_grid",
       "settings": {
         "collection_list": [
@@ -188,6 +189,80 @@
         "background_color": "",
         "padding-block-start": 48,
         "padding-block-end": 48
+      }
+    },
+    "image_grid_premium_CwmQdm": {
+      "type": "image-grid-premium",
+      "blocks": {
+        "image_rqH3rP": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Desktop-homepage-Jinkx-Shopby-Eyes.jpg",
+            "heading": "Eyes",
+            "text": "",
+            "button_label": "Shop Now",
+            "link": "shopify://collections/eyes",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        },
+        "image_ePx4KC": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Desktop-homepage-Jinkx-Shopby-Lips.jpg",
+            "heading": "Lips",
+            "text": "",
+            "button_label": "Shop Now",
+            "link": "shopify://collections/lips",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        },
+        "image_HBU9jm": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Desktop-homepage-Lovebirds-Shopby-Face.jpg",
+            "heading": "Face",
+            "text": "",
+            "button_label": "Shop Now",
+            "link": "shopify://collections/face",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        },
+        "image_xJ8jyJ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Desktop-homepage-Jinkx-Shopby-Accessories.jpg",
+            "heading": "Tools",
+            "text": "",
+            "button_label": "Shop Now",
+            "link": "shopify://collections/tools",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        }
+      },
+      "block_order": [
+        "image_rqH3rP",
+        "image_ePx4KC",
+        "image_HBU9jm",
+        "image_xJ8jyJ"
+      ],
+      "name": "Premium Image Grid",
+      "settings": {
+        "columns": 4,
+        "rows": 1,
+        "mobile_columns": "2",
+        "aspect_ratio": "portrait",
+        "grid_gap": 12,
+        "corner_radius": 0,
+        "mobile_corner_radius": 0,
+        "content_padding": 12,
+        "mobile_content_padding": 8,
+        "overlay_opacity": 50,
+        "padding_top": 12,
+        "padding_bottom": 0
       }
     },
     "collection_list_Wfgh3m": {
@@ -358,6 +433,7 @@
   },
   "order": [
     "collection_list_Bn6FDp",
+    "image_grid_premium_CwmQdm",
     "collection_list_Wfgh3m"
   ]
 }
