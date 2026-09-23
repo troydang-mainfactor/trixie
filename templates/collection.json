@@ -251,6 +251,33 @@
                   },
                   "blocks": {}
                 },
+                "text_p9wHhb": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>{{ closest.product.metafields.custom.subtitle.value }}</p>",
+                    "split_on_dash": false,
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "text_color": "",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
                 "price_Xakh6p": {
                   "type": "price",
                   "settings": {
@@ -280,6 +307,7 @@
               },
               "block_order": [
                 "product_title_PzQzPN",
+                "text_p9wHhb",
                 "price_Xakh6p",
                 "judge_me_reviews_preview_badge_XMmYEm"
               ]
@@ -292,6 +320,7 @@
                 "swatch_shape_radius": 8,
                 "swatch_size": "small",
                 "swatch_size_custom": 24,
+                "max_visible_swatches": 5,
                 "swatch_gap": 0,
                 "swatch_border_width": 2,
                 "show_tooltips": false,
