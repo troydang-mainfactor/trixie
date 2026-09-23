@@ -207,6 +207,7 @@ if (!customElements.get('combined-listings-picker')) {
  *
  * @typedef {object} Refs
  * @property {HTMLButtonElement[]} [swatchTriggers]
+ * @property {HTMLElement} [moreItem] - The "+N" expand item, present only when swatches are truncated.
  * @extends {CombinedListingsBase}
  */
 class CombinedListingsCardSwatches extends CombinedListingsBase {
@@ -230,6 +231,14 @@ class CombinedListingsCardSwatches extends CombinedListingsBase {
       preload.sizes = img.sizes;
       preload.src = img.src;
     }
+  }
+
+  /** Reveals swatches hidden behind the "+N" button and moves focus to the first one. */
+  showAllSwatches() {
+    const hidden = this.querySelectorAll('[data-cl-overflow]');
+    for (const item of hidden) item.removeAttribute('hidden');
+    this.refs.moreItem?.remove();
+    hidden[0]?.querySelector('button')?.focus();
   }
 
   /** @param {Event} event */

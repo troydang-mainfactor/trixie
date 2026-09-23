@@ -42,6 +42,44 @@
     align-items: flex-end;
   }
 
+  .cl-swatches[data-context='card'] .cl-swatches__label {
+    text-align: center;
+  }
+
+  .cl-swatches[data-context='card'] .cl-swatches__row {
+    justify-content: center;
+  }
+
+  /* `display: flex` on items would otherwise override the hidden attribute. */
+  .cl-swatches__item[hidden] {
+    display: none;
+  }
+
+  .cl-swatches__more {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: calc(var(--cl-swatch-size, 28px) + 4px);
+    height: calc(var(--cl-swatch-size, 28px) + 4px);
+    padding: 0 4px;
+    background: none;
+    border: none;
+    color: var(--color-foreground);
+    font-size: 12px;
+    font-weight: var(--font-weight-semibold);
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .cl-swatches__more:hover {
+    text-decoration: underline;
+  }
+
+  .cl-swatches__more:focus-visible {
+    outline: var(--focus-outline-width) solid var(--focus-outline-color, currentColor);
+    outline-offset: var(--focus-outline-offset, 2px);
+  }
+
   .cl-swatches__item {
     position: relative;
     display: flex;

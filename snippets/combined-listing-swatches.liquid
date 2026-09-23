@@ -87,6 +87,17 @@
       </span>
     {%- endif -%}
 
+    {%- liquid
+      # Card-only truncation: swatches past the limit render hidden behind a "+N" expand button.
+      # The current product's swatch is never hidden. 0 = show all.
+      assign max_visible = 0
+      if context == 'card'
+        assign max_visible = settings.max_visible_swatches | default: 0
+      endif
+      assign shown_count = 0
+      assign hidden_count = 0
+    -%}
+
     <ul class="cl-swatches__row" role="list" ref="swatchList">
       {%- for swatch in swatches -%}
         {%- liquid
@@ -140,9 +151,25 @@
           if show_this_tooltip
             assign tooltip_id = 'CombinedListingTooltip-' | append: block.id | append: '-' | append: forloop.index0
           endif
+
+          assign is_overflow = false
+          if max_visible > 0
+            if shown_count >= max_visible and is_current == false
+              assign is_overflow = true
+              assign hidden_count = hidden_count | plus: 1
+            else
+              assign shown_count = shown_count | plus: 1
+            endif
+          endif
         -%}
 
-        <li class="cl-swatches__item">
+        <li
+          class="cl-swatches__item"
+          {% if is_overflow %}
+            hidden
+            data-cl-overflow
+          {% endif %}
+        >
           {%- if context == 'page' -%}
             <a
               href="{{ linked_product.url }}"
@@ -241,6 +268,19 @@
           {%- endif -%}
         </li>
       {%- endfor -%}
+
+      {%- if hidden_count > 0 -%}
+        <li class="cl-swatches__item" ref="moreItem">
+          <button
+            type="button"
+            class="cl-swatches__more"
+            aria-label="Show {{ hidden_count }} more"
+            on:click="/showAllSwatches"
+          >
+            +{{ hidden_count }}
+          </button>
+        </li>
+      {%- endif -%}
     </ul>
 
     {%- if context == 'page' -%}
