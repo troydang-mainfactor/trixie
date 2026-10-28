@@ -123,7 +123,7 @@
             "border_style": "all",
             "input_style": "custom",
             "border_width": 1,
-            "border_radius": 100,
+            "border_radius": 0,
             "input_background_color": "{{ settings.color_palette.background }}",
             "input_text_color": "{{ settings.color_palette.color1 }}",
             "input_border_color": "{{ settings.color_palette.color2 }}",
