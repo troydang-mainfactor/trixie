@@ -8,6 +8,18 @@
     "theme_support_url": "https://mainfactor.com"
   },
   {
+    "name": "Accessibility",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "accessibe_enabled",
+        "label": "Show accessiBe widget",
+        "info": "Loads the accessiBe accessibility menu. Requires an active accessiBe license for this domain.",
+        "default": true
+      }
+    ]
+  },
+  {
     "name": "t:names.logo_and_favicon",
     "settings": [
       {

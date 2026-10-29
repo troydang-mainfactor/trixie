@@ -454,12 +454,49 @@
   if section.settings.background_color != blank
     render 'contrast-override', background_color: section.settings.background_color, section_id: section.id, skip_contrast: true
   endif
+
+  # Text position: "<vertical>-<horizontal>" flex keywords, e.g. "end-start" = bottom left.
+  assign position = section.settings.content_position
+  assign position_mobile = section.settings.content_position_mobile
+  if position_mobile == 'inherit'
+    assign position_mobile = position
+  endif
+  assign hero_extra_class = ''
+  assign hero_extra_style = ''
+  if position != 'default'
+    assign pos = position | split: '-'
+    assign hero_extra_class = hero_extra_class | append: ' hero--pos'
+    assign hero_extra_style = hero_extra_style | append: '--hero-pos-y: ' | append: pos[0] | append: '; --hero-pos-x: ' | append: pos[1] | append: ';'
+    # Auto height: size the hero to the image so text sits on the whole picture, not a strip of it.
+    if section.settings.section_height == 'auto' and section.settings.image_1 != blank
+      assign hero_extra_class = hero_extra_class | append: ' hero--ratio'
+      assign hero_extra_style = hero_extra_style | append: ' --hero-ratio: ' | append: section.settings.image_1.aspect_ratio | append: ';'
+    endif
+  endif
+  if position_mobile != 'default'
+    assign pos_m = position_mobile | split: '-'
+    assign hero_extra_class = hero_extra_class | append: ' hero--pos-mobile'
+    assign hero_extra_style = hero_extra_style | append: ' --hero-pos-y-mobile: ' | append: pos_m[0] | append: '; --hero-pos-x-mobile: ' | append: pos_m[1] | append: ';'
+  endif
+
+  assign ratio_mobile = section.settings.mobile_aspect_ratio
+  if ratio_mobile == 'auto' and position_mobile != 'default' and section.settings.section_height == 'auto'
+    assign ratio_mobile = section.settings.image_1.aspect_ratio
+    if fallback_to_desktop == false and section.settings.image_1_mobile != blank
+      assign ratio_mobile = section.settings.image_1_mobile.aspect_ratio
+    endif
+  endif
+  if ratio_mobile != 'auto' and ratio_mobile != blank
+    assign hero_extra_class = hero_extra_class | append: ' hero--ratio-mobile'
+    assign hero_extra_style = hero_extra_style | append: ' --hero-ratio-mobile: ' | append: ratio_mobile | append: ';'
+  endif
 -%}
 
 <div
   id="Hero-{{ section.id }}"
-  class="hero{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}{% if section.blocks.size == 0 and section.settings.section_height == 'auto' %} hero--no-blocks-auto-height{% endif %}{% if section.settings.stack_media_on_mobile %} hero--stack-mobile{% endif %}"
+  class="hero{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}{% if section.blocks.size == 0 and section.settings.section_height == 'auto' %} hero--no-blocks-auto-height{% endif %}{% if section.settings.stack_media_on_mobile %} hero--stack-mobile{% endif %}{{ hero_extra_class }}"
   style="
+    {{ hero_extra_style }}
     --hero-border-style: {{ section.settings.border }};
     --hero-border-width: {{ section.settings.border_width }}px;
     --hero-border-opacity: {{ section.settings.border_opacity }}%;
@@ -592,6 +629,68 @@
 
   .hero__content-wrapper .group-block-content {
     position: relative;
+  }
+
+  /* Text position picker: pins the content stack to one of 9 points on the media */
+  @media screen and (min-width: 750px) {
+    .hero.hero--pos .hero__container {
+      align-items: stretch;
+    }
+
+    .hero.hero--pos .hero__content-wrapper {
+      flex-flow: column nowrap;
+      align-items: var(--hero-pos-x);
+      justify-content: var(--hero-pos-y);
+    }
+
+    /* Auto height: the hero takes the image's shape instead of the content's height */
+    .hero.hero--ratio,
+    .hero.hero--ratio .hero__container {
+      min-height: 0;
+    }
+
+    .hero.hero--ratio .hero__container {
+      aspect-ratio: var(--hero-ratio);
+    }
+
+    .hero.hero--ratio .hero__media-grid {
+      position: absolute;
+    }
+
+    .hero.hero--ratio .hero__media {
+      aspect-ratio: auto;
+      height: 100%;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .hero.hero--pos-mobile .hero__container {
+      align-items: stretch;
+    }
+
+    .hero.hero--pos-mobile .hero__content-wrapper {
+      flex-flow: column nowrap;
+      align-items: var(--hero-pos-x-mobile);
+      justify-content: var(--hero-pos-y-mobile);
+    }
+
+    .hero.hero--ratio-mobile,
+    .hero.hero--ratio-mobile .hero__container {
+      min-height: 0;
+    }
+
+    .hero.hero--ratio-mobile .hero__container {
+      aspect-ratio: var(--hero-ratio-mobile);
+    }
+
+    .hero.hero--ratio-mobile .hero__media-grid {
+      position: absolute;
+    }
+
+    .hero.hero--ratio-mobile .hero__media {
+      aspect-ratio: auto;
+      height: 100%;
+    }
   }
 
   .hero__media-grid {
@@ -1144,6 +1243,61 @@
       "default": 50,
       "unit": "%",
       "visible_if": "{{ section.settings.section_height == 'custom' }}"
+    },
+    {
+      "type": "select",
+      "id": "mobile_aspect_ratio",
+      "label": "Mobile shape",
+      "info": "Crops the mobile image to a fixed shape so the banner isn't too tall.",
+      "options": [
+        { "value": "auto", "label": "Auto" },
+        { "value": "1 / 1", "label": "Square (1:1)" },
+        { "value": "4 / 5", "label": "Portrait (4:5)" },
+        { "value": "3 / 4", "label": "Tall (3:4)" },
+        { "value": "16 / 9", "label": "Wide (16:9)" }
+      ],
+      "default": "auto"
+    },
+    {
+      "type": "header",
+      "content": "Text position"
+    },
+    {
+      "type": "select",
+      "id": "content_position",
+      "label": "Desktop",
+      "info": "Pins text and buttons to a point on the image. Overrides alignment settings above.",
+      "options": [
+        { "value": "default", "label": "Use alignment settings" },
+        { "value": "start-start", "label": "Top left" },
+        { "value": "start-center", "label": "Top center" },
+        { "value": "start-end", "label": "Top right" },
+        { "value": "center-start", "label": "Middle left" },
+        { "value": "center-center", "label": "Middle center" },
+        { "value": "center-end", "label": "Middle right" },
+        { "value": "end-start", "label": "Bottom left" },
+        { "value": "end-center", "label": "Bottom center" },
+        { "value": "end-end", "label": "Bottom right" }
+      ],
+      "default": "default"
+    },
+    {
+      "type": "select",
+      "id": "content_position_mobile",
+      "label": "Mobile",
+      "options": [
+        { "value": "inherit", "label": "Same as desktop" },
+        { "value": "start-start", "label": "Top left" },
+        { "value": "start-center", "label": "Top center" },
+        { "value": "start-end", "label": "Top right" },
+        { "value": "center-start", "label": "Middle left" },
+        { "value": "center-center", "label": "Middle center" },
+        { "value": "center-end", "label": "Middle right" },
+        { "value": "end-start", "label": "Bottom left" },
+        { "value": "end-center", "label": "Bottom center" },
+        { "value": "end-end", "label": "Bottom right" }
+      ],
+      "default": "inherit"
     },
     {
       "type": "header",

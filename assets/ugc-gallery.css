@@ -883,7 +883,7 @@ ugc-gallery:not(:has(.ugcg-card, .ugcg-bubble)) { display: none; }
   color: #fff;
   background: var(--ugcg-accent, #f43f5e);
   padding: 11px 20px;
-  border-radius: 999px;
+  border-radius: 0;
   text-decoration: none;
 }
 

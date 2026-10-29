@@ -186,5 +186,19 @@
       costs nothing when unused.
     {% endcomment %}
     {% render 'quick-add-modal' %}
+
+    {%- if settings.accessibe_enabled -%}
+      <script>
+        (function () {
+          var s = document.createElement('script');
+          s.src = 'https://acsbapp.com/apps/app/dist/js/app.js';
+          s.async = true;
+          s.onload = function () {
+            acsbJS.init();
+          };
+          document.head.appendChild(s);
+        })();
+      </script>
+    {%- endif -%}
   </body>
 </html>
