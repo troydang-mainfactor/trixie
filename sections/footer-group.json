@@ -14,6 +14,117 @@
     "footer_m9NzUG": {
       "type": "footer",
       "blocks": {
+        "group_shop": {
+          "type": "group",
+          "name": "Shop",
+          "settings": {
+            "content_direction": "column",
+            "gap": 8,
+            "width": "fill"
+          },
+          "blocks": {
+            "heading": {
+              "type": "text",
+              "settings": {
+                "text": "<h3>Shop</h3>",
+                "width": "100%",
+                "alignment": "left",
+                "type_preset": "h5",
+                "case": "uppercase",
+                "letter_spacing": "loose"
+              },
+              "blocks": {}
+            },
+            "links": {
+              "type": "text",
+              "settings": {
+                "text": "<p><a href=\"/collections/accessories\" title=\"Apparel &amp; Accessories\">Apparel &amp; Accessories</a></p><p><a href=\"/collections/face\" title=\"Face\">Face</a></p><p><a href=\"/collections/eyes\" title=\"Eyes\">Eyes</a></p><p><a href=\"/collections/lips\" title=\"Lips\">Lips</a></p><p><a href=\"/collections/tools\" title=\"Tools\">Tools</a></p><p><a href=\"/collections/bundles\" title=\"Bundles\">Bundles</a></p><p><a href=\"/collections/all\" title=\"Shop All\">Shop All</a></p>",
+                "width": "100%",
+                "alignment": "left",
+                "type_preset": "rte"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "heading",
+            "links"
+          ]
+        },
+        "group_about": {
+          "type": "group",
+          "name": "About",
+          "settings": {
+            "content_direction": "column",
+            "gap": 8,
+            "width": "fill"
+          },
+          "blocks": {
+            "heading": {
+              "type": "text",
+              "settings": {
+                "text": "<h3>About</h3>",
+                "width": "100%",
+                "alignment": "left",
+                "type_preset": "h5",
+                "case": "uppercase",
+                "letter_spacing": "loose"
+              },
+              "blocks": {}
+            },
+            "links": {
+              "type": "text",
+              "settings": {
+                "text": "<p><a href=\"http://www.trixiemattel.com/\" title=\"Trixie Mattel\">Trixie Mattel</a></p><p><a href=\"/pages/about\" title=\"About Us\">About Us</a></p><p><a href=\"/pages/where-to-buy\" title=\"Where to Buy\">Where to Buy</a></p><p><a href=\"/pages/faq\" title=\"FAQ\">FAQ</a></p>",
+                "width": "100%",
+                "alignment": "left",
+                "type_preset": "rte"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "heading",
+            "links"
+          ]
+        },
+        "group_help": {
+          "type": "group",
+          "name": "Customer Service",
+          "settings": {
+            "content_direction": "column",
+            "gap": 8,
+            "width": "fill"
+          },
+          "blocks": {
+            "heading": {
+              "type": "text",
+              "settings": {
+                "text": "<h3>Customer Service</h3>",
+                "width": "100%",
+                "alignment": "left",
+                "type_preset": "h5",
+                "case": "uppercase",
+                "letter_spacing": "loose"
+              },
+              "blocks": {}
+            },
+            "links": {
+              "type": "text",
+              "settings": {
+                "text": "<p><a href=\"/pages/help\" title=\"Contact Us\">Contact Us</a></p><p><a href=\"/policies/terms-of-service\" title=\"Terms of Service\">Terms of Service</a></p><p><a href=\"/policies/privacy-policy\" title=\"Privacy Policy\">Privacy Policy</a></p><p><a href=\"/policies/refund-policy\" title=\"Shipping, Refunds &amp; Returns\">Shipping, Refunds &amp; Returns</a></p><p><a href=\"/pages/accessibility-information\" title=\"Accessibility Information\">Accessibility Information</a></p><p><a href=\"/pages/global-privacy-compliance\" title=\"Global Privacy Compliance\">Global Privacy Compliance</a></p><p><a href=\"/pages/do-not-sell-or-share-my-personal-information\" title=\"Do Not Sell or Share My Personal Information\">Do Not Sell or Share My Personal Information</a></p><p><a href=\"/pages/gpsr\" title=\"GPSR\">GPSR</a></p>",
+                "width": "100%",
+                "alignment": "left",
+                "type_preset": "rte"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "heading",
+            "links"
+          ]
+        },
         "group_H6VpwJ": {
           "type": "group",
           "settings": {
@@ -57,12 +168,12 @@
             "text_LWt8Pz": {
               "type": "text",
               "settings": {
-                "text": "<h2>Join our email list</h2>",
+                "text": "<h3>Want more Trixie?</h3>",
                 "split_on_dash": false,
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
-                "type_preset": "h4",
+                "type_preset": "h3",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
                 "line_height": "normal",
@@ -83,7 +194,7 @@
             "text_f9CFLH": {
               "type": "text",
               "settings": {
-                "text": "<p>Get exclusive deals and early access to new products.</p>",
+                "text": "<p>Subscribe to get the 411 on launches, restocks, and all things Trixie Cosmetics!</p>",
                 "split_on_dash": false,
                 "width": "100%",
                 "max_width": "normal",
@@ -105,57 +216,74 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "email_signup_crihX7": {
+              "type": "email-signup",
+              "settings": {
+                "width": "fill",
+                "custom_width": 100,
+                "heading": "",
+                "heading_text_color": "",
+                "heading_preset": "h3",
+                "border_style": "all",
+                "input_style": "custom",
+                "border_width": 1,
+                "border_radius": 0,
+                "input_background_color": "{{ settings.color_palette.background }}",
+                "input_text_color": "{{ settings.color_palette.color1 }}",
+                "input_border_color": "{{ settings.color_palette.foreground }}",
+                "input_type_preset": "paragraph",
+                "style_class": "button",
+                "custom_button_background": "{{ settings.color_palette.foreground }}",
+                "custom_button_text": "{{ settings.color_palette.color5 }}",
+                "custom_button_border": "{{ settings.color_palette.foreground }}",
+                "link_text_color": "",
+                "display_type": "text",
+                "label": "Sign up",
+                "integrated_button": false,
+                "button_type_preset": "paragraph",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "notice": {
+              "type": "text",
+              "settings": {
+                "text": "<p>To report an adverse event that occurred in the USA, please call <a href=\"tel:+18186911112\" title=\"Call (818) 691-1112\">(818) 691-1112</a>. This is not a customer service number. For customer service, email <a href=\"mailto:office@trixiecosmetics.com\" title=\"Email office@trixiecosmetics.com\">office@trixiecosmetics.com</a>.</p>",
+                "width": "100%",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font_size": "0.75rem",
+                "padding-block-start": 12
+              },
+              "blocks": {}
             }
           },
           "block_order": [
             "text_LWt8Pz",
-            "text_f9CFLH"
-          ]
-        },
-        "email_signup_crihX7": {
-          "type": "email-signup",
-          "settings": {
-            "width": "fill",
-            "custom_width": 100,
-            "heading": "",
-            "heading_text_color": "",
-            "heading_preset": "h3",
-            "border_style": "all",
-            "input_style": "custom",
-            "border_width": 1,
-            "border_radius": 0,
-            "input_background_color": "{{ settings.color_palette.background }}",
-            "input_text_color": "{{ settings.color_palette.color1 }}",
-            "input_border_color": "{{ settings.color_palette.color2 }}",
-            "input_type_preset": "paragraph",
-            "style_class": "button-unstyled",
-            "custom_button_background": "{{ settings.color_palette.foreground }}",
-            "custom_button_text": "{{ settings.color_palette.background }}",
-            "custom_button_border": "{{ settings.color_palette.background }}",
-            "link_text_color": "",
-            "display_type": "arrow",
-            "label": "Sign up",
-            "integrated_button": true,
-            "button_type_preset": "paragraph",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "text_f9CFLH",
+            "email_signup_crihX7",
+            "notice"
+          ],
+          "name": "Newsletter"
         }
       },
       "block_order": [
-        "group_H6VpwJ",
-        "email_signup_crihX7"
+        "group_shop",
+        "group_about",
+        "group_help",
+        "group_H6VpwJ"
       ],
       "name": "t:names.footer",
       "settings": {
         "section_width": "page-width",
-        "gap": 20,
-        "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 30,
-        "padding-block-end": 30
+        "gap": 40,
+        "background_color": "{{ settings.color_palette.color6 }}",
+        "padding-block-start": 56,
+        "padding-block-end": 40
       }
     },
     "footer_utilities_jLGE8U": {
@@ -165,7 +293,7 @@
           "type": "footer-copyright",
           "settings": {
             "show_powered_by": true,
-            "text_color": "",
+            "text_color": "{{ settings.color_palette.foreground }}",
             "font_size": "0.75rem",
             "case": "none"
           },
@@ -174,7 +302,7 @@
         "footer_policy_list_VCdnpa": {
           "type": "footer-policy-list",
           "settings": {
-            "text_color": "",
+            "text_color": "{{ settings.color_palette.foreground }}",
             "font_size": "0.75rem",
             "case": "none"
           },
@@ -183,17 +311,17 @@
         "social_links_Ew63Kq": {
           "type": "social-links",
           "settings": {
-            "icon_color": "",
-            "facebook_url": "https://www.facebook.com/",
-            "instagram_url": "https://www.instagram.com/",
-            "youtube_url": "https://www.youtube.com/",
-            "tiktok_url": "https://www.tiktok.com/",
-            "twitter_url": "https://x.com/",
+            "icon_color": "{{ settings.color_palette.foreground }}",
+            "facebook_url": "https://www.facebook.com/Trixie-Cosmetics-431646424040883/",
+            "instagram_url": "https://www.instagram.com/trixiecosmetics/",
+            "youtube_url": "https://www.youtube.com/channel/UC0biFgrMdkv1hFAFLVePODQ",
+            "tiktok_url": "",
+            "twitter_url": "https://twitter.com/trixiecosmetics",
             "threads_url": "",
             "linkedin_url": "",
             "bluesky_url": "",
             "snapchat_url": "",
-            "pinterest_url": "",
+            "pinterest_url": "https://www.pinterest.com/TrixieCosmetics/",
             "tumblr_url": "",
             "vimeo_url": "",
             "custom_url": ""
@@ -210,9 +338,9 @@
       "settings": {
         "section_width": "page-width",
         "gap": 24,
-        "background_color": "{{ settings.color_palette.background }}",
+        "background_color": "{{ settings.color_palette.color6 }}",
         "divider_thickness": 1,
-        "divider_color": "{{ settings.color_palette.color2 }}",
+        "divider_color": "{{ settings.color_palette.foreground }}",
         "padding-block-start": 20,
         "padding-block-end": 48
       }

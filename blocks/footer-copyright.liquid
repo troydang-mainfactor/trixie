@@ -16,7 +16,12 @@
     &copy; {{ 'now' | date: '%Y' }}
     {{ shop.name | link_to: routes.root_url -}}
     {%- if block_settings.show_powered_by -%}
-      , {{ powered_by_link }}
+      &middot; Powered by
+      <a href="https://www.mainfactor.com/" target="_blank" rel="noopener">Mainfactor</a>
+    {%- endif -%}
+    {%- if settings.accessibe_enabled -%}
+      &middot;
+      <button type="button" class="footer-utilities__a11y-trigger" data-acsb-custom-trigger="true">Accessibility Adjustments</button>
     {%- endif -%}
   </span>
 </div>
@@ -24,6 +29,17 @@
 {% stylesheet %}
   .footer-utilities__group-copyright {
     color: var(--color-utilities, var(--color-foreground-muted));
+  }
+
+  .footer-utilities__a11y-trigger {
+    all: unset;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  .footer-utilities__a11y-trigger:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
   }
 {% endstylesheet %}
 
@@ -35,7 +51,7 @@
     {
       "type": "checkbox",
       "id": "show_powered_by",
-      "label": "t:settings.show_powered_by_shopify",
+      "label": "Show Powered by Mainfactor",
       "default": true
     },
     {
