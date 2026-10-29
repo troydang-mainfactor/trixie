@@ -981,6 +981,13 @@
     --padding-block-end: var(--header-padding);
   }
 
+  /* Keep the logo and header actions off the screen edge on desktop */
+  @media screen and (min-width: 750px) {
+    .header-section {
+      --page-margin: 40px;
+    }
+  }
+
   .header:not(.header--compact) .header__row--bottom {
     --header-padding: var(--padding-xs);
   }

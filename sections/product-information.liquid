@@ -185,6 +185,37 @@
 %}
 
 {% stylesheet %}
+  /* Add to bag: label left, price right */
+  .product-details .add-to-cart-button {
+    width: 100%;
+    justify-content: space-between;
+    padding-inline: var(--padding-xl);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+
+  .product-details .add-to-cart-button__price-divider {
+    display: none;
+  }
+
+  /* Plays Well With: one compact row per product, image left */
+  .product-details product-recommendations .resource-list {
+    grid-template-columns: 1fr;
+  }
+
+  .product-details product-recommendations .product-card__content {
+    display: grid;
+    grid-template-columns: 84px 1fr;
+    column-gap: var(--gap-md);
+    row-gap: var(--gap-2xs);
+    align-items: start;
+  }
+
+  .product-details product-recommendations .product-card__content > :first-child {
+    grid-row: span 2;
+  }
+
   .sticky-add-to-cart__bar {
     position: fixed;
     bottom: 20px;
