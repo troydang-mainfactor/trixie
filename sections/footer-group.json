@@ -14,50 +14,9 @@
     "footer_m9NzUG": {
       "type": "footer",
       "blocks": {
-        "menu_shop": {
-          "type": "menu",
-          "settings": {
-            "menu": "shop",
-            "heading": "Shop",
-            "menu_spacing": 10,
-            "show_as_accordion": true,
-            "accordion_icon": "plus",
-            "accordion_dividers": true,
-            "heading_preset": "h5",
-            "link_preset": "paragraph"
-          },
-          "blocks": {}
-        },
-        "menu_about": {
-          "type": "menu",
-          "settings": {
-            "menu": "about",
-            "heading": "About",
-            "menu_spacing": 10,
-            "show_as_accordion": true,
-            "accordion_icon": "plus",
-            "accordion_dividers": true,
-            "heading_preset": "h5",
-            "link_preset": "paragraph"
-          },
-          "blocks": {}
-        },
-        "menu_help": {
-          "type": "menu",
-          "settings": {
-            "menu": "customer-service",
-            "heading": "Customer Service",
-            "menu_spacing": 10,
-            "show_as_accordion": true,
-            "accordion_icon": "plus",
-            "accordion_dividers": true,
-            "heading_preset": "h5",
-            "link_preset": "paragraph"
-          },
-          "blocks": {}
-        },
         "group_H6VpwJ": {
           "type": "group",
+          "name": "Brand",
           "settings": {
             "content_direction": "column",
             "vertical_on_mobile": true,
@@ -96,6 +55,72 @@
             "padding-inline-end": 0
           },
           "blocks": {
+            "logo": {
+              "type": "logo",
+              "settings": {
+                "inverse": false,
+                "font": "heading",
+                "text_color": "",
+                "unit": "pixel",
+                "percent_width": 100,
+                "pixel_height": 152,
+                "custom_mobile_size": true,
+                "unit_mobile": "pixel",
+                "percent_width_mobile": 100,
+                "pixel_height_mobile": 104,
+                "padding-block-start": 0,
+                "padding-block-end": 4,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "tagline": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Ultra-pigmented, cruelty-free makeup from the mind of Trixie Mattel. Pink is a neutral.</p>",
+                "split_on_dash": false,
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "social": {
+              "type": "social-links",
+              "settings": {
+                "icon_color": "{{ settings.color_palette.foreground }}",
+                "facebook_url": "https://www.facebook.com/Trixie-Cosmetics-431646424040883/",
+                "instagram_url": "https://www.instagram.com/trixiecosmetics/",
+                "youtube_url": "https://www.youtube.com/channel/UC0biFgrMdkv1hFAFLVePODQ",
+                "tiktok_url": "",
+                "twitter_url": "https://twitter.com/trixiecosmetics",
+                "threads_url": "",
+                "linkedin_url": "",
+                "bluesky_url": "",
+                "snapchat_url": "",
+                "pinterest_url": "https://www.pinterest.com/TrixieCosmetics/",
+                "tumblr_url": "",
+                "vimeo_url": "",
+                "custom_url": ""
+              },
+              "blocks": {}
+            },
             "text_LWt8Pz": {
               "type": "text",
               "settings": {
@@ -184,53 +209,25 @@
               "type": "text",
               "settings": {
                 "text": "<p>To report an adverse event that occurred in the USA, please call <a href=\"tel:+18186911112\" title=\"Call (818) 691-1112\">(818) 691-1112</a>. This is not a customer service number. For customer service, email <a href=\"mailto:office@trixiecosmetics.com\" title=\"Email office@trixiecosmetics.com\">office@trixiecosmetics.com</a>.</p>",
+                "split_on_dash": false,
                 "width": "100%",
+                "max_width": "normal",
                 "alignment": "left",
                 "type_preset": "custom",
+                "font": "var(--font-body--family)",
                 "font_size": "0.75rem",
-                "padding-block-start": 12
-              },
-              "blocks": {}
-            },
-            "logo": {
-              "type": "logo",
-              "settings": {
-                "unit": "pixel",
-                "pixel_height": 72,
-                "custom_mobile_size": true,
-                "unit_mobile": "pixel",
-                "pixel_height_mobile": 56,
-                "padding-block-end": 4
-              },
-              "blocks": {}
-            },
-            "tagline": {
-              "type": "text",
-              "settings": {
-                "text": "<p>Ultra-pigmented, cruelty-free makeup from the mind of Trixie Mattel. Pink is a neutral.</p>",
-                "width": "100%",
-                "alignment": "left",
-                "type_preset": "rte"
-              },
-              "blocks": {}
-            },
-            "social": {
-              "type": "social-links",
-              "settings": {
-                "icon_color": "{{ settings.color_palette.foreground }}",
-                "facebook_url": "https://www.facebook.com/Trixie-Cosmetics-431646424040883/",
-                "instagram_url": "https://www.instagram.com/trixiecosmetics/",
-                "youtube_url": "https://www.youtube.com/channel/UC0biFgrMdkv1hFAFLVePODQ",
-                "tiktok_url": "",
-                "twitter_url": "https://twitter.com/trixiecosmetics",
-                "threads_url": "",
-                "linkedin_url": "",
-                "bluesky_url": "",
-                "snapchat_url": "",
-                "pinterest_url": "https://www.pinterest.com/TrixieCosmetics/",
-                "tumblr_url": "",
-                "vimeo_url": "",
-                "custom_url": ""
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 12,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
               },
               "blocks": {}
             }
@@ -243,8 +240,67 @@
             "text_f9CFLH",
             "email_signup_crihX7",
             "notice"
-          ],
-          "name": "Brand"
+          ]
+        },
+        "menu_shop": {
+          "type": "menu",
+          "settings": {
+            "menu": "shop",
+            "heading": "Shop",
+            "menu_spacing": 10,
+            "show_as_accordion": true,
+            "accordion_icon": "plus",
+            "accordion_dividers": true,
+            "background_color": "",
+            "text_color": "",
+            "heading_preset": "h5",
+            "link_preset": "paragraph",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "menu_about": {
+          "type": "menu",
+          "settings": {
+            "menu": "about",
+            "heading": "About",
+            "menu_spacing": 10,
+            "show_as_accordion": true,
+            "accordion_icon": "plus",
+            "accordion_dividers": true,
+            "background_color": "",
+            "text_color": "",
+            "heading_preset": "h5",
+            "link_preset": "paragraph",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "menu_help": {
+          "type": "menu",
+          "settings": {
+            "menu": "customer-service",
+            "heading": "Customer Service",
+            "menu_spacing": 10,
+            "show_as_accordion": true,
+            "accordion_icon": "plus",
+            "accordion_dividers": true,
+            "background_color": "",
+            "text_color": "",
+            "heading_preset": "h5",
+            "link_preset": "paragraph",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         },
         "wordmark": {
           "type": "jumbo-text",
@@ -255,6 +311,8 @@
             "line_height": "0.8",
             "letter_spacing": "-0.03em",
             "case": "none",
+            "text_effect": "none",
+            "animation_repeat": false,
             "text_color": "{{ settings.color_palette.color3 }}"
           },
           "blocks": {}
