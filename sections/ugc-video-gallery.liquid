@@ -1,0 +1,684 @@
+{%- comment -%}
+  ==============================================================================
+  UGC VIDEO GALLERY — premium shoppable video section (Online Store 2.0)
+  ==============================================================================
+  A theme-native alternative to Moast / Tolstoy / Novel / Sauce style apps.
+  Everything lives in the theme: no app, no external scripts, no fees.
+
+  Files:
+    sections/ugc-gallery.liquid          (this file — markup + schema)
+    snippets/ugc-gallery-card.liquid     (inline card / story bubble)
+    snippets/ugc-gallery-slide.liquid    (fullscreen modal slide)
+    snippets/ugc-gallery-icons.liquid    (inline SVG icons)
+    assets/ugc-gallery.css               (all styles)
+    assets/ugc-gallery.js                (all behaviour — vanilla, no deps)
+
+  Layouts: grid | masonry | carousel | spotlight | stories | floating
+
+  Notes:
+    - "Featured" blocks are ordered first and get a badge (and a larger tile
+      in the grid layout).
+    - Page visibility toggles hide the section by template type; in the theme
+      editor the section always renders so it can be configured.
+    - Shopify caps sections at 50 blocks.
+  ==============================================================================
+{%- endcomment -%}
+
+{{ 'ugc-gallery.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'ugc-gallery.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  # ---------------------------------------------------------------------------
+  # Page visibility
+  # ---------------------------------------------------------------------------
+  assign visible = false
+  case template.name
+    when 'index'
+      if section.settings.show_on_home
+        assign visible = true
+      endif
+    when 'product'
+      if section.settings.show_on_product
+        assign visible = true
+      endif
+    when 'collection'
+      if section.settings.show_on_collection
+        assign visible = true
+      endif
+    else
+      if section.settings.show_elsewhere
+        assign visible = true
+      endif
+  endcase
+  if request.design_mode
+    assign visible = true
+  endif
+
+  assign layout = section.settings.layout
+  assign max_items = section.settings.max_items | default: 50
+  assign pc_alpha = section.settings.product_card_opacity | default: 90 | divided_by: 100.0
+  assign overlay_alpha = section.settings.overlay_opacity | default: 60 | divided_by: 100.0
+  assign modal_alpha = section.settings.modal_bg_opacity | default: 100 | divided_by: 100.0
+
+  # ---------------------------------------------------------------------------
+  # Featured-first ordering.
+  # Builds an ordered list of block indices: featured blocks, then the rest.
+  # Cards and modal slides are rendered from the same list so indices align.
+  # ---------------------------------------------------------------------------
+  assign featured_keys = ''
+  assign regular_keys = ''
+  for block in section.blocks
+    if block.settings.featured
+      assign featured_keys = featured_keys | append: forloop.index0 | append: ','
+    else
+      assign regular_keys = regular_keys | append: forloop.index0 | append: ','
+    endif
+  endfor
+  assign ordered_keys = featured_keys | append: regular_keys | split: ','
+-%}
+
+{%- if visible and section.blocks.size > 0 -%}
+<ugc-gallery
+  class="ugcg ugcg--{{ layout }} ugcg--play-{{ section.settings.play_style }} color-{{ section.settings.color_scheme }}"
+  data-section-id="{{ section.id }}"
+  {% if section.settings.preview_autoplay %}data-preview-autoplay{% endif %}
+  style="
+    --ugcg-accent: {{ section.settings.accent_color }};
+    --ugcg-accent-2: {{ section.settings.accent_color_2 }};
+    --ugcg-radius: {{ section.settings.card_radius }}px;
+    --ugcg-gap: {{ section.settings.gap }}px;
+    --ugcg-card-w: {{ section.settings.card_width }}px;
+    --ugcg-per-view: {{ section.settings.cards_per_view | default: 4 }};
+    --ugcg-per-view-m: {{ section.settings.cards_per_view_mobile | default: 1.5 }};
+    --ugcg-modal-bg: {{ section.settings.modal_bg | default: '#000000' | color_modify: 'alpha', modal_alpha }};
+    --ugcg-modal-radius: {{ section.settings.modal_radius | default: 16 }}px;
+    --ugcg-play-size: {{ section.settings.play_size | default: 46 }}px;
+    --ugcg-overlay-a: {{ overlay_alpha }};
+    --ugcg-pc-bg: {{ section.settings.product_card_bg | default: '#1C1C1E' | color_modify: 'alpha', pc_alpha }};
+    --ugcg-pc-text: {{ section.settings.product_card_text | default: '#FFFFFF' }};
+    --ugcg-pad-top: {{ section.settings.padding_top }}px;
+    --ugcg-pad-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  {%- unless layout == 'floating' -%}
+    <div class="ugcg__inner page-width">
+      {%- if section.settings.heading != blank or section.settings.subheading != blank -%}
+        <header class="ugcg__header ugcg__header--{{ section.settings.heading_alignment }}">
+          {%- if section.settings.heading != blank -%}
+            <h2 class="ugcg__heading">{{ section.settings.heading | escape }}</h2>
+          {%- endif -%}
+          {%- if section.settings.subheading != blank -%}
+            <p class="ugcg__subheading">{{ section.settings.subheading | escape }}</p>
+          {%- endif -%}
+        </header>
+      {%- endif -%}
+  {%- endunless -%}
+
+  {%- case layout -%}
+
+    {%- when 'stories' -%}
+      <div class="ugcg-stories" data-ugcg-scroller tabindex="0" role="list" aria-label="{{ section.settings.heading | default: 'Social videos' | escape }}">
+        {%- assign di = 0 -%}
+        {%- for key in ordered_keys -%}
+          {%- if key == blank %}{% continue %}{% endif -%}
+          {%- if di >= max_items %}{% break %}{% endif -%}
+          {%- assign i = key | plus: 0 -%}
+          {% render 'ugc-gallery-card', block: section.blocks[i], index: di, layout: layout, sset: section.settings %}
+          {%- assign di = di | plus: 1 -%}
+        {%- endfor -%}
+      </div>
+
+    {%- when 'floating' -%}
+      <div class="ugcg-floating" data-ugcg-floating>
+        <button type="button" class="ugcg-floating__dismiss" data-ugcg-dismiss aria-label="Hide videos">
+          {% render 'ugc-gallery-icons', icon: 'close', size: 12 %}
+        </button>
+        <div class="ugcg-floating__row" data-ugcg-scroller role="list" aria-label="{{ section.settings.heading | default: 'Social videos' | escape }}">
+          {%- assign di = 0 -%}
+          {%- for key in ordered_keys -%}
+            {%- if key == blank %}{% continue %}{% endif -%}
+          {%- if di >= max_items %}{% break %}{% endif -%}
+            {%- assign i = key | plus: 0 -%}
+            {% render 'ugc-gallery-card', block: section.blocks[i], index: di, layout: layout, sset: section.settings %}
+            {%- assign di = di | plus: 1 -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+    {%- when 'carousel' or 'spotlight' -%}
+      <div class="ugcg-carousel{% if layout == 'spotlight' %} ugcg-carousel--spotlight{% endif %}">
+        <button type="button" class="ugcg-arrow ugcg-arrow--prev" data-ugcg-arrow="prev" aria-label="Previous videos">
+          {% render 'ugc-gallery-icons', icon: 'chevron-left', size: 16 %}
+        </button>
+        <div class="ugcg-carousel__track" data-ugcg-scroller tabindex="0" role="list" aria-label="{{ section.settings.heading | default: 'Social videos' | escape }}">
+          {%- assign di = 0 -%}
+          {%- for key in ordered_keys -%}
+            {%- if key == blank %}{% continue %}{% endif -%}
+          {%- if di >= max_items %}{% break %}{% endif -%}
+            {%- assign i = key | plus: 0 -%}
+            {% render 'ugc-gallery-card', block: section.blocks[i], index: di, layout: layout, sset: section.settings %}
+            {%- assign di = di | plus: 1 -%}
+          {%- endfor -%}
+        </div>
+        <button type="button" class="ugcg-arrow ugcg-arrow--next" data-ugcg-arrow="next" aria-label="Next videos">
+          {% render 'ugc-gallery-icons', icon: 'chevron-right', size: 16 %}
+        </button>
+      </div>
+
+    {%- when 'masonry' -%}
+      <div class="ugcg-masonry" role="list" aria-label="{{ section.settings.heading | default: 'Social videos' | escape }}">
+        {%- assign di = 0 -%}
+        {%- for key in ordered_keys -%}
+          {%- if key == blank %}{% continue %}{% endif -%}
+          {%- if di >= max_items %}{% break %}{% endif -%}
+          {%- assign i = key | plus: 0 -%}
+          {% render 'ugc-gallery-card', block: section.blocks[i], index: di, layout: layout, sset: section.settings %}
+          {%- assign di = di | plus: 1 -%}
+        {%- endfor -%}
+      </div>
+
+    {%- else -%}
+      <div class="ugcg-grid" role="list" aria-label="{{ section.settings.heading | default: 'Social videos' | escape }}">
+        {%- assign di = 0 -%}
+        {%- for key in ordered_keys -%}
+          {%- if key == blank %}{% continue %}{% endif -%}
+          {%- if di >= max_items %}{% break %}{% endif -%}
+          {%- assign i = key | plus: 0 -%}
+          {% render 'ugc-gallery-card', block: section.blocks[i], index: di, layout: layout, sset: section.settings %}
+          {%- assign di = di | plus: 1 -%}
+        {%- endfor -%}
+      </div>
+
+  {%- endcase -%}
+
+  {%- unless layout == 'floating' -%}
+    </div>
+  {%- endunless -%}
+
+  {%- comment -%}
+    ----------------------------------------------------------------------------
+    Fullscreen modal — TikTok-style vertical feed.
+    Rendered once per section; hidden until a card is clicked.
+    ----------------------------------------------------------------------------
+  {%- endcomment -%}
+  <div class="ugcg-modal ugcg-modal--{{ section.settings.modal_video_fit | default: 'contain' }}" data-ugcg-modal hidden role="dialog" aria-modal="true" aria-label="{{ section.settings.heading | default: 'Social videos' | escape }}">
+    <button type="button" class="ugcg-modal__close" data-ugcg-close aria-label="Close">
+      {% render 'ugc-gallery-icons', icon: 'close', size: 20 %}
+    </button>
+    <button type="button" class="ugcg-modal__mute" data-ugcg-mute aria-label="Unmute video" aria-pressed="false">
+      <span class="ugcg-mute-off">{% render 'ugc-gallery-icons', icon: 'volume-off', size: 20 %}</span>
+      <span class="ugcg-mute-on">{% render 'ugc-gallery-icons', icon: 'volume-on', size: 20 %}</span>
+    </button>
+    <div class="ugcg-modal__nav" aria-hidden="true">
+      <button type="button" class="ugcg-modal__navbtn" data-ugcg-nav="prev" tabindex="-1" aria-label="Previous">
+        {% render 'ugc-gallery-icons', icon: 'chevron-left', size: 18 %}
+      </button>
+      <button type="button" class="ugcg-modal__navbtn" data-ugcg-nav="next" tabindex="-1" aria-label="Next">
+        {% render 'ugc-gallery-icons', icon: 'chevron-right', size: 18 %}
+      </button>
+    </div>
+    <div class="ugcg-modal__track" data-ugcg-track tabindex="0">
+      {%- assign di = 0 -%}
+      {%- for key in ordered_keys -%}
+        {%- if key == blank %}{% continue %}{% endif -%}
+          {%- if di >= max_items %}{% break %}{% endif -%}
+        {%- assign i = key | plus: 0 -%}
+        {% render 'ugc-gallery-slide', block: section.blocks[i], index: di, sset: section.settings %}
+        {%- assign di = di | plus: 1 -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</ugc-gallery>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "UGC Video Gallery",
+  "tag": "section",
+  "class": "section-ugc-gallery",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "As seen on social"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Real customers. Real results. Tap any video to shop the look."
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "carousel", "label": "Carousel" },
+        { "value": "grid", "label": "Grid" },
+        { "value": "masonry", "label": "Masonry" },
+        { "value": "spotlight", "label": "Spotlight" },
+        { "value": "stories", "label": "Stories" },
+        { "value": "floating", "label": "Floating stories row" }
+      ],
+      "default": "carousel"
+    },
+    {
+      "type": "range",
+      "id": "max_items",
+      "label": "Number of videos to show",
+      "info": "Extra blocks beyond this number are hidden (featured videos are always shown first).",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "cards_per_view",
+      "label": "Videos per view (carousel, desktop)",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "cards_per_view_mobile",
+      "label": "Videos per view (carousel, mobile)",
+      "info": "Half steps leave a peek of the next video.",
+      "min": 1,
+      "max": 4,
+      "step": 0.5,
+      "default": 1.5
+    },
+    {
+      "type": "range",
+      "id": "card_width",
+      "label": "Card width (grid)",
+      "min": 160,
+      "max": 360,
+      "step": 10,
+      "unit": "px",
+      "default": 260
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Spacing between cards",
+      "min": 4,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Card corner radius",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Card details"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_creator",
+      "label": "Show creator name and avatar",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_captions",
+      "label": "Show captions",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_likes",
+      "label": "Show likes count",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_platform",
+      "label": "Show platform icon",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "preview_autoplay",
+      "label": "Inline video previews",
+      "info": "Plays muted previews while cards are on screen. Uses more bandwidth and can lower Lighthouse scores — leave off for best performance.",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Play button"
+    },
+    {
+      "type": "select",
+      "id": "play_style",
+      "label": "Play button style",
+      "options": [
+        { "value": "outline", "label": "Outlined" },
+        { "value": "solid", "label": "Solid" }
+      ],
+      "default": "outline"
+    },
+    {
+      "type": "range",
+      "id": "play_size",
+      "label": "Play button size",
+      "min": 32,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 46
+    },
+    {
+      "type": "header",
+      "content": "Fullscreen view"
+    },
+    {
+      "type": "color",
+      "id": "modal_bg",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "modal_bg_opacity",
+      "label": "Background opacity",
+      "info": "Lower values let the page show through behind the video.",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "modal_radius",
+      "label": "Video corner radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "modal_video_fit",
+      "label": "Video fit",
+      "options": [
+        { "value": "contain", "label": "Show full video (no cropping)" },
+        { "value": "cover", "label": "Fill screen (may crop)" }
+      ],
+      "default": "contain"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay darkness",
+      "info": "Darkness of the gradient behind the caption and product card. Lower = more transparent.",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Shopping"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_card",
+      "label": "Show product cards in fullscreen view",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Default button label",
+      "default": "Buy now"
+    },
+    {
+      "type": "color",
+      "id": "product_card_bg",
+      "label": "Product card background",
+      "default": "#1C1C1E"
+    },
+    {
+      "type": "range",
+      "id": "product_card_opacity",
+      "label": "Product card opacity",
+      "min": 30,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 85
+    },
+    {
+      "type": "color",
+      "id": "product_card_text",
+      "label": "Product card text",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "info": "Used for the story ring, badges and buttons.",
+      "default": "#F43F5E"
+    },
+    {
+      "type": "color",
+      "id": "accent_color_2",
+      "label": "Accent gradient color",
+      "default": "#F59E0B"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Text color",
+      "options": [
+        { "value": "auto", "label": "Inherit from theme" },
+        { "value": "light", "label": "Light (for dark backgrounds)" },
+        { "value": "dark", "label": "Dark (for light backgrounds)" }
+      ],
+      "default": "auto"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Page visibility",
+      "info": "Controls where this section renders when added to a template that appears on multiple pages. In the theme editor the section is always visible."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_on_home",
+      "label": "Show on homepage",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_on_product",
+      "label": "Show on product pages",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_on_collection",
+      "label": "Show on collection pages",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_elsewhere",
+      "label": "Show on all other pages",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "UGC item",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Media"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video",
+          "info": "Upload in Content > Files. Vertical 9:16 works best."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image (fallback)",
+          "info": "Used when no video is set."
+        },
+        {
+          "type": "header",
+          "content": "Creator"
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar",
+          "label": "Creator avatar"
+        },
+        {
+          "type": "text",
+          "id": "username",
+          "label": "Creator username",
+          "default": "@creator"
+        },
+        {
+          "type": "checkbox",
+          "id": "verified",
+          "label": "Verified badge",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "platform",
+          "label": "Platform",
+          "options": [
+            { "value": "tiktok", "label": "TikTok" },
+            { "value": "instagram", "label": "Instagram" },
+            { "value": "youtube", "label": "YouTube" },
+            { "value": "custom", "label": "Custom" }
+          ],
+          "default": "tiktok"
+        },
+        {
+          "type": "header",
+          "content": "Post details"
+        },
+        {
+          "type": "textarea",
+          "id": "caption",
+          "label": "Caption"
+        },
+        {
+          "type": "text",
+          "id": "likes",
+          "label": "Likes count",
+          "info": "Free text, e.g. 12.4K",
+          "placeholder": "12.4K"
+        },
+        {
+          "type": "checkbox",
+          "id": "featured",
+          "label": "Featured",
+          "info": "Featured items appear first and get a badge (larger tile in Grid layout).",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Shopping"
+        },
+        {
+          "type": "product_list",
+          "id": "products",
+          "label": "Products",
+          "limit": 10,
+          "info": "Tag up to 10 products — they appear as a swipeable product card carousel in the fullscreen view."
+        },
+        {
+          "type": "url",
+          "id": "custom_url",
+          "label": "Custom URL",
+          "info": "Used when no products are selected."
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": "Button label override"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "UGC Video Gallery",
+      "blocks": [
+        { "type": "item" },
+        { "type": "item" },
+        { "type": "item" },
+        { "type": "item" }
+      ]
+    }
+  ]
+}
+{% endschema %}

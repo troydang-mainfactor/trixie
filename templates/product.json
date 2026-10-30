@@ -189,29 +189,10 @@
                       "blocks": {}
                     },
                     "text_xrnftG": {
-                      "type": "text",
-                      "name": "t:names.product_title",
+                      "type": "custom-liquid",
+                      "name": "Product name",
                       "settings": {
-                        "text": "<h1>{{ closest.product.title }}</h1>",
-                        "split_on_dash": true,
-                        "width": "100%",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "custom",
-                        "font": "var(--font-heading--family)",
-                        "font_size": "1.75rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "text_color": "",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
+                        "custom_liquid": "<h1 class=\"pdp-title\">{{ product.title | split: ' - ' | last }}</h1>"
                       },
                       "blocks": {}
                     },
@@ -242,29 +223,10 @@
               ]
             },
             "text_g7NYyH": {
-              "type": "text",
-              "name": "t:names.text",
+              "type": "custom-liquid",
+              "name": "Shade name",
               "settings": {
-                "text": "<p><strong>Nice Aspen<br/></strong>purple base with a blue opalescent shift. </p>",
-                "split_on_dash": false,
-                "width": "100%",
-                "max_width": "none",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "custom_liquid": "{%- if product.title contains ' - ' -%}<p class=\"pdp-shade\">{{ product.title | split: ' - ' | first }}</p>{%- endif -%}"
               },
               "blocks": {}
             },
@@ -275,8 +237,8 @@
                 "swatch_shape": "circle",
                 "swatch_shape_radius": 8,
                 "swatch_size": "custom",
-                "swatch_size_custom": 45,
-                "swatch_gap": 8,
+                "swatch_size_custom": 32,
+                "swatch_gap": 6,
                 "swatch_border_width": 2,
                 "show_tooltips": true,
                 "tooltip_background": "",
