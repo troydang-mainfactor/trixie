@@ -1,6 +1,17 @@
 
 {% assign block_settings = block.settings %}
-
+{% capture accordion_row_content %}{% content_for 'blocks' %}{% endcapture %}
+{%- liquid
+  # Rows fed by an empty metafield are hidden; the theme editor still shows them.
+  assign show_row = true
+  assign accordion_row_text = accordion_row_content | strip_html | strip
+  if accordion_row_text == blank and request.design_mode == false
+    unless accordion_row_content contains '<img'
+      assign show_row = false
+    endunless
+  endif
+-%}
+{% if show_row %}
 {% capture accordion_row_children %}
   <details
     class="details"
@@ -27,7 +38,7 @@
     </summary>
 
     <div class="details-content">
-      {% content_for 'blocks' %}
+      {{ accordion_row_content }}
     </div>
   </details>
 {% endcapture %}
@@ -36,6 +47,7 @@
   open_by_default_on_desktop: block_settings.open_by_default,
   open_by_default_on_mobile: block_settings.open_by_default
 %}
+{% endif %}
 
 {% schema %}
 {
