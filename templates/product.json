@@ -197,14 +197,10 @@
                       "blocks": {}
                     },
                     "text_subtitle": {
-                      "type": "text",
+                      "type": "custom-liquid",
+                      "name": "Subtitle",
                       "settings": {
-                        "text": "<p>{{ closest.product.metafields.custom.subtitle.value }}</p>",
-                        "width": "100%",
-                        "alignment": "left",
-                        "type_preset": "custom",
-                        "font": "var(--font-body--family)",
-                        "font_size": "1.125rem"
+                        "custom_liquid": "{%- assign subtitle = product.selected_or_first_available_variant.metafields.custom.subtitle.value | default: product.metafields.custom.subtitle.value -%}{%- if subtitle != blank -%}<p class=\"pdp-subtitle\">{{ subtitle }}</p>{%- endif -%}"
                       },
                       "blocks": {}
                     }
