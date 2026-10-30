@@ -150,18 +150,20 @@
   .plays-well-with .plays-well-with__button {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 12px;
+    gap: 4px 8px;
     width: 100%;
-    min-height: 52px;
+    min-height: 48px;
     margin-top: 6px;
-    padding: 12px 16px;
+    padding: 12px 14px;
+    font-size: 0.8125rem;
     border: 0;
     border-radius: 0;
     background: var(--pww-button-bg);
     color: var(--pww-button-text);
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     text-decoration: none;
     white-space: nowrap;
@@ -189,6 +191,13 @@
     opacity: 0.6;
   }
 
+  /* Phones: drop the struck-through price so label and price stay on one line */
+  @media screen and (max-width: 749px) {
+    .plays-well-with .add-to-cart-button__price .compare-at-price {
+      display: none;
+    }
+  }
+
   @media screen and (min-width: 750px) {
     .plays-well-with__item {
       grid-template-columns: 112px minmax(0, 1fr);
@@ -196,9 +205,10 @@
     }
 
     .plays-well-with .plays-well-with__button {
-      min-height: 60px;
+      min-height: 56px;
       padding-inline: 20px;
-      font-size: 1rem;
+      font-size: 0.9375rem;
+      letter-spacing: 0.1em;
     }
   }
 {% endstylesheet %}

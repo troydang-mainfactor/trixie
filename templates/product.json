@@ -794,7 +794,7 @@
               "type": "plays-well-with",
               "settings": {
                 "heading": "Plays Well With",
-                "max_products": 3,
+                "max_products": 4,
                 "button_label": "Add to bag",
                 "button_background": "#f79cc4",
                 "button_text": "#000000"
