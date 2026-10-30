@@ -40,6 +40,11 @@
     assign eager_loading = true
   endif
 
+  # Featured products for category menus; the "Collections" (all collections) menu shows collection images instead
+  if menu_content_type == 'featured_products' and parent_link.type == 'collections_link'
+    assign menu_content_type = 'featured_collections'
+  endif
+
   if menu_content_type == 'collection_images'
     assign collection_links = parent_link.links | where: 'type', 'collection_link'
     assign catalog_links = parent_link.links | where: 'type', 'catalog_link'
@@ -52,7 +57,7 @@
   if menu_content_type == 'featured_collections'
     if parent_link.type == 'collection_link'
       assign collection_handles = parent_link.object.handle | append: ','
-    elsif parent_link.type == 'catalog_link' or parent_link.type == 'collections_link'
+    elsif parent_link.type == 'catalog_link'
       assign collection_handles = 'all' | append: ','
     endif
     assign collection_links = parent_link.links | where: 'type', 'collection_link'

@@ -104,7 +104,7 @@
           {%- comment -%}
             Handle menus with fewer than 3 levels of links
           {%- endcomment -%}
-          {% if linklist.levels < 3 %}
+          {% if linklist.levels < 3 and block_settings.drawer_accordion %}
             {% assign first_accordion_open = false %}
             {% assign animation_index = 0 %}
             {%- for link in linklist.links -%}
