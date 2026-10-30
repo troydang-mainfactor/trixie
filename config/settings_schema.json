@@ -2884,6 +2884,18 @@
         "id": "product_card_carousel",
         "label": "t:settings.product_card_carousel",
         "default": true
+      },
+      {
+        "type": "color",
+        "id": "card_dots_active_color",
+        "label": "Mobile image dots: selected color",
+        "default": "#EB008B"
+      },
+      {
+        "type": "color",
+        "id": "card_dots_color",
+        "label": "Mobile image dots: other dots",
+        "default": "#FFFFFF"
       }
     ]
   },
