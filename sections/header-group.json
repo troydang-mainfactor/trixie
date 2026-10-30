@@ -81,14 +81,15 @@
             "text_color_navigation_bar": "",
             "drawer_accordion": false,
             "drawer_accordion_expand_first": true,
-            "drawer_dividers": true
+            "drawer_dividers": true,
+            "menu_layout": "tabs"
           },
           "blocks": {}
         }
       },
       "settings": {
         "logo_position": "left",
-        "menu_position": "left",
+        "menu_position": "center",
         "menu_row": "top",
         "customer_account_menu": "customer-account-main-menu",
         "show_search": true,
@@ -109,7 +110,7 @@
         "divider_color": "",
         "border_width": 0,
         "bottom_border_color": "",
-        "actions_display_style": "text",
+        "actions_display_style": "icon",
         "actions_font_size": "1.125rem",
         "actions_font": "subheading",
         "actions_text_case": "none",

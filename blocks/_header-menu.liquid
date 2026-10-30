@@ -125,6 +125,9 @@
                 style="{% render 'submenu-font-styles', settings: block_settings %}"
               >
                 {% assign list_id = 'MegaMenuList-' | append: forloop.index %}
+                {%- if block_settings.menu_layout == 'tabs' -%}
+                  {% render 'menu-tabs', variant: 'desktop', parent_link: link %}
+                {%- else -%}
                 <div class="mega-menu section section--full-width-margin section--{{ section.settings.section_width }}">
                   <div
                     class="mega-menu__grid"
@@ -143,6 +146,7 @@
                     %}
                   </div>
                 </div>
+                {%- endif -%}
               </div>
             </div>
           {%- endif -%}
@@ -718,6 +722,17 @@
       "id": "menu",
       "label": "t:settings.menu",
       "default": "main-menu"
+    },
+    {
+      "type": "select",
+      "id": "menu_layout",
+      "label": "Menu layout",
+      "info": "Tabs: sub-categories as tabs with a row of products (desktop) and a tab grid with image tiles (mobile).",
+      "options": [
+        { "value": "mega", "label": "Mega menu" },
+        { "value": "tabs", "label": "Tabs" }
+      ],
+      "default": "mega"
     },
     {
       "type": "header",

@@ -1,0 +1,311 @@
+{%- doc -%}
+  Tabbed menu (r.e.m. beauty style), used when the header menu block's "Menu layout" is set to Tabs.
+  Desktop: a row of sub-tabs inside the dropdown; hovering a tab swaps a full-width row of 4 products.
+  Mobile: a grid of top-level tabs; the selected tab shows its links and 2 image tiles.
+
+  @param {object} [parent_link] - Desktop: the top-level link whose dropdown is being rendered
+  @param {object} [linklist] - Mobile: the whole menu
+  @param {string} variant - 'desktop' or 'mobile'
+{%- enddoc -%}
+
+{%- if variant == 'desktop' -%}
+  <div class="menu-tabs" data-menu-tabs>
+    <ul class="menu-tabs__tabs list-unstyled" role="list">
+      {%- for child in parent_link.links -%}
+        <li>
+          <a
+            href="{{ child.url }}"
+            class="menu-tabs__tab"
+            data-tab="{{ forloop.index0 }}"
+            aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+          >
+            {{- child.title -}}
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+
+    {%- for child in parent_link.links -%}
+      {%- liquid
+        assign source = child.object
+        if child.type != 'collection_link'
+          assign source = parent_link.object
+        endif
+      -%}
+      <div class="menu-tabs__panel" data-panel="{{ forloop.index0 }}" {% unless forloop.first %}hidden{% endunless %}>
+        {%- if source.products -%}
+          {%- assign shown = 0 -%}
+          {%- for product in source.products -%}
+            {%- if product.tags contains 'hide-from-grid' -%}{%- continue -%}{%- endif -%}
+            {%- if shown >= 4 -%}{%- break -%}{%- endif -%}
+            {%- assign shown = shown | plus: 1 -%}
+            <a href="{{ product.url }}" class="menu-tabs__product">
+              <span class="menu-tabs__media">
+                {%- if product.featured_image -%}
+                  {{
+                    product.featured_image
+                    | image_url: width: 600
+                    | image_tag: loading: 'lazy', sizes: '25vw', widths: '300, 450, 600', alt: product.featured_image.alt
+                  }}
+                {%- endif -%}
+              </span>
+              <span class="menu-tabs__product-title">{{ product.title }}</span>
+            </a>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </div>
+
+{%- else -%}
+  <div class="menu-tabs-m" data-menu-tabs>
+    <ul class="menu-tabs-m__tabs list-unstyled" role="list">
+      {%- for link in linklist.links -%}
+        <li>
+          {%- if link.links != blank -%}
+            <button
+              type="button"
+              class="menu-tabs-m__tab"
+              data-tab="{{ forloop.index0 }}"
+              aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+            >
+              {{- link.title -}}
+            </button>
+          {%- else -%}
+            <a href="{{ link.url }}" class="menu-tabs-m__tab">{{ link.title }}</a>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+
+    {%- for link in linklist.links -%}
+      {%- if link.links == blank -%}{%- continue -%}{%- endif -%}
+      <div class="menu-tabs-m__panel" data-panel="{{ forloop.index0 }}" {% unless forloop.first %}hidden{% endunless %}>
+        <ul class="menu-tabs-m__links list-unstyled" role="list">
+          {%- for child in link.links -%}
+            <li><a href="{{ child.url }}">{{ child.title }}</a></li>
+          {%- endfor -%}
+        </ul>
+
+        <div class="menu-tabs-m__tiles">
+          {%- assign shown = 0 -%}
+          {%- if link.type == 'collection_link' -%}
+            {%- for product in link.object.products -%}
+              {%- if product.tags contains 'hide-from-grid' or product.featured_image == blank -%}{%- continue -%}{%- endif -%}
+              {%- if shown >= 2 -%}{%- break -%}{%- endif -%}
+              {%- assign shown = shown | plus: 1 -%}
+              <a href="{{ product.url }}" class="menu-tabs-m__tile">
+                {{ product.featured_image | image_url: width: 500 | image_tag: loading: 'lazy', sizes: '50vw', widths: '300, 500', alt: '' }}
+                <span>{{ product.title }}</span>
+              </a>
+            {%- endfor -%}
+          {%- else -%}
+            {%- for child in link.links -%}
+              {%- if child.type != 'collection_link' or child.object.featured_image == blank -%}{%- continue -%}{%- endif -%}
+              {%- if shown >= 2 -%}{%- break -%}{%- endif -%}
+              {%- assign shown = shown | plus: 1 -%}
+              <a href="{{ child.url }}" class="menu-tabs-m__tile">
+                {{ child.object.featured_image | image_url: width: 500 | image_tag: loading: 'lazy', sizes: '50vw', widths: '300, 500', alt: '' }}
+                <span>{{ child.title }}</span>
+              </a>
+            {%- endfor -%}
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+{%- endif -%}
+
+<script>
+  if (!window.menuTabsReady) {
+    window.menuTabsReady = true;
+    const select = (tab) => {
+      const root = tab.closest('[data-menu-tabs]');
+      const index = tab.dataset.tab;
+      root.querySelectorAll('[data-tab]').forEach((t) => t.setAttribute('aria-selected', String(t.dataset.tab === index)));
+      root.querySelectorAll('[data-panel]').forEach((p) => (p.hidden = p.dataset.panel !== index));
+    };
+    // Desktop: hover or keyboard focus swaps the product row
+    document.addEventListener('pointerover', (e) => {
+      const tab = e.target.closest('.menu-tabs [data-tab]');
+      if (tab) select(tab);
+    });
+    document.addEventListener('focusin', (e) => {
+      const tab = e.target.closest('[data-menu-tabs] [data-tab]');
+      if (tab) select(tab);
+    });
+    // Mobile: tapping a tab button swaps the panel in place
+    document.addEventListener('click', (e) => {
+      const tab = e.target.closest('.menu-tabs-m button[data-tab]');
+      if (tab) select(tab);
+    });
+  }
+</script>
+
+{% stylesheet %}
+  /* Top-level links go lowercase with the tabs layout, like the sub-tabs */
+  header-menu:has(.menu-tabs) .menu-list__link-title {
+    text-transform: lowercase;
+  }
+
+  /* Desktop dropdown */
+  .menu-tabs {
+    width: 100%;
+  }
+
+  .menu-tabs__tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px 48px;
+    padding: 18px var(--page-margin, 40px);
+    margin: 0;
+    border-bottom: 1px solid rgb(var(--color-foreground-rgb) / 0.08);
+  }
+
+  .menu-tabs__tab {
+    font-size: 0.9375rem;
+    text-transform: lowercase;
+    color: var(--color-foreground);
+    text-decoration: none;
+    padding-bottom: 3px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+
+  .menu-tabs__tab[aria-selected='true'],
+  .menu-tabs__tab:hover {
+    border-bottom-color: currentColor;
+  }
+
+  .menu-tabs__panel:not([hidden]) {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2px;
+    animation: menu-tabs-fade 0.35s ease both;
+  }
+
+  .menu-tabs__panel:empty {
+    display: none;
+  }
+
+  .menu-tabs__product {
+    display: flex;
+    flex-direction: column;
+    background: rgb(var(--color-foreground-rgb) / 0.04);
+    color: var(--color-foreground);
+    text-decoration: none;
+  }
+
+  .menu-tabs__media {
+    display: block;
+    aspect-ratio: 4 / 3.4;
+    overflow: hidden;
+  }
+
+  .menu-tabs__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .menu-tabs__product:hover img {
+    transform: scale(1.04);
+  }
+
+  .menu-tabs__product-title {
+    padding: 14px 12px 20px;
+    text-align: center;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    text-transform: lowercase;
+  }
+
+  @keyframes menu-tabs-fade {
+    from {
+      opacity: 0;
+    }
+  }
+
+  /* Mobile drawer */
+  .menu-tabs-m {
+    padding: 8px var(--page-margin, 16px) 24px;
+  }
+
+  .menu-tabs-m__tabs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px 8px;
+    margin: 0 0 28px;
+    text-align: center;
+  }
+
+  .menu-tabs-m__tab {
+    all: unset;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 0.9375rem;
+    line-height: 1.3;
+    text-transform: lowercase;
+    color: var(--color-foreground);
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+  }
+
+  .menu-tabs-m__tab[aria-selected='true'] {
+    border-bottom-color: currentColor;
+  }
+
+  .menu-tabs-m__panel:not([hidden]) {
+    display: block;
+    animation: menu-tabs-fade 0.3s ease both;
+  }
+
+  .menu-tabs-m__links {
+    margin: 0 0 28px;
+    padding-inline: 16px;
+  }
+
+  .menu-tabs-m__links a {
+    display: block;
+    padding-block: 6px;
+    font-size: 0.9375rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-foreground);
+    text-decoration: none;
+  }
+
+  .menu-tabs-m__tiles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .menu-tabs-m__tile {
+    position: relative;
+    display: block;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background: rgb(var(--color-foreground-rgb) / 0.04);
+  }
+
+  .menu-tabs-m__tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .menu-tabs-m__tile span {
+    position: absolute;
+    inset: auto 0 0;
+    padding: 40px 12px 12px;
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: lowercase;
+    background: linear-gradient(to top, rgb(0 0 0 / 0.55), transparent);
+  }
+{% endstylesheet %}

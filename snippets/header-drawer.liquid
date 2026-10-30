@@ -97,6 +97,9 @@
         "
         aria-label="{{ 'accessibility.header_navigation_label' | t }}"
       >
+        {%- if block_settings.menu_layout == 'tabs' -%}
+          {% render 'menu-tabs', variant: 'mobile', linklist: linklist %}
+        {%- else -%}
         <ul
           class="menu-drawer__menu has-submenu"
           role="list"
@@ -587,6 +590,7 @@
             {%- endfor -%}
           {% endif %}
         </ul>
+        {%- endif -%}
       </nav>
       <div
         class="menu-drawer__utility-links menu-drawer__animated-element"
