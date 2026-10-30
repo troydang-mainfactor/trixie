@@ -467,6 +467,8 @@
     assign pos = position | split: '-'
     assign hero_extra_class = hero_extra_class | append: ' hero--pos'
     assign hero_extra_style = hero_extra_style | append: '--hero-pos-y: ' | append: pos[0] | append: '; --hero-pos-x: ' | append: pos[1] | append: ';'
+    assign text_align = pos[1] | replace: 'start', 'left' | replace: 'end', 'right'
+    assign hero_extra_style = hero_extra_style | append: ' --hero-text-align: ' | append: text_align | append: ';'
     # Auto height: size the hero to the image so text sits on the whole picture, not a strip of it.
     if section.settings.section_height == 'auto' and section.settings.image_1 != blank
       assign hero_extra_class = hero_extra_class | append: ' hero--ratio'
@@ -477,6 +479,8 @@
     assign pos_m = position_mobile | split: '-'
     assign hero_extra_class = hero_extra_class | append: ' hero--pos-mobile'
     assign hero_extra_style = hero_extra_style | append: ' --hero-pos-y-mobile: ' | append: pos_m[0] | append: '; --hero-pos-x-mobile: ' | append: pos_m[1] | append: ';'
+    assign text_align_mobile = pos_m[1] | replace: 'start', 'left' | replace: 'end', 'right'
+    assign hero_extra_style = hero_extra_style | append: ' --hero-text-align-mobile: ' | append: text_align_mobile | append: ';'
   endif
 
   assign ratio_mobile = section.settings.mobile_aspect_ratio
@@ -643,6 +647,10 @@
       justify-content: var(--hero-pos-y);
     }
 
+    .hero.hero--pos .hero__content-wrapper .text-block {
+      --text-align-default: var(--hero-text-align);
+    }
+
     /* Auto height: the hero takes the image's shape instead of the content's height */
     .hero.hero--ratio,
     .hero.hero--ratio .hero__container {
@@ -672,6 +680,10 @@
       flex-flow: column nowrap;
       align-items: var(--hero-pos-x-mobile);
       justify-content: var(--hero-pos-y-mobile);
+    }
+
+    .hero.hero--pos-mobile .hero__content-wrapper .text-block {
+      --text-align-default: var(--hero-text-align-mobile);
     }
 
     .hero.hero--ratio-mobile,

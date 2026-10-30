@@ -1,0 +1,120 @@
+{%- comment -%}
+  Site-wide polish driven by theme settings: one edge margin for every section,
+  optional fade-in of sections on scroll, and Judge.me reviews styled to match the brand.
+{%- endcomment -%}
+{% style %}
+  /* One side margin for header, sections and footer (Theme settings > Page layout) */
+  body:is(.page-width-wide, .page-width-normal, .page-width-narrow, .page-width-content) {
+    --page-margin: {{ settings.page_margin_mobile }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    body:is(.page-width-wide, .page-width-normal, .page-width-narrow, .page-width-content) {
+      --page-margin: {{ settings.page_margin_desktop }}px;
+    }
+  }
+
+  {%- if settings.section_reveal %}
+    /* Sections fade in as they scroll into view. Opacity only, so fixed/sticky children keep working. */
+    @media (prefers-reduced-motion: no-preference) {
+      @supports (animation-timeline: view()) {
+        main > .shopify-section:not(:first-child) {
+          animation: section-reveal linear both;
+          animation-timeline: view();
+          animation-range: entry 0% entry 30%;
+        }
+      }
+    }
+
+    @keyframes section-reveal {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  {%- endif %}
+
+  /* Judge.me reviews: brand fonts, square shapes, pink accents */
+  body .jdgm-rev-widg {
+    --jdgm-accent: {{ settings.color_palette.color3 | default: '#eb008b' }};
+    font-family: var(--font-body--family);
+    color: var(--color-foreground);
+    padding-block: 48px;
+  }
+
+  body .jdgm-rev-widg__title {
+    font-family: var(--font-heading--family);
+    font-size: clamp(1.5rem, 2.4vw, 2rem);
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  body .jdgm-rev-widg .jdgm-star {
+    color: var(--color-foreground) !important;
+  }
+
+  body .jdgm-histogram__bar {
+    background: rgb(255 255 255 / 0.6);
+    border-radius: 0;
+  }
+
+  body .jdgm-histogram__bar-content {
+    background: var(--jdgm-accent) !important;
+    border-radius: 0;
+  }
+
+  body .jdgm-write-rev-link,
+  body .jdgm-rev-widg .jdgm-btn,
+  body .jdgm-ask-question-btn {
+    border-radius: 0 !important;
+    border: 0 !important;
+    background: #f79cc4 !important;
+    color: var(--color-foreground) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    padding: 14px 28px !important;
+  }
+
+  body .jdgm-sort-dropdown,
+  body .jdgm-paginate__page,
+  body .jdgm-gallery__thumbnail-wrapper,
+  body .jdgm-rev__pic-img {
+    border-radius: 0 !important;
+  }
+
+  body .jdgm-paginate__page {
+    color: var(--color-foreground) !important;
+  }
+
+  body .jdgm-paginate__page.jdgm-curt {
+    background: var(--color-foreground);
+    color: #fff;
+  }
+
+  body .jdgm-rev {
+    background: rgb(255 255 255 / 0.55);
+    padding: 24px !important;
+    margin-bottom: 12px;
+    border: 0 !important;
+  }
+
+  body .jdgm-rev__title {
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  body .jdgm-rev__author,
+  body .jdgm-rev__timestamp {
+    font-size: 0.8125rem;
+  }
+
+  body .jdgm-rev__icon {
+    background: var(--jdgm-accent);
+    color: #fff;
+    border-radius: 0;
+  }
+{% endstyle %}

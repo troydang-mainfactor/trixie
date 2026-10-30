@@ -9,6 +9,8 @@
     style="
       background: {{ section.settings.background_color }};
       --pdp-quote-panel: {{ section.settings.panel_color }};
+      --pdp-quote-pad: {{ section.settings.panel_padding }}px;
+      --pdp-quote-pad-mobile: {{ section.settings.panel_padding_mobile }}px;
       padding-block: {{ section.settings.padding-block-start }}px {{ section.settings.padding-block-end }}px;
     "
   >
@@ -67,11 +69,11 @@
     flex-direction: column;
     justify-content: center;
     gap: 32px;
-    padding: 32px 24px;
+    padding: var(--pdp-quote-pad-mobile);
     background: var(--pdp-quote-panel);
 
     @media screen and (min-width: 750px) {
-      padding: 48px 40px;
+      padding: var(--pdp-quote-pad);
     }
   }
 
@@ -103,6 +105,8 @@
     { "type": "image_picker", "id": "signature", "label": "Signature" },
     { "type": "color", "id": "background_color", "label": "Background", "default": "#FBC7E0" },
     { "type": "color", "id": "panel_color", "label": "Quote panel", "default": "#F79CC4" },
+    { "type": "range", "id": "panel_padding", "label": "Quote panel padding (desktop)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 48 },
+    { "type": "range", "id": "panel_padding_mobile", "label": "Quote panel padding (mobile)", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 28 },
     { "type": "range", "id": "padding-block-start", "label": "Top padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 48 },
     { "type": "range", "id": "padding-block-end", "label": "Bottom padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 48 }
   ],

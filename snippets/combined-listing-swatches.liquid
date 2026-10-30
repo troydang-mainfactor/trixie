@@ -28,17 +28,8 @@
   {% render 'swatch-styles' %}
 
   {%- liquid
-    assign shape = settings.swatch_shape
-    case shape
-      when 'square'
-        assign swatch_radius = '0px'
-      when 'circle'
-        assign swatch_radius = '50%'
-      when 'custom'
-        assign swatch_radius = settings.swatch_shape_radius | append: 'px'
-      else
-        assign swatch_radius = '8px'
-    endcase
+    # Shape comes from Theme settings > Swatches > Corner radius, shared by every swatch
+    assign swatch_radius = 'var(--variant-picker-swatch-radius, 0)'
 
     case settings.swatch_size
       when 'small'

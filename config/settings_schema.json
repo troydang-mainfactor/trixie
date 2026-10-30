@@ -1137,6 +1137,31 @@
           }
         ],
         "default": "narrow"
+      },
+      {
+        "type": "header",
+        "content": "Edge spacing"
+      },
+      {
+        "type": "range",
+        "id": "page_margin_desktop",
+        "label": "Side margin (desktop)",
+        "info": "Space between the screen edge and content, used by the header, sections and footer alike.",
+        "min": 0,
+        "max": 80,
+        "step": 4,
+        "unit": "px",
+        "default": 40
+      },
+      {
+        "type": "range",
+        "id": "page_margin_mobile",
+        "label": "Side margin (mobile)",
+        "min": 0,
+        "max": 40,
+        "step": 2,
+        "unit": "px",
+        "default": 16
       }
     ]
   },
@@ -1147,6 +1172,12 @@
         "type": "checkbox",
         "id": "page_transition_enabled",
         "label": "t:settings.page_transition_enabled",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "section_reveal",
+        "label": "Fade sections in on scroll",
         "default": true
       },
       {
@@ -2940,11 +2971,12 @@
         "type": "range",
         "id": "variant_swatch_radius",
         "min": 0,
-        "max": 100,
+        "max": 50,
         "step": 1,
-        "unit": "px",
-        "label": "t:settings.border_radius",
-        "default": 100
+        "unit": "%",
+        "label": "Corner radius (all swatches)",
+        "default": 0,
+        "info": "0% is square, 50% is a circle. Applies to every swatch: product pages, cards and variant pickers."
       },
       {
         "type": "select",
