@@ -427,6 +427,12 @@
     display: block;
   }
 
+  /* Cards inside product sliders: main image only, so a swipe always moves the slider.
+     The theme also disables nested slideshows in JS; this holds before hydration and on late-loaded cards. */
+  .resource-list__carousel .card-gallery slideshow-slides {
+    overflow: hidden;
+  }
+
   /* Dots only on touch-size screens; desktop keeps hover/arrows */
   /* Mobile swipe dots: bottom-right on the image; colors from Theme settings > Product cards */
   .card-gallery slideshow-controls.card-gallery__dots {
