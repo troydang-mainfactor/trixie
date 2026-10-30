@@ -281,6 +281,38 @@
     }
   }
 
+  /* Footer: uppercase menu headings, plus-icon accordions on mobile, roomy links */
+  .footer-content .menu__heading {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* Brand wordmark spans the whole footer (a trailing script defeats the theme's last-child rule) */
+  .footer-content > jumbo-text {
+    grid-column: 1 / -1;
+    margin-top: 24px;
+  }
+
+  .footer-content .menu__item a {
+    text-decoration: none;
+  }
+
+  .footer-content .menu__item a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .footer-content .menu--accordion .menu__heading {
+      padding-block: 16px;
+    }
+
+    /* Stack the accordion rows flush instead of the footer's column gap */
+    .footer-content > .menu--accordion + .menu--accordion {
+      margin-top: calc(-1 * var(--footer-gap));
+    }
+  }
+
   /* Judge.me reviews: brand fonts, square shapes, pink accents */
   body .jdgm-rev-widg {
     --jdgm-accent: {{ settings.color_palette.color3 | default: '#eb008b' }};

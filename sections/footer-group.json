@@ -14,116 +14,47 @@
     "footer_m9NzUG": {
       "type": "footer",
       "blocks": {
-        "group_shop": {
-          "type": "group",
-          "name": "Shop",
+        "menu_shop": {
+          "type": "menu",
           "settings": {
-            "content_direction": "column",
-            "gap": 8,
-            "width": "fill"
+            "menu": "shop",
+            "heading": "Shop",
+            "menu_spacing": 10,
+            "show_as_accordion": true,
+            "accordion_icon": "plus",
+            "accordion_dividers": true,
+            "heading_preset": "h5",
+            "link_preset": "paragraph"
           },
-          "blocks": {
-            "heading": {
-              "type": "text",
-              "settings": {
-                "text": "<h3>Shop</h3>",
-                "width": "100%",
-                "alignment": "left",
-                "type_preset": "h5",
-                "case": "uppercase",
-                "letter_spacing": "loose"
-              },
-              "blocks": {}
-            },
-            "links": {
-              "type": "text",
-              "settings": {
-                "text": "<p><a href=\"/collections/accessories\" title=\"Apparel &amp; Accessories\">Apparel &amp; Accessories</a></p><p><a href=\"/collections/face\" title=\"Face\">Face</a></p><p><a href=\"/collections/eyes\" title=\"Eyes\">Eyes</a></p><p><a href=\"/collections/lips\" title=\"Lips\">Lips</a></p><p><a href=\"/collections/tools\" title=\"Tools\">Tools</a></p><p><a href=\"/collections/bundles\" title=\"Bundles\">Bundles</a></p><p><a href=\"/collections/all\" title=\"Shop All\">Shop All</a></p>",
-                "width": "100%",
-                "alignment": "left",
-                "type_preset": "rte"
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "heading",
-            "links"
-          ]
+          "blocks": {}
         },
-        "group_about": {
-          "type": "group",
-          "name": "About",
+        "menu_about": {
+          "type": "menu",
           "settings": {
-            "content_direction": "column",
-            "gap": 8,
-            "width": "fill"
+            "menu": "about",
+            "heading": "About",
+            "menu_spacing": 10,
+            "show_as_accordion": true,
+            "accordion_icon": "plus",
+            "accordion_dividers": true,
+            "heading_preset": "h5",
+            "link_preset": "paragraph"
           },
-          "blocks": {
-            "heading": {
-              "type": "text",
-              "settings": {
-                "text": "<h3>About</h3>",
-                "width": "100%",
-                "alignment": "left",
-                "type_preset": "h5",
-                "case": "uppercase",
-                "letter_spacing": "loose"
-              },
-              "blocks": {}
-            },
-            "links": {
-              "type": "text",
-              "settings": {
-                "text": "<p><a href=\"http://www.trixiemattel.com/\" title=\"Trixie Mattel\">Trixie Mattel</a></p><p><a href=\"/pages/about\" title=\"About Us\">About Us</a></p><p><a href=\"/pages/where-to-buy\" title=\"Where to Buy\">Where to Buy</a></p><p><a href=\"/pages/faq\" title=\"FAQ\">FAQ</a></p>",
-                "width": "100%",
-                "alignment": "left",
-                "type_preset": "rte"
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "heading",
-            "links"
-          ]
+          "blocks": {}
         },
-        "group_help": {
-          "type": "group",
-          "name": "Customer Service",
+        "menu_help": {
+          "type": "menu",
           "settings": {
-            "content_direction": "column",
-            "gap": 8,
-            "width": "fill"
+            "menu": "customer-service",
+            "heading": "Customer Service",
+            "menu_spacing": 10,
+            "show_as_accordion": true,
+            "accordion_icon": "plus",
+            "accordion_dividers": true,
+            "heading_preset": "h5",
+            "link_preset": "paragraph"
           },
-          "blocks": {
-            "heading": {
-              "type": "text",
-              "settings": {
-                "text": "<h3>Customer Service</h3>",
-                "width": "100%",
-                "alignment": "left",
-                "type_preset": "h5",
-                "case": "uppercase",
-                "letter_spacing": "loose"
-              },
-              "blocks": {}
-            },
-            "links": {
-              "type": "text",
-              "settings": {
-                "text": "<p><a href=\"/pages/help\" title=\"Contact Us\">Contact Us</a></p><p><a href=\"/policies/terms-of-service\" title=\"Terms of Service\">Terms of Service</a></p><p><a href=\"/policies/privacy-policy\" title=\"Privacy Policy\">Privacy Policy</a></p><p><a href=\"/policies/refund-policy\" title=\"Shipping, Refunds &amp; Returns\">Shipping, Refunds &amp; Returns</a></p><p><a href=\"/pages/accessibility-information\" title=\"Accessibility Information\">Accessibility Information</a></p><p><a href=\"/pages/global-privacy-compliance\" title=\"Global Privacy Compliance\">Global Privacy Compliance</a></p><p><a href=\"/pages/do-not-sell-or-share-my-personal-information\" title=\"Do Not Sell or Share My Personal Information\">Do Not Sell or Share My Personal Information</a></p><p><a href=\"/pages/gpsr\" title=\"GPSR\">GPSR</a></p>",
-                "width": "100%",
-                "alignment": "left",
-                "type_preset": "rte"
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "heading",
-            "links"
-          ]
+          "blocks": {}
         },
         "group_H6VpwJ": {
           "type": "group",
@@ -135,7 +66,7 @@
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 6,
+            "gap": 14,
             "show_above_media_mobile": false,
             "width": "fill",
             "custom_width": 100,
@@ -184,7 +115,7 @@
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
-                "padding-block-start": 0,
+                "padding-block-start": 16,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
@@ -260,22 +191,81 @@
                 "padding-block-start": 12
               },
               "blocks": {}
+            },
+            "logo": {
+              "type": "logo",
+              "settings": {
+                "unit": "pixel",
+                "pixel_height": 72,
+                "custom_mobile_size": true,
+                "unit_mobile": "pixel",
+                "pixel_height_mobile": 56,
+                "padding-block-end": 4
+              },
+              "blocks": {}
+            },
+            "tagline": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Ultra-pigmented, cruelty-free makeup from the mind of Trixie Mattel. Pink is a neutral.</p>",
+                "width": "100%",
+                "alignment": "left",
+                "type_preset": "rte"
+              },
+              "blocks": {}
+            },
+            "social": {
+              "type": "social-links",
+              "settings": {
+                "icon_color": "{{ settings.color_palette.foreground }}",
+                "facebook_url": "https://www.facebook.com/Trixie-Cosmetics-431646424040883/",
+                "instagram_url": "https://www.instagram.com/trixiecosmetics/",
+                "youtube_url": "https://www.youtube.com/channel/UC0biFgrMdkv1hFAFLVePODQ",
+                "tiktok_url": "",
+                "twitter_url": "https://twitter.com/trixiecosmetics",
+                "threads_url": "",
+                "linkedin_url": "",
+                "bluesky_url": "",
+                "snapchat_url": "",
+                "pinterest_url": "https://www.pinterest.com/TrixieCosmetics/",
+                "tumblr_url": "",
+                "vimeo_url": "",
+                "custom_url": ""
+              },
+              "blocks": {}
             }
           },
           "block_order": [
+            "logo",
+            "tagline",
+            "social",
             "text_LWt8Pz",
             "text_f9CFLH",
             "email_signup_crihX7",
             "notice"
           ],
-          "name": "Newsletter"
+          "name": "Brand"
+        },
+        "wordmark": {
+          "type": "jumbo-text",
+          "settings": {
+            "text": "trixie cosmetics",
+            "font": "heading",
+            "alignment": "center",
+            "line_height": "0.8",
+            "letter_spacing": "-0.03em",
+            "case": "none",
+            "text_color": "{{ settings.color_palette.color3 }}"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "group_shop",
-        "group_about",
-        "group_help",
-        "group_H6VpwJ"
+        "group_H6VpwJ",
+        "menu_shop",
+        "menu_about",
+        "menu_help",
+        "wordmark"
       ],
       "name": "t:names.footer",
       "settings": {
@@ -307,32 +297,11 @@
             "case": "none"
           },
           "blocks": {}
-        },
-        "social_links_Ew63Kq": {
-          "type": "social-links",
-          "settings": {
-            "icon_color": "{{ settings.color_palette.foreground }}",
-            "facebook_url": "https://www.facebook.com/Trixie-Cosmetics-431646424040883/",
-            "instagram_url": "https://www.instagram.com/trixiecosmetics/",
-            "youtube_url": "https://www.youtube.com/channel/UC0biFgrMdkv1hFAFLVePODQ",
-            "tiktok_url": "",
-            "twitter_url": "https://twitter.com/trixiecosmetics",
-            "threads_url": "",
-            "linkedin_url": "",
-            "bluesky_url": "",
-            "snapchat_url": "",
-            "pinterest_url": "https://www.pinterest.com/TrixieCosmetics/",
-            "tumblr_url": "",
-            "vimeo_url": "",
-            "custom_url": ""
-          },
-          "blocks": {}
         }
       },
       "block_order": [
         "footer_copyright_jweRK8",
-        "footer_policy_list_VCdnpa",
-        "social_links_Ew63Kq"
+        "footer_policy_list_VCdnpa"
       ],
       "name": "t:names.utilities",
       "settings": {
