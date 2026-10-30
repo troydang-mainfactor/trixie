@@ -34,9 +34,9 @@
   endif
 
   if settings.currency_code_enabled_cart_total
-    assign total_price = cart.total_price | money_with_currency
+    assign total_price = cart.total_price | money_with_currency | remove: settings.price_round_cents
   else
-    assign total_price = cart.total_price | money
+    assign total_price = cart.total_price | money | remove: settings.price_round_cents
   endif
 %}
 
@@ -48,7 +48,7 @@
         class="cart-totals__original-value cart-secondary-typography"
         data-testid="cart-subtotal-value"
       >
-        {{- cart.items_subtotal_price | money -}}
+        {{- cart.items_subtotal_price | money | remove: settings.price_round_cents -}}
       </span>
     </span>
     {%- if has_discount -%}
@@ -67,7 +67,7 @@
               </span>
             {% endif %}
           </span>
-          <span class="cart-discounts__value cart-secondary-typography">-{{ total_savings | money }}</span>
+          <span class="cart-discounts__value cart-secondary-typography">-{{ total_savings | money | remove: settings.price_round_cents }}</span>
         </li>
       </ul>
     {%- endif -%}

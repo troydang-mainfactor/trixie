@@ -98,7 +98,7 @@
             role="caption"
           >
             {{ 'content.cart_total' | t }}
-            <span>{{ cart.total_price | money_with_currency }}</span>
+            <span>{{ cart.total_price | money_with_currency | remove: settings.price_round_cents }}</span>
           </caption>
 
           <thead
@@ -326,13 +326,13 @@
                     <div>
                       {% if item.original_price != item.final_price %}
                         <span class="visually-hidden">{{ 'content.price_sale' | t }}</span>
-                        <span>{{ item.final_price | money }}</span>
+                        <span>{{ item.final_price | money | remove: settings.price_round_cents }}</span>
                         <span class="visually-hidden">{{ 'content.price_regular' | t }}</span>
                         <s class="compare-at-price">
                           {% if item.variant.compare_at_price > item.original_price %}
-                            {{ item.variant.compare_at_price | money }}
+                            {{ item.variant.compare_at_price | money | remove: settings.price_round_cents }}
                           {% else %}
-                            {{ item.original_price | money }}
+                            {{ item.original_price | money | remove: settings.price_round_cents }}
                           {% endif %}
                         </s>
                       {% else %}
@@ -342,11 +342,11 @@
                           <span class="visually-hidden">{{ 'content.price' | t }}</span>
                         {% endif %}
 
-                        <span>{{ item.original_price | money }}</span>
+                        <span>{{ item.original_price | money | remove: settings.price_round_cents }}</span>
 
                         {% if item.variant.compare_at_price > item.original_price %}
                           <span class="visually-hidden">{{ 'content.price_regular' | t }}</span>
-                          <s class="compare-at-price">{{ item.variant.compare_at_price | money }}</s>
+                          <s class="compare-at-price">{{ item.variant.compare_at_price | money | remove: settings.price_round_cents }}</s>
                         {% endif %}
                       {% endif %}
                     </div>
@@ -413,11 +413,11 @@
                 </td>
                 {%- liquid
                   if settings.currency_code_enabled_cart_items
-                    assign price = item.final_line_price | money_with_currency
-                    assign unit_price = item.unit_price | money_with_currency
+                    assign price = item.final_line_price | money_with_currency | remove: settings.price_round_cents
+                    assign unit_price = item.unit_price | money_with_currency | remove: settings.price_round_cents
                   else
-                    assign price = item.final_line_price | money
-                    assign unit_price = item.unit_price | money
+                    assign price = item.final_line_price | money | remove: settings.price_round_cents
+                    assign unit_price = item.unit_price | money | remove: settings.price_round_cents
                   endif
                 -%}
                 <td

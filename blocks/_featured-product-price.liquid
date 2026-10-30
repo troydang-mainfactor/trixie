@@ -5,9 +5,9 @@
   assign block_settings = block.settings
 
   if settings.currency_code_enabled_product_cards
-    assign price_min = product.price_min | money_with_currency
+    assign price_min = product.price_min | money_with_currency | remove: settings.price_round_cents
   else
-    assign price_min = product.price_min | money
+    assign price_min = product.price_min | money | remove: settings.price_round_cents
   endif
 
   if product.price_varies

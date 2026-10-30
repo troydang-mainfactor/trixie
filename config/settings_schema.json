@@ -2836,6 +2836,21 @@
         "id": "currency_code_enabled_cart_total",
         "label": "t:settings.cart_total",
         "default": true
+      },
+      {
+        "type": "header",
+        "content": "Round prices"
+      },
+      {
+        "type": "select",
+        "id": "price_round_cents",
+        "label": "Prices with no cents",
+        "info": "Whole number shows $10 instead of $10.00. Prices with cents ($9.60) never change.",
+        "options": [
+          { "value": ".00", "label": "Whole number ($10)" },
+          { "value": "keep", "label": "Show cents ($10.00)" }
+        ],
+        "default": ".00"
       }
     ]
   },

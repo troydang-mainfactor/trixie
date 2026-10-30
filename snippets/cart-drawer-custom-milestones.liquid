@@ -34,7 +34,7 @@
       assign fill_percent = fill_percent | at_most: 100
     endif
 
-    assign remaining_money = remaining | money
+    assign remaining_money = remaining | money | remove: settings.price_round_cents
     assign remaining_text_template = settings.free_shipping_remaining_text | default: 'Spend [amount] more for free shipping'
     assign remaining_text = remaining_text_template | replace: '[amount]', remaining_money
     assign reached_text = settings.free_shipping_reached_text | default: "You've unlocked free shipping!"

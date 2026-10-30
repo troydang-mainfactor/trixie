@@ -11,15 +11,16 @@
 {%- enddoc -%}
 
 {% liquid
+  # settings.price_round_cents is '.00' (strip it: $10.00 -> $10) or 'keep' (never in a price, so nothing is removed)
   assign price_value = price | default: 0
   assign price_type = type | default: 'regular'
 
   assign show_currency = settings.currency_code_enabled_product_pages
 
   if show_currency
-    assign formatted_price = price_value | money_with_currency
+    assign formatted_price = price_value | money_with_currency | remove: settings.price_round_cents
   else
-    assign formatted_price = price_value | money
+    assign formatted_price = price_value | money | remove: settings.price_round_cents
   endif
 
   if price_type == 'per_item'

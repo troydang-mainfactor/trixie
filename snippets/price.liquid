@@ -60,15 +60,15 @@
 
   # Format all prices
   if use_currency
-    assign price = price | money_with_currency
-    assign compare_at_price = compare_at_price | money_with_currency
-    assign price_min = price_min | money_with_currency
-    assign price_max = price_max | money_with_currency
+    assign price = price | money_with_currency | remove: settings.price_round_cents
+    assign compare_at_price = compare_at_price | money_with_currency | remove: settings.price_round_cents
+    assign price_min = price_min | money_with_currency | remove: settings.price_round_cents
+    assign price_max = price_max | money_with_currency | remove: settings.price_round_cents
   else
-    assign price = price | money
-    assign compare_at_price = compare_at_price | money
-    assign price_min = price_min | money
-    assign price_max = price_max | money
+    assign price = price | money | remove: settings.price_round_cents
+    assign compare_at_price = compare_at_price | money | remove: settings.price_round_cents
+    assign price_min = price_min | money | remove: settings.price_round_cents
+    assign price_max = price_max | money | remove: settings.price_round_cents
   endif
 -%}
 
@@ -114,9 +114,9 @@
   {%- if selected_variant.unit_price and show_unit_price %}
     {%- liquid
       if use_currency
-        assign unit_price = selected_variant.unit_price | money_with_currency
+        assign unit_price = selected_variant.unit_price | money_with_currency | remove: settings.price_round_cents
       else
-        assign unit_price = selected_variant.unit_price | money
+        assign unit_price = selected_variant.unit_price | money | remove: settings.price_round_cents
       endif
     -%}
     {% render 'unit-price', price: unit_price, measurement: selected_variant.unit_price_measurement %}

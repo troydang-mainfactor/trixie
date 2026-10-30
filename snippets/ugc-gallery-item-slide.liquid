@@ -122,9 +122,9 @@
                 <span class="ugcg-product__text">
                   <span class="ugcg-product__title">{{ p.title | escape }}</span>
                   <span class="ugcg-product__price">
-                    {{ p.price | money }}
+                    {{ p.price | money | remove: settings.price_round_cents }}
                     {%- if p.compare_at_price > p.price -%}
-                      <s class="ugcg-product__compare">{{ p.compare_at_price | money }}</s>
+                      <s class="ugcg-product__compare">{{ p.compare_at_price | money | remove: settings.price_round_cents }}</s>
                     {%- endif -%}
                   </span>
                 </span>
