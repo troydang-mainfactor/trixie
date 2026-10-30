@@ -431,7 +431,9 @@
   /* Mobile swipe dots: bottom-right on the image; colors from Theme settings > Product cards */
   .card-gallery slideshow-controls.card-gallery__dots {
     pointer-events: none;
-    inset: auto 10px 6px auto;
+    inset: auto 10px 8px auto;
+    height: auto;
+    min-height: 0;
     inset-inline-end: 10px;
     inset-inline-start: auto;
     width: auto;
@@ -443,7 +445,9 @@
     }
 
     .slideshow-controls__dots {
-      gap: 7px;
+      gap: 5px;
+      height: auto;
+      min-height: 0;
       padding: 0;
       margin-inline-end: 10px;
       overflow: visible;
