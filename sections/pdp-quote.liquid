@@ -1,0 +1,114 @@
+{%- liquid
+  assign quote = closest.product.metafields.custom.quote.value
+  assign quote_image = closest.product.metafields.custom.quote_image.value | default: section.settings.image
+-%}
+
+{%- if quote != blank -%}
+  <div
+    class="pdp-quote section section--page-width"
+    style="
+      --pdp-quote-bg: {{ section.settings.background_color }};
+      --pdp-quote-panel: {{ section.settings.panel_color }};
+      padding-block: {{ section.settings.padding-block-start }}px {{ section.settings.padding-block-end }}px;
+    "
+  >
+    <div class="pdp-quote__inner">
+      <div class="pdp-quote__media">
+        {%- if quote_image != blank -%}
+          {{
+            quote_image
+            | image_url: width: 1600
+            | image_tag:
+              loading: 'lazy',
+              widths: '600, 900, 1200, 1600',
+              sizes: '(min-width: 750px) 55vw, 100vw',
+              alt: quote_image.alt
+          }}
+        {%- endif -%}
+      </div>
+      <figure class="pdp-quote__panel">
+        <blockquote class="pdp-quote__text">{{ quote | escape | newline_to_br }}</blockquote>
+        {%- if section.settings.signature != blank -%}
+          <figcaption>
+            {{
+              section.settings.signature
+              | image_url: width: 500
+              | image_tag: loading: 'lazy', class: 'pdp-quote__signature', alt: 'Trixie'
+            }}
+          </figcaption>
+        {%- endif -%}
+      </figure>
+    </div>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .pdp-quote {
+    background: var(--pdp-quote-bg);
+  }
+
+  .pdp-quote__inner {
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: 1fr;
+
+    @media screen and (min-width: 750px) {
+      grid-template-columns: 53fr 47fr;
+    }
+  }
+
+  .pdp-quote__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+
+  .pdp-quote__panel {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 32px;
+    padding: 32px 24px;
+    background: var(--pdp-quote-panel);
+
+    @media screen and (min-width: 750px) {
+      padding: 48px 40px;
+    }
+  }
+
+  .pdp-quote__text {
+    margin: 0;
+    font-family: var(--font-heading--family);
+    font-size: clamp(1.5rem, 2.6vw, 2.5rem);
+    line-height: 1.2;
+  }
+
+  .pdp-quote__signature {
+    width: min(220px, 50%);
+    height: auto;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product quote",
+  "tag": "section",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Shows the product's custom.quote metafield beside the custom.quote_image metafield. Hidden when the product has no quote."
+    },
+    { "type": "image_picker", "id": "image", "label": "Fallback image" },
+    { "type": "image_picker", "id": "signature", "label": "Signature" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#FBC7E0" },
+    { "type": "color", "id": "panel_color", "label": "Quote panel", "default": "#F79CC4" },
+    { "type": "range", "id": "padding-block-start", "label": "Top padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 48 },
+    { "type": "range", "id": "padding-block-end", "label": "Bottom padding", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 48 }
+  ],
+  "presets": [{ "name": "Product quote" }]
+}
+{% endschema %}

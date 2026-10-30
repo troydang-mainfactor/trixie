@@ -192,7 +192,7 @@
                       "type": "custom-liquid",
                       "name": "Product name",
                       "settings": {
-                        "custom_liquid": "<h1 class=\"pdp-title\">{{ product.title | split: ' - ' | last }}</h1>"
+                        "custom_liquid": "{%- assign headline = product.metafields.custom.headline.value | default: product.title -%}<h1 class=\"pdp-title\">{{ headline | split: ' - ' | last }}</h1>"
                       },
                       "blocks": {}
                     },
@@ -226,7 +226,7 @@
               "type": "custom-liquid",
               "name": "Shade name",
               "settings": {
-                "custom_liquid": "{%- if product.title contains ' - ' -%}<p class=\"pdp-shade\">{{ product.title | split: ' - ' | first }}</p>{%- endif -%}"
+                "custom_liquid": "{%- assign shade = product.metafields.custom.shade_name.value -%}{%- if shade == blank and product.title contains ' - ' -%}{%- assign shade = product.title | split: ' - ' | first -%}{%- endif -%}{%- if shade != blank -%}<div class=\"pdp-shade-info\"><p class=\"pdp-shade\">{{ shade }}</p>{%- if product.metafields.custom.shade_description != blank -%}<p class=\"pdp-shade-description\">{{ product.metafields.custom.shade_description.value }}</p>{%- endif -%}</div>{%- endif -%}"
               },
               "blocks": {}
             },
@@ -234,8 +234,8 @@
               "type": "combined-listings-product",
               "name": "t:names.combined_listings_product",
               "settings": {
-                "swatch_shape": "circle",
-                "swatch_shape_radius": 8,
+                "swatch_shape": "square",
+                "swatch_shape_radius": 0,
                 "swatch_size": "custom",
                 "swatch_size_custom": 32,
                 "swatch_gap": 6,
@@ -351,9 +351,9 @@
                     "show_price": true,
                     "open_quick_add_for_variants": false,
                     "style_class": "button-custom",
-                    "custom_button_background": "{{ settings.color_palette.color6 }}",
+                    "custom_button_background": "#FAA0C5",
                     "custom_button_text": "{{ settings.color_palette.foreground }}",
-                    "custom_button_border": "{{ settings.color_palette.color6 }}"
+                    "custom_button_border": "#FAA0C5"
                   },
                   "blocks": {}
                 },
@@ -808,7 +808,7 @@
         "limit_details_width": false,
         "gap": 36,
         "enable_sticky_add_to_cart": true,
-        "background_color": "{{ settings.color_palette.background }}",
+        "background_color": "#FBC7E0",
         "padding-block-start": 10,
         "padding-block-end": 0
       }
@@ -849,7 +849,7 @@
       "name": "t:names.marquee_section",
       "settings": {
         "movement_direction": "normal",
-        "background_color": "",
+        "background_color": "#FBC7E0",
         "padding-block-start": 24,
         "padding-block-end": 24,
         "gap_between_elements": 24
@@ -1110,7 +1110,7 @@
         "section_height": "",
         "section_height_custom": 50,
         "background_media": "none",
-        "background_color": "",
+        "background_color": "#FBC7E0",
         "video_position": "cover",
         "background_image_position": "cover",
         "toggle_overlay": false,
@@ -1124,145 +1124,6 @@
         "border_radius": 0,
         "padding-block-start": 0,
         "padding-block-end": 40
-      }
-    },
-    "section_AHGJNL": {
-      "type": "section",
-      "blocks": {
-        "quote_image": {
-          "type": "image",
-          "name": "Image",
-          "settings": {
-            "image": "shopify://shop_images/IMG_0741.jpg",
-            "image_ratio": "square",
-            "width": "custom",
-            "custom_width": 53,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fill"
-          },
-          "blocks": {}
-        },
-        "group_F4JnXc": {
-          "type": "group",
-          "name": "Quote",
-          "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 32,
-            "show_above_media_mobile": false,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fill",
-            "custom_height": 100,
-            "background_media": "none",
-            "background_color": "{{ settings.color_palette.color6 }}",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 0,
-            "link": "",
-            "open_in_new_tab": false,
-            "placeholder": "",
-            "padding-block-start": 40,
-            "padding-block-end": 40,
-            "padding-inline-start": 40,
-            "padding-inline-end": 40
-          },
-          "blocks": {
-            "text_8JKepi": {
-              "type": "text",
-              "name": "t:names.description",
-              "settings": {
-                "text": "<p>If it's good enough for a full face under 10,000-watt stage lights, it’s good enough for your everyday routine, Mary</p>",
-                "split_on_dash": false,
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "custom",
-                "font": "var(--font-heading--family)",
-                "font_size": "2.25rem",
-                "line_height": "tight",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "signature": {
-              "type": "image",
-              "settings": {
-                "image": "shopify://shop_images/signature.png",
-                "image_ratio": "adapt",
-                "width": "custom",
-                "custom_width": 40,
-                "width_mobile": "custom",
-                "custom_width_mobile": 50,
-                "height": "fit"
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "text_8JKepi",
-            "signature"
-          ]
-        }
-      },
-      "block_order": [
-        "quote_image",
-        "group_F4JnXc"
-      ],
-      "name": "Quote banner",
-      "settings": {
-        "content_direction": "row",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 0,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "background_media": "none",
-        "background_color": "",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_color": "",
-        "border_radius": 0,
-        "padding-block-start": 48,
-        "padding-block-end": 48
       }
     },
     "17866905740a8ad8f4": {
@@ -1294,7 +1155,7 @@
         "section_height": "",
         "section_height_custom": 50,
         "background_media": "none",
-        "background_color": "",
+        "background_color": "#FBC7E0",
         "video_position": "cover",
         "background_image_position": "cover",
         "toggle_overlay": false,
@@ -1646,7 +1507,18 @@
         "icons_shape": "none",
         "section_width": "page-width",
         "gap": 28,
-        "background_color": "{{ settings.color_palette.background }}",
+        "background_color": "#FBC7E0",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "pdp_quote": {
+      "type": "pdp-quote",
+      "settings": {
+        "image": "",
+        "signature": "shopify://shop_images/signature.png",
+        "background_color": "#FBC7E0",
+        "panel_color": "#F79CC4",
         "padding-block-start": 48,
         "padding-block-end": 48
       }
@@ -1654,7 +1526,7 @@
   },
   "order": [
     "main",
-    "section_AHGJNL",
+    "pdp_quote",
     "marquee_wqkJcg",
     "pdp_description_3gHf3A",
     "section_9MFGPw",
