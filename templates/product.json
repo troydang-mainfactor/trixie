@@ -782,12 +782,23 @@
                   ]
                 }
               },
-              "block_order": []
+              "block_order": [],
+              "disabled": true
             },
             "essential_upsell_app_block_XdBbnd": {
               "type": "shopify://apps/essential-upsell/blocks/app-block/50627fd9-24fd-4250-8614-accc12826d80",
               "disabled": true,
               "settings": {}
+            },
+            "plays_well_with_list": {
+              "type": "plays-well-with",
+              "settings": {
+                "heading": "Plays Well With",
+                "max_products": 3,
+                "button_label": "Add to bag",
+                "button_background": "#f79cc4",
+                "button_text": "#000000"
+              }
             }
           },
           "block_order": [
@@ -799,6 +810,7 @@
             "buy_buttons_eYQEYi",
             "text_description",
             "accordion_L8nGaw",
+            "plays_well_with_list",
             "plays_well_with",
             "essential_upsell_app_block_XdBbnd"
           ]

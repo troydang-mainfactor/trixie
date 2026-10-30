@@ -1,0 +1,254 @@
+{%- doc -%}
+  "Plays Well With" list on the product page: products from the Search & Discovery
+  "Complementary products" metafield, each with image, title, Judge.me stars and a full-width
+  add-to-bag button that uses the theme's product form (so it opens the cart drawer).
+  Products that are sold out or need a variant choice link to their page instead.
+{%- enddoc -%}
+
+{%- liquid
+  assign source = closest.product | default: product
+  assign items = source.metafields['shopify--discovery--product_recommendation'].complementary_products.value
+-%}
+
+{%- if items != blank -%}
+  <div
+    class="plays-well-with"
+    style="
+      --pww-button-bg: {{ block.settings.button_background }};
+      --pww-button-text: {{ block.settings.button_text }};
+    "
+    {{ block.shopify_attributes }}
+  >
+    {%- if block.settings.heading != blank -%}
+      <h3 class="plays-well-with__heading">{{ block.settings.heading }}</h3>
+    {%- endif -%}
+
+    <ul class="plays-well-with__list list-unstyled" role="list">
+      {%- for item in items limit: block.settings.max_products -%}
+        {%- liquid
+          assign variant = item.selected_or_first_available_variant
+          assign single_variant = false
+          if item.variants.size == 1
+            assign single_variant = true
+          endif
+          assign product_form_id = 'PlaysWellWith-' | append: block.id | append: '-' | append: item.id
+        -%}
+        <li class="plays-well-with__item">
+          <a href="{{ item.url }}" class="plays-well-with__media" tabindex="-1" aria-hidden="true">
+            {%- if item.featured_image -%}
+              {{
+                item.featured_image
+                | image_url: width: 300
+                | image_tag: loading: 'lazy', sizes: '120px', widths: '120, 240, 300', alt: ''
+              }}
+            {%- endif -%}
+          </a>
+
+          <div class="plays-well-with__info">
+            <a href="{{ item.url }}" class="plays-well-with__title">{{ item.title }}</a>
+
+            <div class="plays-well-with__stars jdgm-widget jdgm-preview-badge" data-id="{{ item.id }}">
+              {{- item.metafields.judgeme.badge -}}
+            </div>
+
+            {%- if single_variant and item.available -%}
+              <product-form-component
+                data-section-id="{{ section.id }}"
+                data-product-id="{{ item.id }}"
+                on:submit="/handleSubmit"
+                class="plays-well-with__form"
+              >
+                <div class="visually-hidden" aria-live="assertive" role="status" aria-atomic="true" ref="liveRegion"></div>
+                {%- form 'product', item, id: product_form_id, novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                  <input type="hidden" name="id" ref="variantId" value="{{ variant.id }}">
+                  <input type="hidden" name="quantity" value="1">
+                  {% render 'add-to-cart-button',
+                    add_to_cart_text: block.settings.button_label,
+                    class: 'plays-well-with__button add-to-cart-button',
+                    can_add_to_cart: true,
+                    show_price: true,
+                    product: item
+                  %}
+                {%- endform -%}
+              </product-form-component>
+            {%- else -%}
+              <a href="{{ item.url }}" class="button plays-well-with__button">
+                {%- if item.available -%}Choose options{%- else -%}Sold out{%- endif -%}
+                <span class="add-to-cart-button__price">
+                  {%- render 'format-price', price: item.price -%}
+                </span>
+              </a>
+            {%- endif -%}
+          </div>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .plays-well-with {
+    width: 100%;
+  }
+
+  .plays-well-with__heading {
+    margin: 0 0 16px;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .plays-well-with__list {
+    display: grid;
+    gap: 20px;
+    margin: 0;
+  }
+
+  .plays-well-with__item {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: 16px;
+    align-items: center;
+  }
+
+  .plays-well-with__media {
+    display: block;
+    aspect-ratio: 1;
+    background: #fff;
+    overflow: hidden;
+  }
+
+  .plays-well-with__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .plays-well-with__info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .plays-well-with__title {
+    font-weight: 500;
+    color: var(--color-foreground);
+    text-decoration: none;
+  }
+
+  .plays-well-with__stars:empty {
+    display: none;
+  }
+
+  .plays-well-with__form,
+  .plays-well-with__form form,
+  .plays-well-with__form add-to-cart-component {
+    display: block;
+    width: 100%;
+  }
+
+  .plays-well-with .plays-well-with__button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 52px;
+    margin-top: 6px;
+    padding: 12px 16px;
+    border: 0;
+    border-radius: 0;
+    background: var(--pww-button-bg);
+    color: var(--pww-button-text);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .plays-well-with .plays-well-with__button:hover {
+    filter: brightness(0.95);
+  }
+
+  .plays-well-with .add-to-cart-button__price-divider {
+    display: none;
+  }
+
+  .plays-well-with .add-to-cart-button__price {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-inline-start: auto;
+    letter-spacing: 0.04em;
+  }
+
+  .plays-well-with .add-to-cart-button__price .compare-at-price {
+    font-size: 0.8em;
+    font-weight: 400;
+    opacity: 0.6;
+  }
+
+  @media screen and (min-width: 750px) {
+    .plays-well-with__item {
+      grid-template-columns: 112px minmax(0, 1fr);
+      gap: 20px;
+    }
+
+    .plays-well-with .plays-well-with__button {
+      min-height: 60px;
+      padding-inline: 20px;
+      font-size: 1rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Plays Well With",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Plays Well With"
+    },
+    {
+      "type": "range",
+      "id": "max_products",
+      "label": "Maximum products",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "paragraph",
+      "content": "Products come from each product's Complementary products metafield (Search & Discovery). Hidden when empty."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Add to bag"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#F79CC4"
+    },
+    {
+      "type": "color",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "#000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Plays Well With"
+    }
+  ]
+}
+{% endschema %}
