@@ -124,6 +124,8 @@
     width: var(--cl-swatch-size, 28px);
     height: var(--cl-swatch-size, 28px);
     border-radius: var(--cl-swatch-radius, 50%);
+    /* Clip to the shape so image swatches stay true circles/rounded squares (avoids jagged corners) */
+    clip-path: inset(0 round var(--cl-swatch-radius, 50%));
     background: var(--cl-swatch-background) center / cover no-repeat;
     /* No border by default; hover/selected states below make it visible. */
     border: var(--cl-swatch-border-width, 1px) solid transparent;

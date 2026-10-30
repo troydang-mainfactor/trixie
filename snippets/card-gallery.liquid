@@ -183,12 +183,23 @@
             assign slideshow_attributes = slideshow_attributes | append: ' disabled="true"'
           endif
         %}
+        {%- liquid
+          # Mobile: dots on the image (bottom-right) show there are more images to swipe through
+          assign card_dots = ''
+          assign dot_count = visible_slide_count | at_most: max_visible_slide_count
+          if settings.product_card_carousel and dot_count > 1
+            capture card_dots
+              render 'slideshow-controls', style: 'dots', item_count: dot_count, controls_on_media: true, pagination_position: 'right', class: 'card-gallery__dots'
+            endcapture
+          endif
+        -%}
         {% render 'slideshow',
           ref: 'slideshow',
           initial_slide: 0,
           slides: slides,
           slide_count: media_list_to_show.size,
           show_arrows: show_arrows,
+          controls: card_dots,
           attributes: slideshow_attributes
         %}
       {%- endif -%}
@@ -414,6 +425,36 @@
 
   ul[product-grid-view='zoom-out'] .card-gallery > img {
     display: block;
+  }
+
+  /* Dots only on touch-size screens; desktop keeps hover/arrows */
+  .card-gallery slideshow-controls.card-gallery__dots {
+    pointer-events: none;
+    inset: auto 8px 8px auto;
+    right: 8px;
+    left: auto;
+    width: auto;
+    padding: 0;
+    justify-content: flex-end;
+    --color-foreground: 255 255 255;
+    --color-foreground-rgb: 255 255 255;
+    color: #fff;
+    filter: drop-shadow(0 0 2px rgb(0 0 0 / 0.45));
+
+    @media screen and (min-width: 750px) {
+      display: none;
+    }
+
+    .slideshow-controls__dots {
+      gap: 0;
+      padding: 0;
+    }
+
+    .slideshow-control {
+      padding: 3px;
+      min-width: 0;
+      min-height: 0;
+    }
   }
 
   .card-gallery slideshow-arrows .slideshow-control {

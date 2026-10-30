@@ -2,10 +2,10 @@
 {% assign block_settings = block.settings %}
 {% capture accordion_row_content %}{% content_for 'blocks' %}{% endcapture %}
 {%- liquid
-  # Rows fed by an empty metafield are hidden; the theme editor still shows them.
+  # Rows fed by an empty metafield are hidden everywhere, including the theme editor.
   assign show_row = true
   assign accordion_row_text = accordion_row_content | strip_html | strip
-  if accordion_row_text == blank and request.design_mode == false
+  if accordion_row_text == blank
     unless accordion_row_content contains '<img'
       assign show_row = false
     endunless

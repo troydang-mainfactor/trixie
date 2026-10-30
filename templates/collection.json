@@ -114,7 +114,7 @@
         "alignment": "left",
         "scroll_on_mobile": true,
         "pill_gap": 8,
-        "pill_radius": 100,
+        "pill_radius": 0,
         "border_width": 2,
         "section_width": "page-width",
         "pill_background": "",

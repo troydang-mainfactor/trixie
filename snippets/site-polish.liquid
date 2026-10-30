@@ -36,6 +36,176 @@
     }
   {%- endif %}
 
+  /* Smoother motion: page cross-fade and drawers that glide in on the GPU */
+  @media (prefers-reduced-motion: no-preference) {
+    ::view-transition-old(root) {
+      animation: 280ms cubic-bezier(0.4, 0, 1, 1) both page-fade-out;
+    }
+
+    ::view-transition-new(root) {
+      animation: 520ms cubic-bezier(0.22, 1, 0.36, 1) 80ms both page-fade-in;
+    }
+
+    .theme-drawer__dialog--opening,
+    .theme-drawer__dialog--closing {
+      animation-duration: 480ms;
+    }
+
+    .theme-drawer__dialog--opening {
+      animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .theme-drawer__dialog--closing {
+      animation-duration: 320ms;
+      animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+    }
+
+    .theme-drawer__dialog[open]::backdrop {
+      animation: drawer-backdrop-in 480ms ease both;
+    }
+  }
+
+  @keyframes page-fade-out {
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes page-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+  }
+
+  /* Overrides the theme's right-offset slide (layout every frame) with a transform slide */
+  @keyframes drawer-slide-in {
+    from {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes drawer-slide-out {
+    to {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes drawer-backdrop-in {
+    from {
+      opacity: 0;
+    }
+  }
+
+  /* Cart drawer: square controls everywhere */
+  .theme-drawer__dialog :is(.button, button, .quantity-selector, input, .cart-drawer__progress, [class*='progress']) {
+    border-radius: 0 !important;
+  }
+
+  /* Cart drawer line item: large image left; badge, title, shade, then price + quantity;
+     line total and remove icon stacked on the right */
+  .cart-drawer__items .cart-items__table-row--full-width-variants {
+    grid-template-columns: 112px auto minmax(0, 1fr) auto;
+    grid-template-rows: auto auto auto 1fr;
+    grid-template-areas:
+      'media details details price'
+      'media variants variants remove'
+      'media unit_price quantity quantity'
+      'media error error error';
+    column-gap: 16px;
+    row-gap: 6px;
+
+    .cart-items__media {
+      grid-area: media;
+    }
+
+    .cart-items__media-container,
+    .cart-items__media img {
+      width: 112px;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 0;
+    }
+
+    .cart-items__title {
+      font-family: var(--font-heading--family);
+      font-size: 1rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-foreground);
+      text-decoration: none;
+    }
+
+    .cart-items__variants-wrapper {
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-size: 0.8125rem;
+    }
+
+    .cart-items__unit-price-wrapper {
+      align-self: center;
+      font-size: 0.9375rem;
+      padding-top: 8px;
+    }
+
+    .cart-items__price {
+      grid-area: price;
+      justify-self: end;
+      font-weight: 500;
+      color: var(--color-foreground);
+    }
+
+    /* Lift the quantity selector and remove button out of their shared cell onto the grid */
+    .cart-items__quantity,
+    .cart-items__quantity-controls {
+      display: contents;
+    }
+
+    .cart-items__quantity .quantity-selector-wrapper {
+      grid-area: quantity;
+      justify-self: start;
+      align-self: center;
+      margin-top: 8px;
+    }
+
+    .cart-items__quantity .quantity-selector {
+      display: inline-flex;
+      width: auto;
+      border: 1px solid rgb(var(--color-foreground-rgb) / 0.5);
+      background: transparent;
+    }
+
+    .cart-items__remove {
+      grid-area: remove;
+      justify-self: end;
+      align-self: start;
+      background: none;
+      border: 0;
+      padding: 0;
+      width: 24px;
+      height: 24px;
+      color: var(--color-foreground);
+    }
+
+    .cart-items__error {
+      grid-area: error;
+    }
+  }
+
+  /* Tag badges (NEW, PRE-ORDER): always one line; smaller on mobile cards */
+  .custom-tag-badge {
+    white-space: nowrap;
+  }
+
+  @media screen and (max-width: 749px) {
+    .custom-tag-badges--overlay .custom-tag-badge {
+      font-size: 10px;
+      padding: 3px 6px;
+      letter-spacing: 0.04em;
+    }
+  }
+
   /* Judge.me reviews: brand fonts, square shapes, pink accents */
   body .jdgm-rev-widg {
     --jdgm-accent: {{ settings.color_palette.color3 | default: '#eb008b' }};
