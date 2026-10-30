@@ -7,7 +7,7 @@
   <div
     class="pdp-quote section section--page-width"
     style="
-      --pdp-quote-bg: {{ section.settings.background_color }};
+      background: {{ section.settings.background_color }};
       --pdp-quote-panel: {{ section.settings.panel_color }};
       padding-block: {{ section.settings.padding-block-start }}px {{ section.settings.padding-block-end }}px;
     "
@@ -43,10 +43,6 @@
 {%- endif -%}
 
 {% stylesheet %}
-  .pdp-quote {
-    background: var(--pdp-quote-bg);
-  }
-
   .pdp-quote__inner {
     grid-column: 2;
     display: grid;

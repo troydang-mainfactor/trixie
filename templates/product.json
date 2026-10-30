@@ -226,7 +226,7 @@
               "type": "custom-liquid",
               "name": "Shade name",
               "settings": {
-                "custom_liquid": "{%- assign shade = product.metafields.custom.shade_name.value -%}{%- if shade == blank and product.title contains ' - ' -%}{%- assign shade = product.title | split: ' - ' | first -%}{%- endif -%}{%- if shade != blank -%}<div class=\"pdp-shade-info\"><p class=\"pdp-shade\">{{ shade }}</p>{%- if product.metafields.custom.shade_description != blank -%}<p class=\"pdp-shade-description\">{{ product.metafields.custom.shade_description.value }}</p>{%- endif -%}</div>{%- endif -%}"
+                "custom_liquid": "{%- liquid\n  assign variant = product.selected_or_first_available_variant\n  assign shade = variant.metafields.custom.shade_name.value | default: product.metafields.custom.shade_name.value\n  assign shade_description = variant.metafields.custom.shade_description.value | default: product.metafields.custom.shade_description.value\n  if shade == blank and product.title contains ' - '\n    assign shade = product.title | split: ' - ' | first\n  endif\n-%}\n{%- if shade != blank -%}\n  <div class=\"pdp-shade-info\">\n    <p class=\"pdp-shade\">{{ shade }}</p>\n    {%- if shade_description != blank -%}<p class=\"pdp-shade-description\">{{ shade_description }}</p>{%- endif -%}\n  </div>\n{%- endif -%}"
               },
               "blocks": {}
             },
