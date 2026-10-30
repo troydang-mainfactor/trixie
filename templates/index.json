@@ -58,7 +58,7 @@
               "settings": {
                 "text": "<h2>Meet the Jinkx Monsoon Palette</h2>",
                 "split_on_dash": false,
-                "width": "fit-content",
+                "width": "100%",
                 "max_width": "narrow",
                 "alignment": "left",
                 "type_preset": "h1",
