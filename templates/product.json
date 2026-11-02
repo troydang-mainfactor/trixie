@@ -578,9 +578,21 @@
                 "row_eu_rep"
               ]
             },
+            "plays_well_with_list": {
+              "type": "plays-well-with",
+              "settings": {
+                "heading": "Plays Well With",
+                "max_products": 4,
+                "button_label": "Add to bag",
+                "button_background": "#f79cc4",
+                "button_text": "#000000"
+              },
+              "blocks": {}
+            },
             "plays_well_with": {
               "type": "product-recommendations",
               "name": "Plays Well With",
+              "disabled": true,
               "settings": {
                 "recommendation_type": "complementary",
                 "layout_type": "grid",
@@ -782,23 +794,12 @@
                   ]
                 }
               },
-              "block_order": [],
-              "disabled": true
+              "block_order": []
             },
             "essential_upsell_app_block_XdBbnd": {
               "type": "shopify://apps/essential-upsell/blocks/app-block/50627fd9-24fd-4250-8614-accc12826d80",
               "disabled": true,
               "settings": {}
-            },
-            "plays_well_with_list": {
-              "type": "plays-well-with",
-              "settings": {
-                "heading": "Plays Well With",
-                "max_products": 4,
-                "button_label": "Add to bag",
-                "button_background": "#f79cc4",
-                "button_text": "#000000"
-              }
             }
           },
           "block_order": [
@@ -831,7 +832,8 @@
     "pdp_quote": {
       "type": "pdp-quote",
       "settings": {
-        "signature": "shopify://shop_images/signature.png",
+        "image": "shopify://shop_images/play-pigment-quote.jpg",
+        "signature": "shopify://shop_images/Trixie_Signature.svg",
         "background_color": "#fbc7e0",
         "panel_color": "#f79cc4",
         "panel_padding": 48,
