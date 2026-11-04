@@ -1,5 +1,6 @@
 import { Component } from '@theme/component';
 import { requestIdleCallback } from '@theme/utilities';
+import { morph, MORPH_OPTIONS } from '@theme/morph';
 import { ProductSelectEvent } from '@shopify/events';
 
 /**
@@ -93,6 +94,41 @@ class CombinedListingsBase extends Component {
  *   _combined-listings-tag-text block.
  * @extends {CombinedListingsBase}
  */
+/**
+ * Shade swatches link to separate products. Instead of a full page load (which jumps back to the
+ * top), fetch the next product page and morph every section of <main> in place, so the shopper
+ * stays where they were. Falls back to a normal navigation if the pages don't line up.
+ * @param {string} url
+ */
+async function swapProductPage(url) {
+  const current = [...document.querySelectorAll('main > .shopify-section')];
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const next = new DOMParser().parseFromString(await response.text(), 'text/html');
+    const incoming = [...next.querySelectorAll('main > .shopify-section')];
+
+    // Different template (different section list): not safe to swap, load normally
+    if (incoming.length !== current.length || incoming.some((section, i) => section.id !== current[i]?.id)) {
+      throw new Error('Section layout differs');
+    }
+
+    current.forEach((section, i) => morph(section, /** @type {HTMLElement} */ (incoming[i]), MORPH_OPTIONS));
+    document.title = next.title;
+    history.pushState({ productSwap: true }, '', url);
+    hasSwapped = true;
+  } catch {
+    window.location.href = url;
+  }
+}
+
+let hasSwapped = false;
+
+// Back/forward after a swap: load that product properly (ignores plain #hash changes)
+window.addEventListener('popstate', () => {
+  if (hasSwapped && !window.location.hash) window.location.reload();
+});
+
 class CombinedListingsPicker extends CombinedListingsBase {
   /** @type {import('./variant-picker').default | null} */
   #variantPicker = null;
@@ -117,10 +153,16 @@ class CombinedListingsPicker extends CombinedListingsBase {
     this.#variantPicker?.removeEventListener('change', this.#syncHrefs);
   }
 
-  /** @param {Event} event */
+  /** @param {MouseEvent} event */
   handleSwatchClick(event) {
-    const trigger = /** @type {HTMLElement} */ (event.target);
-    if (trigger.getAttribute('aria-current') === 'true') event.preventDefault();
+    const trigger = /** @type {HTMLElement} */ (event.target).closest('a');
+    if (!trigger) return;
+    if (trigger.getAttribute('aria-current') === 'true') return event.preventDefault();
+    // Let new-tab / modified clicks behave like normal links
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+
+    event.preventDefault();
+    swapProductPage(trigger.href);
   }
 
   /**

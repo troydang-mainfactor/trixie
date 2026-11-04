@@ -313,6 +313,25 @@
     }
   }
 
+  /* Mobile product gallery: each image is a little narrower than the screen so the next one peeks in */
+  @media screen and (max-width: 749px) {
+    .product-information media-gallery.media-gallery--carousel slideshow-slides {
+      gap: 6px;
+      padding-inline: var(--page-margin, 16px);
+      scroll-padding-inline: var(--page-margin, 16px);
+    }
+
+    .product-information media-gallery.media-gallery--carousel slideshow-slide {
+      width: 86%;
+      flex: 0 0 86%;
+      scroll-snap-align: start;
+    }
+
+    .product-information media-gallery.media-gallery--carousel slideshow-slide:last-child {
+      scroll-snap-align: end;
+    }
+  }
+
   /* Judge.me reviews: brand fonts, square shapes, pink accents */
   body .jdgm-rev-widg {
     --jdgm-accent: {{ settings.color_palette.color3 | default: '#eb008b' }};

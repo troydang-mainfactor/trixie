@@ -2,7 +2,8 @@
   "Plays Well With" list on the product page: products from the Search & Discovery
   "Complementary products" metafield, each with image, title, Judge.me stars and a full-width
   add-to-bag button that uses the theme's product form (so it opens the cart drawer).
-  Products that are sold out or need a variant choice link to their page instead.
+  Shade families show swatches that switch which shade is added; products with several options
+  open the quick-add popup.
 {%- enddoc -%}
 
 {%- liquid
@@ -33,25 +34,75 @@
           endif
           assign product_form_id = 'PlaysWellWith-' | append: block.id | append: '-' | append: item.id
         -%}
-        <li class="plays-well-with__item">
-          <a href="{{ item.url }}" class="plays-well-with__media" tabindex="-1" aria-hidden="true">
+        {%- liquid
+          # Shade family (custom.product_group): each shade is its own single-variant product
+          assign shades = item.metafields.custom.product_group.value.swatches.value
+        -%}
+        <li class="plays-well-with__item" data-pww-item>
+          <a href="{{ item.url }}" class="plays-well-with__media" tabindex="-1" aria-hidden="true" data-pww-link>
             {%- if item.featured_image -%}
               {{
                 item.featured_image
                 | image_url: width: 300
-                | image_tag: loading: 'lazy', sizes: '120px', widths: '120, 240, 300', alt: ''
+                | image_tag: loading: 'lazy', sizes: '120px', widths: '120, 240, 300', alt: '', data-pww-image: ''
               }}
             {%- endif -%}
           </a>
 
           <div class="plays-well-with__info">
-            <a href="{{ item.url }}" class="plays-well-with__title">{{ item.title }}</a>
+            <a href="{{ item.url }}" class="plays-well-with__title" data-pww-link data-pww-title>{{ item.title }}</a>
 
             <div class="plays-well-with__stars jdgm-widget jdgm-preview-badge" data-id="{{ item.id }}">
               {{- item.metafields.judgeme.badge -}}
             </div>
 
-            {%- if single_variant and item.available -%}
+            {%- if shades.size > 1 and single_variant -%}
+              <ul class="plays-well-with__shades list-unstyled" role="list" aria-label="Shade">
+                {%- for swatch in shades -%}
+                  {%- liquid
+                    assign shade = swatch.product.value
+                    if shade == blank or shade.variants.size > 1
+                      continue
+                    endif
+                    assign visual_kind = 'none'
+                    if swatch.image.value != blank
+                      assign visual_kind = 'image'
+                      assign visual_url = swatch.image.value | image_url: width: 80
+                    elsif swatch.color.value != blank
+                      assign visual_kind = 'color'
+                      assign visual_color = swatch.color.value
+                    elsif shade.featured_image != blank
+                      assign visual_kind = 'image'
+                      assign visual_url = shade.featured_image | image_url: width: 80
+                    endif
+                  -%}
+                  <li>
+                    <button
+                      type="button"
+                      class="plays-well-with__shade"
+                      aria-label="{{ swatch.label.value | default: shade.title | escape }}{% unless shade.available %} - Sold out{% endunless %}"
+                      aria-pressed="{% if shade.id == item.id %}true{% else %}false{% endif %}"
+                      data-variant-id="{{ shade.selected_or_first_available_variant.id }}"
+                      data-available="{{ shade.available }}"
+                      data-title="{{ shade.title | escape }}"
+                      data-url="{{ shade.url }}"
+                      data-image="{{ shade.featured_image | image_url: width: 300 }}"
+                      data-price="{%- render 'format-price', price: shade.price -%}"
+                    >
+                      {%- render 'combined-listing-swatch-visual',
+                        visual_kind: visual_kind,
+                        visual_url: visual_url,
+                        visual_color: visual_color,
+                        oos_style: 'crossed_out',
+                        is_available: shade.available
+                      -%}
+                    </button>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+
+            {%- if single_variant -%}
               <product-form-component
                 data-section-id="{{ section.id }}"
                 data-product-id="{{ item.id }}"
@@ -65,19 +116,35 @@
                   {% render 'add-to-cart-button',
                     add_to_cart_text: block.settings.button_label,
                     class: 'plays-well-with__button add-to-cart-button',
-                    can_add_to_cart: true,
+                    can_add_to_cart: item.available,
                     show_price: true,
                     product: item
                   %}
                 {%- endform -%}
               </product-form-component>
+            {%- elsif item.available -%}
+              {%- comment -%} Several options: open the theme's quick-add popup to pick them {%- endcomment -%}
+              <quick-add-component
+                class="plays-well-with__quick-add"
+                data-product-id="{{ item.id }}"
+                data-product-title="{{ item.title | escape }}"
+                data-product-url="{{ item.url }}"
+                data-quick-add-button="choose"
+              >
+                <button
+                  type="button"
+                  class="button plays-well-with__button"
+                  on:click="quick-add-component/handleClick"
+                >
+                  Choose options
+                  <span class="add-to-cart-button__price">{%- render 'format-price', price: item.price -%}</span>
+                </button>
+              </quick-add-component>
             {%- else -%}
-              <a href="{{ item.url }}" class="button plays-well-with__button">
-                {%- if item.available -%}Choose options{%- else -%}Sold out{%- endif -%}
-                <span class="add-to-cart-button__price">
-                  {%- render 'format-price', price: item.price -%}
-                </span>
-              </a>
+              <span class="button plays-well-with__button" aria-disabled="true">
+                Sold out
+                <span class="add-to-cart-button__price">{%- render 'format-price', price: item.price -%}</span>
+              </span>
             {%- endif -%}
           </div>
         </li>
@@ -85,6 +152,35 @@
     </ul>
   </div>
 {%- endif -%}
+
+<script>
+  // Shade swatches in Plays Well With: point the add-to-bag form, image, title and price at the chosen shade
+  if (!window.playsWellWithReady) {
+    window.playsWellWithReady = true;
+    document.addEventListener('click', (event) => {
+      const shade = event.target.closest('.plays-well-with__shade');
+      if (!shade) return;
+      const item = shade.closest('[data-pww-item]');
+      const { variantId, available, title, url, image, price } = shade.dataset;
+
+      item.querySelectorAll('.plays-well-with__shade').forEach((s) => s.setAttribute('aria-pressed', String(s === shade)));
+      item.querySelector('input[name="id"]').value = variantId;
+      item.querySelectorAll('[data-pww-link]').forEach((a) => (a.href = url));
+      item.querySelector('[data-pww-title]').textContent = title;
+
+      const img = item.querySelector('[data-pww-image]');
+      if (img && image) {
+        img.removeAttribute('srcset');
+        img.src = image;
+      }
+
+      const button = item.querySelector('.plays-well-with__button');
+      const priceEl = button.querySelector('.add-to-cart-button__price');
+      if (priceEl) priceEl.textContent = price;
+      button.disabled = available !== 'true';
+    });
+  }
+</script>
 
 {% stylesheet %}
   .plays-well-with {
@@ -134,6 +230,39 @@
     font-weight: 500;
     color: var(--color-foreground);
     text-decoration: none;
+  }
+
+  .plays-well-with__shades {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 2px 0 0;
+    --cl-swatch-size: 24px;
+    --cl-swatch-radius: var(--variant-picker-swatch-radius, 0);
+  }
+
+  .plays-well-with__shade {
+    display: block;
+    padding: 2px;
+    border: 1px solid transparent;
+    background: none;
+    cursor: pointer;
+    border-radius: calc(var(--cl-swatch-radius) + 2px);
+  }
+
+  .plays-well-with__shade[aria-pressed='true'] {
+    border-color: var(--color-foreground);
+  }
+
+  .plays-well-with .plays-well-with__button:disabled,
+  .plays-well-with .plays-well-with__button[aria-disabled='true'] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .plays-well-with__quick-add {
+    display: block;
+    width: 100%;
   }
 
   .plays-well-with__stars:empty {

@@ -22,7 +22,8 @@ export class QuickAddComponent extends Component {
     );
     const productLink = hotspotProduct?.getHotspotProductLink();
 
-    return productLink?.href || '';
+    // Fallback for quick adds outside a product card (e.g. the PDP's Plays Well With list)
+    return productLink?.href || this.dataset.productUrl || '';
   }
 
   /**
