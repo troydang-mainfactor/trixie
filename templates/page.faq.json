@@ -1,0 +1,387 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "t:names.title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "split_on_dash": false,
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {
+            "text_color": ""
+          },
+          "blocks": {}
+        },
+        "faq_heading_1": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Shipping FAQ</h2>",
+            "width": "100%",
+            "alignment": "left",
+            "type_preset": "h3",
+            "padding-block-start": 16
+          },
+          "blocks": {}
+        },
+        "faq_accordion_1": {
+          "type": "accordion",
+          "settings": {
+            "icon": "plus",
+            "dividers": true,
+            "divider_color": "{{ settings.color_palette.foreground }}",
+            "type_preset": "h5",
+            "background_color": "",
+            "text_color": "",
+            "border": "none",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "faq_1_1": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "What are your shipping and returns policies?",
+                "open_by_default": false,
+                "icon": "none"
+              },
+              "blocks": {
+                "faq_1_1_text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Please refer to our <a href=\"/policies/refund-policy\" title=\"Refund Policy\">Shipping &amp; Returns</a> page.</p>",
+                    "width": "100%",
+                    "alignment": "left",
+                    "type_preset": "rte"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "faq_1_1_text"
+              ]
+            },
+            "faq_1_2": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "When will my order ship?",
+                "open_by_default": false,
+                "icon": "none"
+              },
+              "blocks": {
+                "faq_1_2_text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Please allow 1 to 5 business days for all orders to be fulfilled (with exceptions to holidays, launches, and periods of high volume, here we ask that you allow 5-10 business days for us to fulfill). For more information please see our <a href=\"/policies/shipping-policy\">Shipping Policies</a>.</p>",
+                    "width": "100%",
+                    "alignment": "left",
+                    "type_preset": "rte"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "faq_1_2_text"
+              ]
+            },
+            "faq_1_3": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "Do you ship to my country?",
+                "open_by_default": false,
+                "icon": "none"
+              },
+              "blocks": {
+                "faq_1_3_text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Trixie Cosmetics ships worldwide!</p><p>International orders shipped via USPS first class international mail are typically delivered within 3-10 weeks, but may take longer to arrive. Thank you for your patience.</p><p>Once an international order has left the United States, the order is turned over to the local postal service for your country. For questions regarding the tracking and status of your order, once it has left the United States, please direct your inquiries to your local postal service. You may use your USPS tracking number as a reference.</p><p>Certain countries require a customs fee be paid for any merchandise purchased outside of your country. We are not responsible for applicable customs fees. Failure to pay customs fees may result in your item being rejected entry and being returned back to our warehouse. For more information regarding returned orders please read our “Return Policies” section below.</p><p>Please note: We are only able to process returns once an item has either been returned to our warehouse or once 10 weeks has passed from the initial ship date.</p>",
+                    "width": "100%",
+                    "alignment": "left",
+                    "type_preset": "rte"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "faq_1_3_text"
+              ]
+            },
+            "faq_1_4": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "How do I track my order?",
+                "open_by_default": false,
+                "icon": "none"
+              },
+              "blocks": {
+                "faq_1_4_text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>You'll receive tracking information via email once your product ships.</p>",
+                    "width": "100%",
+                    "alignment": "left",
+                    "type_preset": "rte"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "faq_1_4_text"
+              ]
+            },
+            "faq_1_5": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "How do I change or cancel my order?",
+                "open_by_default": false,
+                "icon": "none"
+              },
+              "blocks": {
+                "faq_1_5_text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Please email us via the <a href=\"/pages/contact-us\">contact</a> page.</p>",
+                    "width": "100%",
+                    "alignment": "left",
+                    "type_preset": "rte"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "faq_1_5_text"
+              ]
+            }
+          },
+          "block_order": [
+            "faq_1_1",
+            "faq_1_2",
+            "faq_1_3",
+            "faq_1_4",
+            "faq_1_5"
+          ]
+        },
+        "faq_heading_2": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>General FAQ</h2>",
+            "width": "100%",
+            "alignment": "left",
+            "type_preset": "h3",
+            "padding-block-start": 16
+          },
+          "blocks": {}
+        },
+        "faq_accordion_2": {
+          "type": "accordion",
+          "settings": {
+            "icon": "plus",
+            "dividers": true,
+            "divider_color": "{{ settings.color_palette.foreground }}",
+            "type_preset": "h5",
+            "background_color": "",
+            "text_color": "",
+            "border": "none",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "faq_2_1": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "Are your products cruelty free?",
+                "open_by_default": false,
+                "icon": "none"
+              },
+              "blocks": {
+                "faq_2_1_text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>All Trixie Cosmetics products are cruelty free.</p>",
+                    "width": "100%",
+                    "alignment": "left",
+                    "type_preset": "rte"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "faq_2_1_text"
+              ]
+            },
+            "faq_2_2": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "Are your products vegan?",
+                "open_by_default": false,
+                "icon": "none"
+              },
+              "blocks": {
+                "faq_2_2_text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Vegan products are marked as vegan in their descriptions.</p>",
+                    "width": "100%",
+                    "alignment": "left",
+                    "type_preset": "rte"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "faq_2_2_text"
+              ]
+            },
+            "faq_2_3": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "What does it mean if an item is “pre-order?”",
+                "open_by_default": false,
+                "icon": "none"
+              },
+              "blocks": {
+                "faq_2_3_text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Items marked as “pre-order” are not currently in stock at our facilities but are in production and will be shipped to you as soon as we receive them. Orders containing a pre-order item will not ship until all items in your order have arrived to our warehouse.</p>",
+                    "width": "100%",
+                    "alignment": "left",
+                    "type_preset": "rte"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "faq_2_3_text"
+              ]
+            },
+            "faq_2_4": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "Does Trixie Cosmetics have a PR list?",
+                "open_by_default": false,
+                "icon": "none"
+              },
+              "blocks": {
+                "faq_2_4_text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Yes, but we are not currently accepting PR list applications.</p>",
+                    "width": "100%",
+                    "alignment": "left",
+                    "type_preset": "rte"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "faq_2_4_text"
+              ]
+            },
+            "faq_2_5": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "Can I buy Trixie Cosmetics in stores?",
+                "open_by_default": false,
+                "icon": "none"
+              },
+              "blocks": {
+                "faq_2_5_text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Check out our <a href=\"/pages/where-to-buy\" title=\"Where to buy\">retailers</a> page for more ways to shop our products.</p>",
+                    "width": "100%",
+                    "alignment": "left",
+                    "type_preset": "rte"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "faq_2_5_text"
+              ]
+            },
+            "faq_2_6": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "What is a \"pressed pigment\"?",
+                "open_by_default": false,
+                "icon": "none"
+              },
+              "blocks": {
+                "faq_2_6_text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Pressed pigments differ from a typical eyeshadow formula in that they do not contain filler ingredients and are used to achieve more vibrant shades. Because of this, pressed pigments have colorants that tend to cause staining on the skin and are recommended to not be used in the immediate eye area according to the US FDA. These regulations currently only apply to the US and are considered safe in other regions such as Europe, South America, Africa, the Middle East, and Canada. In cosmetics, carmine, an ingredient made of crushed beetles, is used to achieve shades of red, pink, and purple. Certain colorants are often substituted in place of carmine to create the same shades while also ensuring the formula is vegan.</p><p>These colorants include Red 6, Red 6 Lake, Red 7, Red 7 Lake, Red 21 Lake, Red 22 Lake, Red 27, Red 27 Lake, Red 28, Red 28 Lake, Yellow 6 Lake, Yellow 10 Lake and/or Silver.</p>",
+                    "width": "100%",
+                    "alignment": "left",
+                    "type_preset": "rte"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "faq_2_6_text"
+              ]
+            }
+          },
+          "block_order": [
+            "faq_2_1",
+            "faq_2_2",
+            "faq_2_3",
+            "faq_2_4",
+            "faq_2_5",
+            "faq_2_6"
+          ]
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content",
+        "faq_heading_1",
+        "faq_accordion_1",
+        "faq_heading_2",
+        "faq_accordion_2"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "gap": 24,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
