@@ -423,7 +423,8 @@
                       "type": "custom-liquid",
                       "settings": {
                         "custom_liquid": "{% render 'metafield-html', value: product.metafields.custom.how_to_use.value %}"
-                      }
+                      },
+                      "blocks": {}
                     }
                   },
                   "block_order": [
@@ -443,7 +444,8 @@
                       "type": "custom-liquid",
                       "settings": {
                         "custom_liquid": "{% render 'metafield-html', value: product.metafields.custom.ingredients.value %}"
-                      }
+                      },
+                      "blocks": {}
                     }
                   },
                   "block_order": [
@@ -463,7 +465,8 @@
                       "type": "custom-liquid",
                       "settings": {
                         "custom_liquid": "{% render 'metafield-html', value: product.metafields.custom.need_to_know.value %}"
-                      }
+                      },
+                      "blocks": {}
                     }
                   },
                   "block_order": [
@@ -483,7 +486,8 @@
                       "type": "custom-liquid",
                       "settings": {
                         "custom_liquid": "{% render 'metafield-html', value: product.metafields.custom.eu_representative.value %}"
-                      }
+                      },
+                      "blocks": {}
                     }
                   },
                   "block_order": [
@@ -1100,7 +1104,7 @@
         "horizontal_alignment_flex_direction_column": "center",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 12,
-        "section_width": "page-width",
+        "section_width": "full-width",
         "section_height": "",
         "section_height_custom": 50,
         "background_media": "none",
