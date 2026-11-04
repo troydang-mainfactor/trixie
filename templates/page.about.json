@@ -37,7 +37,8 @@
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
-          "blocks": {}
+          "blocks": {},
+          "disabled": true
         }
       },
       "block_order": [
@@ -49,7 +50,8 @@
         "background_color": "{{ settings.color_palette.background }}",
         "padding-block-start": 40,
         "padding-block-end": 40
-      }
+      },
+      "disabled": true
     },
     "section_naiFxe": {
       "type": "section",
@@ -60,18 +62,18 @@
           "settings": {
             "content_direction": "row",
             "vertical_on_mobile": true,
-            "horizontal_alignment": "center",
+            "horizontal_alignment": "flex-start",
             "vertical_alignment": "center",
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
+            "gap": 56,
             "show_above_media_mobile": false,
-            "width": "custom",
-            "custom_width": 72,
+            "width": "fill",
+            "custom_width": 100,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
-            "height": "fill",
+            "height": "fit",
             "custom_height": 100,
             "background_media": "none",
             "background_color": "",
@@ -102,11 +104,11 @@
                 "image": "shopify://shop_images/TC_Office_047_Kimberly_FINAL-1080x1350.jpg",
                 "link": "",
                 "image_ratio": "adapt",
-                "width": "fill",
-                "custom_width": 100,
+                "width": "custom",
+                "custom_width": 42,
                 "width_mobile": "fill",
                 "custom_width_mobile": 100,
-                "height": "fill",
+                "height": "fit",
                 "border": "none",
                 "border_width": 1,
                 "border_opacity": 100,
@@ -119,17 +121,66 @@
               },
               "blocks": {}
             },
-            "page_content_LXtiMU": {
-              "type": "page-content",
+            "about_text": {
+              "type": "group",
+              "name": "Text",
               "settings": {
-                "text_color": ""
+                "content_direction": "column",
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 20,
+                "width": "fill",
+                "width_mobile": "fill",
+                "height": "fit",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
               },
-              "blocks": {}
+              "blocks": {
+                "about_title": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h1>{{ closest.page.title }}</h1>",
+                    "split_on_dash": false,
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "h2",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "text_color": "",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "page_content_LXtiMU": {
+                  "type": "page-content",
+                  "settings": {
+                    "text_color": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "about_title",
+                "page_content_LXtiMU"
+              ]
             }
           },
           "block_order": [
             "image_tmFAfa",
-            "page_content_LXtiMU"
+            "about_text"
           ]
         }
       },
@@ -162,8 +213,8 @@
         "border_opacity": 100,
         "border_color": "",
         "border_radius": 0,
-        "padding-block-start": 0,
-        "padding-block-end": 20
+        "padding-block-start": 48,
+        "padding-block-end": 64
       }
     }
   },
