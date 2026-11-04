@@ -145,11 +145,6 @@
 </script>
 
 {% stylesheet %}
-  /* Top-level links go lowercase with the tabs layout, like the sub-tabs */
-  header-menu:has(.menu-tabs) .menu-list__link-title {
-    text-transform: lowercase;
-  }
-
   /* Desktop dropdown */
   .menu-tabs {
     width: 100%;
@@ -167,7 +162,6 @@
 
   .menu-tabs__tab {
     font-size: 0.9375rem;
-    text-transform: lowercase;
     color: var(--color-foreground);
     text-decoration: none;
     padding-bottom: 3px;
@@ -226,7 +220,6 @@
     text-align: center;
     font-size: 0.8125rem;
     font-weight: 500;
-    text-transform: lowercase;
   }
 
   @keyframes menu-tabs-fade {
@@ -267,7 +260,6 @@
     font-size: 1rem;
     line-height: 1.2;
     white-space: nowrap;
-    text-transform: lowercase;
     color: rgb(var(--color-foreground-rgb) / 0.6);
     border-bottom: 2px solid transparent;
     margin-bottom: -1px;
@@ -294,10 +286,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px 0;
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
     font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
     color: var(--color-foreground);
     text-decoration: none;
     border-bottom: 1px solid rgb(var(--color-foreground-rgb) / 0.08);
@@ -338,7 +328,6 @@
   .menu-tabs-m__tile span {
     font-size: 0.8125rem;
     line-height: 1.3;
-    text-transform: lowercase;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
