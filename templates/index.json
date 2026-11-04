@@ -851,6 +851,7 @@
         "text_g9m9Ta",
         "button_jwJWTJ"
       ],
+      "disabled": true,
       "name": "t:names.hero",
       "settings": {
         "media_type_1": "image",
@@ -1158,6 +1159,7 @@
           ]
         }
       },
+      "disabled": true,
       "name": "t:names.product_list",
       "settings": {
         "collection": "trixie-air",
