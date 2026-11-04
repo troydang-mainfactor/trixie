@@ -1,0 +1,27 @@
+{%- doc -%}
+  Outputs a text metafield as formatted content. Values that already contain HTML (e.g. <p>, <strong>
+  pasted from the product spreadsheet) render as HTML instead of showing the tags; plain text keeps
+  its line breaks.
+
+  @param {string} value - The metafield value (metafield.value)
+{%- enddoc -%}
+
+{%- if value != blank -%}
+  <div class="rte">
+    {%- if value contains '<' -%}
+      {%- comment -%} Keep line breaks between plain lines, but not right after block tags {%- endcomment -%}
+      {{-
+        value
+        | newline_to_br
+        | replace: '</p><br />', '</p>'
+        | replace: '<p><br />', '<p>'
+        | replace: '</li><br />', '</li>'
+        | replace: '<ul><br />', '<ul>'
+        | replace: '</ul><br />', '</ul>'
+        | replace: '</ol><br />', '</ol>'
+      -}}
+    {%- else -%}
+      <p>{{- value | newline_to_br -}}</p>
+    {%- endif -%}
+  </div>
+{%- endif -%}

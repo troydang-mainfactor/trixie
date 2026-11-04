@@ -420,30 +420,10 @@
                   },
                   "blocks": {
                     "row_how_to_use_text": {
-                      "type": "text",
+                      "type": "custom-liquid",
                       "settings": {
-                        "text": "<p>{{ closest.product.metafields.custom.how_to_use | metafield_tag }}</p>",
-                        "split_on_dash": false,
-                        "width": "100%",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "rte",
-                        "font": "var(--font-body--family)",
-                        "font_size": "1rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "text_color": "",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
+                        "custom_liquid": "{% render 'metafield-html', value: product.metafields.custom.how_to_use.value %}"
+                      }
                     }
                   },
                   "block_order": [
@@ -460,30 +440,10 @@
                   },
                   "blocks": {
                     "accordion_row_9YxKMj_text": {
-                      "type": "text",
+                      "type": "custom-liquid",
                       "settings": {
-                        "text": "<p>{{ closest.product.metafields.custom.ingredients | metafield_tag }}</p>",
-                        "split_on_dash": false,
-                        "width": "100%",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "rte",
-                        "font": "var(--font-body--family)",
-                        "font_size": "1rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "text_color": "",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
+                        "custom_liquid": "{% render 'metafield-html', value: product.metafields.custom.ingredients.value %}"
+                      }
                     }
                   },
                   "block_order": [
@@ -500,30 +460,10 @@
                   },
                   "blocks": {
                     "accordion_row_aXJAkk_text": {
-                      "type": "text",
+                      "type": "custom-liquid",
                       "settings": {
-                        "text": "<p>{{ closest.product.metafields.custom.need_to_know | metafield_tag }}</p>",
-                        "split_on_dash": false,
-                        "width": "100%",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "rte",
-                        "font": "var(--font-body--family)",
-                        "font_size": "1rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "text_color": "",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
+                        "custom_liquid": "{% render 'metafield-html', value: product.metafields.custom.need_to_know.value %}"
+                      }
                     }
                   },
                   "block_order": [
@@ -540,30 +480,10 @@
                   },
                   "blocks": {
                     "row_eu_rep_text": {
-                      "type": "text",
+                      "type": "custom-liquid",
                       "settings": {
-                        "text": "<p>{{ closest.product.metafields.custom.eu_representative | metafield_tag }}</p>",
-                        "split_on_dash": false,
-                        "width": "100%",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "rte",
-                        "font": "var(--font-body--family)",
-                        "font_size": "1rem",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "text_color": "",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
+                        "custom_liquid": "{% render 'metafield-html', value: product.metafields.custom.eu_representative.value %}"
+                      }
                     }
                   },
                   "block_order": [
