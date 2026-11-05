@@ -472,34 +472,12 @@
                   "block_order": [
                     "accordion_row_aXJAkk_text"
                   ]
-                },
-                "row_eu_rep": {
-                  "type": "_accordion-row",
-                  "settings": {
-                    "heading": "EU Representative",
-                    "open_by_default": false,
-                    "icon": "none",
-                    "width": 20
-                  },
-                  "blocks": {
-                    "row_eu_rep_text": {
-                      "type": "custom-liquid",
-                      "settings": {
-                        "custom_liquid": "{% render 'metafield-html', value: product.metafields.custom.eu_representative.value %}"
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "row_eu_rep_text"
-                  ]
                 }
               },
               "block_order": [
                 "row_how_to_use",
                 "accordion_row_9YxKMj",
-                "accordion_row_aXJAkk",
-                "row_eu_rep"
+                "accordion_row_aXJAkk"
               ]
             },
             "plays_well_with_list": {
