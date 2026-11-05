@@ -194,6 +194,18 @@
     "image_grid_premium_CwmQdm": {
       "type": "image-grid-premium",
       "blocks": {
+        "image_HCaBjA": {
+          "type": "image",
+          "settings": {
+            "collection": "jinkx-monsoon",
+            "heading": "Jinkx Monsoon",
+            "text": "",
+            "button_label": "Shop now",
+            "link": "shopify://collections/jinkx-monsoon",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        },
         "image_lovebirds": {
           "type": "image",
           "settings": {
@@ -364,6 +376,7 @@
         }
       },
       "block_order": [
+        "image_HCaBjA",
         "image_lovebirds",
         "image_trixie_air",
         "image_trixie_slix",
