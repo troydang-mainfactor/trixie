@@ -200,9 +200,9 @@
             "collection": "jinkx-monsoon",
             "heading": "",
             "text": "",
-            "button_label": "",
+            "button_label": "Shop Now",
             "link": "shopify://collections/jinkx-monsoon",
-            "vertical": "center",
+            "vertical": "bottom",
             "horizontal": "center"
           }
         },
