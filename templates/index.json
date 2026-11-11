@@ -218,7 +218,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<h2>Trixie Hollow Launches Thursday at 10am pt</h2>",
+            "text": "<h1>Trixie Hollow Launches Thursday at 10am pt</h1>",
             "split_on_dash": false,
             "width": "fit-content",
             "max_width": "normal",
@@ -344,7 +344,7 @@
         "horizontal_alignment": "flex-start",
         "vertical_alignment": "center",
         "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
+        "horizontal_alignment_flex_direction_column": "center",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 16,
         "section_width": "page-width",
@@ -1133,8 +1133,8 @@
           "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
           "settings": {
             "title": "",
-            "title_color": "",
-            "title_size_v2": 0,
+            "title_color": "{{ settings.color_palette.foreground }}",
+            "title_size_v2": 20,
             "alignment": "center",
             "instafeed_margin_top": 0,
             "instafeed_margin_bottom": 8,
