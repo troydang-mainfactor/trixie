@@ -42,6 +42,7 @@
         "text_twGGkJ": {
           "type": "text",
           "name": "t:names.description",
+          "disabled": true,
           "settings": {
             "text": "{{ closest.collection.description }}",
             "split_on_dash": false,
