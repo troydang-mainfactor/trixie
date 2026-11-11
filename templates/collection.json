@@ -115,7 +115,7 @@
         "scroll_on_mobile": true,
         "pill_gap": 8,
         "pill_radius": 0,
-        "border_width": 2,
+        "border_width": 1,
         "section_width": "page-width",
         "pill_background": "",
         "text_color": "",
