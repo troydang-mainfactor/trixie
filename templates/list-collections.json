@@ -194,6 +194,19 @@
     "image_grid_premium_CwmQdm": {
       "type": "image-grid-premium",
       "blocks": {
+        "image_fypeFn": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "collection": "trixie-hollow",
+            "heading": "Trixie Hollow",
+            "text": "",
+            "button_label": "Shop now",
+            "link": "shopify://collections/trixie-hollow",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        },
         "image_HCaBjA": {
           "type": "image",
           "settings": {
@@ -376,6 +389,7 @@
         }
       },
       "block_order": [
+        "image_fypeFn",
         "image_HCaBjA",
         "image_lovebirds",
         "image_trixie_air",
