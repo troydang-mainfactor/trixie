@@ -1395,7 +1395,7 @@
                   "settings": {
                     "show_price": true,
                     "open_quick_add_for_variants": false,
-                    "style_class": "button-custom",
+                    "style_class": "button-secondary",
                     "custom_button_background": "#000000",
                     "custom_button_text": "#f392bd",
                     "custom_button_border": "#000000"
