@@ -326,6 +326,20 @@
     }
   }
 
+  /* Judge.me review widget: a centered flex section shrinks the app block to 0px wide, so give it the
+     full row; keep it to 1200px and add the page side margin so it doesn't touch the edges on mobile */
+  .shopify-app-block:has(> .jdgm-review-widget) {
+    width: 100%;
+    align-self: stretch;
+  }
+
+  .jdgm-review-widget {
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: var(--page-margin, 16px);
+    box-sizing: border-box;
+  }
+
   /* Judge.me reviews: brand fonts, square shapes, pink accents */
   body .jdgm-rev-widg {
     --jdgm-accent: {{ settings.color_palette.color3 | default: '#eb008b' }};
