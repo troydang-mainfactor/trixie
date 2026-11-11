@@ -9,6 +9,208 @@
  */
 {
   "sections": {
+    "hero_h7BgVV": {
+      "type": "hero",
+      "blocks": {
+        "text_adXXJR": {
+          "type": "text",
+          "settings": {
+            "text": "<h6><strong>WELCOME TO THE REALM OF</strong></h6>",
+            "split_on_dash": false,
+            "width": "fit-content",
+            "max_width": "narrow",
+            "alignment": "left",
+            "type_preset": "h4",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "{{ settings.color_palette.background }}",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_UMqhQA": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Trixie Hollow</strong></p>",
+            "split_on_dash": false,
+            "width": "fit-content",
+            "max_width": "narrow",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "{{ settings.color_palette.background }}",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 14,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "button_3AMmBm": {
+          "type": "button",
+          "name": "t:names.button",
+          "settings": {
+            "label": "SHOP THE COLLECTION",
+            "link": "shopify://collections/trixie-hollow",
+            "open_in_new_tab": false,
+            "style_class": "button-secondary",
+            "custom_button_background": "{{ settings.color_palette.color6 }}",
+            "custom_button_text": "{{ settings.color_palette.foreground }}",
+            "custom_button_border": "#FFFFFF00",
+            "link_text_color": "",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_adXXJR",
+        "text_UMqhQA",
+        "button_3AMmBm"
+      ],
+      "disabled": true,
+      "name": "Hero Trixie Hollow",
+      "settings": {
+        "media_type_1": "image",
+        "image_1": "shopify://shop_images/Desktop-Homepage-hero-TrixieHollow.jpg",
+        "media_type_2": "image",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": true,
+        "media_type_1_mobile": "image",
+        "image_1_mobile": "shopify://shop_images/Mobile-Homepage-hero-TrixieHollow.jpg",
+        "media_type_2_mobile": "image",
+        "link": "shopify://collections/trixie-hollow",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "flex-end",
+        "gap": 16,
+        "section_width": "page-width",
+        "section_height": "large",
+        "section_height_custom": 50,
+        "mobile_aspect_ratio": "auto",
+        "content_position": "default",
+        "content_position_mobile": "inherit",
+        "background_color": "",
+        "toggle_overlay": true,
+        "overlay_color": "#00000026",
+        "overlay_style": "gradient",
+        "gradient_direction": "to top",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "image_grid_premium_LYJpTw": {
+      "type": "image-grid-premium",
+      "blocks": {
+        "image_49Pd7X": {
+          "type": "image",
+          "settings": {
+            "collection": "eyes",
+            "image": "shopify://shop_images/image-grid--trixie-hollow---eyes.jpg",
+            "heading": "Eyes",
+            "text": "",
+            "button_label": "Shop Now",
+            "link": "shopify://collections/eyes",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        },
+        "image_T9JGDn": {
+          "type": "image",
+          "settings": {
+            "collection": "lips",
+            "image": "shopify://shop_images/image-grid--trixie-hollow---lips.jpg",
+            "heading": "Lips",
+            "text": "",
+            "button_label": "Shop Now",
+            "link": "shopify://collections/lips",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        },
+        "image_6JyCxz": {
+          "type": "image",
+          "settings": {
+            "collection": "face",
+            "image": "shopify://shop_images/image-grid--trixie-hollow--face.jpg",
+            "heading": "Face",
+            "text": "",
+            "button_label": "Shop Now",
+            "link": "shopify://collections/face",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        },
+        "image_A4Jkwx": {
+          "type": "image",
+          "settings": {
+            "collection": "accessories",
+            "image": "shopify://shop_images/image-grid--trixie-hollow--accessories.jpg",
+            "heading": "Merch",
+            "text": "",
+            "button_label": "Shop Now",
+            "link": "shopify://collections/tools",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        }
+      },
+      "block_order": [
+        "image_49Pd7X",
+        "image_T9JGDn",
+        "image_6JyCxz",
+        "image_A4Jkwx"
+      ],
+      "disabled": true,
+      "name": "Premium Image Grid Trixie Hollow",
+      "settings": {
+        "columns": 4,
+        "rows": 1,
+        "mobile_columns": "2",
+        "mobile_layout": "scroll",
+        "aspect_ratio": "portrait",
+        "heading_size": 32,
+        "mobile_heading_size": 24,
+        "button_size": 16,
+        "mobile_button_size": 12,
+        "grid_gap": 12,
+        "corner_radius": 0,
+        "mobile_corner_radius": 0,
+        "content_padding": 20,
+        "mobile_content_padding": 20,
+        "overlay_opacity": 50,
+        "padding_top": 12,
+        "padding_bottom": 0
+      }
+    },
     "section_fizHqE": {
       "type": "section",
       "blocks": {
@@ -16,7 +218,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<h1>Trixie Hollow launches this Thursday at 10am pt / 1pm et</h1>",
+            "text": "<h2>Trixie Hollow Launches Thursday at 10am pt</h2>",
             "split_on_dash": false,
             "width": "fit-content",
             "max_width": "normal",
@@ -290,7 +492,7 @@
       "block_order": [
         "group_LD9MqP"
       ],
-      "name": "t:names.hero",
+      "name": "Hero Jinkx",
       "settings": {
         "media_type_1": "image",
         "image_1": "shopify://shop_images/Desktop-homepage-Jinkx-hero.jpg",
@@ -924,419 +1126,6 @@
         "show_elsewhere": true
       }
     },
-    "hero_3rKtch": {
-      "type": "hero",
-      "blocks": {
-        "text_Fqx3KR": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "text": "<h2>New arrivals</h2>",
-            "split_on_dash": false,
-            "width": "fit-content",
-            "max_width": "narrow",
-            "alignment": "left",
-            "type_preset": "h1",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "text_color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "text_g9m9Ta": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "text": "<p>Made with care and unconditionally loved by our customers.</p>",
-            "split_on_dash": false,
-            "width": "fit-content",
-            "max_width": "narrow",
-            "alignment": "left",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "text_color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 32,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "button_jwJWTJ": {
-          "type": "button",
-          "name": "t:names.button",
-          "disabled": true,
-          "settings": {
-            "label": "Shop now",
-            "link": "shopify://collections/all",
-            "open_in_new_tab": false,
-            "style_class": "button",
-            "custom_button_background": "{{ settings.color_palette.foreground }}",
-            "custom_button_text": "{{ settings.color_palette.background }}",
-            "custom_button_border": "{{ settings.color_palette.background }}",
-            "link_text_color": "",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "text_Fqx3KR",
-        "text_g9m9Ta",
-        "button_jwJWTJ"
-      ],
-      "disabled": true,
-      "name": "t:names.hero",
-      "settings": {
-        "media_type_1": "image",
-        "image_1": "shopify://shop_images/Homepage-office-desktop-1_3439d882-32ae-4d43-ad83-d8313dc88d8c.jpg",
-        "media_type_2": "image",
-        "stack_media_on_mobile": false,
-        "custom_mobile_media": true,
-        "media_type_1_mobile": "image",
-        "image_1_mobile": "shopify://shop_images/Mobile-homepage-TrixieAir.jpg",
-        "media_type_2_mobile": "image",
-        "link": "",
-        "open_in_new_tab": false,
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 16,
-        "section_width": "page-width",
-        "section_height": "large",
-        "section_height_custom": 50,
-        "mobile_aspect_ratio": "auto",
-        "content_position": "default",
-        "content_position_mobile": "inherit",
-        "background_color": "",
-        "toggle_overlay": true,
-        "overlay_color": "#00000026",
-        "overlay_style": "gradient",
-        "gradient_direction": "to top",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 40,
-        "padding-block-end": 40
-      }
-    },
-    "product_list_rEWU6T": {
-      "type": "product-list",
-      "blocks": {
-        "static-header": {
-          "type": "_product-list-content",
-          "name": "t:names.header",
-          "static": true,
-          "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": false,
-            "horizontal_alignment": "space-between",
-            "vertical_alignment": "flex-end",
-            "align_baseline": true,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "background_media": "none",
-            "background_color": "",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_list_text_YKzL4i": {
-              "type": "_product-list-text",
-              "name": "t:names.collection_title",
-              "settings": {
-                "text": "<h3>{{ closest.collection.title }}</h3>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "custom",
-                "font": "var(--font-heading--family)",
-                "font_size": "2rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "product_list_button_mAH4dB": {
-              "type": "_product-list-button",
-              "name": "t:names.product_list_button",
-              "settings": {
-                "label": "View all",
-                "open_in_new_tab": false,
-                "style_class": "link",
-                "custom_button_background": "{{ settings.color_palette.foreground }}",
-                "custom_button_text": "{{ settings.color_palette.background }}",
-                "custom_button_border": "{{ settings.color_palette.background }}",
-                "link_text_color": "",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_list_text_YKzL4i",
-            "product_list_button_mAH4dB"
-          ]
-        },
-        "static-product-card": {
-          "type": "_product-card",
-          "name": "t:names.product_card",
-          "static": true,
-          "settings": {
-            "product_card_gap": 4,
-            "background_color": "rgba(0,0,0,0)",
-            "border": "none",
-            "border_width": 0,
-            "border_opacity": 100,
-            "border_color": "{{ settings.color_palette.color5 }}",
-            "border_radius": 15,
-            "padding-block-start": 10,
-            "padding-block-end": 10,
-            "padding-inline-start": 10,
-            "padding-inline-end": 10
-          },
-          "blocks": {
-            "product_card_gallery_7QYyVN": {
-              "type": "_product-card-gallery",
-              "name": "t:names.product_card_media",
-              "settings": {
-                "image_ratio": "portrait",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_color": "",
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "product_title_fQb6Jw": {
-              "type": "product-title",
-              "name": "t:names.product_title",
-              "settings": {
-                "split_on_dash": true,
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "center",
-                "type_preset": "custom",
-                "font": "var(--font-heading--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 4,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "price_yE6anU": {
-              "type": "price",
-              "name": "t:names.product_price",
-              "disabled": true,
-              "settings": {
-                "show_sale_price_first": true,
-                "show_installments": false,
-                "show_tax_info": false,
-                "type_preset": "h6",
-                "width": "100%",
-                "alignment": "left",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "text_color": "",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "combined_listings_card_dCqGtm": {
-              "type": "combined-listings-card",
-              "name": "t:names.combined_listings_card",
-              "settings": {
-                "swatch_shape": "square",
-                "swatch_shape_radius": 8,
-                "swatch_size": "small",
-                "swatch_size_custom": 24,
-                "max_visible_swatches": 5,
-                "swatch_gap": 6,
-                "swatch_border_width": 1,
-                "show_tooltips": true,
-                "tooltip_background": "",
-                "tooltip_text_color": "",
-                "tooltip_font_size": 13,
-                "out_of_stock_style": "none",
-                "padding-block-start": 4,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "buy_buttons_6hdaxW": {
-              "type": "buy-buttons",
-              "name": "t:names.product_buy_buttons",
-              "settings": {
-                "stacking": false,
-                "text_color": "",
-                "show_pickup_availability": false,
-                "gift_card_form": false,
-                "recipient_button_style": "default",
-                "recipient_button_background": "{{ settings.color_palette.background }}",
-                "recipient_button_text": "{{ settings.color_palette.foreground }}",
-                "recipient_button_border": "{{ settings.color_palette.foreground }}",
-                "selected_recipient_button_style": "default",
-                "selected_recipient_button_background": "{{ settings.color_palette.foreground }}",
-                "selected_recipient_button_text": "{{ settings.color_palette.background }}",
-                "selected_recipient_button_border": "{{ settings.color_palette.foreground }}",
-                "input_style": "default",
-                "input_background_color": "{{ settings.color_palette.background }}",
-                "input_text_color": "{{ settings.color_palette.foreground }}",
-                "input_border_color": "{{ settings.color_palette.foreground }}",
-                "border_width": 1,
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "quantity": {
-                  "type": "quantity",
-                  "disabled": true,
-                  "static": true,
-                  "settings": {
-                    "input_style": "default",
-                    "input_background_color": "{{ settings.color_palette.background }}",
-                    "input_text_color": "{{ settings.color_palette.foreground }}",
-                    "input_border_color": "{{ settings.color_palette.foreground }}",
-                    "border_width": 1,
-                    "border_radius": 0
-                  },
-                  "blocks": {}
-                },
-                "add-to-cart": {
-                  "type": "add-to-cart",
-                  "static": true,
-                  "settings": {
-                    "show_price": true,
-                    "open_quick_add_for_variants": true,
-                    "style_class": "button",
-                    "custom_button_background": "{{ settings.color_palette.foreground }}",
-                    "custom_button_text": "{{ settings.color_palette.background }}",
-                    "custom_button_border": "{{ settings.color_palette.background }}"
-                  },
-                  "blocks": {}
-                },
-                "accelerated-checkout": {
-                  "type": "accelerated-checkout",
-                  "disabled": true,
-                  "static": true,
-                  "settings": {},
-                  "blocks": {}
-                }
-              },
-              "block_order": []
-            }
-          },
-          "block_order": [
-            "product_card_gallery_7QYyVN",
-            "product_title_fQb6Jw",
-            "price_yE6anU",
-            "combined_listings_card_dCqGtm",
-            "buy_buttons_6hdaxW"
-          ]
-        }
-      },
-      "disabled": true,
-      "name": "t:names.product_list",
-      "settings": {
-        "collection": "trixie-air",
-        "layout_type": "grid",
-        "carousel_on_mobile": true,
-        "max_products": 4,
-        "columns": 4,
-        "mobile_columns": "2",
-        "mobile_card_size": "60cqw",
-        "columns_gap": 8,
-        "rows_gap": 24,
-        "icons_style": "arrow",
-        "icons_shape": "none",
-        "section_width": "page-width",
-        "horizontal_alignment": "flex-start",
-        "gap": 28,
-        "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 48,
-        "padding-block-end": 48
-      }
-    },
     "1785093859400218fe": {
       "type": "_blocks",
       "blocks": {
@@ -1595,134 +1384,17 @@
         "padding-block-start": 20,
         "padding-block-end": 40
       }
-    },
-    "hero_h7BgVV": {
-      "type": "hero",
-      "blocks": {
-        "text_adXXJR": {
-          "type": "text",
-          "settings": {
-            "text": "<h6><strong>WELCOME TO THE REALM OF</strong></h6>",
-            "split_on_dash": false,
-            "width": "fit-content",
-            "max_width": "narrow",
-            "alignment": "left",
-            "type_preset": "h4",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "text_color": "{{ settings.color_palette.background }}",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "text_UMqhQA": {
-          "type": "text",
-          "settings": {
-            "text": "<p><strong>Trixie Hollow</strong></p>",
-            "split_on_dash": false,
-            "width": "fit-content",
-            "max_width": "narrow",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "text_color": "{{ settings.color_palette.background }}",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 32,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "button_3AMmBm": {
-          "type": "button",
-          "name": "t:names.button",
-          "settings": {
-            "label": "SHOP THE COLLECTION",
-            "link": "shopify://collections/trixie-slix",
-            "open_in_new_tab": false,
-            "style_class": "button-custom",
-            "custom_button_background": "{{ settings.color_palette.color6 }}",
-            "custom_button_text": "{{ settings.color_palette.foreground }}",
-            "custom_button_border": "{{ settings.color_palette.background }}",
-            "link_text_color": "",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "text_adXXJR",
-        "text_UMqhQA",
-        "button_3AMmBm"
-      ],
-      "disabled": true,
-      "name": "t:names.hero",
-      "settings": {
-        "media_type_1": "image",
-        "media_type_2": "image",
-        "stack_media_on_mobile": false,
-        "custom_mobile_media": false,
-        "media_type_1_mobile": "image",
-        "media_type_2_mobile": "image",
-        "link": "",
-        "open_in_new_tab": false,
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 16,
-        "section_width": "page-width",
-        "section_height": "large",
-        "section_height_custom": 50,
-        "mobile_aspect_ratio": "auto",
-        "content_position": "default",
-        "content_position_mobile": "inherit",
-        "background_color": "",
-        "toggle_overlay": true,
-        "overlay_color": "#00000026",
-        "overlay_style": "gradient",
-        "gradient_direction": "to top",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 40,
-        "padding-block-end": 40
-      }
     }
   },
   "order": [
+    "hero_h7BgVV",
+    "image_grid_premium_LYJpTw",
     "section_fizHqE",
     "hero_jVaWmY",
     "image_grid_premium_pB9PmF",
     "product_list_fa6P9H",
     "ugc_video_gallery_t3FHPG",
-    "hero_3rKtch",
-    "product_list_rEWU6T",
     "1785093859400218fe",
-    "section_qtXpfx",
-    "hero_h7BgVV"
+    "section_qtXpfx"
   ]
 }
