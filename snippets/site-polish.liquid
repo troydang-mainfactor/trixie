@@ -351,6 +351,21 @@
     border: 0;
   }
 
+  /* Date in the top-right corner of each review, smaller stars */
+  .jdgm-review-widget .jm-review-item__body > .jm-stack {
+    position: relative;
+  }
+
+  .jdgm-review-widget .jm-reviewer-info__details > .jm-cluster:nth-child(2) {
+    position: absolute;
+    top: -3px;
+    right: 0;
+  }
+
+  .jdgm-review-widget .jm-review-widget__body .jm-star-rating__font-icon {
+    font-size: 1.1em !important; /* Judge.me sets 1.5em inline */
+  }
+
   .jdgm-review-widget .jm-verified-buyer-badge__text {
     background: #000;
     border-radius: 0;
