@@ -139,6 +139,21 @@ class MarqueeComponent extends Component {
         { root: this }
       );
       intersectionObserver.observe(marqueeItems[0]);
+
+      // The observer only reports after the browser renders a frame; a page loaded in a background
+      // tab (or with rendering paused) never gets one, leaving the marquee frozen. Measure directly
+      // instead if it hasn't answered shortly after load.
+      setTimeout(() => {
+        intersectionObserver.disconnect();
+        const marqueeWidth = this.getBoundingClientRect().width;
+        const marqueeItemsWidth = marqueeItems[0]?.getBoundingClientRect().width ?? 0;
+        const isHorizontalResize = this.#marqueeWidth !== marqueeWidth;
+        this.#marqueeWidth = marqueeWidth;
+        resolve({
+          numberOfCopies: marqueeItemsWidth === 0 ? 1 : Math.ceil(marqueeWidth / marqueeItemsWidth),
+          isHorizontalResize,
+        });
+      }, 500);
     });
   }
 

@@ -340,6 +340,29 @@
     box-sizing: border-box;
   }
 
+  /* Each review as a lighter card on the section background */
+  .jdgm-review-widget .jm-review-widget__body > .jm-stack {
+    gap: 16px;
+  }
+
+  .jdgm-review-widget .jm-review-widget__body > .jm-stack > .jm-box {
+    background: rgb(255 255 255 / 0.45);
+    padding: 24px;
+    border: 0;
+  }
+
+  .jdgm-review-widget .jm-verified-buyer-badge__text {
+    background: #000;
+    border-color: #000;
+    color: #fff;
+  }
+
+  @media screen and (min-width: 750px) {
+    .jdgm-review-widget .jm-review-widget__body > .jm-stack > .jm-box {
+      padding: 32px 40px;
+    }
+  }
+
   /* Judge.me reviews: brand fonts, square shapes, pink accents */
   body .jdgm-rev-widg {
     --jdgm-accent: {{ settings.color_palette.color3 | default: '#eb008b' }};
