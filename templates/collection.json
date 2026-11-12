@@ -231,12 +231,13 @@
                   "name": "t:names.product_title",
                   "settings": {
                     "split_on_dash": true,
+                    "show_subtitle": true,
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
                     "type_preset": "custom",
                     "font": "var(--font-heading--family)",
-                    "font_size": "1rem",
+                    "font_size": "1.25rem",
                     "line_height": "normal",
                     "letter_spacing": "normal",
                     "case": "none",
@@ -254,6 +255,7 @@
                 },
                 "text_p9wHhb": {
                   "type": "text",
+                  "disabled": true,
                   "name": "t:names.text",
                   "settings": {
                     "text": "<p>{{ closest.product.metafields.custom.subtitle.value }}</p>",

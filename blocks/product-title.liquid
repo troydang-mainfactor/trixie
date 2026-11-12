@@ -4,21 +4,33 @@
   {% render 'text', fallback_text: product_title, block: block %}
 {% else %}
   {% liquid
-    assign title_line_1 = closest.product.title
-    assign title_line_2 = blank
+    # "Player One - Play Pigment": the shade (before the dash) sits small on top, the product name below
+    assign title_main = closest.product.title
+    assign title_shade = blank
 
     if block.settings.split_on_dash
       assign title_parts = closest.product.title | split: ' - '
       if title_parts.size > 1
-        assign title_line_1 = title_parts | first
+        assign title_shade = title_parts | first
         assign title_rest = title_parts | slice: 1, 999
-        assign title_line_2 = title_rest | join: ' - '
+        assign title_main = title_rest | join: ' - '
       endif
     endif
 
-    assign product_title = '<p role="heading" aria-level="3">' | append: title_line_1
-    if title_line_2 != blank
-      assign product_title = product_title | append: '<span class="product-title__subtitle">' | append: title_line_2 | append: '</span>'
+    assign product_title = '<p role="heading" aria-level="3">'
+    if block.settings.show_subtitle
+      assign product_title = '<p role="heading" aria-level="3" data-show-subtitle>'
+    endif
+    if title_shade != blank
+      assign product_title = product_title | append: '<span class="product-title__shade">' | append: title_shade | append: '</span>'
+    endif
+    assign product_title = product_title | append: '<span class="product-title__name">' | append: title_main | append: '</span>'
+
+    if block.settings.show_subtitle
+      assign title_subtitle = closest.product.selected_or_first_available_variant.metafields.custom.subtitle.value | default: closest.product.metafields.custom.subtitle.value
+      if title_subtitle != blank
+        assign product_title = product_title | append: '<span class="product-title__subtitle">' | append: title_subtitle | append: '</span>'
+      endif
     endif
     assign product_title = product_title | append: '</p>'
   %}
@@ -32,12 +44,24 @@
 {% endif %}
 
 {% stylesheet %}
+  .product-title__shade,
+  .product-title__name,
   .product-title__subtitle {
     display: block;
+  }
+
+  .product-title__shade {
+    font-size: 0.68em;
+    margin-block-end: 0.15em;
+  }
+
+  .product-title__subtitle {
+    font-family: var(--font-body--family);
     font-size: 0.6em;
-    font-weight: var(--font-weight-normal, normal);
-    opacity: var(--opacity-subdued-text, 0.7);
-    margin-block-start: 0.2em;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-block-start: 0.1em;
   }
 {% endstylesheet %}
 
@@ -56,6 +80,13 @@
       "label": "t:settings.split_title_on_dash",
       "info": "t:info.split_title_on_dash",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_subtitle",
+      "label": "Show subtitle",
+      "info": "Adds the subtitle metafield (custom.subtitle) directly under the name",
+      "default": false
     },
     {
       "type": "header",

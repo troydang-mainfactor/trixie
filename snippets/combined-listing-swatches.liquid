@@ -209,6 +209,7 @@
               aria-pressed="{{ is_current }}"
               data-product-id="{{ linked_product.id }}"
               data-product-title="{{ linked_product.title | escape }}"
+              data-product-subtitle="{{ linked_product.selected_or_first_available_variant.metafields.custom.subtitle.value | default: linked_product.metafields.custom.subtitle.value | escape }}"
               data-product-url="{{ linked_product.url }}"
               data-product-available="{{ is_available }}"
               data-quick-add-mode="{% if can_add_direct %}add{% else %}choose{% endif %}"

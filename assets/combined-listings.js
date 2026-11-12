@@ -114,6 +114,13 @@ async function swapProductPage(url) {
     }
 
     current.forEach((section, i) => morph(section, /** @type {HTMLElement} */ (incoming[i]), MORPH_OPTIONS));
+    // The server HTML has the "NEW!"-style swatch labels hidden (JS shows them), so show them again
+    // once the pickers' refs have caught up with the morphed DOM
+    setTimeout(() => {
+      for (const picker of document.querySelectorAll('combined-listings-picker')) {
+        /** @type {any} */ (picker).showPerSwatchTagText?.();
+      }
+    });
     document.title = next.title;
     history.pushState({ productSwap: true }, '', url);
     hasSwapped = true;
@@ -145,13 +152,14 @@ class CombinedListingsPicker extends CombinedListingsBase {
     this.#variantPicker?.addEventListener('change', this.#syncHrefs);
     this.#syncHrefs();
     this.#restoreOptionFromUrl();
-    this.#showPerSwatchTagText();
+    this.showPerSwatchTagText();
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
     this.#variantPicker?.removeEventListener('change', this.#syncHrefs);
   }
+
 
   /** @param {MouseEvent} event */
   handleSwatchClick(event) {
@@ -215,7 +223,7 @@ class CombinedListingsPicker extends CombinedListingsBase {
    * here rather than in Liquid, since a block's nested block settings aren't reliably
    * readable server-side from a shared snippet.
    */
-  #showPerSwatchTagText() {
+  showPerSwatchTagText() {
     const { swatchTriggers, swatchLabels, tagRules } = this.refs;
     if (!swatchTriggers || !swatchLabels || !tagRules) return;
 
@@ -293,14 +301,16 @@ class CombinedListingsCardSwatches extends CombinedListingsBase {
       other.classList.toggle('cl-swatch-trigger--active', other === trigger);
     }
 
-    const { productId, productTitle, productUrl, productAvailable, quickAddMode, quickAddVariantId } = trigger.dataset;
+    const { productId, productTitle, productSubtitle, productUrl, productAvailable, quickAddMode, quickAddVariantId } =
+      trigger.dataset;
     if (!productUrl) return;
 
     const productCard = /** @type {import('./product-card').ProductCard | null} */ (this.closest('product-card'));
 
     productCard?.applyVariantToLinks(null, productUrl);
     this.#swapImage(trigger);
-    this.#swapTitle(productCard, productTitle ?? '');
+    this.#swapGallery(productCard, productUrl);
+    this.#swapTitle(productCard, productTitle ?? '', productSubtitle ?? '');
     this.#syncQuickAdd(productCard, {
       productId: productId ?? '',
       productTitle: productTitle ?? '',
@@ -333,29 +343,79 @@ class CombinedListingsCardSwatches extends CombinedListingsBase {
     /** @type {any} */ (productCard?.refs)?.slideshow?.select?.(0, undefined, { animate: false });
   }
 
+  /** @type {AbortController | null} */
+  #galleryRequest = null;
+
   /**
-   * Mirrors the " - " split done in blocks/product-title.liquid, so a swapped-in title gets
-   * the same smaller-subtitle-on-its-own-line treatment. Builds the DOM directly (not innerHTML)
+   * The swatch's template only carries its featured image, so the rest of the card's slideshow
+   * would keep showing the old shade. Fetch the shade's images from its product JSON and put
+   * them into the slides the card shows, hiding any it has no image for.
+   * @param {Element | null | undefined} productCard
+   * @param {string} productUrl
+   */
+  async #swapGallery(productCard, productUrl) {
+    const slides = /** @type {HTMLElement[]} */ ([...(productCard?.querySelectorAll('.card-gallery slideshow-slide') ?? [])]);
+    if (slides.length < 2) return;
+
+    // Remember which slides the card showed on load (it starts extra variant images hidden)
+    for (const slide of slides) slide.dataset.clShown ??= String(!slide.hidden);
+    const shown = slides.filter((slide) => slide.dataset.clShown === 'true');
+
+    this.#galleryRequest?.abort();
+    const request = (this.#galleryRequest = new AbortController());
+
+    try {
+      const response = await fetch(`${productUrl.split('?')[0]}.js`, { signal: request.signal });
+      if (!response.ok) return;
+      /** @type {{ images?: string[] }} */
+      const product = await response.json();
+      const images = product.images ?? [];
+      if (!images.length) return;
+
+      shown.forEach((slide, index) => {
+        const src = images[index];
+        slide.hidden = !src;
+        const img = slide.querySelector('img');
+        if (!src || !img) return;
+
+        const url = src.startsWith('//') ? `https:${src}` : src;
+        const sized = (/** @type {number} */ width) => `${url}${url.includes('?') ? '&' : '?'}width=${width}`;
+        img.srcset = [240, 352, 832, 1200, 1600].map((width) => `${sized(width)} ${width}w`).join(', ');
+        img.src = sized(1200);
+      });
+    } catch {
+      // Aborted by a newer click, or offline: the first image has already been swapped
+    }
+  }
+
+  /**
+   * Mirrors blocks/product-title.liquid (shade before " - " on top, then name, then the subtitle
+   * metafield when the block shows it), so a swapped-in title keeps the same layout. Builds the DOM directly (not innerHTML)
    * since the title is untrusted text read back from a data attribute.
    * @param {Element | null | undefined} productCard
    * @param {string} title
+   * @param {string} subtitle
    */
-  #swapTitle(productCard, title) {
+  #swapTitle(productCard, title, subtitle) {
     if (!title) return;
     const titleLink = productCard?.querySelector('[ref="productTitleLink"]');
     if (!titleLink) return;
 
     const target = titleLink.querySelector('[role="heading"]') ?? titleLink.querySelector(':scope > *') ?? titleLink;
-    const [firstLine, ...rest] = title.split(' - ');
+    const showSubtitle = target.hasAttribute('data-show-subtitle');
+    const [shade, ...rest] = title.split(' - ');
 
-    target.replaceChildren(document.createTextNode(firstLine ?? title));
+    const span = (/** @type {string} */ className, /** @type {string} */ text) => {
+      const element = document.createElement('span');
+      element.className = className;
+      element.textContent = text;
+      return element;
+    };
 
-    if (rest.length) {
-      const subtitle = document.createElement('span');
-      subtitle.className = 'product-title__subtitle';
-      subtitle.textContent = rest.join(' - ');
-      target.append(subtitle);
-    }
+    target.replaceChildren();
+    if (rest.length) target.append(span('product-title__shade', shade ?? ''));
+    target.append(span('product-title__name', rest.length ? rest.join(' - ') : title));
+    if (showSubtitle && subtitle) target.append(span('product-title__subtitle', subtitle));
   }
 
   /**

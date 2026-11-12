@@ -243,7 +243,7 @@
     "tag_badge_tag": "Must exactly match a tag on the product (case-sensitive).",
     "tag_badge_text": "Shown on the badge. Leave blank to use the tag text above.",
     "show_above_media_mobile": "On product pages, moves this block above the media gallery on mobile only. Has no effect outside a product page layout.",
-    "split_title_on_dash": "If the title contains \" - \", the text after it shows smaller on its own line",
+    "split_title_on_dash": "If the title contains \" - \", the text before it (the shade) shows smaller above the name",
     "carousel_layout_on_mobile": "Carousel is always used on mobile",
     "checkout_buttons": "Allows buyers to check out faster and can improve conversion. [Learn more](https://help.shopify.com/manual/online-store/dynamic-checkout)",
     "custom_heading": "Custom heading",
