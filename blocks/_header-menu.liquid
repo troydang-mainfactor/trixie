@@ -44,9 +44,6 @@
             role="list"
           >
             {% for link in block_settings.menu.links %}
-              {%- comment %}<locksmith:7da0>{% endcomment -%}
-                {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: block_settings.menu, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
-              {%- comment %}</locksmith:7da0>{% endcomment -%}
               <li>
                 <a
                   href="{{ link.url }}"
@@ -94,13 +91,7 @@
     %}
 
     {% capture children %}
-      {%- comment %}<locksmith:a4af>{% endcomment -%}
-        {%- assign locksmith_7c28_forloop__size = 0 %}{% for link in block_settings.menu.links %}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: block_settings.menu, variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_7c28_forloop__size = locksmith_7c28_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_7c28_forloop__index = nil -%}
-      {%- comment %}</locksmith:a4af>{% endcomment -%}
       {% for link in block_settings.menu.links %}
-        {%- comment %}<locksmith:56b6>{% endcomment -%}
-          {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: block_settings.menu, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_7c28_forloop__index == nil %}{% assign locksmith_7c28_forloop__index = 1 %}{% assign locksmith_7c28_forloop__index0 = 0 %}{% else %}{% assign locksmith_7c28_forloop__index = locksmith_7c28_forloop__index | plus: 1 %}{% assign locksmith_7c28_forloop__index0 = locksmith_7c28_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_7c28_forloop__index == 1 %}{% assign locksmith_7c28_forloop__first = true %}{% else %}{% assign locksmith_7c28_forloop__first = false %}{% endif %}{% if locksmith_7c28_forloop__index == locksmith_7c28_forloop__size %}{% assign locksmith_7c28_forloop__last = true %}{% else %}{% assign locksmith_7c28_forloop__last = false %}{% endif %}{% assign locksmith_7c28_forloop__rindex = locksmith_7c28_forloop__size | minus: locksmith_7c28_forloop__index | minus: 1 %}{% assign locksmith_7c28_forloop__rindex0 = locksmith_7c28_forloop__size | minus: locksmith_7c28_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
-        {%- comment %}</locksmith:56b6>{% endcomment -%}
         <li
           role="presentation"
           class="menu-list__list-item"
@@ -114,7 +105,7 @@
             data-skip-node-update="true"
             class="menu-list__link{% if link.active %} menu-list__link--active{% endif %}"
             {%- if link.links != blank -%}
-              aria-controls="submenu-{{ locksmith_7c28_forloop__index }}"
+              aria-controls="submenu-{{ forloop.index }}"
               aria-haspopup="true"
               aria-expanded="false"
             {%- endif -%}
@@ -128,11 +119,11 @@
           {%- if link.links != blank -%}
             <div class="menu-list__submenu{{ background_color_classes }}" ref="submenu[]">
               <div
-                id="submenu-{{ locksmith_7c28_forloop__index }}"
+                id="submenu-{{ forloop.index }}"
                 class="menu-list__submenu-inner"
                 style="{% render 'submenu-font-styles', settings: block_settings %}"
               >
-                {% assign list_id = 'MegaMenuList-' | append: locksmith_7c28_forloop__index %}
+                {% assign list_id = 'MegaMenuList-' | append: forloop.index %}
                 {%- if block_settings.menu_layout == 'tabs' -%}
                   {% render 'menu-tabs', variant: 'desktop', parent_link: link %}
                 {%- else -%}

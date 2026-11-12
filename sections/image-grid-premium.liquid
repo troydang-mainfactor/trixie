@@ -26,9 +26,6 @@
   <div class="premium-grid">
 
     {% for block in section.blocks limit: total_tiles %}
-      {%- comment %}<locksmith:1898>{% endcomment -%}
-        {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: block.settings.collection, subject_parent: section, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
-      {%- comment %}</locksmith:1898>{% endcomment -%}
       {% liquid
         assign tile_collection = block.settings.collection
         assign tile_image = block.settings.image

@@ -12,37 +12,11 @@
 
   if menu != blank and collection != blank
     for top_link in menu.links
-      comment
-        <locksmith:9409> Code added automatically by the Locksmith app. Do not modify or remove.
-      endcomment
-      capture var
-        render 'locksmith-variables', scope: 'subject', subject: top_link, subject_parent: menu, variable: 'transparent'
-      endcapture
-      if var == "true"
-      else
-        continue
-      endif
-      comment
-        </locksmith:9409> End Locksmith code block.
-      endcomment
       if top_link.type == 'collection_link' and top_link.object.id == collection.id
         assign parent_link = top_link
         break
       endif
       for child_link in top_link.links
-        comment
-          <locksmith:3b24> Code added automatically by the Locksmith app. Do not modify or remove.
-        endcomment
-        capture var
-          render 'locksmith-variables', scope: 'subject', subject: child_link, subject_parent: top_link, variable: 'transparent'
-        endcapture
-        if var == "true"
-        else
-          continue
-        endif
-        comment
-          </locksmith:3b24> End Locksmith code block.
-        endcomment
         if child_link.type == 'collection_link' and child_link.object.id == collection.id
           assign parent_link = top_link
           break
@@ -99,9 +73,6 @@
         {%- endif -%}
 
         {%- for child_link in parent_link.links -%}
-          {%- comment %}<locksmith:f785>{% endcomment -%}
-            {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: child_link, subject_parent: parent_link, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
-          {%- comment %}</locksmith:f785>{% endcomment -%}
           {%- liquid
             assign pill_active = false
             if child_link.type == 'collection_link' and child_link.object.id == collection.id

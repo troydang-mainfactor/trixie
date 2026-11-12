@@ -101,13 +101,7 @@
         assign products = products | reject: 'tags', 'hide-from-grid'
       %}
       {% capture list_items %}
-        {%- comment %}<locksmith:a1f0>{% endcomment -%}
-          {%- assign locksmith_a946_forloop__size = 0 %}{% for product in products limit: block_settings.max_products %}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_a946_forloop__size = locksmith_a946_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_a946_forloop__index = nil -%}
-        {%- comment %}</locksmith:a1f0>{% endcomment -%}
         {% for product in products limit: block_settings.max_products %}
-          {%- comment %}<locksmith:85c9>{% endcomment -%}
-            {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_a946_forloop__index == nil %}{% assign locksmith_a946_forloop__index = 1 %}{% assign locksmith_a946_forloop__index0 = 0 %}{% else %}{% assign locksmith_a946_forloop__index = locksmith_a946_forloop__index | plus: 1 %}{% assign locksmith_a946_forloop__index0 = locksmith_a946_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_a946_forloop__index == 1 %}{% assign locksmith_a946_forloop__first = true %}{% else %}{% assign locksmith_a946_forloop__first = false %}{% endif %}{% if locksmith_a946_forloop__index == locksmith_a946_forloop__size %}{% assign locksmith_a946_forloop__last = true %}{% else %}{% assign locksmith_a946_forloop__last = false %}{% endif %}{% assign locksmith_a946_forloop__rindex = locksmith_a946_forloop__size | minus: locksmith_a946_forloop__index | minus: 1 %}{% assign locksmith_a946_forloop__rindex0 = locksmith_a946_forloop__size | minus: locksmith_a946_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
-          {%- comment %}</locksmith:85c9>{% endcomment -%}
           <div class="resource-list__item">
             {% content_for 'block',
               type: '_product-card',
@@ -116,7 +110,7 @@
             %}
           </div>
           {% if block_settings.layout_type == 'carousel' or block_settings.carousel_on_mobile %}
-            {% unless locksmith_a946_forloop__last %}
+            {% unless forloop.last %}
               <!--@list/split-->
             {% endunless %}
           {% endif %}

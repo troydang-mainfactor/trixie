@@ -60,13 +60,7 @@
 
       {% paginate collection.products by products_per_page %}
         {% capture children %}
-          {%- comment %}<locksmith:25b4>{% endcomment -%}
-            {%- assign locksmith_4919_forloop__size = 0 %}{% for product in collection.products %}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collection, variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_4919_forloop__size = locksmith_4919_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_4919_forloop__index = nil -%}
-          {%- comment %}</locksmith:25b4>{% endcomment -%}
           {% for product in collection.products %}
-            {%- comment %}<locksmith:06dc>{% endcomment -%}
-              {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collection, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_4919_forloop__index == nil %}{% assign locksmith_4919_forloop__index = 1 %}{% assign locksmith_4919_forloop__index0 = 0 %}{% else %}{% assign locksmith_4919_forloop__index = locksmith_4919_forloop__index | plus: 1 %}{% assign locksmith_4919_forloop__index0 = locksmith_4919_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_4919_forloop__index == 1 %}{% assign locksmith_4919_forloop__first = true %}{% else %}{% assign locksmith_4919_forloop__first = false %}{% endif %}{% if locksmith_4919_forloop__index == locksmith_4919_forloop__size %}{% assign locksmith_4919_forloop__last = true %}{% else %}{% assign locksmith_4919_forloop__last = false %}{% endif %}{% assign locksmith_4919_forloop__rindex = locksmith_4919_forloop__size | minus: locksmith_4919_forloop__index | minus: 1 %}{% assign locksmith_4919_forloop__rindex0 = locksmith_4919_forloop__size | minus: locksmith_4919_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
-            {%- comment %}</locksmith:06dc>{% endcomment -%}
             {% comment %}
               Safety net only: primary exclusion is the collection rule/tag exclusion set up in
               Shopify admin. Combined Listings non-primary products are tagged 'hide-from-grid'.
@@ -76,7 +70,7 @@
             {% endif %}
             <li
               id="{{ section.id }}-{{ product.id }}"
-              class="product-grid__item product-grid__item--{{ locksmith_4919_forloop__index0 }}"
+              class="product-grid__item product-grid__item--{{ forloop.index0 }}"
               data-page="{{ paginate.current_page }}"
               data-product-id="{{ product.id }}"
               ref="cards[]"
