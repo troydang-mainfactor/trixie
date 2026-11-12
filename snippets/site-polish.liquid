@@ -366,7 +366,8 @@
     font-size: 1.1em !important; /* Judge.me sets 1.5em inline */
   }
 
-  .jdgm-review-widget .jm-verified-buyer-badge__text {
+  /* Extra class beats Judge.me's ".jm-box--inherit-color *" color reset, which loads after ours */
+  .jdgm-review-widget .jm-verified-buyer-badge .jm-verified-buyer-badge__text {
     background: #000;
     border-radius: 0;
     border-color: #000;
