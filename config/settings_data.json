@@ -101,7 +101,7 @@
     "enable_custom_drawer": true,
     "custom_drawer_header_background_color": "{{ settings.color_palette.background }}",
     "custom_drawer_header_text_color": "#000000",
-    "free_shipping_threshold": 50,
+    "free_shipping_threshold": 70,
     "free_shipping_track_color": "{{ settings.color_palette.color5 }}",
     "free_shipping_fill_color": "#D80080",
     "free_shipping_bar_height": 12,
