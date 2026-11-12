@@ -108,6 +108,9 @@
           {%- endif -%}
           <div class="ugcg-pcarousel__track" data-ugcg-ptrack>
             {%- for p in plist -%}
+              {%- comment %}<locksmith:8f27>{% endcomment -%}
+                {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: p, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+              {%- comment %}</locksmith:8f27>{% endcomment -%}
               <a class="ugcg-product" href="{{ p.url }}">
                 {%- if p.featured_image != blank -%}
                   <img

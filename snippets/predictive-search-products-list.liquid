@@ -74,6 +74,9 @@
           {% endfor %}
         {% else %}
           {% for product in products limit: limit %}
+            {%- comment %}<locksmith:537b>{% endcomment -%}
+              {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+            {%- comment %}</locksmith:537b>{% endcomment -%}
             <li
               class="predictive-search-results__card predictive-search-results__card--product"
               ref="recentlyViewedItems[]"
@@ -102,6 +105,9 @@
         assign limit = limit | default: 8
       %}
       {% for product in products limit: limit %}
+        {%- comment %}<locksmith:21ea>{% endcomment -%}
+          {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+        {%- comment %}</locksmith:21ea>{% endcomment -%}
         <li
           class="predictive-search-results__card predictive-search-results__card--product"
           ref="resultsItems[]"

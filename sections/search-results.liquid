@@ -45,7 +45,13 @@
       {% endif %}
 
       {% capture children %}
+        {%- comment %}<locksmith:b5b5>{% endcomment -%}
+          {%- assign locksmith_7f71_forloop__size = 0 %}{% for product in products %}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_7f71_forloop__size = locksmith_7f71_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_7f71_forloop__index = nil -%}
+        {%- comment %}</locksmith:b5b5>{% endcomment -%}
         {% for product in products %}
+          {%- comment %}<locksmith:b5fc>{% endcomment -%}
+            {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_7f71_forloop__index == nil %}{% assign locksmith_7f71_forloop__index = 1 %}{% assign locksmith_7f71_forloop__index0 = 0 %}{% else %}{% assign locksmith_7f71_forloop__index = locksmith_7f71_forloop__index | plus: 1 %}{% assign locksmith_7f71_forloop__index0 = locksmith_7f71_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_7f71_forloop__index == 1 %}{% assign locksmith_7f71_forloop__first = true %}{% else %}{% assign locksmith_7f71_forloop__first = false %}{% endif %}{% if locksmith_7f71_forloop__index == locksmith_7f71_forloop__size %}{% assign locksmith_7f71_forloop__last = true %}{% else %}{% assign locksmith_7f71_forloop__last = false %}{% endif %}{% assign locksmith_7f71_forloop__rindex = locksmith_7f71_forloop__size | minus: locksmith_7f71_forloop__index | minus: 1 %}{% assign locksmith_7f71_forloop__rindex0 = locksmith_7f71_forloop__size | minus: locksmith_7f71_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
+          {%- comment %}</locksmith:b5fc>{% endcomment -%}
           {% comment %}
             Safety net only: primary exclusion is the collection rule/tag exclusion set up in
             Shopify admin. Combined Listings non-primary products are tagged 'hide-from-grid'.
@@ -57,7 +63,7 @@
           {% endif %}
           <li
             id="{{ section.id }}-{{ product.id }}"
-            class="product-grid__item product-grid__item--{{ forloop.index0 }}"
+            class="product-grid__item product-grid__item--{{ locksmith_7f71_forloop__index0 }}"
             data-page="{{ paginate.current_page }}"
             data-product-id="{{ product.id }}"
             ref="cards[]"
