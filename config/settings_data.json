@@ -24,7 +24,7 @@
     "type_font_h1": "heading",
     "type_size_h1": "24",
     "type_line_height_h1": "display-tight",
-    "type_letter_spacing_h1": "heading-loose",
+    "type_letter_spacing_h1": "heading-normal",
     "type_case_h1": "none",
     "type_font_h2": "heading",
     "type_size_h2": "40",
