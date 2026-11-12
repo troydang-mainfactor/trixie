@@ -21,9 +21,9 @@
             "horizontal_alignment": "flex-start",
             "vertical_alignment": "center",
             "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "flex-start",
+            "horizontal_alignment_flex_direction_column": "center",
             "vertical_alignment_flex_direction_column": "flex-end",
-            "gap": 12,
+            "gap": 13,
             "show_above_media_mobile": false,
             "width": "fill",
             "custom_width": 100,
@@ -44,7 +44,7 @@
             "border_opacity": 100,
             "border_color": "",
             "border_radius": 0,
-            "link": "",
+            "link": "shopify://collections/trixie-hollow",
             "open_in_new_tab": false,
             "placeholder": "",
             "padding-block-start": 0,
@@ -53,15 +53,15 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "text_f7m4HH": {
+            "text_kMjLnU": {
               "type": "text",
               "settings": {
-                "text": "<h2>WELCOME TO THE REALM OF</h2>",
+                "text": "<h5>WELCOME TO THE REALM OF</h5>",
                 "split_on_dash": false,
                 "width": "100%",
                 "max_width": "narrow",
-                "alignment": "left",
-                "type_preset": "h1",
+                "alignment": "center",
+                "type_preset": "rte",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
                 "line_height": "normal",
@@ -79,15 +79,15 @@
               },
               "blocks": {}
             },
-            "text_kMjLnU": {
+            "text_f7m4HH": {
               "type": "text",
               "settings": {
-                "text": "<p>Trixie Hollow</p>",
+                "text": "<h2><strong>TRIXIE HOLLOW</strong></h2>",
                 "split_on_dash": false,
                 "width": "100%",
                 "max_width": "narrow",
-                "alignment": "left",
-                "type_preset": "rte",
+                "alignment": "center",
+                "type_preset": "h1",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
                 "line_height": "normal",
@@ -108,7 +108,7 @@
             "button_iG3Q7q": {
               "type": "button",
               "settings": {
-                "label": "Shop now",
+                "label": "SHOP THE COLLECTION",
                 "link": "shopify://collections/trixie-hollow",
                 "open_in_new_tab": false,
                 "style_class": "button",
@@ -125,8 +125,8 @@
             }
           },
           "block_order": [
-            "text_f7m4HH",
             "text_kMjLnU",
+            "text_f7m4HH",
             "button_iG3Q7q"
           ]
         }
