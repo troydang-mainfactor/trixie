@@ -1,3 +1,7 @@
+{%- comment %}<locksmith:66d4>{% endcomment -%}
+  {%- include 'locksmith' -%}
+{%- comment %}</locksmith:66d4>{% endcomment -%}
+
 <!doctype html>
 <!--
   Theme customized by MainFactor (https://mainfactor.com).
@@ -10,6 +14,7 @@
   lang="{{ request.locale.iso_code }}"
 >
   <head>
+    {{ locksmith_initializations }}
     {%- comment -%}
       Warm up the connections used for nearly every image/font/asset request
       on the page (product photos, theme assets, Shopify-hosted fonts) before
