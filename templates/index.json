@@ -89,7 +89,6 @@
         "text_UMqhQA",
         "button_3AMmBm"
       ],
-      "disabled": true,
       "name": "Hero Trixie Hollow",
       "settings": {
         "media_type_1": "image",
@@ -189,7 +188,6 @@
         "image_6JyCxz",
         "image_A4Jkwx"
       ],
-      "disabled": true,
       "name": "Premium Image Grid Trixie Hollow",
       "settings": {
         "columns": 4,
@@ -337,6 +335,7 @@
         "video_9WjwRV",
         "group_MHgMYn"
       ],
+      "disabled": true,
       "name": "t:names.video_section",
       "settings": {
         "content_direction": "column",
@@ -492,6 +491,7 @@
       "block_order": [
         "group_LD9MqP"
       ],
+      "disabled": true,
       "name": "Hero Jinkx",
       "settings": {
         "media_type_1": "image",
@@ -591,6 +591,7 @@
         "image_LnNBpQ",
         "image_rL4H6N"
       ],
+      "disabled": true,
       "name": "Premium Image Grid",
       "settings": {
         "columns": 4,
@@ -3428,7 +3429,6 @@
       "block_order": [
         "group_fXwcTB"
       ],
-      "disabled": true,
       "name": "Hero Jinkx",
       "settings": {
         "media_type_1": "image",
@@ -3679,6 +3679,7 @@
     "hero_jVaWmY",
     "image_grid_premium_pB9PmF",
     "product_list_fa6P9H",
+    "hero_HzznB9",
     "product_list_wW6dBE",
     "product_list_Y3iU66",
     "product_list_6aFMry",
@@ -3688,7 +3689,6 @@
     "collection_list_nJNH9R",
     "ugc_video_gallery_t3FHPG",
     "1785093859400218fe",
-    "hero_HzznB9",
     "section_qtXpfx"
   ]
 }
