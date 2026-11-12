@@ -26,6 +26,9 @@
 
     <ul class="plays-well-with__list list-unstyled" role="list">
       {%- for item in items limit: block.settings.max_products -%}
+        {%- comment %}<locksmith:1ad4>{% endcomment -%}
+          {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: item, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+        {%- comment %}</locksmith:1ad4>{% endcomment -%}
         {%- liquid
           assign variant = item.selected_or_first_available_variant
           assign single_variant = false
