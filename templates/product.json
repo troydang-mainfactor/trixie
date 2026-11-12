@@ -745,48 +745,6 @@
         "padding-block-end": 48
       }
     },
-    "marquee_wqkJcg": {
-      "type": "marquee",
-      "blocks": {
-        "text_MxFkLT": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Tested On Drag Queens, Not Animals</p>",
-            "split_on_dash": false,
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h3",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "tight",
-            "letter_spacing": "tight",
-            "case": "none",
-            "wrap": "nowrap",
-            "text_color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "text_MxFkLT"
-      ],
-      "name": "t:names.marquee_section",
-      "settings": {
-        "movement_direction": "normal",
-        "background_color": "#fbc7e0",
-        "padding-block-start": 24,
-        "padding-block-end": 24,
-        "gap_between_elements": 24
-      }
-    },
     "section_EdPfb8": {
       "type": "section",
       "blocks": {
@@ -799,7 +757,7 @@
             "horizontal_alignment": "flex-start",
             "vertical_alignment": "center",
             "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "center",
+            "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
             "gap": 30,
             "show_above_media_mobile": false,
@@ -840,7 +798,7 @@
                 "horizontal_alignment": "flex-start",
                 "vertical_alignment": "center",
                 "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "center",
+                "horizontal_alignment_flex_direction_column": "flex-start",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap": 12,
                 "show_above_media_mobile": false,
@@ -903,8 +861,9 @@
                 "text_Ht74iV": {
                   "type": "text",
                   "name": "t:names.subheading",
+                  "disabled": true,
                   "settings": {
-                    "text": "<p>Discover the best of both worlds</p>",
+                    "text": "<p>Before All the Way Setting Spray</p>",
                     "split_on_dash": false,
                     "width": "fit-content",
                     "max_width": "normal",
@@ -1032,19 +991,56 @@
             "before_image": "shopify://shop_images/2_528ffe82-bf8d-404a-8043-f772e4bc2d26.jpg",
             "after_image": "shopify://shop_images/1_a3731abf-4cbd-49f7-ac88-2759d2ae6c99.jpg",
             "slider_style": "horizontal",
-            "show_text": false,
-            "before_text": "",
-            "after_text": "",
+            "show_text": true,
+            "before_text": "Before",
+            "after_text": "After Application",
             "text_preset": "",
-            "text_position_horizontal": "start",
+            "text_position_horizontal": "end",
             "text_position_vertical": "start",
-            "text_background": false,
-            "text_background_color": "{{ settings.color_palette.background }}",
+            "text_background": true,
+            "text_background_color": "#FBC7E0",
             "text_corner_radius": 0,
             "text_color": "{{ settings.color_palette.foreground }}",
             "image_ratio": "square",
             "width": "custom",
-            "custom_width": 65,
+            "custom_width": 51,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "slider_bg_color": "",
+            "slider_handle_color": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "comparison_slider_L3HfmQ": {
+          "type": "comparison-slider",
+          "name": "t:names.comparison_slider",
+          "settings": {
+            "before_image": "shopify://shop_images/3.jpg",
+            "after_image": "shopify://shop_images/4.jpg",
+            "slider_style": "horizontal",
+            "show_text": true,
+            "before_text": "Before",
+            "after_text": "After Application",
+            "text_preset": "",
+            "text_position_horizontal": "end",
+            "text_position_vertical": "start",
+            "text_background": true,
+            "text_background_color": "#FBC7E0",
+            "text_corner_radius": 0,
+            "text_color": "{{ settings.color_palette.foreground }}",
+            "image_ratio": "square",
+            "width": "custom",
+            "custom_width": 51,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
             "height": "fit",
@@ -1065,17 +1061,18 @@
       },
       "block_order": [
         "group_D6UB7F",
-        "comparison_slider_ydWqqt"
+        "comparison_slider_ydWqqt",
+        "comparison_slider_L3HfmQ"
       ],
       "disabled": true,
       "name": "t:names.image_compare",
       "settings": {
         "content_direction": "row",
         "vertical_on_mobile": true,
-        "horizontal_alignment": "space-between",
-        "vertical_alignment": "center",
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "flex-start",
         "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
+        "horizontal_alignment_flex_direction_column": "center",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 46,
         "section_width": "page-width",
@@ -1096,6 +1093,48 @@
         "border_radius": 0,
         "padding-block-start": 40,
         "padding-block-end": 40
+      }
+    },
+    "marquee_wqkJcg": {
+      "type": "marquee",
+      "blocks": {
+        "text_MxFkLT": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Tested On Drag Queens, Not Animals</p>",
+            "split_on_dash": false,
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h3",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "none",
+            "wrap": "nowrap",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_MxFkLT"
+      ],
+      "name": "t:names.marquee_section",
+      "settings": {
+        "movement_direction": "normal",
+        "background_color": "#fbc7e0",
+        "padding-block-start": 24,
+        "padding-block-end": 24,
+        "gap_between_elements": 24
       }
     },
     "pdp_description_3gHf3A": {
@@ -1760,8 +1799,8 @@
   "order": [
     "main",
     "pdp_quote",
-    "marquee_wqkJcg",
     "section_EdPfb8",
+    "marquee_wqkJcg",
     "pdp_description_3gHf3A",
     "section_9MFGPw",
     "17866905740a8ad8f4",
