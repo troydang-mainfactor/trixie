@@ -339,7 +339,7 @@
             "heading": "Merch",
             "text": "",
             "button_label": "Shop Now",
-            "link": "shopify://collections/tools",
+            "link": "shopify://collections/accessories",
             "vertical": "bottom",
             "horizontal": "center"
           }
@@ -779,6 +779,7 @@
                   "name": "t:names.title",
                   "settings": {
                     "split_on_dash": true,
+                    "show_subtitle": false,
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -849,6 +850,7 @@
               "disabled": true,
               "settings": {
                 "split_on_dash": true,
+                "show_subtitle": false,
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "center",
@@ -1342,6 +1344,7 @@
                   "name": "t:names.title",
                   "settings": {
                     "split_on_dash": true,
+                    "show_subtitle": false,
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -1412,6 +1415,7 @@
               "disabled": true,
               "settings": {
                 "split_on_dash": true,
+                "show_subtitle": false,
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "center",
@@ -1744,6 +1748,7 @@
                   "name": "t:names.title",
                   "settings": {
                     "split_on_dash": true,
+                    "show_subtitle": false,
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -1814,6 +1819,7 @@
               "disabled": true,
               "settings": {
                 "split_on_dash": true,
+                "show_subtitle": false,
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "center",
@@ -2146,6 +2152,7 @@
                   "name": "t:names.title",
                   "settings": {
                     "split_on_dash": true,
+                    "show_subtitle": false,
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -2216,6 +2223,7 @@
               "disabled": true,
               "settings": {
                 "split_on_dash": true,
+                "show_subtitle": false,
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "center",
@@ -2548,6 +2556,7 @@
                   "name": "t:names.title",
                   "settings": {
                     "split_on_dash": true,
+                    "show_subtitle": false,
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -2618,6 +2627,7 @@
               "disabled": true,
               "settings": {
                 "split_on_dash": true,
+                "show_subtitle": false,
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "center",
