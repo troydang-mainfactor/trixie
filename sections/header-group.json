@@ -136,7 +136,7 @@
       "type": "auto-add-to-cart",
       "name": "t:auto_add_to_cart.names.section",
       "settings": {
-        "enabled": true,
+        "enabled": false,
         "trigger_type": "subtotal",
         "subtotal_threshold": 50,
         "cart_contains_type": "product",
