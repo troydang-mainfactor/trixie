@@ -10,16 +10,16 @@
 <div class="editorial-collection__grid">
   <div class="editorial-collection__spacer"></div>
 
-  {%- comment %}<locksmith:0fcf>{% endcomment -%}
-    {%- assign locksmith_b037_forloop__size = 0 %}{% for item in items %}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: item, variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_b037_forloop__size = locksmith_b037_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_b037_forloop__index = nil -%}
-  {%- comment %}</locksmith:0fcf>{% endcomment -%}
+  {%- comment %}<locksmith:0c8f>{% endcomment -%}
+    {%- assign locksmith_245f_forloop__size = 0 %}{% for item in items %}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: item, variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_245f_forloop__size = locksmith_245f_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_245f_forloop__index = nil -%}
+  {%- comment %}</locksmith:0c8f>{% endcomment -%}
   {% for item in items %}
-    {%- comment %}<locksmith:f6d5>{% endcomment -%}
-      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: item, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_b037_forloop__index == nil %}{% assign locksmith_b037_forloop__index = 1 %}{% assign locksmith_b037_forloop__index0 = 0 %}{% else %}{% assign locksmith_b037_forloop__index = locksmith_b037_forloop__index | plus: 1 %}{% assign locksmith_b037_forloop__index0 = locksmith_b037_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_b037_forloop__index == 1 %}{% assign locksmith_b037_forloop__first = true %}{% else %}{% assign locksmith_b037_forloop__first = false %}{% endif %}{% if locksmith_b037_forloop__index == locksmith_b037_forloop__size %}{% assign locksmith_b037_forloop__last = true %}{% else %}{% assign locksmith_b037_forloop__last = false %}{% endif %}{% assign locksmith_b037_forloop__rindex = locksmith_b037_forloop__size | minus: locksmith_b037_forloop__index | minus: 1 %}{% assign locksmith_b037_forloop__rindex0 = locksmith_b037_forloop__size | minus: locksmith_b037_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
-    {%- comment %}</locksmith:f6d5>{% endcomment -%}
+    {%- comment %}<locksmith:c886>{% endcomment -%}
+      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: item, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_245f_forloop__index == nil %}{% assign locksmith_245f_forloop__index = 1 %}{% assign locksmith_245f_forloop__index0 = 0 %}{% else %}{% assign locksmith_245f_forloop__index = locksmith_245f_forloop__index | plus: 1 %}{% assign locksmith_245f_forloop__index0 = locksmith_245f_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_245f_forloop__index == 1 %}{% assign locksmith_245f_forloop__first = true %}{% else %}{% assign locksmith_245f_forloop__first = false %}{% endif %}{% if locksmith_245f_forloop__index == locksmith_245f_forloop__size %}{% assign locksmith_245f_forloop__last = true %}{% else %}{% assign locksmith_245f_forloop__last = false %}{% endif %}{% assign locksmith_245f_forloop__rindex = locksmith_245f_forloop__size | minus: locksmith_245f_forloop__index | minus: 1 %}{% assign locksmith_245f_forloop__rindex0 = locksmith_245f_forloop__size | minus: locksmith_245f_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
+    {%- comment %}</locksmith:c886>{% endcomment -%}
     {% liquid
-      assign current_grid_index = locksmith_b037_forloop__index0 | divided_by: 8
-      assign current_item_index = locksmith_b037_forloop__index0 | modulo: 8
+      assign current_grid_index = locksmith_245f_forloop__index0 | divided_by: 8
+      assign current_item_index = locksmith_245f_forloop__index0 | modulo: 8
 
       case current_item_index
         when 0
@@ -60,7 +60,7 @@
       assign grid_row = grid_row | plus: full_grid_rows
     %}
     <div
-      class="editorial-collection__item-{{ locksmith_b037_forloop__index0 | modulo: 4 }}"
+      class="editorial-collection__item-{{ locksmith_245f_forloop__index0 | modulo: 4 }}"
       style="grid-column: {{ grid_column }}; grid-row: {{ grid_row }} / span {{ grid_row_span }};"
     >
       {{ item }}

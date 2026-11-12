@@ -37,13 +37,13 @@
           accurate for the `<!--@list/split-->` marker below.
         {%- endcomment -%}
         {% assign visible_products = section.settings.collection.products | reject: 'tags', 'hide-from-grid' %}
-        {%- comment %}<locksmith:c520>{% endcomment -%}
-          {%- assign locksmith_d400_forloop__size = 0 %}{% for product in visible_products limit: max_items %}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_d400_forloop__size = locksmith_d400_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_d400_forloop__index = nil -%}
-        {%- comment %}</locksmith:c520>{% endcomment -%}
+        {%- comment %}<locksmith:0455>{% endcomment -%}
+          {%- assign locksmith_5b10_forloop__size = 0 %}{% for product in visible_products limit: max_items %}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_5b10_forloop__size = locksmith_5b10_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_5b10_forloop__index = nil -%}
+        {%- comment %}</locksmith:0455>{% endcomment -%}
         {% for product in visible_products limit: max_items %}
-        {%- comment %}<locksmith:e954>{% endcomment -%}
-          {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_d400_forloop__index == nil %}{% assign locksmith_d400_forloop__index = 1 %}{% assign locksmith_d400_forloop__index0 = 0 %}{% else %}{% assign locksmith_d400_forloop__index = locksmith_d400_forloop__index | plus: 1 %}{% assign locksmith_d400_forloop__index0 = locksmith_d400_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_d400_forloop__index == 1 %}{% assign locksmith_d400_forloop__first = true %}{% else %}{% assign locksmith_d400_forloop__first = false %}{% endif %}{% if locksmith_d400_forloop__index == locksmith_d400_forloop__size %}{% assign locksmith_d400_forloop__last = true %}{% else %}{% assign locksmith_d400_forloop__last = false %}{% endif %}{% assign locksmith_d400_forloop__rindex = locksmith_d400_forloop__size | minus: locksmith_d400_forloop__index | minus: 1 %}{% assign locksmith_d400_forloop__rindex0 = locksmith_d400_forloop__size | minus: locksmith_d400_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
-        {%- comment %}</locksmith:e954>{% endcomment -%}
+        {%- comment %}<locksmith:5300>{% endcomment -%}
+          {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_5b10_forloop__index == nil %}{% assign locksmith_5b10_forloop__index = 1 %}{% assign locksmith_5b10_forloop__index0 = 0 %}{% else %}{% assign locksmith_5b10_forloop__index = locksmith_5b10_forloop__index | plus: 1 %}{% assign locksmith_5b10_forloop__index0 = locksmith_5b10_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_5b10_forloop__index == 1 %}{% assign locksmith_5b10_forloop__first = true %}{% else %}{% assign locksmith_5b10_forloop__first = false %}{% endif %}{% if locksmith_5b10_forloop__index == locksmith_5b10_forloop__size %}{% assign locksmith_5b10_forloop__last = true %}{% else %}{% assign locksmith_5b10_forloop__last = false %}{% endif %}{% assign locksmith_5b10_forloop__rindex = locksmith_5b10_forloop__size | minus: locksmith_5b10_forloop__index | minus: 1 %}{% assign locksmith_5b10_forloop__rindex0 = locksmith_5b10_forloop__size | minus: locksmith_5b10_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
+        {%- comment %}</locksmith:5300>{% endcomment -%}
         <div
           class="resource-list__item"
         >
@@ -55,7 +55,7 @@
             %}
           </div>
 
-          {% unless locksmith_d400_forloop__last %}
+          {% unless locksmith_5b10_forloop__last %}
             <!--@list/split-->
           {% endunless %}
         {% endfor %}

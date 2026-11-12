@@ -37,17 +37,17 @@
   {% endif %}
 
   {% capture list_items %}
-    {%- comment %}<locksmith:8ef1>{% endcomment -%}
-      {%- assign locksmith_edc3_forloop__size = 0 %}{% for collection in section_collections limit: max_items %}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: collection, variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_edc3_forloop__size = locksmith_edc3_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_edc3_forloop__index = nil -%}
-    {%- comment %}</locksmith:8ef1>{% endcomment -%}
+    {%- comment %}<locksmith:e15c>{% endcomment -%}
+      {%- assign locksmith_513e_forloop__size = 0 %}{% for collection in section_collections limit: max_items %}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: collection, variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_513e_forloop__size = locksmith_513e_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_513e_forloop__index = nil -%}
+    {%- comment %}</locksmith:e15c>{% endcomment -%}
     {% for collection in section_collections limit: max_items %}
-      {%- comment %}<locksmith:3621>{% endcomment -%}
-        {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: collection, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_edc3_forloop__index == nil %}{% assign locksmith_edc3_forloop__index = 1 %}{% assign locksmith_edc3_forloop__index0 = 0 %}{% else %}{% assign locksmith_edc3_forloop__index = locksmith_edc3_forloop__index | plus: 1 %}{% assign locksmith_edc3_forloop__index0 = locksmith_edc3_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_edc3_forloop__index == 1 %}{% assign locksmith_edc3_forloop__first = true %}{% else %}{% assign locksmith_edc3_forloop__first = false %}{% endif %}{% if locksmith_edc3_forloop__index == locksmith_edc3_forloop__size %}{% assign locksmith_edc3_forloop__last = true %}{% else %}{% assign locksmith_edc3_forloop__last = false %}{% endif %}{% assign locksmith_edc3_forloop__rindex = locksmith_edc3_forloop__size | minus: locksmith_edc3_forloop__index | minus: 1 %}{% assign locksmith_edc3_forloop__rindex0 = locksmith_edc3_forloop__size | minus: locksmith_edc3_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
-      {%- comment %}</locksmith:3621>{% endcomment -%}
+      {%- comment %}<locksmith:b5be>{% endcomment -%}
+        {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: collection, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_513e_forloop__index == nil %}{% assign locksmith_513e_forloop__index = 1 %}{% assign locksmith_513e_forloop__index0 = 0 %}{% else %}{% assign locksmith_513e_forloop__index = locksmith_513e_forloop__index | plus: 1 %}{% assign locksmith_513e_forloop__index0 = locksmith_513e_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_513e_forloop__index == 1 %}{% assign locksmith_513e_forloop__first = true %}{% else %}{% assign locksmith_513e_forloop__first = false %}{% endif %}{% if locksmith_513e_forloop__index == locksmith_513e_forloop__size %}{% assign locksmith_513e_forloop__last = true %}{% else %}{% assign locksmith_513e_forloop__last = false %}{% endif %}{% assign locksmith_513e_forloop__rindex = locksmith_513e_forloop__size | minus: locksmith_513e_forloop__index | minus: 1 %}{% assign locksmith_513e_forloop__rindex0 = locksmith_513e_forloop__size | minus: locksmith_513e_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
+      {%- comment %}</locksmith:b5be>{% endcomment -%}
       <div class="resource-list__item">
         {% content_for 'block', type: '_collection-card', id: 'static-collection-card', closest.collection: collection %}
       </div>
-      {% unless locksmith_edc3_forloop__last %}
+      {% unless locksmith_513e_forloop__last %}
         <!--@list/split-->
       {% endunless %}
     {% endfor %}
