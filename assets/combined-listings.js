@@ -113,7 +113,15 @@ async function swapProductPage(url) {
       throw new Error('Section layout differs');
     }
 
+    // Slideshows only allow swiping once JS marks them [in-viewport]; the server HTML lacks that mark and
+    // they're already on screen, so it would never come back. Remember it and put it back after the morph.
+    const inViewport = [...document.querySelectorAll('main slideshow-component[in-viewport]')].map((el) => el.id || el);
+
     current.forEach((section, i) => morph(section, /** @type {HTMLElement} */ (incoming[i]), MORPH_OPTIONS));
+
+    for (const slideshow of document.querySelectorAll('main slideshow-component')) {
+      if (inViewport.includes(slideshow.id || slideshow)) slideshow.setAttribute('in-viewport', '');
+    }
     // The server HTML has the "NEW!"-style swatch labels hidden (JS shows them), so show them again
     // once the pickers' refs have caught up with the morphed DOM
     setTimeout(() => {
