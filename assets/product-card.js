@@ -504,7 +504,9 @@ export class ProductCard extends ProductCardLink {
 
     if (!this.variantPicker) {
       if (!slideshow) return;
-      slideshow.previous(undefined, { animate: false });
+      // Back to the first image, not "previous": a shade swatch swap while hovering already
+      // reset to the first image, and "previous" from there wraps to the last one
+      slideshow.select(0, undefined, { animate: false });
     } else {
       this.#resetVariant();
     }

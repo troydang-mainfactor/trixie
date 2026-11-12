@@ -339,6 +339,8 @@ class CombinedListingsCardSwatches extends CombinedListingsBase {
     currentImage.srcset = newImage.srcset;
     currentImage.sizes = newImage.sizes;
     currentImage.alt = newImage.alt;
+    // Image the card animates into on click-through to the product page
+    if (productCard instanceof HTMLElement) productCard.dataset.featuredMediaUrl = newImage.src;
 
     /** @type {any} */ (productCard?.refs)?.slideshow?.select?.(0, undefined, { animate: false });
   }
