@@ -732,19 +732,6 @@
         "padding-block-end": 0
       }
     },
-    "pdp_quote": {
-      "type": "pdp-quote",
-      "settings": {
-        "image": "shopify://shop_images/play-pigment-quote.jpg",
-        "signature": "shopify://shop_images/Trixie_Signature.svg",
-        "background_color": "#fbc7e0",
-        "panel_color": "#f79cc4",
-        "panel_padding": 48,
-        "panel_padding_mobile": 28,
-        "padding-block-start": 48,
-        "padding-block-end": 48
-      }
-    },
     "section_EdPfb8": {
       "type": "section",
       "blocks": {
@@ -998,7 +985,7 @@
             "text_position_horizontal": "end",
             "text_position_vertical": "start",
             "text_background": true,
-            "text_background_color": "#FBC7E0",
+            "text_background_color": "#fbc7e0",
             "text_corner_radius": 0,
             "text_color": "{{ settings.color_palette.foreground }}",
             "image_ratio": "square",
@@ -1035,7 +1022,7 @@
             "text_position_horizontal": "end",
             "text_position_vertical": "start",
             "text_background": true,
-            "text_background_color": "#FBC7E0",
+            "text_background_color": "#fbc7e0",
             "text_corner_radius": 0,
             "text_color": "{{ settings.color_palette.foreground }}",
             "image_ratio": "square",
@@ -1079,7 +1066,7 @@
         "section_height": "small",
         "section_height_custom": 50,
         "background_media": "none",
-        "background_color": "#FBC7E0",
+        "background_color": "#fbc7e0",
         "video_position": "cover",
         "background_image_position": "cover",
         "toggle_overlay": false,
@@ -1093,6 +1080,19 @@
         "border_radius": 0,
         "padding-block-start": 40,
         "padding-block-end": 40
+      }
+    },
+    "pdp_quote": {
+      "type": "pdp-quote",
+      "settings": {
+        "image": "shopify://shop_images/play-pigment-quote.jpg",
+        "signature": "shopify://shop_images/Trixie_Signature.svg",
+        "background_color": "#fbc7e0",
+        "panel_color": "#f79cc4",
+        "panel_padding": 48,
+        "panel_padding_mobile": 28,
+        "padding-block-start": 48,
+        "padding-block-end": 48
       }
     },
     "marquee_wqkJcg": {
@@ -1135,97 +1135,6 @@
         "padding-block-start": 24,
         "padding-block-end": 24,
         "gap_between_elements": 24
-      }
-    },
-    "pdp_description_3gHf3A": {
-      "type": "pdp-description",
-      "blocks": {
-        "accordion_cbQtPE": {
-          "type": "accordion",
-          "settings": {
-            "title": "The Tea",
-            "source": "custom",
-            "content": "<p>Up to 8 Hours of Hydration<br/>Up to 8 Hour Longwear<br/>Sweetened with stevia</p>",
-            "content_metafield": "",
-            "link": "",
-            "link_text": "Learn more",
-            "open_by_default": true
-          }
-        },
-        "accordion_QecCxx": {
-          "type": "accordion",
-          "settings": {
-            "title": "All-Star Ingredients",
-            "source": "custom",
-            "content": "<p><strong>Glycerin</strong>, <strong>Triple Hyaluronic Acid Serum</strong>, and <strong>Peptides</strong> for up to 8 hours of hydration<br/><br/>Sweetened with <strong>Stevia</strong><br/></p>",
-            "content_metafield": "",
-            "link": "",
-            "link_text": "Learn more",
-            "open_by_default": true
-          }
-        },
-        "accordion_tD4CbX": {
-          "type": "accordion",
-          "settings": {
-            "title": "Description",
-            "source": "custom",
-            "content": "{{ product.description }}",
-            "content_metafield": "",
-            "link": "",
-            "link_text": "Learn more",
-            "open_by_default": false
-          }
-        },
-        "accordion_HfnxcM": {
-          "type": "accordion",
-          "settings": {
-            "title": "Ingredients",
-            "source": "custom",
-            "content": "<p>{{ product.metafields.custom.ingredients | metafield_tag }}</p>",
-            "content_metafield": "",
-            "link": "",
-            "link_text": "Learn more",
-            "open_by_default": false
-          }
-        }
-      },
-      "block_order": [
-        "accordion_cbQtPE",
-        "accordion_QecCxx",
-        "accordion_tD4CbX",
-        "accordion_HfnxcM"
-      ],
-      "disabled": true,
-      "custom_css": [],
-      "name": "Product info highlights",
-      "settings": {
-        "image_source": "featured",
-        "custom_image": "shopify://shop_images/Shot-1-Soft-Serve.jpg",
-        "image_metafield": "",
-        "image_position": "right",
-        "heading": "",
-        "heading_color": "#1a1a1a",
-        "heading_size": 20,
-        "section_background_color": "rgba(0,0,0,0)",
-        "section_padding_top": 0,
-        "section_padding_bottom": 0,
-        "column_gap": 0,
-        "image_border_radius": 0,
-        "content_padding_top": 64,
-        "content_padding_bottom": 48,
-        "content_padding_inline": 64,
-        "stat_number_color": "#1a1a1a",
-        "stat_number_size": 46,
-        "stat_text_color": "#1a1a1a",
-        "stat_spacing": 10,
-        "divider_color": "{{ settings.color_palette.color5 }}",
-        "divider_thickness": 1,
-        "accordion_title_color": "{{ settings.color_palette.foreground }}",
-        "accordion_text_color": "#1a1a1a",
-        "accordion_icon_color": "#1a1a1a",
-        "accordion_border_color": "{{ settings.color_palette.color2 }}",
-        "accordion_border_width": 1,
-        "accordion_padding": 16
       }
     },
     "section_9MFGPw": {
@@ -1470,7 +1379,7 @@
         "item_JxPExr": {
           "type": "item",
           "settings": {
-            "heading": "Details",
+            "heading": "The Tea",
             "content": "{{ product.description }}",
             "tab_label": "",
             "icon": "none",
@@ -1798,10 +1707,9 @@
   },
   "order": [
     "main",
-    "pdp_quote",
     "section_EdPfb8",
+    "pdp_quote",
     "marquee_wqkJcg",
-    "pdp_description_3gHf3A",
     "section_9MFGPw",
     "17866905740a8ad8f4",
     "premium_product_info_LmwBfe",
