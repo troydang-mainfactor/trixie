@@ -33,6 +33,7 @@
     style="
       --ba-bg: {{ section.settings.background_color }};
       --ba-ratio: {{ ratio }};
+      --ba-accent: {{ section.settings.accent_color }};
       --ba-per-view: {{ section.settings.per_view_desktop }};
       --ba-pad-top: {{ section.settings.padding_top }}px;
       --ba-pad-bottom: {{ section.settings.padding_bottom }}px;
@@ -57,6 +58,7 @@
                   ref="mediaWrapper"
                   data-comparison-slider
                   data-orientation="horizontal"
+                  data-text-position="end"
                 >
                   <div class="comparison-slider__layer comparison-slider__layer--before">
                     {{
@@ -70,6 +72,11 @@
                         widths: '400, 600, 800, 1100, 1600',
                         ref: 'beforeImage'
                     }}
+                    {%- if section.settings.show_labels and section.settings.before_label != blank -%}
+                      <div class="comparison-slider__text comparison-slider__text--before comparison-slider__text--with-bg before-after__label">
+                        {{- section.settings.before_label -}}
+                      </div>
+                    {%- endif -%}
                   </div>
                   <div class="comparison-slider__layer comparison-slider__layer--after">
                     {{
@@ -83,6 +90,11 @@
                         widths: '400, 600, 800, 1100, 1600',
                         ref: 'afterImage'
                     }}
+                    {%- if section.settings.show_labels and section.settings.after_label != blank -%}
+                      <div class="comparison-slider__text comparison-slider__text--after comparison-slider__text--with-bg before-after__label">
+                        {{- section.settings.after_label -}}
+                      </div>
+                    {%- endif -%}
                   </div>
 
                   <div class="cs-slider__handle" data-ba-handle>
@@ -274,12 +286,25 @@
     }
   }
 
+  /* Pink divider and handle, pink tags: same look as the theme's Image compare */
   .before-after__compare {
     --ratio: var(--ba-ratio);
-    --color-background: #fff;
+    --color-background: var(--ba-accent);
     --handle-color: #000;
+    --text-background-color: var(--ba-accent);
+    --text-corner-radius: 0px;
 
     aspect-ratio: var(--ba-ratio);
+  }
+
+  .before-after__label {
+    z-index: 2;
+    color: #000;
+    font-family: var(--font-heading--family);
+    font-size: clamp(0.8125rem, 1.4vw, 1rem);
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
   }
 
   /* Touch: the range input covers the whole image and would swallow swipes. Turn it off and let
@@ -396,6 +421,30 @@
         { "value": "landscape", "label": "Landscape (4:3)" }
       ],
       "default": "portrait"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_labels",
+      "label": "Show before/after tags",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "before_label",
+      "label": "Before tag",
+      "default": "Before"
+    },
+    {
+      "type": "text",
+      "id": "after_label",
+      "label": "After tag",
+      "default": "After Application"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Tags, divider and handle",
+      "default": "#FBC7E0"
     },
     {
       "type": "range",

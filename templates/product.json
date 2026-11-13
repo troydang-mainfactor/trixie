@@ -734,8 +734,11 @@
     },
     "before_after": {
       "type": "before-after",
-      "disabled": true,
       "settings": {
+        "show_labels": true,
+        "before_label": "Before",
+        "after_label": "After Application",
+        "accent_color": "#fbc7e0",
         "image_ratio": "portrait",
         "per_view_desktop": 3,
         "background_color": "#fbc7e0",
