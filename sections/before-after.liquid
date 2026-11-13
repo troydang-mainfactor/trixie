@@ -1,9 +1,9 @@
 {%- doc -%}
-  Before & after carousel for the product page. Reads the product's "Before & after looks"
-  metafield (custom.before_after: list of before_after_look metaobjects: model name, caption,
-  before image, after image). One drag-to-compare stage, with the looks switched by a model list,
-  arrows and a counter, so several models never stack on mobile. Renders nothing when the
-  product has no looks with both images.
+  Before & after carousel for the product page: image only. Reads the product's "Before & after
+  looks" metafield (custom.before_after: list of before_after_look metaobjects with before/after
+  images) and shows each look as a drag-to-compare card in a horizontal carousel with arrows and
+  dots. On touch screens the compare moves only by dragging its handle, so swiping the image
+  scrolls the carousel. Renders nothing when the product has no looks with both images.
 {%- enddoc -%}
 
 {%- liquid
@@ -32,28 +32,14 @@
     class="before-after section section--page-width"
     style="
       --ba-bg: {{ section.settings.background_color }};
-      --ba-text: {{ section.settings.text_color }};
-      --ba-accent: {{ section.settings.accent_color }};
       --ba-ratio: {{ ratio }};
+      --ba-per-view: {{ section.settings.per_view_desktop }};
       --ba-pad-top: {{ section.settings.padding_top }}px;
       --ba-pad-bottom: {{ section.settings.padding_bottom }}px;
     "
   >
     <div class="before-after__inner">
-      <div class="before-after__intro">
-        {%- if section.settings.eyebrow != blank -%}
-          <p class="before-after__eyebrow">{{ section.settings.eyebrow }}</p>
-        {%- endif -%}
-        {%- if section.settings.heading != blank -%}
-          <h2 class="before-after__heading">{{ section.settings.heading }}</h2>
-        {%- endif -%}
-        {%- if section.settings.text != blank -%}
-          <div class="before-after__text">{{ section.settings.text }}</div>
-        {%- endif -%}
-      </div>
-
-      <div class="before-after__stage">
-        {%- assign index = 0 -%}
+      <ul class="before-after__track list-unstyled" role="list" data-ba-track>
         {%- for look in looks -%}
           {%- liquid
             assign before = look.before_image.value
@@ -63,16 +49,7 @@
             endif
             assign model = look.model_name.value | default: product.title
           -%}
-          <div
-            class="before-after__slide"
-            id="BeforeAfter-{{ section.id }}-{{ index }}"
-            role="tabpanel"
-            aria-label="{{ model | escape }}"
-            data-ba-slide
-            {% if index > 0 %}
-              hidden
-            {% endif %}
-          >
+          <li class="before-after__slide" data-ba-slide>
             <comparison-slider-component class="comparison-slider comparison-slider--horizontal before-after__compare">
               <div class="comparison-slider__container">
                 <div
@@ -84,33 +61,31 @@
                   <div class="comparison-slider__layer comparison-slider__layer--before">
                     {{
                       before
-                      | image_url: width: 1800
+                      | image_url: width: 1600
                       | image_tag:
                         loading: 'lazy',
                         class: 'before-image',
                         alt: before.alt,
-                        sizes: '(min-width: 990px) 55vw, 100vw',
-                        widths: '480, 750, 1000, 1400, 1800',
+                        sizes: '(min-width: 990px) 34vw, 86vw',
+                        widths: '400, 600, 800, 1100, 1600',
                         ref: 'beforeImage'
                     }}
-                    <span class="before-after__label before-after__label--before">{{ section.settings.before_label }}</span>
                   </div>
                   <div class="comparison-slider__layer comparison-slider__layer--after">
                     {{
                       after
-                      | image_url: width: 1800
+                      | image_url: width: 1600
                       | image_tag:
                         loading: 'lazy',
                         class: 'after-image',
                         alt: after.alt,
-                        sizes: '(min-width: 990px) 55vw, 100vw',
-                        widths: '480, 750, 1000, 1400, 1800',
+                        sizes: '(min-width: 990px) 34vw, 86vw',
+                        widths: '400, 600, 800, 1100, 1600',
                         ref: 'afterImage'
                     }}
-                    <span class="before-after__label before-after__label--after">{{ section.settings.after_label }}</span>
                   </div>
 
-                  <div class="cs-slider__handle">
+                  <div class="cs-slider__handle" data-ba-handle>
                     <span class="cs-slider__chevron">{{- 'icon-chevron-left.svg' | inline_asset_content -}}</span>
                     <span class="cs-slider__chevron">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>
                   </div>
@@ -122,61 +97,30 @@
                     min="0"
                     max="100"
                     value="50"
-                    aria-label="{{ section.settings.before_label | escape }} / {{ section.settings.after_label | escape }}: {{ model | escape }}"
+                    aria-label="Before and after: {{ model | escape }}"
                     on:input="/sync"
                     on:pointerdown="/sync"
                   >
                 </div>
               </div>
             </comparison-slider-component>
-          </div>
-          {%- assign index = index | plus: 1 -%}
+          </li>
         {%- endfor -%}
-      </div>
+      </ul>
 
-      <div class="before-after__controls">
-        <div class="before-after__models" role="tablist" aria-label="{{ section.settings.heading | default: 'Before and after' | escape }}">
-          {%- assign index = 0 -%}
-          {%- for look in looks -%}
-            {%- if look.before_image.value == blank or look.after_image.value == blank -%}
-              {%- continue -%}
-            {%- endif -%}
-            <button
-              type="button"
-              class="before-after__model"
-              role="tab"
-              aria-selected="{% if index == 0 %}true{% else %}false{% endif %}"
-              aria-controls="BeforeAfter-{{ section.id }}-{{ index }}"
-              tabindex="{% if index == 0 %}0{% else %}-1{% endif %}"
-              data-ba-tab="{{ index }}"
-            >
-              <span class="before-after__model-number">{% if index < 9 %}0{% endif %}{{ index | plus: 1 }}</span>
-              <span class="before-after__model-text">
-                <span class="before-after__model-name">{{ look.model_name.value | default: product.title }}</span>
-                {%- if look.caption.value != blank -%}
-                  <span class="before-after__model-caption">{{ look.caption.value }}</span>
-                {%- endif -%}
-              </span>
-            </button>
-            {%- assign index = index | plus: 1 -%}
+      {%- if look_count > 1 -%}
+        <button type="button" class="before-after__arrow before-after__arrow--prev" data-ba-step="-1" aria-label="Previous" hidden>
+          {{- 'icon-chevron-left.svg' | inline_asset_content -}}
+        </button>
+        <button type="button" class="before-after__arrow before-after__arrow--next" data-ba-step="1" aria-label="Next" hidden>
+          {{- 'icon-chevron-right.svg' | inline_asset_content -}}
+        </button>
+        <div class="before-after__dots" data-ba-dots hidden>
+          {%- for i in (1..look_count) -%}
+            <button type="button" class="before-after__dot" data-ba-dot="{{ forloop.index0 }}" aria-label="Go to {{ i }} of {{ look_count }}"></button>
           {%- endfor -%}
         </div>
-
-        {%- if look_count > 1 -%}
-          <div class="before-after__pager">
-            <button type="button" class="before-after__arrow" data-ba-step="-1" aria-label="Previous look">
-              {{- 'icon-chevron-left.svg' | inline_asset_content -}}
-            </button>
-            <p class="before-after__count" aria-live="polite">
-              <span data-ba-current>01</span><span class="before-after__count-sep"></span
-              ><span>{% if look_count < 10 %}0{% endif %}{{ look_count }}</span>
-            </p>
-            <button type="button" class="before-after__arrow" data-ba-step="1" aria-label="Next look">
-              {{- 'icon-chevron-right.svg' | inline_asset_content -}}
-            </button>
-          </div>
-        {%- endif -%}
-      </div>
+      {%- endif -%}
     </div>
   </before-after-carousel>
 
@@ -186,46 +130,74 @@
         'before-after-carousel',
         class extends HTMLElement {
           connectedCallback() {
+            this.track = this.querySelector('[data-ba-track]');
             this.slides = [...this.querySelectorAll('[data-ba-slide]')];
-            this.tabs = [...this.querySelectorAll('[data-ba-tab]')];
-            this.index = 0;
+            this.dots = [...this.querySelectorAll('[data-ba-dot]')];
+
             this.addEventListener('click', (event) => {
-              const tab = event.target.closest('[data-ba-tab]');
               const step = event.target.closest('[data-ba-step]');
-              if (tab) this.select(Number(tab.dataset.baTab));
-              if (step) this.select(this.index + Number(step.dataset.baStep));
+              const dot = event.target.closest('[data-ba-dot]');
+              if (step) this.goTo(this.index() + Number(step.dataset.baStep));
+              if (dot) this.goTo(Number(dot.dataset.baDot));
             });
-            this.addEventListener('keydown', (event) => {
-              if (!event.target.closest('[data-ba-tab]')) return;
-              const keys = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
-              if (!(event.key in keys)) return;
+            this.track.addEventListener('scroll', () => this.update(), { passive: true });
+            new ResizeObserver(() => this.update()).observe(this.track);
+            this.update();
+
+            // Touch: drag the handle to compare (the range input is switched off there by CSS so a
+            // swipe on the image scrolls the carousel instead)
+            this.addEventListener('pointerdown', (event) => {
+              const handle = event.target.closest('[data-ba-handle]');
+              if (!handle || event.pointerType === 'mouse') return;
+              const compare = handle.closest('comparison-slider-component');
+              const wrapper = handle.parentElement;
               event.preventDefault();
-              this.select(this.index + keys[event.key], true);
+              handle.setPointerCapture(event.pointerId);
+              const move = (e) => {
+                const rect = wrapper.getBoundingClientRect();
+                compare.setValue?.(Math.min(100, Math.max(0, ((e.clientX - rect.left) / rect.width) * 100)));
+              };
+              const end = () => {
+                handle.removeEventListener('pointermove', move);
+                handle.removeEventListener('pointerup', end);
+                handle.removeEventListener('pointercancel', end);
+              };
+              handle.addEventListener('pointermove', move);
+              handle.addEventListener('pointerup', end);
+              handle.addEventListener('pointercancel', end);
             });
           }
 
-          select(next, focus = false) {
-            const count = this.slides.length;
-            const index = ((next % count) + count) % count;
-            if (index === this.index) return;
-            this.index = index;
+          step() {
+            const [first, second] = this.slides;
+            return second ? second.offsetLeft - first.offsetLeft : this.track.clientWidth;
+          }
 
-            this.slides.forEach((slide, i) => (slide.hidden = i !== index));
-            this.tabs.forEach((tab, i) => {
-              const selected = i === index;
-              tab.setAttribute('aria-selected', String(selected));
-              tab.tabIndex = selected ? 0 : -1;
-              if (selected) {
-                tab.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
-                if (focus) tab.focus({ preventScroll: true });
-              }
-            });
+          index() {
+            return Math.round(this.track.scrollLeft / this.step());
+          }
 
-            // Start each look at the halfway split
-            this.slides[index].querySelector('comparison-slider-component')?.setValue?.(50);
+          goTo(index) {
+            const last = this.slides.length - 1;
+            const target = this.slides[Math.max(0, Math.min(last, index))];
+            this.track.scrollTo({ left: target.offsetLeft - this.slides[0].offsetLeft, behavior: 'smooth' });
+          }
 
-            const current = this.querySelector('[data-ba-current]');
-            if (current) current.textContent = String(index + 1).padStart(2, '0');
+          update() {
+            const { track } = this;
+            const scrollable = track.scrollWidth > track.clientWidth + 2;
+            const atStart = track.scrollLeft < 4;
+            const atEnd = track.scrollLeft + track.clientWidth > track.scrollWidth - 4;
+            const prev = this.querySelector('[data-ba-step="-1"]');
+            const next = this.querySelector('[data-ba-step="1"]');
+            const dots = this.querySelector('[data-ba-dots]');
+            if (prev) prev.hidden = !scrollable || atStart;
+            if (next) next.hidden = !scrollable || atEnd;
+            if (dots) dots.hidden = !scrollable;
+
+            // Last dot when scrolled to the end, so it lights up even if the last card can't snap first
+            const current = atEnd ? this.slides.length - 1 : this.index();
+            this.dots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === current)));
           }
         }
       );
@@ -237,69 +209,68 @@
   /* Extra classes beat the theme reset that makes every .section transparent */
   .shopify-section .before-after.section.section--page-width {
     background: var(--ba-bg);
-    color: var(--ba-text);
     padding-block: var(--ba-pad-top) var(--ba-pad-bottom);
   }
 
   .before-after__inner {
     grid-column: 2;
-    display: grid;
-    grid-template-areas: 'intro' 'stage' 'controls';
-    gap: 20px;
-  }
-
-  .before-after__intro {
-    grid-area: intro;
-  }
-
-  .before-after__eyebrow {
-    margin: 0 0 8px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-  }
-
-  .before-after__heading {
-    margin: 0;
-    color: inherit;
-    font-size: clamp(1.75rem, 6vw, 3rem);
-    line-height: 1.05;
-  }
-
-  .before-after__text {
-    margin-top: 12px;
-    max-width: 38ch;
-    opacity: 0.85;
-  }
-
-  .before-after__text > :first-child {
-    margin-top: 0;
-  }
-
-  .before-after__text > :last-child {
-    margin-bottom: 0;
-  }
-
-  .before-after__stage {
-    grid-area: stage;
+    position: relative;
     min-width: 0;
   }
 
-  .before-after__slide:not([hidden]) {
-    animation: before-after-in 0.45s ease both;
+  .before-after__track {
+    --ba-gap: 12px;
+
+    display: flex;
+    gap: var(--ba-gap);
+    margin: 0;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
   }
 
-  @keyframes before-after-in {
-    from {
-      opacity: 0;
-      transform: scale(0.985);
+  .before-after__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Phones: one card with the next one peeking in */
+  .before-after__slide {
+    flex: 0 0 86%;
+    min-width: 0;
+    scroll-snap-align: start;
+  }
+
+  .before-after__slide:only-child {
+    flex-basis: 100%;
+  }
+
+  @media screen and (min-width: 750px) {
+    .before-after__track {
+      --ba-gap: 16px;
+    }
+
+    .before-after__slide {
+      flex-basis: calc((100% - var(--ba-gap)) / 2);
     }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .before-after__slide:not([hidden]) {
-      animation: none;
+  @media screen and (min-width: 990px) {
+    .before-after__track {
+      --ba-gap: 20px;
+    }
+
+    .before-after__slide {
+      flex-basis: calc((100% - (var(--ba-per-view) - 1) * var(--ba-gap)) / var(--ba-per-view));
+    }
+
+    /* Fewer looks than fit in a row: keep them a sensible size, centered */
+    .before-after__track:not(:has(> :nth-child(3))) {
+      justify-content: center;
+    }
+
+    .before-after__track:not(:has(> :nth-child(3))) .before-after__slide {
+      flex-basis: min(560px, calc((100% - var(--ba-gap)) / 2));
     }
   }
 
@@ -309,125 +280,48 @@
     --handle-color: #000;
 
     aspect-ratio: var(--ba-ratio);
-    box-shadow: 0 18px 40px -24px rgb(0 0 0 / 0.35);
   }
 
-  .before-after__label {
-    position: absolute;
-    bottom: 14px;
-    z-index: 2;
-    padding: 6px 10px;
-    background: #000;
-    color: #fff;
-    font-size: 0.6875rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    line-height: 1;
-    pointer-events: none;
-  }
+  /* Touch: the range input covers the whole image and would swallow swipes. Turn it off and let
+     only the handle drag the compare (handled in the carousel script). */
+  @media (pointer: coarse) {
+    .before-after__compare .cs-slider {
+      pointer-events: none;
+    }
 
-  .before-after__label--before {
-    left: 14px;
-  }
+    .before-after__compare .cs-slider__handle {
+      pointer-events: auto;
+      touch-action: none;
+      cursor: grab;
+    }
 
-  .before-after__label--after {
-    right: 14px;
-    background: var(--ba-accent);
-    color: #000;
-  }
-
-  .before-after__controls {
-    grid-area: controls;
-    display: grid;
-    gap: 16px;
-    min-width: 0;
-  }
-
-  /* Mobile: models as a swipeable row of chips under the image */
-  .before-after__models {
-    display: flex;
-    gap: 8px;
-    overflow-x: auto;
-    scrollbar-width: none;
-    scroll-snap-type: x proximity;
-    margin-inline: calc(-1 * var(--page-margin, 16px));
-    padding-inline: var(--page-margin, 16px);
-    scroll-padding-inline: var(--page-margin, 16px);
-  }
-
-  .before-after__models::-webkit-scrollbar {
-    display: none;
-  }
-
-  .before-after__model {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex: 0 0 auto;
-    scroll-snap-align: start;
-    padding: 10px 14px;
-    border: 1px solid currentcolor;
-    background: transparent;
-    color: inherit;
-    font: inherit;
-    text-align: start;
-    cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease;
-  }
-
-  .before-after__model[aria-selected='true'] {
-    background: #000;
-    border-color: #000;
-    color: #fff;
-  }
-
-  .before-after__model-number {
-    font-size: 0.6875rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    opacity: 0.7;
-  }
-
-  .before-after__model-text {
-    display: grid;
-  }
-
-  .before-after__model-name {
-    font-weight: 600;
-    white-space: nowrap;
-  }
-
-  .before-after__model-caption {
-    font-size: 0.75rem;
-    opacity: 0.75;
-    white-space: nowrap;
-  }
-
-  .before-after__pager {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
+    /* Bigger hit area than the visible handle */
+    .before-after__compare .cs-slider__handle::before {
+      content: '';
+      position: absolute;
+      inset: -14px;
+    }
   }
 
   .before-after__arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 3;
     display: grid;
     place-items: center;
     width: 44px;
     height: 44px;
     padding: 0;
-    border: 1px solid currentcolor;
-    background: transparent;
-    color: inherit;
+    border: 0;
+    background: #000;
+    color: #fff;
     cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transform: translateY(-50%);
+    transition: opacity 0.2s ease;
   }
 
-  .before-after__arrow:hover {
-    background: #000;
-    border-color: #000;
-    color: #fff;
+  .before-after__arrow[hidden] {
+    display: none;
   }
 
   .before-after__arrow svg {
@@ -435,84 +329,47 @@
     height: 14px;
   }
 
-  .before-after__count {
+  .before-after__arrow--prev {
+    left: 0;
+  }
+
+  .before-after__arrow--next {
+    right: 0;
+  }
+
+  /* Phones: swipe instead of arrows */
+  @media screen and (max-width: 749px) {
+    .before-after__arrow {
+      display: none;
+    }
+  }
+
+  .before-after__dots {
     display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 0;
-    font-size: 0.8125rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    font-variant-numeric: tabular-nums;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
   }
 
-  .before-after__count-sep {
-    width: 28px;
-    height: 1px;
+  .before-after__dots[hidden] {
+    display: none;
+  }
+
+  .before-after__dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
     background: currentcolor;
+    opacity: 0.25;
+    cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.2s ease;
   }
 
-  /* Desktop: editorial split, intro and model list on the left, large compare stage on the right */
-  @media screen and (min-width: 990px) {
-    .before-after__inner {
-      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-      grid-template-areas:
-        'intro stage'
-        'controls stage';
-      grid-template-rows: auto 1fr;
-      column-gap: clamp(40px, 6vw, 96px);
-      row-gap: 32px;
-      align-items: start;
-    }
-
-    .before-after__stage {
-      max-width: 640px;
-      width: 100%;
-      justify-self: end;
-    }
-
-    .before-after__models {
-      flex-direction: column;
-      gap: 0;
-      overflow: visible;
-      margin: 0;
-      padding: 0;
-      border-top: 1px solid currentcolor;
-    }
-
-    .before-after__model {
-      gap: 20px;
-      padding: 18px 4px;
-      border: 0;
-      border-bottom: 1px solid currentcolor;
-    }
-
-    .before-after__model:hover,
-    .before-after__model[aria-selected='true'] {
-      background: transparent;
-      color: inherit;
-    }
-
-    .before-after__model[aria-selected='true'] .before-after__model-name {
-      text-decoration: underline;
-      text-underline-offset: 4px;
-    }
-
-    .before-after__model:not([aria-selected='true']) {
-      opacity: 0.6;
-    }
-
-    .before-after__model:hover {
-      opacity: 1;
-    }
-
-    .before-after__model-name {
-      font-size: 1.125rem;
-    }
-
-    .before-after__pager {
-      justify-content: flex-start;
-    }
+  .before-after__dot[aria-current='true'] {
+    opacity: 1;
+    transform: scale(1.25);
   }
 {% endstylesheet %}
 
@@ -527,37 +384,7 @@
   "settings": [
     {
       "type": "paragraph",
-      "content": "Shows the product's \"Before & after looks\" metafield. Hidden on products with no looks."
-    },
-    {
-      "type": "text",
-      "id": "eyebrow",
-      "label": "Eyebrow",
-      "default": "Before & after"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "See it on real faces"
-    },
-    {
-      "type": "richtext",
-      "id": "text",
-      "label": "Text",
-      "default": "<p>Drag the slider to compare. Tap a name to switch models.</p>"
-    },
-    {
-      "type": "text",
-      "id": "before_label",
-      "label": "Before label",
-      "default": "Before"
-    },
-    {
-      "type": "text",
-      "id": "after_label",
-      "label": "After label",
-      "default": "After"
+      "content": "Shows the product's \"Before & after looks\" metafield as an image carousel. Hidden on products with no looks."
     },
     {
       "type": "select",
@@ -571,22 +398,19 @@
       "default": "portrait"
     },
     {
+      "type": "range",
+      "id": "per_view_desktop",
+      "label": "Images per row on desktop",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
       "type": "color",
       "id": "background_color",
       "label": "Background",
       "default": "#FBC7E0"
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Text",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "accent_color",
-      "label": "After label background",
-      "default": "#FFFFFF"
     },
     {
       "type": "range",
@@ -596,7 +420,7 @@
       "max": 120,
       "step": 4,
       "unit": "px",
-      "default": 64
+      "default": 48
     },
     {
       "type": "range",
@@ -606,7 +430,7 @@
       "max": 120,
       "step": 4,
       "unit": "px",
-      "default": 64
+      "default": 48
     }
   ],
   "presets": [
