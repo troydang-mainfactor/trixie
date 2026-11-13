@@ -1,0 +1,618 @@
+{%- doc -%}
+  Before & after carousel for the product page. Reads the product's "Before & after looks"
+  metafield (custom.before_after: list of before_after_look metaobjects: model name, caption,
+  before image, after image). One drag-to-compare stage, with the looks switched by a model list,
+  arrows and a counter, so several models never stack on mobile. Renders nothing when the
+  product has no looks with both images.
+{%- enddoc -%}
+
+{%- liquid
+  assign looks = product.metafields.custom.before_after.value
+  assign look_count = 0
+  for look in looks
+    if look.before_image.value != blank and look.after_image.value != blank
+      assign look_count = look_count | plus: 1
+    endif
+  endfor
+
+  case section.settings.image_ratio
+    when 'square'
+      assign ratio = '1'
+    when 'landscape'
+      assign ratio = '4 / 3'
+    else
+      assign ratio = '4 / 5'
+  endcase
+-%}
+
+{%- if look_count > 0 -%}
+  <script src="{{ 'comparison-slider.js' | asset_url }}" type="module" fetchpriority="low"></script>
+
+  <before-after-carousel
+    class="before-after section section--page-width"
+    style="
+      --ba-bg: {{ section.settings.background_color }};
+      --ba-text: {{ section.settings.text_color }};
+      --ba-accent: {{ section.settings.accent_color }};
+      --ba-ratio: {{ ratio }};
+      --ba-pad-top: {{ section.settings.padding_top }}px;
+      --ba-pad-bottom: {{ section.settings.padding_bottom }}px;
+    "
+  >
+    <div class="before-after__inner">
+      <div class="before-after__intro">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="before-after__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="before-after__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+          <div class="before-after__text">{{ section.settings.text }}</div>
+        {%- endif -%}
+      </div>
+
+      <div class="before-after__stage">
+        {%- assign index = 0 -%}
+        {%- for look in looks -%}
+          {%- liquid
+            assign before = look.before_image.value
+            assign after = look.after_image.value
+            if before == blank or after == blank
+              continue
+            endif
+            assign model = look.model_name.value | default: product.title
+          -%}
+          <div
+            class="before-after__slide"
+            id="BeforeAfter-{{ section.id }}-{{ index }}"
+            role="tabpanel"
+            aria-label="{{ model | escape }}"
+            data-ba-slide
+            {% if index > 0 %}
+              hidden
+            {% endif %}
+          >
+            <comparison-slider-component class="comparison-slider comparison-slider--horizontal before-after__compare">
+              <div class="comparison-slider__container">
+                <div
+                  class="comparison-slider__media-wrapper"
+                  ref="mediaWrapper"
+                  data-comparison-slider
+                  data-orientation="horizontal"
+                >
+                  <div class="comparison-slider__layer comparison-slider__layer--before">
+                    {{
+                      before
+                      | image_url: width: 1800
+                      | image_tag:
+                        loading: 'lazy',
+                        class: 'before-image',
+                        alt: before.alt,
+                        sizes: '(min-width: 990px) 55vw, 100vw',
+                        widths: '480, 750, 1000, 1400, 1800',
+                        ref: 'beforeImage'
+                    }}
+                    <span class="before-after__label before-after__label--before">{{ section.settings.before_label }}</span>
+                  </div>
+                  <div class="comparison-slider__layer comparison-slider__layer--after">
+                    {{
+                      after
+                      | image_url: width: 1800
+                      | image_tag:
+                        loading: 'lazy',
+                        class: 'after-image',
+                        alt: after.alt,
+                        sizes: '(min-width: 990px) 55vw, 100vw',
+                        widths: '480, 750, 1000, 1400, 1800',
+                        ref: 'afterImage'
+                    }}
+                    <span class="before-after__label before-after__label--after">{{ section.settings.after_label }}</span>
+                  </div>
+
+                  <div class="cs-slider__handle">
+                    <span class="cs-slider__chevron">{{- 'icon-chevron-left.svg' | inline_asset_content -}}</span>
+                    <span class="cs-slider__chevron">{{- 'icon-chevron-right.svg' | inline_asset_content -}}</span>
+                  </div>
+
+                  <input
+                    type="range"
+                    class="cs-slider"
+                    ref="slider"
+                    min="0"
+                    max="100"
+                    value="50"
+                    aria-label="{{ section.settings.before_label | escape }} / {{ section.settings.after_label | escape }}: {{ model | escape }}"
+                    on:input="/sync"
+                    on:pointerdown="/sync"
+                  >
+                </div>
+              </div>
+            </comparison-slider-component>
+          </div>
+          {%- assign index = index | plus: 1 -%}
+        {%- endfor -%}
+      </div>
+
+      <div class="before-after__controls">
+        <div class="before-after__models" role="tablist" aria-label="{{ section.settings.heading | default: 'Before and after' | escape }}">
+          {%- assign index = 0 -%}
+          {%- for look in looks -%}
+            {%- if look.before_image.value == blank or look.after_image.value == blank -%}
+              {%- continue -%}
+            {%- endif -%}
+            <button
+              type="button"
+              class="before-after__model"
+              role="tab"
+              aria-selected="{% if index == 0 %}true{% else %}false{% endif %}"
+              aria-controls="BeforeAfter-{{ section.id }}-{{ index }}"
+              tabindex="{% if index == 0 %}0{% else %}-1{% endif %}"
+              data-ba-tab="{{ index }}"
+            >
+              <span class="before-after__model-number">{% if index < 9 %}0{% endif %}{{ index | plus: 1 }}</span>
+              <span class="before-after__model-text">
+                <span class="before-after__model-name">{{ look.model_name.value | default: product.title }}</span>
+                {%- if look.caption.value != blank -%}
+                  <span class="before-after__model-caption">{{ look.caption.value }}</span>
+                {%- endif -%}
+              </span>
+            </button>
+            {%- assign index = index | plus: 1 -%}
+          {%- endfor -%}
+        </div>
+
+        {%- if look_count > 1 -%}
+          <div class="before-after__pager">
+            <button type="button" class="before-after__arrow" data-ba-step="-1" aria-label="Previous look">
+              {{- 'icon-chevron-left.svg' | inline_asset_content -}}
+            </button>
+            <p class="before-after__count" aria-live="polite">
+              <span data-ba-current>01</span><span class="before-after__count-sep"></span
+              ><span>{% if look_count < 10 %}0{% endif %}{{ look_count }}</span>
+            </p>
+            <button type="button" class="before-after__arrow" data-ba-step="1" aria-label="Next look">
+              {{- 'icon-chevron-right.svg' | inline_asset_content -}}
+            </button>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </before-after-carousel>
+
+  <script>
+    if (!customElements.get('before-after-carousel')) {
+      customElements.define(
+        'before-after-carousel',
+        class extends HTMLElement {
+          connectedCallback() {
+            this.slides = [...this.querySelectorAll('[data-ba-slide]')];
+            this.tabs = [...this.querySelectorAll('[data-ba-tab]')];
+            this.index = 0;
+            this.addEventListener('click', (event) => {
+              const tab = event.target.closest('[data-ba-tab]');
+              const step = event.target.closest('[data-ba-step]');
+              if (tab) this.select(Number(tab.dataset.baTab));
+              if (step) this.select(this.index + Number(step.dataset.baStep));
+            });
+            this.addEventListener('keydown', (event) => {
+              if (!event.target.closest('[data-ba-tab]')) return;
+              const keys = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
+              if (!(event.key in keys)) return;
+              event.preventDefault();
+              this.select(this.index + keys[event.key], true);
+            });
+          }
+
+          select(next, focus = false) {
+            const count = this.slides.length;
+            const index = ((next % count) + count) % count;
+            if (index === this.index) return;
+            this.index = index;
+
+            this.slides.forEach((slide, i) => (slide.hidden = i !== index));
+            this.tabs.forEach((tab, i) => {
+              const selected = i === index;
+              tab.setAttribute('aria-selected', String(selected));
+              tab.tabIndex = selected ? 0 : -1;
+              if (selected) {
+                tab.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
+                if (focus) tab.focus({ preventScroll: true });
+              }
+            });
+
+            // Start each look at the halfway split
+            this.slides[index].querySelector('comparison-slider-component')?.setValue?.(50);
+
+            const current = this.querySelector('[data-ba-current]');
+            if (current) current.textContent = String(index + 1).padStart(2, '0');
+          }
+        }
+      );
+    }
+  </script>
+{%- endif -%}
+
+{% stylesheet %}
+  /* Extra classes beat the theme reset that makes every .section transparent */
+  .shopify-section .before-after.section.section--page-width {
+    background: var(--ba-bg);
+    color: var(--ba-text);
+    padding-block: var(--ba-pad-top) var(--ba-pad-bottom);
+  }
+
+  .before-after__inner {
+    grid-column: 2;
+    display: grid;
+    grid-template-areas: 'intro' 'stage' 'controls';
+    gap: 20px;
+  }
+
+  .before-after__intro {
+    grid-area: intro;
+  }
+
+  .before-after__eyebrow {
+    margin: 0 0 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .before-after__heading {
+    margin: 0;
+    color: inherit;
+    font-size: clamp(1.75rem, 6vw, 3rem);
+    line-height: 1.05;
+  }
+
+  .before-after__text {
+    margin-top: 12px;
+    max-width: 38ch;
+    opacity: 0.85;
+  }
+
+  .before-after__text > :first-child {
+    margin-top: 0;
+  }
+
+  .before-after__text > :last-child {
+    margin-bottom: 0;
+  }
+
+  .before-after__stage {
+    grid-area: stage;
+    min-width: 0;
+  }
+
+  .before-after__slide:not([hidden]) {
+    animation: before-after-in 0.45s ease both;
+  }
+
+  @keyframes before-after-in {
+    from {
+      opacity: 0;
+      transform: scale(0.985);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .before-after__slide:not([hidden]) {
+      animation: none;
+    }
+  }
+
+  .before-after__compare {
+    --ratio: var(--ba-ratio);
+    --color-background: #fff;
+    --handle-color: #000;
+
+    aspect-ratio: var(--ba-ratio);
+    box-shadow: 0 18px 40px -24px rgb(0 0 0 / 0.35);
+  }
+
+  .before-after__label {
+    position: absolute;
+    bottom: 14px;
+    z-index: 2;
+    padding: 6px 10px;
+    background: #000;
+    color: #fff;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .before-after__label--before {
+    left: 14px;
+  }
+
+  .before-after__label--after {
+    right: 14px;
+    background: var(--ba-accent);
+    color: #000;
+  }
+
+  .before-after__controls {
+    grid-area: controls;
+    display: grid;
+    gap: 16px;
+    min-width: 0;
+  }
+
+  /* Mobile: models as a swipeable row of chips under the image */
+  .before-after__models {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+    margin-inline: calc(-1 * var(--page-margin, 16px));
+    padding-inline: var(--page-margin, 16px);
+    scroll-padding-inline: var(--page-margin, 16px);
+  }
+
+  .before-after__models::-webkit-scrollbar {
+    display: none;
+  }
+
+  .before-after__model {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    padding: 10px 14px;
+    border: 1px solid currentcolor;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: start;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .before-after__model[aria-selected='true'] {
+    background: #000;
+    border-color: #000;
+    color: #fff;
+  }
+
+  .before-after__model-number {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    opacity: 0.7;
+  }
+
+  .before-after__model-text {
+    display: grid;
+  }
+
+  .before-after__model-name {
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .before-after__model-caption {
+    font-size: 0.75rem;
+    opacity: 0.75;
+    white-space: nowrap;
+  }
+
+  .before-after__pager {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .before-after__arrow {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid currentcolor;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .before-after__arrow:hover {
+    background: #000;
+    border-color: #000;
+    color: #fff;
+  }
+
+  .before-after__arrow svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .before-after__count {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .before-after__count-sep {
+    width: 28px;
+    height: 1px;
+    background: currentcolor;
+  }
+
+  /* Desktop: editorial split, intro and model list on the left, large compare stage on the right */
+  @media screen and (min-width: 990px) {
+    .before-after__inner {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      grid-template-areas:
+        'intro stage'
+        'controls stage';
+      grid-template-rows: auto 1fr;
+      column-gap: clamp(40px, 6vw, 96px);
+      row-gap: 32px;
+      align-items: start;
+    }
+
+    .before-after__stage {
+      max-width: 640px;
+      width: 100%;
+      justify-self: end;
+    }
+
+    .before-after__models {
+      flex-direction: column;
+      gap: 0;
+      overflow: visible;
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid currentcolor;
+    }
+
+    .before-after__model {
+      gap: 20px;
+      padding: 18px 4px;
+      border: 0;
+      border-bottom: 1px solid currentcolor;
+    }
+
+    .before-after__model:hover,
+    .before-after__model[aria-selected='true'] {
+      background: transparent;
+      color: inherit;
+    }
+
+    .before-after__model[aria-selected='true'] .before-after__model-name {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .before-after__model:not([aria-selected='true']) {
+      opacity: 0.6;
+    }
+
+    .before-after__model:hover {
+      opacity: 1;
+    }
+
+    .before-after__model-name {
+      font-size: 1.125rem;
+    }
+
+    .before-after__pager {
+      justify-content: flex-start;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Before & after",
+  "tag": "section",
+  "class": "section-before-after",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Shows the product's \"Before & after looks\" metafield. Hidden on products with no looks."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Before & after"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "See it on real faces"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Drag the slider to compare. Tap a name to switch models.</p>"
+    },
+    {
+      "type": "text",
+      "id": "before_label",
+      "label": "Before label",
+      "default": "Before"
+    },
+    {
+      "type": "text",
+      "id": "after_label",
+      "label": "After label",
+      "default": "After"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image shape",
+      "options": [
+        { "value": "portrait", "label": "Portrait (4:5)" },
+        { "value": "square", "label": "Square" },
+        { "value": "landscape", "label": "Landscape (4:3)" }
+      ],
+      "default": "portrait"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#FBC7E0"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "After label background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "presets": [
+    {
+      "name": "Before & after"
+    }
+  ]
+}
+{% endschema %}
