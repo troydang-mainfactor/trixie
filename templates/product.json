@@ -9,22 +9,6 @@
  */
 {
   "sections": {
-    "before_after": {
-      "type": "before-after",
-      "settings": {
-        "eyebrow": "Before & after",
-        "heading": "See it on real faces",
-        "text": "<p>Drag the slider to compare. Tap a name to switch models.</p>",
-        "before_label": "Before",
-        "after_label": "After",
-        "image_ratio": "portrait",
-        "background_color": "#fbc7e0",
-        "text_color": "#000000",
-        "accent_color": "#ffffff",
-        "padding_top": 64,
-        "padding_bottom": 64
-      }
-    },
     "main": {
       "type": "product-information",
       "blocks": {
@@ -1723,7 +1707,6 @@
   },
   "order": [
     "main",
-    "before_after",
     "section_EdPfb8",
     "pdp_quote",
     "marquee_wqkJcg",
