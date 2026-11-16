@@ -24,7 +24,8 @@
   assign fieldset_index = 0
 %}
 
-{% unless product_resource.has_only_default_variant %}
+{%- comment -%} Nothing to pick with a single variant (even a named one like one shade) {%- endcomment -%}
+{% if product_resource.variants.size > 1 %}
   {% if has_custom_variant_buttons %}
     {% render 'variant-button-custom-styles', block_settings: block_settings, block_id: block.id %}
   {% endif %}
@@ -242,7 +243,7 @@
       </script>
     </form>
   </variant-picker>
-{% endunless %}
+{% endif %}
 
 {% render 'swatch-styles' %}
 {% render 'variant-picker-styles' %}
