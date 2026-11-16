@@ -3422,6 +3422,78 @@
         "show_elsewhere": true
       }
     },
+    "1794863720d78edfb8": {
+      "type": "_blocks",
+      "blocks": {
+        "text_citUFw": {
+          "type": "text",
+          "name": "t:names.heading",
+          "disabled": true,
+          "settings": {
+            "text": "<h1>Follow us @trixiecosmetics</h1>",
+            "split_on_dash": false,
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 48,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "moast_widget_retPtD": {
+          "type": "shopify://apps/moast/blocks/widget/1ac7547b-5443-446c-868c-7fab4566ee16",
+          "settings": {
+            "widget": "df1210ab-7bc5-4d2d-b54d-6b7bec9f58d8"
+          }
+        }
+      },
+      "block_order": [
+        "text_citUFw",
+        "moast_widget_retPtD"
+      ],
+      "name": "Moast",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
     "1785093859400218fe": {
       "type": "_blocks",
       "blocks": {
@@ -3455,49 +3527,6 @@
         "vertical_alignment": "center",
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 12,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "background_media": "none",
-        "background_color": "",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_color": "",
-        "border_radius": 0,
-        "padding-block-start": 0,
-        "padding-block-end": 0
-      }
-    },
-    "1794863720d78edfb8": {
-      "type": "_blocks",
-      "blocks": {
-        "moast_widget_retPtD": {
-          "type": "shopify://apps/moast/blocks/widget/1ac7547b-5443-446c-868c-7fab4566ee16",
-          "settings": {
-            "widget": "df1210ab-7bc5-4d2d-b54d-6b7bec9f58d8"
-          }
-        }
-      },
-      "block_order": [
-        "moast_widget_retPtD"
-      ],
-      "name": "Moast",
-      "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 12,
         "section_width": "page-width",
