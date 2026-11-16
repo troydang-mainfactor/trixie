@@ -117,7 +117,16 @@ async function swapProductPage(url) {
     // they're already on screen, so it would never come back. Remember it and put it back after the morph.
     const inViewport = [...document.querySelectorAll('main slideshow-component[in-viewport]')].map((el) => el.id || el);
 
+    // App widgets (e.g. Moast videos) read their data once when they connect; morphing only swaps the
+    // data, so keep fresh copies of the new page's widgets and put them in whole after the morph
+    const freshWidgets = [...(next.querySelector('main')?.querySelectorAll(APP_WIDGETS) ?? [])].map((el) => document.importNode(el, true));
+
     current.forEach((section, i) => morph(section, /** @type {HTMLElement} */ (incoming[i]), MORPH_OPTIONS));
+
+    document.querySelector('main')?.querySelectorAll(APP_WIDGETS).forEach((el, i) => {
+      const fresh = freshWidgets[i];
+      if (fresh && fresh.tagName === el.tagName) el.replaceWith(fresh);
+    });
 
     for (const slideshow of document.querySelectorAll('main slideshow-component')) {
       if (inViewport.includes(slideshow.id || slideshow)) slideshow.setAttribute('in-viewport', '');
@@ -138,6 +147,9 @@ async function swapProductPage(url) {
 }
 
 let hasSwapped = false;
+
+/** Third-party custom elements that must reconnect to pick up the swapped product */
+const APP_WIDGETS = 'moast-carousel';
 
 // Back/forward after a swap: load that product properly (ignores plain #hash changes)
 window.addEventListener('popstate', () => {
