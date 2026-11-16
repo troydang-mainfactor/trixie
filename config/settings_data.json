@@ -177,11 +177,6 @@
           "widget_type": "review-widget"
         }
       },
-      "14739163758312353500": {
-        "type": "shopify://apps/vimotia-shoppable-videos-ugc/blocks/vimotia-embeded-block/280c56fc-729f-4789-a38e-96c81f569369",
-        "disabled": false,
-        "settings": {}
-      },
       "15181020662106344915": {
         "type": "shopify://apps/judge-me-reviews/blocks/popup_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
         "disabled": true,
@@ -207,6 +202,11 @@
       "11349500561483629931": {
         "type": "shopify://apps/notify-back-in-stock-preorder/blocks/app-embed/b399b727-6c85-44fc-9e21-63114bd72054",
         "disabled": false,
+        "settings": {}
+      },
+      "14739163758312353500": {
+        "type": "shopify://apps/vimotia-shoppable-videos-ugc/blocks/vimotia-embeded-block/280c56fc-729f-4789-a38e-96c81f569369",
+        "disabled": true,
         "settings": {}
       }
     },
