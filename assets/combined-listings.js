@@ -1,6 +1,5 @@
 import { Component } from '@theme/component';
 import { requestIdleCallback } from '@theme/utilities';
-import { morph, MORPH_OPTIONS } from '@theme/morph';
 import { ProductSelectEvent } from '@shopify/events';
 
 /**
@@ -95,66 +94,51 @@ class CombinedListingsBase extends Component {
  * @extends {CombinedListingsBase}
  */
 /**
- * Shade swatches link to separate products. Instead of a full page load (which jumps back to the
- * top), fetch the next product page and morph every section of <main> in place, so the shopper
- * stays where they were. Falls back to a normal navigation if the pages don't line up.
- * @param {string} url
+ * Shade swatches link to separate products. Load the shade's page normally, so every section and
+ * app (galleries, marquee, Judge.me, Moast...) starts up as usual, but come back at the same
+ * scroll position instead of the top. (An in-place swap left app widgets showing the old shade.)
  */
-async function swapProductPage(url) {
-  const current = [...document.querySelectorAll('main > .shopify-section')];
+const SCROLL_KEY = 'cl-shade-scroll';
+
+/** @param {string} url */
+function goToShade(url) {
   try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const next = new DOMParser().parseFromString(await response.text(), 'text/html');
-    const incoming = [...next.querySelectorAll('main > .shopify-section')];
-
-    // Different template (different section list): not safe to swap, load normally
-    if (incoming.length !== current.length || incoming.some((section, i) => section.id !== current[i]?.id)) {
-      throw new Error('Section layout differs');
-    }
-
-    // Slideshows only allow swiping once JS marks them [in-viewport]; the server HTML lacks that mark and
-    // they're already on screen, so it would never come back. Remember it and put it back after the morph.
-    const inViewport = [...document.querySelectorAll('main slideshow-component[in-viewport]')].map((el) => el.id || el);
-
-    // App widgets (e.g. Moast videos) read their data once when they connect; morphing only swaps the
-    // data, so keep fresh copies of the new page's widgets and put them in whole after the morph
-    const freshWidgets = [...(next.querySelector('main')?.querySelectorAll(APP_WIDGETS) ?? [])].map((el) => document.importNode(el, true));
-
-    current.forEach((section, i) => morph(section, /** @type {HTMLElement} */ (incoming[i]), MORPH_OPTIONS));
-
-    document.querySelector('main')?.querySelectorAll(APP_WIDGETS).forEach((el, i) => {
-      const fresh = freshWidgets[i];
-      if (fresh && fresh.tagName === el.tagName) el.replaceWith(fresh);
-    });
-
-    for (const slideshow of document.querySelectorAll('main slideshow-component')) {
-      if (inViewport.includes(slideshow.id || slideshow)) slideshow.setAttribute('in-viewport', '');
-    }
-    // The server HTML has the "NEW!"-style swatch labels hidden (JS shows them), so show them again
-    // once the pickers' refs have caught up with the morphed DOM
-    setTimeout(() => {
-      for (const picker of document.querySelectorAll('combined-listings-picker')) {
-        /** @type {any} */ (picker).showPerSwatchTagText?.();
-      }
-    });
-    document.title = next.title;
-    history.pushState({ productSwap: true }, '', url);
-    hasSwapped = true;
+    const path = new URL(url, window.location.href).pathname;
+    sessionStorage.setItem(SCROLL_KEY, JSON.stringify({ path, y: window.scrollY }));
   } catch {
-    window.location.href = url;
+    // Storage blocked: just load the page
   }
+  window.location.href = url;
 }
 
-let hasSwapped = false;
+/** On arriving from a shade swatch, return to where the shopper was */
+function restoreShadeScroll() {
+  /** @type {{ path: string, y: number } | null} */
+  let saved = null;
+  try {
+    saved = JSON.parse(sessionStorage.getItem(SCROLL_KEY) ?? 'null');
+    sessionStorage.removeItem(SCROLL_KEY);
+  } catch {
+    return;
+  }
+  if (!saved || saved.path !== window.location.pathname) return;
 
-/** Third-party custom elements that must reconnect to pick up the swapped product */
-const APP_WIDGETS = 'moast-carousel';
+  const { y } = saved;
+  const jump = () => window.scrollTo({ top: y, behavior: 'instant' });
+  jump();
 
-// Back/forward after a swap: load that product properly (ignores plain #hash changes)
-window.addEventListener('popstate', () => {
-  if (hasSwapped && !window.location.hash) window.location.reload();
-});
+  // Late images and app widgets can shift the layout; re-apply once loaded unless the shopper scrolled
+  let moved = false;
+  const stop = () => (moved = true);
+  window.addEventListener('wheel', stop, { once: true, passive: true });
+  window.addEventListener('touchstart', stop, { once: true, passive: true });
+  window.addEventListener('keydown', stop, { once: true });
+  const settle = () => !moved && jump();
+  if (document.readyState === 'complete') setTimeout(settle, 100);
+  else window.addEventListener('load', () => setTimeout(settle, 100), { once: true });
+}
+
+restoreShadeScroll();
 
 class CombinedListingsPicker extends CombinedListingsBase {
   /** @type {import('./variant-picker').default | null} */
@@ -190,7 +174,7 @@ class CombinedListingsPicker extends CombinedListingsBase {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
 
     event.preventDefault();
-    swapProductPage(trigger.href);
+    goToShade(trigger.href);
   }
 
   /**
