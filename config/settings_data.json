@@ -323,5 +323,10 @@
         "color2": "#DFDFDF"
       }
     }
+  },
+  "platform_customizations": {
+    "custom_css": [
+      "/* Moast carousel: remove left inset, keep spacing between slides */moast-carousel[alignment=\"left\"] {display: block; margin-left: calc(var(--moast-slide-spacing, 0px) / -2);}"
+    ]
   }
 }
