@@ -9,6 +9,199 @@
  */
 {
   "sections": {
+    "hero_iWETEJ": {
+      "type": "hero",
+      "blocks": {
+        "group_fnneeC": {
+          "type": "group",
+          "name": "t:names.group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "flex-end",
+            "gap": 13,
+            "show_above_media_mobile": false,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "custom",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "shopify://collections/trixie-hollow",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 49,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "button_ynQtaW": {
+              "type": "button",
+              "settings": {
+                "label": "Best Sellers",
+                "link": "shopify://collections/bestsellers",
+                "open_in_new_tab": false,
+                "style_class": "button",
+                "custom_button_background": "{{ settings.color_palette.foreground }}",
+                "custom_button_text": "{{ settings.color_palette.background }}",
+                "custom_button_border": "{{ settings.color_palette.background }}",
+                "link_text_color": "",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "button_ynQtaW"
+          ]
+        }
+      },
+      "block_order": [
+        "group_fnneeC"
+      ],
+      "disabled": true,
+      "name": "Hero BFCM",
+      "settings": {
+        "media_type_1": "image",
+        "image_1": "shopify://shop_images/Desktop-Homepage-BFCM.jpg",
+        "media_type_2": "image",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": true,
+        "media_type_1_mobile": "image",
+        "image_1_mobile": "shopify://shop_images/Mobile-Homepage-BFCM_8a7cb173-6b31-4dac-bdf4-ed3cc023c466.jpg",
+        "media_type_2_mobile": "image",
+        "link": "shopify://collections/bestsellers",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "space-between",
+        "vertical_alignment": "flex-end",
+        "align_baseline": true,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 24,
+        "section_width": "page-width",
+        "section_height": "full-screen",
+        "section_height_custom": 50,
+        "mobile_aspect_ratio": "4 / 5",
+        "content_position": "end-start",
+        "content_position_mobile": "end-center",
+        "background_color": "rgba(0,0,0,0)",
+        "toggle_overlay": false,
+        "overlay_color": "#00000059",
+        "overlay_style": "gradient",
+        "gradient_direction": "to top",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "image_grid_premium_YDR8UN": {
+      "type": "image-grid-premium",
+      "blocks": {
+        "image_TGxMeC": {
+          "type": "image",
+          "settings": {
+            "collection": "eyes",
+            "image": "shopify://shop_images/BFCM-eyes.jpg",
+            "heading": "Eyes",
+            "text": "",
+            "button_label": "Shop Now",
+            "link": "shopify://collections/eyes",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        },
+        "image_qYwydR": {
+          "type": "image",
+          "settings": {
+            "collection": "lips",
+            "image": "shopify://shop_images/BFCM-lips.jpg",
+            "heading": "Lips",
+            "text": "",
+            "button_label": "Shop Now",
+            "link": "shopify://collections/lips",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        },
+        "image_rJP7JV": {
+          "type": "image",
+          "settings": {
+            "collection": "face",
+            "image": "shopify://shop_images/BFCM-face.jpg",
+            "heading": "Face",
+            "text": "",
+            "button_label": "Shop Now",
+            "link": "shopify://collections/face",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        },
+        "image_bihHB7": {
+          "type": "image",
+          "settings": {
+            "collection": "accessories",
+            "image": "shopify://shop_images/BFCM-merch.jpg",
+            "heading": "Merch",
+            "text": "",
+            "button_label": "Shop Now",
+            "link": "shopify://collections/accessories",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        }
+      },
+      "block_order": [
+        "image_TGxMeC",
+        "image_qYwydR",
+        "image_rJP7JV",
+        "image_bihHB7"
+      ],
+      "disabled": true,
+      "name": "Premium Image Grid BFCM",
+      "settings": {
+        "columns": 4,
+        "rows": 1,
+        "mobile_columns": "2",
+        "mobile_layout": "scroll",
+        "aspect_ratio": "portrait",
+        "heading_size": 32,
+        "mobile_heading_size": 24,
+        "button_size": 16,
+        "mobile_button_size": 12,
+        "grid_gap": 12,
+        "corner_radius": 0,
+        "mobile_corner_radius": 0,
+        "content_padding": 20,
+        "mobile_content_padding": 20,
+        "overlay_opacity": 50,
+        "padding_top": 12,
+        "padding_bottom": 0
+      }
+    },
     "hero_jVaWmY": {
       "type": "hero",
       "blocks": {
@@ -3163,6 +3356,8 @@
     }
   },
   "order": [
+    "hero_iWETEJ",
+    "image_grid_premium_YDR8UN",
     "hero_jVaWmY",
     "image_grid_premium_LYJpTw",
     "product_list_fa6P9H",
