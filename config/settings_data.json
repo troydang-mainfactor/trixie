@@ -203,11 +203,6 @@
         "type": "shopify://apps/notify-back-in-stock-preorder/blocks/app-embed/b399b727-6c85-44fc-9e21-63114bd72054",
         "disabled": false,
         "settings": {}
-      },
-      "14739163758312353500": {
-        "type": "shopify://apps/vimotia-shoppable-videos-ugc/blocks/vimotia-embeded-block/280c56fc-729f-4789-a38e-96c81f569369",
-        "disabled": true,
-        "settings": {}
       }
     },
     "color_palette": {
@@ -325,8 +320,6 @@
     }
   },
   "platform_customizations": {
-    "custom_css": [
-      "/* Moast carousel: remove left inset, keep spacing between slides */moast-carousel[alignment=\"left\"] {display: block; margin-left: calc(var(--moast-slide-spacing, 0px) / -2);}"
-    ]
+    "custom_css": []
   }
 }
