@@ -3252,6 +3252,7 @@
       "block_order": [
         "instafeed_app_block_gQe9eJ"
       ],
+      "disabled": true,
       "name": "Instafeed",
       "settings": {
         "content_direction": "column",
@@ -3288,7 +3289,6 @@
         "text_citUFw": {
           "type": "text",
           "name": "t:names.heading",
-          "disabled": true,
           "settings": {
             "text": "<h1>Follow us @trixiecosmetics</h1>",
             "split_on_dash": false,
