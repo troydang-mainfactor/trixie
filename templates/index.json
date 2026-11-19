@@ -2967,9 +2967,9 @@
           "settings": {
             "placement": "on_image",
             "horizontal_alignment": "center",
-            "vertical_alignment": "flex-start",
+            "vertical_alignment": "flex-end",
             "collection_card_gap": 8,
-            "background_color": "",
+            "background_color": "#FFFFFF",
             "border": "none",
             "border_width": 1,
             "border_opacity": 100,
@@ -2992,8 +2992,8 @@
                 "case": "none",
                 "wrap": "pretty",
                 "background": false,
-                "background_color": "{{ settings.color_palette.background }}",
-                "text_color": "{{ settings.color_palette.color6 }}",
+                "background_color": "",
+                "text_color": "#FFFFFF",
                 "corner_radius": 0,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
@@ -3008,14 +3008,14 @@
               "static": true,
               "settings": {
                 "image_ratio": "adapt",
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
+                "toggle_overlay": true,
+                "overlay_color": "#EB008B8F",
+                "overlay_style": "gradient",
                 "gradient_direction": "to top",
                 "border": "none",
-                "border_width": 1,
+                "border_width": 5,
                 "border_opacity": 100,
-                "border_color": "",
+                "border_color": "#FFFFFF",
                 "border_radius": 0
               },
               "blocks": {}
@@ -3051,7 +3051,7 @@
         "icons_shape": "circle",
         "section_width": "page-width",
         "gap": 12,
-        "background_color": "",
+        "background_color": "{{ settings.color_palette.color5 }}",
         "padding-block-start": 48,
         "padding-block-end": 48
       }
