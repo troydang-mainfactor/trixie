@@ -109,7 +109,7 @@
     "cart_price_font": "subheading",
     "auto_open_cart_drawer": true,
     "show_cart_note": false,
-    "show_add_discount_code": false,
+    "show_add_discount_code": true,
     "show_installments": false,
     "show_accelerated_checkout_buttons": false,
     "drawer_background_color": "{{ settings.color_palette.background }}",
