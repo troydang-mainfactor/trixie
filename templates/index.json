@@ -205,106 +205,6 @@
     "hero_YBpGrr": {
       "type": "hero",
       "blocks": {
-        "popup_link_6qKxaz": {
-          "type": "popup-link",
-          "name": "t:names.popup_link",
-          "disabled": true,
-          "settings": {
-            "behavior": "default",
-            "heading": "Details",
-            "type_preset": "",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "text_xtYegb": {
-              "type": "text",
-              "name": "t:names.text",
-              "settings": {
-                "text": "<p>LIMITED TIME! Offer automatically applied in cart.</p>",
-                "split_on_dash": false,
-                "width": "fit-content",
-                "max_width": "narrow",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "text_jjTFR7": {
-              "type": "text",
-              "settings": {
-                "text": "<h2>What is the return policy?</h2>",
-                "split_on_dash": false,
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 16,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "text_EzjHeD": {
-              "type": "text",
-              "settings": {
-                "text": "<p>Our goal is for every customer to be totally satisfied with their purchase. If this isn't the case, let us know and we'll do our best to work with you to make it right.</p>",
-                "split_on_dash": false,
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "text_xtYegb",
-            "text_jjTFR7",
-            "text_EzjHeD"
-          ]
-        },
         "text_rX7jcV": {
           "type": "text",
           "settings": {
@@ -359,9 +259,8 @@
         },
         "text_jcK7Tw": {
           "type": "text",
-          "disabled": true,
           "settings": {
-            "text": "<p>LIMITED TIME! Offer automatically applied in cart. One per purchase.</p>",
+            "text": "<p><strong>LIMITED TIME!</strong> Offer automatically applied in cart. While supplies last</p>",
             "split_on_dash": false,
             "width": "100%",
             "max_width": "none",
@@ -406,7 +305,6 @@
         }
       },
       "block_order": [
-        "popup_link_6qKxaz",
         "text_rX7jcV",
         "text_Rc8zfA",
         "text_jcK7Tw",
@@ -416,7 +314,7 @@
       "name": "FREE LIP",
       "settings": {
         "media_type_1": "image",
-        "image_1": "shopify://shop_images/Untitled-2_1cb9a62b-7bf4-4259-86eb-179eb4f2d00f.jpg",
+        "image_1": "shopify://shop_images/Untitled-4_57439103-68d8-4104-90f5-138a7fbed6d2.jpg",
         "media_type_2": "image",
         "stack_media_on_mobile": false,
         "custom_mobile_media": true,
