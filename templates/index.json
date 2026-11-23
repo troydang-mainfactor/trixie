@@ -2969,7 +2969,8 @@
         "collection_list": [
           "best-of-2026",
           "trixies-picks",
-          "staff-picks"
+          "staff-picks",
+          "bestsellers"
         ],
         "layout_type": "carousel",
         "carousel_on_mobile": false,
