@@ -1621,7 +1621,6 @@
           ]
         }
       },
-      "disabled": true,
       "name": "$12 & Under Gifts",
       "settings": {
         "collection": "12-under-gifts",
@@ -2025,7 +2024,6 @@
           ]
         }
       },
-      "disabled": true,
       "name": "$20 & Under Gifts",
       "settings": {
         "collection": "20-under-gifts",
@@ -2429,7 +2427,6 @@
           ]
         }
       },
-      "disabled": true,
       "name": "$35 & Under Gifts",
       "settings": {
         "collection": "35-under-gifts",
@@ -2833,7 +2830,6 @@
           ]
         }
       },
-      "disabled": true,
       "name": "$50 & Under Gifts",
       "settings": {
         "collection": "50-under-gifts",
@@ -3000,7 +2996,6 @@
       "block_order": [
         "group_GbyYaY"
       ],
-      "disabled": true,
       "name": "Gifts by Price",
       "settings": {
         "collection_list": [
@@ -3172,7 +3167,6 @@
       "block_order": [
         "group_k9t3eh"
       ],
-      "disabled": true,
       "name": "Gifts by Vibe",
       "settings": {
         "collection_list": [
@@ -3344,7 +3338,6 @@
       "block_order": [
         "group_nY6A48"
       ],
-      "disabled": true,
       "name": "Best of Gifts",
       "settings": {
         "collection_list": [
@@ -3503,9 +3496,6 @@
     "image_grid_premium_YDR8UN",
     "hero_YBpGrr",
     "product_list_fa6P9H",
-    "hero_jVaWmY",
-    "image_grid_premium_LYJpTw",
-    "hero_HzznB9",
     "image_grid_premium_pB9PmF",
     "product_list_wW6dBE",
     "product_list_Y3iU66",
@@ -3514,6 +3504,9 @@
     "collection_list_6DRbY4",
     "collection_list_r9Mh98",
     "collection_list_nJNH9R",
+    "hero_jVaWmY",
+    "image_grid_premium_LYJpTw",
+    "hero_HzznB9",
     "1785093859400218fe",
     "1794863720d78edfb8"
   ]
