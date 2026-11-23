@@ -363,7 +363,7 @@
         "mobile_aspect_ratio": "1 / 1",
         "content_position": "default",
         "content_position_mobile": "start-center",
-        "background_color": "#fbc7e0",
+        "background_color": "",
         "toggle_overlay": false,
         "overlay_color": "{{ settings.color_palette.color5 }}",
         "overlay_style": "solid",
