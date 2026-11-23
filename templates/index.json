@@ -204,6 +204,9 @@
         "image_rJP7JV",
         "image_bihHB7"
       ],
+      "custom_css": [
+        ".section,.page-width,.color-scheme,[class*=\"color-\"],.gradient {background: #000000 !important;}"
+      ],
       "name": "Premium Image Grid BFCM",
       "settings": {
         "columns": 4,
