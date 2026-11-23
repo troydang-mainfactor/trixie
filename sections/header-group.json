@@ -134,6 +134,7 @@
     },
     "auto_add_to_cart_dMxhMc": {
       "type": "auto-add-to-cart",
+      "disabled": true,
       "name": "t:auto_add_to_cart.names.section",
       "settings": {
         "enabled": false,
