@@ -29,7 +29,7 @@
             "border_opacity": 100,
             "border_color": "",
             "border_radius": 0,
-            "padding-block-start": 0,
+            "padding-block-start": 19,
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
@@ -47,14 +47,14 @@
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "center",
             "vertical_alignment_flex_direction_column": "flex-end",
-            "gap": 13,
+            "gap": 0,
             "show_above_media_mobile": false,
             "width": "fill",
             "custom_width": 100,
-            "width_mobile": "fill",
+            "width_mobile": "fit-content",
             "custom_width_mobile": 100,
             "height": "custom",
-            "custom_height": 100,
+            "custom_height": 32,
             "background_media": "none",
             "background_color": "#000000",
             "video_position": "cover",
@@ -71,8 +71,8 @@
             "link": "shopify://collections/trixie-hollow",
             "open_in_new_tab": false,
             "placeholder": "",
-            "padding-block-start": 0,
-            "padding-block-end": 64,
+            "padding-block-start": 27,
+            "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
@@ -124,11 +124,11 @@
         "align_baseline": true,
         "horizontal_alignment_flex_direction_column": "center",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 24,
+        "gap": 0,
         "section_width": "page-width",
-        "section_height": "large",
+        "section_height": "small",
         "section_height_custom": 50,
-        "mobile_aspect_ratio": "1 / 1",
+        "mobile_aspect_ratio": "auto",
         "content_position": "end-center",
         "content_position_mobile": "end-center",
         "background_color": "#000000",
@@ -2814,7 +2814,7 @@
         "icons_shape": "circle",
         "section_width": "page-width",
         "gap": 12,
-        "background_color": "{{ settings.color_palette.color5 }}",
+        "background_color": "",
         "padding-block-start": 48,
         "padding-block-end": 48
       }
@@ -2964,6 +2964,7 @@
       "block_order": [
         "group_nY6A48"
       ],
+      "disabled": true,
       "name": "Best of Gifts",
       "settings": {
         "collection_list": [
