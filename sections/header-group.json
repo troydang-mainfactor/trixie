@@ -19,7 +19,7 @@
           "name": "t:names.announcement",
           "settings": {
             "text": "<strong>BLACK FRIDAY IS HERE!</strong> Up To 70% Off Sitewide",
-            "link": "shopify://collections/new-arrivals-and-restocks",
+            "link": "shopify://collections/bestsellers",
             "font": "var(--font-body--family)",
             "font_size": "0.75rem",
             "weight": "",
