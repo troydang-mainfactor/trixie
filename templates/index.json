@@ -80,7 +80,6 @@
       "block_order": [
         "group_fnneeC"
       ],
-      "disabled": true,
       "name": "Hero BFCM",
       "settings": {
         "media_type_1": "image",
@@ -180,7 +179,6 @@
         "image_rJP7JV",
         "image_bihHB7"
       ],
-      "disabled": true,
       "name": "Premium Image Grid BFCM",
       "settings": {
         "columns": 4,
@@ -337,7 +335,7 @@
         "mobile_aspect_ratio": "1 / 1",
         "content_position": "default",
         "content_position_mobile": "start-center",
-        "background_color": "#FBC7E0",
+        "background_color": "#fbc7e0",
         "toggle_overlay": false,
         "overlay_color": "{{ settings.color_palette.color5 }}",
         "overlay_style": "solid",
@@ -346,251 +344,6 @@
         "reflection_opacity": 75,
         "padding-block-start": 20,
         "padding-block-end": 40
-      }
-    },
-    "hero_jVaWmY": {
-      "type": "hero",
-      "blocks": {
-        "group_LD9MqP": {
-          "type": "group",
-          "name": "t:names.group",
-          "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "center",
-            "vertical_alignment_flex_direction_column": "flex-end",
-            "gap": 13,
-            "show_above_media_mobile": false,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "custom",
-            "custom_height": 100,
-            "background_media": "none",
-            "background_color": "",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 0,
-            "link": "shopify://collections/trixie-hollow",
-            "open_in_new_tab": false,
-            "placeholder": "",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "text_kMjLnU": {
-              "type": "text",
-              "settings": {
-                "text": "<h5>WELCOME TO THE REALM OF</h5>",
-                "split_on_dash": false,
-                "width": "100%",
-                "max_width": "narrow",
-                "alignment": "center",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "#ffffff",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "text_f7m4HH": {
-              "type": "text",
-              "settings": {
-                "text": "<h2><strong>TRIXIE HOLLOW</strong></h2>",
-                "split_on_dash": false,
-                "width": "100%",
-                "max_width": "narrow",
-                "alignment": "center",
-                "type_preset": "h1",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "#ffffff",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "button_iG3Q7q": {
-              "type": "button",
-              "settings": {
-                "label": "SHOP THE COLLECTION",
-                "link": "shopify://collections/trixie-hollow",
-                "open_in_new_tab": false,
-                "style_class": "button",
-                "custom_button_background": "{{ settings.color_palette.foreground }}",
-                "custom_button_text": "{{ settings.color_palette.background }}",
-                "custom_button_border": "{{ settings.color_palette.background }}",
-                "link_text_color": "",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "text_kMjLnU",
-            "text_f7m4HH",
-            "button_iG3Q7q"
-          ]
-        }
-      },
-      "block_order": [
-        "group_LD9MqP"
-      ],
-      "name": "Hero Trixie Hollow",
-      "settings": {
-        "media_type_1": "image",
-        "image_1": "shopify://shop_images/Desktop-Homepage-hero-TrixieHollow-models.jpg",
-        "media_type_2": "image",
-        "stack_media_on_mobile": false,
-        "custom_mobile_media": true,
-        "media_type_1_mobile": "image",
-        "image_1_mobile": "shopify://shop_images/Mobile-Homepage-hero-TrixieHollow-models.jpg",
-        "media_type_2_mobile": "image",
-        "link": "shopify://collections/trixie-hollow",
-        "open_in_new_tab": false,
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "space-between",
-        "vertical_alignment": "flex-end",
-        "align_baseline": true,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 24,
-        "section_width": "page-width",
-        "section_height": "full-screen",
-        "section_height_custom": 50,
-        "mobile_aspect_ratio": "3 / 4",
-        "content_position": "end-start",
-        "content_position_mobile": "end-center",
-        "background_color": "rgba(0,0,0,0)",
-        "toggle_overlay": true,
-        "overlay_color": "#00000059",
-        "overlay_style": "gradient",
-        "gradient_direction": "to top",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 40,
-        "padding-block-end": 40
-      }
-    },
-    "image_grid_premium_LYJpTw": {
-      "type": "image-grid-premium",
-      "blocks": {
-        "image_49Pd7X": {
-          "type": "image",
-          "settings": {
-            "collection": "eyes",
-            "image": "shopify://shop_images/image-grid--trixie-hollow---eyes.jpg",
-            "heading": "Eyes",
-            "text": "",
-            "button_label": "Shop Now",
-            "link": "shopify://collections/eyes",
-            "vertical": "bottom",
-            "horizontal": "center"
-          }
-        },
-        "image_T9JGDn": {
-          "type": "image",
-          "settings": {
-            "collection": "lips",
-            "image": "shopify://shop_images/image-grid--trixie-hollow---lips.jpg",
-            "heading": "Lips",
-            "text": "",
-            "button_label": "Shop Now",
-            "link": "shopify://collections/lips",
-            "vertical": "bottom",
-            "horizontal": "center"
-          }
-        },
-        "image_6JyCxz": {
-          "type": "image",
-          "settings": {
-            "collection": "face",
-            "image": "shopify://shop_images/image-grid--trixie-hollow--face.jpg",
-            "heading": "Face",
-            "text": "",
-            "button_label": "Shop Now",
-            "link": "shopify://collections/face",
-            "vertical": "bottom",
-            "horizontal": "center"
-          }
-        },
-        "image_A4Jkwx": {
-          "type": "image",
-          "settings": {
-            "collection": "accessories",
-            "image": "shopify://shop_images/image-grid--trixie-hollow--accessories.jpg",
-            "heading": "Merch",
-            "text": "",
-            "button_label": "Shop Now",
-            "link": "shopify://collections/accessories",
-            "vertical": "bottom",
-            "horizontal": "center"
-          }
-        }
-      },
-      "block_order": [
-        "image_49Pd7X",
-        "image_T9JGDn",
-        "image_6JyCxz",
-        "image_A4Jkwx"
-      ],
-      "name": "Premium Image Grid Trixie Hollow",
-      "settings": {
-        "columns": 4,
-        "rows": 1,
-        "mobile_columns": "2",
-        "mobile_layout": "scroll",
-        "aspect_ratio": "portrait",
-        "heading_size": 32,
-        "mobile_heading_size": 24,
-        "button_size": 16,
-        "mobile_button_size": 12,
-        "grid_gap": 12,
-        "corner_radius": 0,
-        "mobile_corner_radius": 0,
-        "content_padding": 20,
-        "mobile_content_padding": 20,
-        "overlay_opacity": 50,
-        "padding_top": 12,
-        "padding_bottom": 0
       }
     },
     "product_list_fa6P9H": {
@@ -994,6 +747,251 @@
         "background_color": "{{ settings.color_palette.background }}",
         "padding-block-start": 48,
         "padding-block-end": 48
+      }
+    },
+    "hero_jVaWmY": {
+      "type": "hero",
+      "blocks": {
+        "group_LD9MqP": {
+          "type": "group",
+          "name": "t:names.group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "flex-end",
+            "gap": 13,
+            "show_above_media_mobile": false,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "custom",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "shopify://collections/trixie-hollow",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_kMjLnU": {
+              "type": "text",
+              "settings": {
+                "text": "<h5>WELCOME TO THE REALM OF</h5>",
+                "split_on_dash": false,
+                "width": "100%",
+                "max_width": "narrow",
+                "alignment": "center",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "#ffffff",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_f7m4HH": {
+              "type": "text",
+              "settings": {
+                "text": "<h2><strong>TRIXIE HOLLOW</strong></h2>",
+                "split_on_dash": false,
+                "width": "100%",
+                "max_width": "narrow",
+                "alignment": "center",
+                "type_preset": "h1",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "#ffffff",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "button_iG3Q7q": {
+              "type": "button",
+              "settings": {
+                "label": "SHOP THE COLLECTION",
+                "link": "shopify://collections/trixie-hollow",
+                "open_in_new_tab": false,
+                "style_class": "button",
+                "custom_button_background": "{{ settings.color_palette.foreground }}",
+                "custom_button_text": "{{ settings.color_palette.background }}",
+                "custom_button_border": "{{ settings.color_palette.background }}",
+                "link_text_color": "",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_kMjLnU",
+            "text_f7m4HH",
+            "button_iG3Q7q"
+          ]
+        }
+      },
+      "block_order": [
+        "group_LD9MqP"
+      ],
+      "name": "Hero Trixie Hollow",
+      "settings": {
+        "media_type_1": "image",
+        "image_1": "shopify://shop_images/Desktop-Homepage-hero-TrixieHollow-models.jpg",
+        "media_type_2": "image",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": true,
+        "media_type_1_mobile": "image",
+        "image_1_mobile": "shopify://shop_images/Mobile-Homepage-hero-TrixieHollow-models.jpg",
+        "media_type_2_mobile": "image",
+        "link": "shopify://collections/trixie-hollow",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "space-between",
+        "vertical_alignment": "flex-end",
+        "align_baseline": true,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 24,
+        "section_width": "page-width",
+        "section_height": "full-screen",
+        "section_height_custom": 50,
+        "mobile_aspect_ratio": "3 / 4",
+        "content_position": "end-start",
+        "content_position_mobile": "end-center",
+        "background_color": "rgba(0,0,0,0)",
+        "toggle_overlay": true,
+        "overlay_color": "#00000059",
+        "overlay_style": "gradient",
+        "gradient_direction": "to top",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "image_grid_premium_LYJpTw": {
+      "type": "image-grid-premium",
+      "blocks": {
+        "image_49Pd7X": {
+          "type": "image",
+          "settings": {
+            "collection": "eyes",
+            "image": "shopify://shop_images/image-grid--trixie-hollow---eyes.jpg",
+            "heading": "Eyes",
+            "text": "",
+            "button_label": "Shop Now",
+            "link": "shopify://collections/eyes",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        },
+        "image_T9JGDn": {
+          "type": "image",
+          "settings": {
+            "collection": "lips",
+            "image": "shopify://shop_images/image-grid--trixie-hollow---lips.jpg",
+            "heading": "Lips",
+            "text": "",
+            "button_label": "Shop Now",
+            "link": "shopify://collections/lips",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        },
+        "image_6JyCxz": {
+          "type": "image",
+          "settings": {
+            "collection": "face",
+            "image": "shopify://shop_images/image-grid--trixie-hollow--face.jpg",
+            "heading": "Face",
+            "text": "",
+            "button_label": "Shop Now",
+            "link": "shopify://collections/face",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        },
+        "image_A4Jkwx": {
+          "type": "image",
+          "settings": {
+            "collection": "accessories",
+            "image": "shopify://shop_images/image-grid--trixie-hollow--accessories.jpg",
+            "heading": "Merch",
+            "text": "",
+            "button_label": "Shop Now",
+            "link": "shopify://collections/accessories",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        }
+      },
+      "block_order": [
+        "image_49Pd7X",
+        "image_T9JGDn",
+        "image_6JyCxz",
+        "image_A4Jkwx"
+      ],
+      "name": "Premium Image Grid Trixie Hollow",
+      "settings": {
+        "columns": 4,
+        "rows": 1,
+        "mobile_columns": "2",
+        "mobile_layout": "scroll",
+        "aspect_ratio": "portrait",
+        "heading_size": 32,
+        "mobile_heading_size": 24,
+        "button_size": 16,
+        "mobile_button_size": 12,
+        "grid_gap": 12,
+        "corner_radius": 0,
+        "mobile_corner_radius": 0,
+        "content_padding": 20,
+        "mobile_content_padding": 20,
+        "overlay_opacity": 50,
+        "padding_top": 12,
+        "padding_bottom": 0
       }
     },
     "hero_HzznB9": {
@@ -3505,9 +3503,9 @@
     "hero_iWETEJ",
     "image_grid_premium_YDR8UN",
     "hero_YBpGrr",
+    "product_list_fa6P9H",
     "hero_jVaWmY",
     "image_grid_premium_LYJpTw",
-    "product_list_fa6P9H",
     "hero_HzznB9",
     "image_grid_premium_pB9PmF",
     "product_list_wW6dBE",
