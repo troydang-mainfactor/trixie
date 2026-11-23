@@ -237,7 +237,7 @@
           "settings": {
             "text": "<h2>FREE LIPSTICK</h2>",
             "split_on_dash": false,
-            "width": "100%",
+            "width": "fit-content",
             "max_width": "narrow",
             "alignment": "center",
             "type_preset": "custom",
@@ -289,7 +289,7 @@
           "settings": {
             "text": "<p><strong>LIMITED TIME!</strong> No code required. While supplies last.</p>",
             "split_on_dash": false,
-            "width": "100%",
+            "width": "fit-content",
             "max_width": "normal",
             "alignment": "center",
             "type_preset": "custom",
@@ -301,7 +301,7 @@
             "wrap": "pretty",
             "text_color": "{{ settings.color_palette.foreground }}",
             "background": false,
-            "background_color": "#00000026",
+            "background_color": "#FFFFFF",
             "corner_radius": 0,
             "padding-block-start": 10,
             "padding-block-end": 0,
@@ -309,33 +309,12 @@
             "padding-inline-end": 0
           },
           "blocks": {}
-        },
-        "button_tjRAQ7": {
-          "type": "button",
-          "name": "t:names.button",
-          "disabled": true,
-          "settings": {
-            "label": "Shop now",
-            "link": "shopify://collections/all",
-            "open_in_new_tab": false,
-            "style_class": "button",
-            "custom_button_background": "{{ settings.color_palette.foreground }}",
-            "custom_button_text": "{{ settings.color_palette.background }}",
-            "custom_button_border": "{{ settings.color_palette.background }}",
-            "link_text_color": "",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
         }
       },
       "block_order": [
         "text_rX7jcV",
         "text_Rc8zfA",
-        "text_jcK7Tw",
-        "button_tjRAQ7"
+        "text_jcK7Tw"
       ],
       "name": "FREE LIP",
       "settings": {
