@@ -12,6 +12,30 @@
     "hero_iWETEJ": {
       "type": "hero",
       "blocks": {
+        "image_LBe3KR": {
+          "type": "image",
+          "name": "t:names.image",
+          "settings": {
+            "image": "shopify://shop_images/Untitled-3.png",
+            "link": "",
+            "image_ratio": "adapt",
+            "width": "custom",
+            "custom_width": 65,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
         "group_fnneeC": {
           "type": "group",
           "name": "t:names.group",
@@ -53,30 +77,6 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "image_CVbeN4": {
-              "type": "image",
-              "name": "t:names.image",
-              "settings": {
-                "image": "shopify://shop_images/Untitled-3.png",
-                "link": "",
-                "image_ratio": "adapt",
-                "width": "custom",
-                "custom_width": 65,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_color": "",
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
             "button_ynQtaW": {
               "type": "button",
               "settings": {
@@ -97,12 +97,12 @@
             }
           },
           "block_order": [
-            "image_CVbeN4",
             "button_ynQtaW"
           ]
         }
       },
       "block_order": [
+        "image_LBe3KR",
         "group_fnneeC"
       ],
       "name": "Hero BFCM",
@@ -129,7 +129,7 @@
         "section_height": "large",
         "section_height_custom": 50,
         "mobile_aspect_ratio": "1 / 1",
-        "content_position": "end-start",
+        "content_position": "end-center",
         "content_position_mobile": "end-center",
         "background_color": "#000000",
         "toggle_overlay": true,
