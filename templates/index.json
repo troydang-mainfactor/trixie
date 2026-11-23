@@ -190,7 +190,7 @@
           "settings": {
             "collection": "accessories",
             "image": "shopify://shop_images/BFCM-merch.jpg",
-            "heading": "Merch",
+            "heading": "Tools + Merch",
             "text": "",
             "button_label": "Shop Now",
             "link": "shopify://collections/accessories",
@@ -226,7 +226,7 @@
         "mobile_content_padding": 20,
         "overlay_opacity": 50,
         "padding_top": 12,
-        "padding_bottom": 12
+        "padding_bottom": 40
       }
     },
     "hero_YBpGrr": {
@@ -301,7 +301,7 @@
             "wrap": "pretty",
             "text_color": "{{ settings.color_palette.foreground }}",
             "background": false,
-            "background_color": "#FFFFFF",
+            "background_color": "#ffffff",
             "corner_radius": 0,
             "padding-block-start": 10,
             "padding-block-end": 0,
@@ -2582,7 +2582,7 @@
               "settings": {
                 "image_ratio": "adapt",
                 "toggle_overlay": false,
-                "overlay_color": "#EB008B2E",
+                "overlay_color": "#eb008b2e",
                 "overlay_style": "solid",
                 "gradient_direction": "to top",
                 "border": "solid",
