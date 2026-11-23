@@ -18,7 +18,37 @@
           "type": "_announcement",
           "name": "t:names.announcement",
           "settings": {
-            "text": "Up To 70% Off Sitewide | Free US Shipping on $70+ Orders",
+            "text": "<strong>BLACK FRIDAY IS HERE!</strong> Up To 70% Off Sitewide",
+            "link": "shopify://collections/new-arrivals-and-restocks",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "weight": "",
+            "letter_spacing": "loose",
+            "case": "uppercase",
+            "text_color": ""
+          },
+          "blocks": {}
+        },
+        "announcement_gMfUKr": {
+          "type": "_announcement",
+          "name": "t:names.announcement",
+          "settings": {
+            "text": "Free Lipstick with an $80 Purchase",
+            "link": "shopify://collections/bestsellers",
+            "font": "var(--font-subheading--family)",
+            "font_size": "0.75rem",
+            "weight": "",
+            "letter_spacing": "loose",
+            "case": "uppercase",
+            "text_color": ""
+          },
+          "blocks": {}
+        },
+        "announcement_Bh4dGe": {
+          "type": "_announcement",
+          "name": "t:names.announcement",
+          "settings": {
+            "text": "Free US Shipping on $70+ Orders",
             "link": "shopify://collections/new-arrivals-and-restocks",
             "font": "var(--font-body--family)",
             "font_size": "0.75rem",
@@ -31,7 +61,9 @@
         }
       },
       "block_order": [
-        "announcement_j8Tgfi"
+        "announcement_j8Tgfi",
+        "announcement_gMfUKr",
+        "announcement_Bh4dGe"
       ],
       "name": "t:names.announcement_bar",
       "settings": {
