@@ -356,77 +356,6 @@
     "hero_JyLXCp": {
       "type": "hero",
       "blocks": {
-        "group_TdiPYP": {
-          "type": "group",
-          "name": "t:names.group",
-          "disabled": true,
-          "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "center",
-            "vertical_alignment_flex_direction_column": "flex-start",
-            "gap": 0,
-            "show_above_media_mobile": false,
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "background_media": "none",
-            "background_color": "",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 0,
-            "link": "",
-            "open_in_new_tab": false,
-            "placeholder": "",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "image_RFqPma": {
-              "type": "image",
-              "name": "t:names.image",
-              "settings": {
-                "image": "shopify://shop_images/bow_10x_de64ce56-74ae-4e12-9fbd-644cfa66c23f.png",
-                "link": "",
-                "image_ratio": "adapt",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "custom",
-                "custom_width_mobile": 45,
-                "height": "fit",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_color": "",
-                "border_radius": 0,
-                "padding-block-start": 44,
-                "padding-block-end": 31,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "image_RFqPma"
-          ]
-        },
         "text_HcWbRL": {
           "type": "text",
           "settings": {
@@ -530,14 +459,40 @@
             "padding-inline-end": 0
           },
           "blocks": {}
+        },
+        "text_7aLxYh": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>ONE DAY ONLY! </strong>To redeem, add Hotline Gel Liner to cart.</p>",
+            "split_on_dash": false,
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "0.625rem",
+            "line_height": "tight",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "{{ settings.color_palette.foreground }}",
+            "background": false,
+            "background_color": "#ffffff",
+            "corner_radius": 0,
+            "padding-block-start": 10,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "group_TdiPYP",
         "text_HcWbRL",
         "text_49dHqJ",
         "text_PgxmfT",
-        "text_YhCwCB"
+        "text_YhCwCB",
+        "text_7aLxYh"
       ],
       "disabled": true,
       "name": "12 Deals of Trixmas",
@@ -963,19 +918,19 @@
       "disabled": true,
       "name": "Day 1 Collection",
       "settings": {
-        "collection": "hotline",
-        "layout_type": "carousel",
+        "collection": "12-deals-of-trixmas-day-1",
+        "layout_type": "grid",
         "carousel_on_mobile": true,
-        "max_products": 8,
-        "columns": 4,
+        "max_products": 3,
+        "columns": 3,
         "mobile_columns": "2",
         "mobile_card_size": "60cqw",
         "columns_gap": 8,
         "rows_gap": 24,
-        "icons_style": "arrow",
+        "icons_style": "none",
         "icons_shape": "none",
         "section_width": "page-width",
-        "horizontal_alignment": "flex-start",
+        "horizontal_alignment": "center",
         "gap": 28,
         "background_color": "{{ settings.color_palette.color6 }}",
         "padding-block-start": 0,
