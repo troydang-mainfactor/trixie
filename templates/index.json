@@ -30,14 +30,14 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Up to 70% Off</p>",
+            "text": "<p>Up to 70% Off Sitewide</p>",
             "split_on_dash": false,
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
             "type_preset": "custom",
             "font": "var(--font-accent--family)",
-            "font_size": "1rem",
+            "font_size": "1.125rem",
             "line_height": "tight",
             "letter_spacing": "loose",
             "case": "uppercase",
@@ -47,7 +47,7 @@
             "background_color": "#00000026",
             "corner_radius": 0,
             "padding-block-start": 0,
-            "padding-block-end": 0,
+            "padding-block-end": 8,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
@@ -111,9 +111,9 @@
         "mobile_aspect_ratio": "auto",
         "content_position": "start-center",
         "content_position_mobile": "start-center",
-        "background_color": "#FBC7E0",
+        "background_color": "#fbc7e0",
         "toggle_overlay": true,
-        "overlay_color": "#A70E69",
+        "overlay_color": "#a70e69",
         "overlay_style": "solid",
         "gradient_direction": "to top",
         "blurred_reflection": false,
@@ -130,7 +130,7 @@
           "settings": {
             "collection": "gifts-for-the-statement-makers",
             "heading": "{{ block.settings.collection.title }}",
-            "text": "<p><strong>\"pink is a neutral.\"</strong></p>",
+            "text": "<p><strong>\"Pink is a neutral.\"</strong></p>",
             "button_label": "SHOP",
             "link": "",
             "vertical": "bottom",
@@ -142,7 +142,7 @@
           "settings": {
             "collection": "gifts-for-the-neutral-divas",
             "heading": "{{ block.settings.collection.title }}",
-            "text": "<p><strong>\"keep your colors,<br/>I'll take the nudes.\"</strong></p>",
+            "text": "<p><strong>\"Keep your colors,<br/>I'll take the nudes.\"</strong></p>",
             "button_label": "SHOP",
             "link": "",
             "vertical": "bottom",
@@ -192,15 +192,16 @@
         "mobile_layout": "scroll",
         "aspect_ratio": "portrait",
         "heading_size": 32,
-        "mobile_heading_size": 34,
+        "mobile_heading_size": 28,
         "button_size": 16,
         "mobile_button_size": 12,
         "grid_gap": 12,
         "corner_radius": 40,
         "mobile_corner_radius": 40,
-        "content_padding": 20,
-        "mobile_content_padding": 20,
+        "content_padding": 12,
+        "mobile_content_padding": 10,
         "overlay_opacity": 70,
+        "overlay_color": "{{ settings.color_palette.color3 }}",
         "padding_top": 12,
         "padding_bottom": 40
       }
@@ -421,6 +422,7 @@
         "content_padding": 20,
         "mobile_content_padding": 20,
         "overlay_opacity": 50,
+        "overlay_color": "#000000",
         "padding_top": 12,
         "padding_bottom": 40
       }
@@ -626,7 +628,7 @@
                 "letter_spacing": "loose",
                 "case": "none",
                 "wrap": "pretty",
-                "text_color": "#FFFFFF",
+                "text_color": "#ffffff",
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
@@ -760,7 +762,7 @@
         "icons_shape": "circle",
         "section_width": "page-width",
         "gap": 12,
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "padding-block-start": 41,
         "padding-block-end": 20
       }
@@ -931,7 +933,7 @@
         "icons_shape": "circle",
         "section_width": "page-width",
         "gap": 12,
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "padding-block-start": 20,
         "padding-block-end": 36
       }
@@ -3953,6 +3955,7 @@
         "content_padding": 20,
         "mobile_content_padding": 20,
         "overlay_opacity": 50,
+        "overlay_color": "#000000",
         "padding_top": 12,
         "padding_bottom": 0
       }
