@@ -12,7 +12,203 @@
     "hero_iWETEJ": {
       "type": "hero",
       "blocks": {
-        "image_LBe3KR": {
+        "spacer_jQUDCf": {
+          "type": "spacer",
+          "name": "t:names.spacer",
+          "settings": {
+            "size": "pixel",
+            "percent_size": 49,
+            "pixel_size": 28,
+            "custom_mobile_size": true,
+            "size_mobile": "pixel",
+            "percent_size_mobile": 100,
+            "pixel_size_mobile": 64
+          },
+          "blocks": {}
+        },
+        "text_T3dKhf": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>Up to 70% Off</p>",
+            "split_on_dash": false,
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-accent--family)",
+            "font_size": "1rem",
+            "line_height": "tight",
+            "letter_spacing": "loose",
+            "case": "uppercase",
+            "wrap": "pretty",
+            "text_color": "{{ settings.color_palette.color5 }}",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_79kxgx": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<h2>Trixie's Gift Guide</h2>",
+            "split_on_dash": false,
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-subheading--family)",
+            "font_size": "4.5rem",
+            "line_height": "tight",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "{{ settings.color_palette.color5 }}",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "spacer_jQUDCf",
+        "text_T3dKhf",
+        "text_79kxgx"
+      ],
+      "disabled": true,
+      "name": "Hero Gift Guide",
+      "settings": {
+        "media_type_1": "image",
+        "media_type_2": "image",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": true,
+        "media_type_1_mobile": "image",
+        "media_type_2_mobile": "image",
+        "link": "",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "space-between",
+        "vertical_alignment": "flex-end",
+        "align_baseline": true,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 0,
+        "section_width": "page-width",
+        "section_height": "auto",
+        "section_height_custom": 50,
+        "mobile_aspect_ratio": "auto",
+        "content_position": "start-center",
+        "content_position_mobile": "start-center",
+        "background_color": "#FBC7E0",
+        "toggle_overlay": true,
+        "overlay_color": "#A70E69",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "image_grid_premium_y9Pzf7": {
+      "type": "image-grid-premium",
+      "blocks": {
+        "image_p4JKwz": {
+          "type": "image",
+          "settings": {
+            "collection": "gifts-for-the-statement-makers",
+            "heading": "{{ block.settings.collection.title }}",
+            "text": "<p><strong>\"pink is a neutral.\"</strong></p>",
+            "button_label": "SHOP",
+            "link": "",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        },
+        "image_wYWJif": {
+          "type": "image",
+          "settings": {
+            "collection": "gifts-for-the-neutral-divas",
+            "heading": "{{ block.settings.collection.title }}",
+            "text": "<p><strong>\"keep your colors,<br/>I'll take the nudes.\"</strong></p>",
+            "button_label": "SHOP",
+            "link": "",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        },
+        "image_XtkD3N": {
+          "type": "image",
+          "settings": {
+            "collection": "gifts-for-the-lovergirls",
+            "heading": "{{ block.settings.collection.title }}",
+            "text": "<p><strong>\"Everything in my bag<br/>is heart-shaped.\"</strong></p>",
+            "button_label": "SHOP",
+            "link": "",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        },
+        "image_tRUxGV": {
+          "type": "image",
+          "settings": {
+            "collection": "gifts-that-sparkle",
+            "heading": "{{ block.settings.collection.title }}",
+            "text": "<p><strong>\"Make me look<br/>like a disco ball.\"</strong></p>",
+            "button_label": "SHOP",
+            "link": "",
+            "vertical": "bottom",
+            "horizontal": "center"
+          }
+        }
+      },
+      "block_order": [
+        "image_p4JKwz",
+        "image_wYWJif",
+        "image_XtkD3N",
+        "image_tRUxGV"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".section,.page-width,.color-scheme,[class*=\"color-\"],.gradient {background: #a70e69 !important;}"
+      ],
+      "name": "Premium Image Grid Gift Guide",
+      "settings": {
+        "columns": 4,
+        "rows": 1,
+        "mobile_columns": "2",
+        "mobile_layout": "scroll",
+        "aspect_ratio": "portrait",
+        "heading_size": 32,
+        "mobile_heading_size": 34,
+        "button_size": 16,
+        "mobile_button_size": 12,
+        "grid_gap": 12,
+        "corner_radius": 40,
+        "mobile_corner_radius": 40,
+        "content_padding": 20,
+        "mobile_content_padding": 20,
+        "overlay_opacity": 70,
+        "padding_top": 12,
+        "padding_bottom": 40
+      }
+    },
+    "hero_yRQCVL": {
+      "type": "hero",
+      "blocks": {
+        "image_ybMMCU": {
           "type": "image",
           "name": "t:names.image",
           "settings": {
@@ -36,7 +232,7 @@
           },
           "blocks": {}
         },
-        "group_fnneeC": {
+        "group_WnjbrP": {
           "type": "group",
           "name": "t:names.group",
           "disabled": true,
@@ -78,7 +274,7 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "button_ynQtaW": {
+            "button_LatTCK": {
               "type": "button",
               "settings": {
                 "label": "Best Sellers",
@@ -98,13 +294,13 @@
             }
           },
           "block_order": [
-            "button_ynQtaW"
+            "button_LatTCK"
           ]
         }
       },
       "block_order": [
-        "image_LBe3KR",
-        "group_fnneeC"
+        "image_ybMMCU",
+        "group_WnjbrP"
       ],
       "name": "Hero BFCM",
       "settings": {
@@ -4038,6 +4234,8 @@
   },
   "order": [
     "hero_iWETEJ",
+    "image_grid_premium_y9Pzf7",
+    "hero_yRQCVL",
     "image_grid_premium_YDR8UN",
     "hero_YBpGrr",
     "collection_list_r9Mh98",
