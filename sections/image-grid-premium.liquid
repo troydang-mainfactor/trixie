@@ -17,6 +17,8 @@
     --content-padding-desktop: {{ section.settings.content_padding }}px;
     --content-padding-mobile: {{ section.settings.mobile_content_padding }}px;
     --overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+    {%- assign ov = section.settings.overlay_color | default: "#000000" -%}
+    --overlay-rgb: {{ ov | color_extract: "red" }}, {{ ov | color_extract: "green" }}, {{ ov | color_extract: "blue" }};
     --heading-size-desktop: {{ section.settings.heading_size }}px;
     --heading-size-mobile: {{ section.settings.mobile_heading_size }}px;
     --button-size-desktop: {{ section.settings.button_size }}px;
@@ -169,9 +171,9 @@
     padding: var(--content-padding-desktop);
     background: linear-gradient(
       180deg,
-      rgba(0, 0, 0, 0) 20%,
-      rgba(0, 0, 0, calc(var(--overlay-opacity) * .45)) 55%,
-      rgba(0, 0, 0, var(--overlay-opacity)) 100%
+      rgba(var(--overlay-rgb), 0) 20%,
+      rgba(var(--overlay-rgb), calc(var(--overlay-opacity) * .45)) 55%,
+      rgba(var(--overlay-rgb), var(--overlay-opacity)) 100%
     );
     color: #fff;
     transition: background .35s ease;
@@ -238,9 +240,9 @@
     .premium-grid__item:hover .premium-grid__overlay {
       background: linear-gradient(
         180deg,
-        rgba(0, 0, 0, 0) 10%,
-        rgba(0, 0, 0, calc(var(--overlay-opacity) * .65)) 55%,
-        rgba(0, 0, 0, calc(var(--overlay-opacity) + .15)) 100%
+        rgba(var(--overlay-rgb), 0) 10%,
+        rgba(var(--overlay-rgb), calc(var(--overlay-opacity) * .65)) 55%,
+        rgba(var(--overlay-rgb), calc(var(--overlay-opacity) + .15)) 100%
       );
     }
 
@@ -475,6 +477,12 @@
       "step": 5,
       "default": 55,
       "unit": "%"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "#000000"
     },
     {
       "type": "range",
