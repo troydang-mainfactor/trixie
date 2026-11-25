@@ -425,6 +425,22 @@
         "padding_bottom": 40
       }
     },
+    "divider_PKW68e": {
+      "type": "divider",
+      "disabled": true,
+      "name": "t:names.divider_section",
+      "settings": {
+        "background_color": "{{ settings.color_palette.background }}",
+        "divider_color": "{{ settings.color_palette.background }}",
+        "section_width": "page-width",
+        "thickness": 0.5,
+        "corner_radius": "square",
+        "width_percent": 100,
+        "alignment_horizontal": "center",
+        "padding-block-start": 15,
+        "padding-block-end": 15
+      }
+    },
     "hero_YBpGrr": {
       "type": "hero",
       "blocks": {
@@ -4237,6 +4253,7 @@
     "image_grid_premium_y9Pzf7",
     "hero_yRQCVL",
     "image_grid_premium_YDR8UN",
+    "divider_PKW68e",
     "hero_YBpGrr",
     "collection_list_r9Mh98",
     "collection_list_gtFELY",
