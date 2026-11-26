@@ -87,7 +87,6 @@
         "text_T3dKhf",
         "text_79kxgx"
       ],
-      "disabled": true,
       "name": "Hero Gift Guide",
       "settings": {
         "media_type_1": "image",
@@ -181,7 +180,6 @@
         "image_XtkD3N",
         "image_tRUxGV"
       ],
-      "disabled": true,
       "custom_css": [
         ".section,.page-width,.color-scheme,[class*=\"color-\"],.gradient {background: #a70e69 !important;}"
       ],
