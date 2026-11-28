@@ -1320,7 +1320,6 @@
           ]
         }
       },
-      "disabled": true,
       "name": "Staff Picks",
       "settings": {
         "collection": "staff-picks",
@@ -3042,13 +3041,13 @@
   "order": [
     "hero_iWETEJ",
     "image_grid_premium_y9Pzf7",
+    "product_list_zVNUBP",
     "hero_yRQCVL",
     "image_grid_premium_YDR8UN",
     "divider_PKW68e",
     "hero_YBpGrr",
     "collection_list_r9Mh98",
     "collection_list_gtFELY",
-    "product_list_zVNUBP",
     "collection_list_nJNH9R",
     "hero_JyLXCp",
     "product_list_ki8mrk",
